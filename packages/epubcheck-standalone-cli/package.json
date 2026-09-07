@@ -1,6 +1,6 @@
 {
   "name": "epubcheck-standalone-cli",
-  "version": "5.3.0-build2",
+  "version": "5.3.0-build3",
   "description": "The official EPUBCheck command line with no Java to install: same flags, console output, JSON, XML, and XMP reports, and exit codes as the official tool, byte-identical, run straight from npx.",
   "type": "module",
   "engines": {
@@ -27,7 +27,7 @@
     "generate:locale-messages": "node scripts/generate-locale-messages.ts"
   },
   "dependencies": {
-    "epubcheck-standalone": "5.3.0-build2"
+    "epubcheck-standalone": "5.3.0-build3"
   },
   "devDependencies": {
     "@types/node": "24.13.3",
