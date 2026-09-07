@@ -1,10 +1,10 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "meta_title": "epubcheck-standalone: validate EPUBs in your browser",
-  "meta_description": "Validate EPUB files entirely in your browser with the W3C EPUBCheck validator compiled to WebAssembly. Nothing is uploaded.",
+  "meta_description": "Validate EPUB files entirely in your browser with the W3C EPUBCheck validator compiled to plain JavaScript with TeaVM. Nothing is uploaded.",
   "intro_the": "The",
   "link_w3c_epubcheck": "W3C EPUBCheck",
-  "intro_after_link": "validator, compiled to WebAssembly and run entirely in your browser. Drop an",
+  "intro_after_link": "validator, compiled to plain JavaScript with TeaVM and run entirely in your browser. Drop an",
   "intro_after_code": "below to validate it.",
   "feature_web": "EPUBCheck on the web",
   "feature_large_files": "Supports large files >16 GB",
