@@ -1,0 +1,8 @@
+{
+  "args": [
+    "does-not-exist.epub"
+  ],
+  "stdout": "Messages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n",
+  "stderr": "File not found: \"does-not-exist.epub\"\n",
+  "code": 1
+}

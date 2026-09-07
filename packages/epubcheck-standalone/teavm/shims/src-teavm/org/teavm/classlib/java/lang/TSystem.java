@@ -1,0 +1,319 @@
+/*
+ *  Copyright 2013 Alexey Andreev.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+package org.teavm.classlib.java.lang;
+
+import java.lang.reflect.Array;
+import java.util.Enumeration;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Properties;
+import org.teavm.backend.c.intrinsic.RuntimeInclude;
+import org.teavm.backend.c.runtime.Memory;
+import org.teavm.backend.c.runtime.fs.CFileSystem;
+import org.teavm.backend.javascript.spi.GeneratedBy;
+import org.teavm.classlib.PlatformDetector;
+import org.teavm.classlib.impl.console.JSStderrPrintStream;
+import org.teavm.classlib.impl.console.JSStdoutPrintStream;
+import org.teavm.classlib.impl.console.StderrOutputStream;
+import org.teavm.classlib.impl.console.StdoutOutputStream;
+import org.teavm.classlib.java.io.TConsole;
+import org.teavm.classlib.java.io.TInputStream;
+import org.teavm.classlib.java.io.TPrintStream;
+import org.teavm.classlib.java.lang.reflect.TArray;
+import org.teavm.dependency.PluggableDependency;
+import org.teavm.interop.Address;
+import org.teavm.interop.DelegateTo;
+import org.teavm.interop.Import;
+import org.teavm.interop.Intrinsified;
+import org.teavm.interop.NoSideEffects;
+import org.teavm.interop.Unmanaged;
+import org.teavm.jso.browser.Performance;
+import org.teavm.runtime.GC;
+import org.teavm.runtime.RuntimeArray;
+import org.teavm.runtime.RuntimeClass;
+import org.teavm.runtime.fs.VirtualFileSystemProvider;
+
+public final class TSystem extends TObject {
+    private static TPrintStream outCache;
+    private static TPrintStream errCache;
+    private static TInputStream inCache;
+    private static Properties properties;
+
+    private TSystem() {
+    }
+
+    public static TPrintStream out() {
+        if (outCache == null) {
+            if (PlatformDetector.isJavaScript() || PlatformDetector.isWebAssemblyGC()) {
+                outCache = (TPrintStream) (Object) new JSStdoutPrintStream();
+            } else {
+                outCache = new TPrintStream(StdoutOutputStream.INSTANCE, false);
+            }
+        }
+        return outCache;
+    }
+
+    public static TPrintStream err() {
+        if (errCache == null) {
+            if (PlatformDetector.isJavaScript() || PlatformDetector.isWebAssemblyGC()) {
+                errCache = (TPrintStream) (Object) new JSStderrPrintStream();
+            } else {
+                errCache = new TPrintStream(StderrOutputStream.INSTANCE, false);
+            }
+        }
+        return errCache;
+    }
+
+    public static TInputStream in() {
+        if (inCache == null) {
+            inCache = new TConsoleInputStream();
+        }
+        return inCache;
+    }
+
+    public static TConsole console() {
+        return null;
+    }
+
+    public static TSecurityManager getSecurityManager() {
+        return new TSecurityManager();
+    }
+
+    public static void arraycopy(TObject src, int srcPos, TObject dest, int destPos, int length) {
+        if (src == null || dest == null) {
+            throw new TNullPointerException("Either src or dest is null");
+        }
+        if (srcPos < 0 || destPos < 0 || length < 0 || srcPos + length > TArray.getLength(src)
+                || destPos + length > TArray.getLength(dest)) {
+            throw new TIndexOutOfBoundsException();
+        }
+        if (src != dest) {
+            Class<?> srcType = src.getClass().getComponentType();
+            Class<?> targetType = dest.getClass().getComponentType();
+            if (srcType == null || targetType == null) {
+                throw new TArrayStoreException();
+            }
+            if (srcType != targetType) {
+                if (!srcType.isPrimitive() && !targetType.isPrimitive()) {
+                    Object[] srcArray = (Object[]) (Object) src;
+                    int pos = srcPos;
+                    for (int i = 0; i < length; ++i) {
+                        Object elem = srcArray[pos++];
+                        if (!targetType.isInstance(elem)) {
+                            doArrayCopy(src, srcPos, dest, destPos, i);
+                            throw new TArrayStoreException();
+                        }
+                    }
+                    doArrayCopy(src, srcPos, dest, destPos, length);
+                    return;
+                } else if (!srcType.isPrimitive() || !targetType.isPrimitive()) {
+                    throw new TArrayStoreException();
+                }
+            }
+        }
+        doArrayCopy(src, srcPos, dest, destPos, length);
+    }
+
+    static void fastArraycopy(Object src, int srcPos, Object dest, int destPos, int length) {
+        if (srcPos < 0 || destPos < 0 || length < 0 || srcPos + length > Array.getLength(src)
+                || destPos + length > Array.getLength(dest)) {
+            throw new TIndexOutOfBoundsException();
+        }
+        doArrayCopy(src, srcPos, dest, destPos, length);
+    }
+
+    @GeneratedBy(SystemNativeGenerator.class)
+    @PluggableDependency(SystemDependencyPlugin.class)
+    @DelegateTo("doArrayCopyLowLevel")
+    @NoSideEffects
+    static native void doArrayCopy(Object src, int srcPos, Object dest, int destPos, int length);
+
+    @Unmanaged
+    static void doArrayCopyLowLevel(RuntimeArray src, int srcPos, RuntimeArray dest, int destPos, int length) {
+        RuntimeClass type = RuntimeClass.getClass(src);
+        int itemSize = type.itemType.size;
+        if (!RuntimeClass.isPrimitive(type.itemType)) {
+            itemSize = Address.sizeOf();
+            GC.writeBarrier(dest);
+        }
+
+        var offset = Address.align(Address.fromInt(0).add(RuntimeArray.class, 1), itemSize).toInt();
+        Address srcAddress = src.toAddress().add(offset);
+        srcAddress = srcAddress.add(itemSize * srcPos);
+
+        Address destAddress = dest.toAddress().add(offset);
+        destAddress = destAddress.add(itemSize * destPos);
+
+        Address.moveMemoryBlock(srcAddress, destAddress, length * itemSize);
+    }
+
+    @DelegateTo("currentTimeMillisLowLevel")
+    @GeneratedBy(SystemNativeGenerator.class)
+    @NoSideEffects
+    @Intrinsified
+    public static native long currentTimeMillis();
+
+    private static long currentTimeMillisLowLevel() {
+        return currentTimeMillisC();
+    }
+
+    @Import(name = "teavm_currentTimeMillis")
+    @RuntimeInclude("time.h")
+    private static native long currentTimeMillisC();
+
+    private static void initPropertiesIfNeeded() {
+        if (properties == null) {
+            Properties defaults = new Properties();
+            defaults.put("java.version", "21");
+            defaults.put("os.name", "TeaVM");
+            defaults.put("file.separator", VirtualFileSystemProvider.getInstance().isWindows() ? "\\" : "/");
+            defaults.put("path.separator", VirtualFileSystemProvider.getInstance().isWindows() ? ";" : ":");
+            defaults.put("line.separator", lineSeparator());
+            defaults.put("java.io.tmpdir", getTempDir());
+            defaults.put("java.vm.version", "21");
+            defaults.put("user.home", getHomeDir());
+            properties = new Properties(defaults);
+        }
+    }
+
+    public static String getTempDir() {
+        if (!PlatformDetector.isC()) {
+            return "/tmp";
+        }
+        Address resultPtr = Memory.malloc(Address.sizeOf());
+        int length = CFileSystem.tempDirectory(resultPtr);
+        return VirtualFileSystemProvider.getInstance().canonicalize(toJavaString(resultPtr, length));
+    }
+
+    private static String getHomeDir() {
+        if (!PlatformDetector.isC()) {
+            return "/";
+        }
+
+        Address resultPtr = Memory.malloc(Address.sizeOf());
+        int length = CFileSystem.homeDirectory(resultPtr);
+        return VirtualFileSystemProvider.getInstance().canonicalize(toJavaString(resultPtr, length));
+    }
+
+    private static String toJavaString(Address resultPtr, int length) {
+        Address result = resultPtr.getAddress();
+        Memory.free(resultPtr);
+
+        char[] chars = new char[length];
+        Memory.memcpy(Address.ofData(chars), result, chars.length * 2);
+        Memory.free(result);
+
+        return new String(chars);
+    }
+
+    public static String getProperty(@SuppressWarnings("unused") String key) {
+        initPropertiesIfNeeded();
+        return properties.getProperty(key);
+    }
+
+    public static String getProperty(String key, String def) {
+        String value = getProperty(key);
+        return value != null ? value : def;
+    }
+
+    public static Properties getProperties() {
+        initPropertiesIfNeeded();
+        Properties result = new Properties();
+        copyProperties(properties, result);
+        return result;
+    }
+
+    public static void setProperties(Properties props) {
+        initPropertiesIfNeeded();
+        copyProperties(props, properties);
+    }
+
+    private static void copyProperties(Properties from, Properties to) {
+        to.clear();
+        if (from != null) {
+            Enumeration<?> e = from.propertyNames();
+            while (e.hasMoreElements()) {
+                String key = (String) e.nextElement();
+                to.setProperty(key, from.getProperty(key));
+            }
+        }
+    }
+
+    public static String setProperty(String key, String value) {
+        initPropertiesIfNeeded();
+        return (String) properties.put(key, value);
+    }
+
+    public static String clearProperty(String key) {
+        return (String) properties.remove(key);
+    }
+
+    public static void setErr(TPrintStream err) {
+        errCache = err;
+    }
+
+    public static void setOut(TPrintStream out) {
+        outCache = out;
+    }
+
+    @DelegateTo("gcLowLevel")
+    public static void gc() {
+        // Do nothing
+    }
+
+    private static void gcLowLevel() {
+        GC.collectGarbageFull();
+    }
+
+    public static void runFinalization() {
+        // Do nothing
+    }
+
+    public static long nanoTime() {
+        if (PlatformDetector.isLowLevel()) {
+            return nanoTimeLowLevel();
+        } else {
+            return (long) (Performance.now() * 1000000);
+        }
+    }
+
+    @Import(name = "teavm_currentTimeNano")
+    @RuntimeInclude("time.h")
+    private static native long nanoTimeLowLevel();
+
+    public static int identityHashCode(Object x) {
+        return x == null ? 0 : ((TObject) x).identity();
+    }
+
+    public static String lineSeparator() {
+        return "\n";
+    }
+    
+    public static String getenv(String name) {
+        return null;
+    }
+
+    // --- epubcheck-standalone TeaVM shim additions (fork of the stock classlib file) ---
+
+    public static void exit(int code) {
+        throw new RuntimeException("System.exit(" + code + ") is not supported in the TeaVM build");
+    }
+
+    public static Map<String, String> getenv() {
+        return Collections.emptyMap();
+    }
+
+}

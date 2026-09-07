@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.1.0-jc003">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns:extended-properties="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties/"
+                        xmlns:premis="http://www.loc.gov/premis/rdf/v1#"
+                        xmlns:stFnt="http://ns.adobe.com/xap/1.0/sType/Font#"
+                        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+                        xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
+                        dc:format="application/epub+zip;version=3.3"
+                        dc:identifier="NOID"
+                        dc:language="en"
+                        extended-properties:Characters="160"
+                        rdf:about=""
+                        xmp:CreateDate="2025-09-01T08:55:48Z">
+         <dc:title>
+            <rdf:Alt>
+               <rdf:li xml:lang="x-default">Minimal EPUB 3.0</rdf:li>
+            </rdf:Alt>
+         </dc:title>
+         <premis:hasEvent rdf:parseType="Resource">
+            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-06T17:26:50-07:00</premis:hasEventDateTime>
+            <premis:hasEventType rdf:resource="http://id.loc.gov/vocabulary/preservation/eventType/val"/>
+            <premis:hasEventDetail>Not well-formed</premis:hasEventDetail>
+            <premis:hasEventOutcomeInformation>
+               <rdf:Seq>
+                  <rdf:li rdf:parseType="Resource">
+                     <premis:hasEventOutcome>RSC-011, ERROR, Found a reference to a resource that is not a spine item.</premis:hasEventOutcome>
+                     <premis:hasEventOutcomeDetail>
+                        <rdf:Seq>
+                           <rdf:li premis:hasEventOutcomeDetailNote="EPUB/content_001.xhtml (8-34)"/>
+                        </rdf:Seq>
+                     </premis:hasEventOutcomeDetail>
+                  </rdf:li>
+               </rdf:Seq>
+            </premis:hasEventOutcomeInformation>
+            <premis:hasEventRelatedAgent rdf:parseType="Resource">
+               <premis:hasAgentType rdf:resource="http://id.loc.gov/vocabulary/preservation/agentType/sof"/>
+               <premis:hasAgentName>epubcheck 5.3.0</premis:hasAgentName>
+            </premis:hasEventRelatedAgent>
+         </premis:hasEvent>
+         <premis:hasSignificantProperties>
+            <rdf:Bag>
+               <rdf:li premis:hasSignificantPropertiesType="renditionLayout"
+                        premis:hasSignificantPropertiesValue="reflowable"/>
+               <rdf:li premis:hasSignificantPropertiesType="isScripted"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasEncryption"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasAudio"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasVideo"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasSignatures"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasAllFontsEmbedded"
+                        premis:hasSignificantPropertiesValue="true"/>
+            </rdf:Bag>
+         </premis:hasSignificantProperties>
+      </rdf:Description>
+   </rdf:RDF>
+</x:xmpmeta>

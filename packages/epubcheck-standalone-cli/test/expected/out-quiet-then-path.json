@@ -1,0 +1,10 @@
+{
+  "args": [
+    "-o",
+    "-q",
+    "invalid.epub"
+  ],
+  "stdout": "",
+  "stderr": "",
+  "code": 1
+}

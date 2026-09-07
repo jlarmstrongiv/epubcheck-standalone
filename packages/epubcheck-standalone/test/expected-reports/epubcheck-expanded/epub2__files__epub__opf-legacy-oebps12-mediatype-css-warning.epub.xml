@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:20:22-07:00</date>
+   <repInfo uri="epub2__files__epub__opf-legacy-oebps12-mediatype-css-warning.epub">
+      <created>2025-09-01T08:55:48Z</created>
+      <format>application/epub+zip</format>
+      <version>2.0.1</version>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: attribute "version" not allowed here; expected attribute "id" or "unique-identifier"], OPS/package.opf (2-103)</message>
+         <message id="OPF-030" severity="error">OPF-030, ERROR, [The unique-identifier "q" was not found.], OPS/package.opf</message>
+         <message id="OPF-038" severity="warning">OPF-038, WARN, [Media type "text/html" is not appropriate for an OEBPS 1.2 context; Use "text/x-oeb1-document" instead.], OPS/package.opf (12-77)</message>
+      </messages>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub2__files__epub__opf-legacy-oebps12-mediatype-css-warning.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>CharacterCount</name>
+            <values arity="Scalar" type="Long">
+               <value>54</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2025-09-01T08:55:48Z</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+         <property>
+            <name>MediaTypes</name>
+            <values arity="Scalar" type="String">
+               <value>text/html</value>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

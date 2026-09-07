@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Compiled library output. tsc emits the .js/.d.ts into dist/ (outDir; see
+# tsconfig.json), alongside the copied dist/epubcheck-engine.js (the TeaVM
+# plain-JS engine). The whole dir is a build artifact -- not committed -- but
+# package.json "files" packs it into the published tarball.
+dist/
+
+# Build toolchain + fetched build inputs (provisioned by npm run build:deps).
+# Globbed (not version-pinned) so epubcheck upgrades need no gitignore edit;
+# the two tracked license files (build/epubcheck-LICENSE.txt,
+# build/epubcheck-THIRD-PARTY.txt) are files, so the directory/zip globs skip them.
+.toolchain/
+build/epubcheck-*/
+build/epubcheck-*.zip
+build/lib/
+build/*.jar
+build/classes/
+
+# TeaVM engine build outputs (gradle). The generated ~21 MB engine JS is a build
+# artifact -- npm run build copies it to dist/epubcheck-engine.js (dist/ is also
+# ignored). Never commit these.
+teavm/build/
+teavm/.gradle/
+
+# Regenerable big test books (see testing/generate-big-books.ts)
+test/corpus/generated/
+test/corpus/generated-big/
+test/corpus/_genwork/
+test/corpus/_genwork-big/
+
+# Verification run outputs
+testing/logs/
+
+# OS / editor cruft
+.DS_Store
+*.log
+*.swp

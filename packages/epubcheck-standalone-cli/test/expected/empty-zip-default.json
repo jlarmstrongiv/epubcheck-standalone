@@ -1,0 +1,8 @@
+{
+  "args": [
+    "empty.epub"
+  ],
+  "stdout": "Messages: 1 fatal / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n",
+  "stderr": "ERROR(PKG-003): empty.epub/./empty.epub(-1,-1): Unable to read EPUB file header. This is likely a corrupted EPUB file.\nFATAL(RSC-002): empty.epub/./empty.epub(-1,-1): Required META-INF/container.xml resource could not be found.\n\nCheck finished with errors\n",
+  "code": 1
+}

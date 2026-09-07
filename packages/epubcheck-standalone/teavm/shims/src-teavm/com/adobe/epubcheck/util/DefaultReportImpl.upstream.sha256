@@ -1,0 +1,36 @@
+# Drift guard for the DefaultReportImpl shadow.
+#
+# The DefaultReportImpl.java sitting next to this file is a SHADOW of
+# EPUBCheck's own com.adobe.epubcheck.util.DefaultReportImpl: it is the
+# upstream source copied verbatim, plus a doc comment and two small mirror
+# blocks that call ecshim.ReportTap (this is how the live report-event tap
+# works -- see agent-docs/CONTINUATION.md). The shims jar precedes the
+# EPUBCheck jars on the TeaVM compiler classpath, so our copy wins.
+#
+# WHAT THIS GUARDS
+# The line below is the sha256 of the PRISTINE upstream DefaultReportImpl.java
+# (no tap blocks) for the EPUBCheck version the shadow was last ported from.
+# At build time scripts/check-shadow-drift.ts pulls that same file out of the
+# epubcheck-<version>-sources.jar and hashes it. If EPUBCheck changed the file
+# in a version bump, the hashes differ and the build FAILS loudly -- otherwise
+# our shadow would silently keep the OLD upstream behavior while pretending to
+# be the new EPUBCheck.
+#
+# WHAT TO DO ON A MISMATCH
+# 1. Diff the new upstream file against our shadow:
+#      unzip -p build/epubcheck-<version>-sources.jar \
+#        com/adobe/epubcheck/util/DefaultReportImpl.java > /tmp/upstream.java
+#      diff /tmp/upstream.java \
+#        teavm/shims/src-teavm/com/adobe/epubcheck/util/DefaultReportImpl.java
+#    (our shadow only adds the doc comment and the two "ecshim.ReportTap" blocks;
+#     any OTHER difference is a real upstream change.)
+# 2. Re-port: start from the NEW upstream source and re-apply ONLY the two
+#    mirror blocks (message() -> ReportTap.emitMessage, info() -> ReportTap.emitInfo)
+#    plus the doc comment. Keep the rest byte-for-byte upstream.
+# 3. Replace the shadow file with that re-ported version.
+# 4. Update the hash line below to the new upstream file's sha256, e.g.:
+#      unzip -p build/epubcheck-<version>-sources.jar \
+#        com/adobe/epubcheck/util/DefaultReportImpl.java | shasum -a 256
+#
+# EPUBCheck version the hash below is for: 5.3.0
+57e986cdddabb4d0221376574c16191da898079b0b0ca96e534466ab1197f378

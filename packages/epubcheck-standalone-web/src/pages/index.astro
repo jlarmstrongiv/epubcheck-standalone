@@ -1,0 +1,107 @@
+---
+import EpubcheckDemo from "../components/EpubcheckDemo.tsx";
+import { m } from "../paraglide/messages.js";
+import { getLocale } from "../paraglide/runtime.js";
+
+// Active UI locale for the static render. On the server localStorage is skipped,
+// so getLocale() resolves to the baseLocale ("en") and the served HTML is always
+// English (see astro.config.ts for the ["localStorage", "baseLocale"] strategy).
+// After the page hydrates, the header switcher can change the locale client-side;
+// EpubcheckDemo then updates document.documentElement.lang to the active locale.
+const locale = getLocale();
+
+// Absolute canonical URL, built from the Astro site + base config so it tracks
+// the GitHub Pages project path (/epubcheck-standalone/) with no hardcoded URL string.
+// The base is normalized to a trailing slash (same rule the demo uses for
+// fixture URLs) so the canonical matches the directory form Pages serves.
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const canonicalURL = new URL(base, Astro.site);
+
+// Open Graph locale tag, derived from the static-render UI locale. Open Graph
+// expects a language_TERRITORY form, so map each UI locale to one. This reflects
+// the served HTML (always English on a static build), NOT the client-switched
+// locale: with no per-locale URL there is nothing crawler-visible to vary, so
+// og:locale stays en_US even after a client switch. Accepted limitation; add an
+// entry here as each UI locale is added.
+const OG_LOCALES: Record<string, string> = { en: "en_US" };
+const ogLocale = OG_LOCALES[locale] ?? "en_US";
+
+// SEO copy, routed through the same Paraglide catalog as the rest of the UI so
+// it localizes alongside everything else when UI locales are added.
+const title = m.meta_title();
+const description = m.meta_description();
+
+// hreflang alternates are intentionally omitted while there is a single locale:
+// with one locale there is nothing to alternate to, and inventing per-locale
+// URLs for locales that do not exist yet would be wrong. When UI locales are
+// added, emit one <link rel="alternate" hreflang="<locale>" href="..."> per
+// locale plus an x-default, each built from Astro.site + base + the locale path.
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f5f5" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:locale" content={ogLocale} />
+
+    <!-- Twitter card. summary (not summary_large_image) because the demo ships
+         no dedicated share image asset; add og:image + twitter:image and switch
+         to summary_large_image if one is added later. -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <style>
+      html {
+        scrollbar-gutter: stable;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+      }
+    </style>
+    <style is:global>
+      /* Global (unscoped) because the antd collapse content box is rendered
+         client-side inside the React island, so it never receives Astro's
+         scoped-style attribute. The selector deliberately matches antd's own
+         ghost-collapse chain (.ant-collapse > .ant-collapse-item >
+         .ant-collapse-content > .ant-collapse-content-box) and adds our class so
+         it out-specifies antd's default 12px bottom padding; a shorter selector
+         loses to it. Collapsed, the card body's 8px is the only bottom spacing
+         (subtle by design). Expanded, this 20px stacks on top of the card
+         body's 8px, giving the open panel a roomier 28px below its last
+         control. */
+      .advanced-options-collapse.ant-collapse
+        > .ant-collapse-item
+        > .ant-collapse-content
+        > .ant-collapse-content-box {
+        padding-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      The whole demo is a single React island rendered client-only: antd and the
+      validation Web Worker are browser-only, so there is nothing to server-render.
+      The site itself is a fully static Astro build (no server component).
+    -->
+    <EpubcheckDemo client:only="react" />
+  </body>
+</html>

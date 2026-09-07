@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:27:46-07:00</date>
+   <repInfo uri="epub3__06-content-document__files__content-xhtml-data-attr-removal-markup-error.epub">
+      <created>2025-09-01T08:55:48Z</created>
+      <lastModified>2017-06-14T00:00:01Z</lastModified>
+      <format>application/epub+zip</format>
+      <version>3.3</version>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: element "somebadxhtmlformatting" not allowed here; expected the element end-tag, text, element "a", "abbr", "address", "area", "article", "aside", "audio", "b", "bdi", "bdo", "blockquote", "br", "button", "canvas", "cite", "code", "data", "datalist", "del", "details", "dfn", "dialog", "div", "dl", "em", "embed", "fieldset", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "i", "iframe", "img", "input", "ins", "kbd", "label", "link", "main", "map", "mark", "menu", "meta", "meter", "nav", "ns1:switch", "ns1:trigger", "ns2:math", "ns3:svg", "object", "ol", "output", "p", "picture", "pre", "progress", "q", "ruby", "s", "samp", "script", "search", "section", "select", "slot", "small", "span", "strong", "sub", "sup", "table", "template", "textarea", "time", "u", "ul", "var", "video" or "wbr" (with xmlns:ns1="http://www.idpf.org/2007/ops" xmlns:ns2="http://www.w3.org/1998/Math/MathML" xmlns:ns3="http://www.w3.org/2000/svg") or an element from another namespace], EPUB/content_001.xhtml (11-30)</message>
+      </messages>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub3__06-content-document__files__content-xhtml-data-attr-removal-markup-error.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>CharacterCount</name>
+            <values arity="Scalar" type="Long">
+               <value>123</value>
+            </values>
+         </property>
+         <property>
+            <name>Language</name>
+            <values arity="Scalar" type="String">
+               <value>en</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>Identifier</name>
+                  <values arity="Scalar" type="String">
+                     <value>NOID</value>
+                  </values>
+               </property>
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2025-09-01T08:55:48Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>ModDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2017-06-14T00:00:01Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Title</name>
+                  <values arity="Scalar" type="String">
+                     <value>Minimal EPUB 3.0</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+         <property>
+            <name>MediaTypes</name>
+            <values arity="Scalar" type="String">
+               <value>application/xhtml+xml</value>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

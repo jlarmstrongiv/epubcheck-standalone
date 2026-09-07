@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.1.0-jc003">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns:extended-properties="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties/"
+                        xmlns:premis="http://www.loc.gov/premis/rdf/v1#"
+                        xmlns:stFnt="http://ns.adobe.com/xap/1.0/sType/Font#"
+                        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+                        xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
+                        dc:format="application/epub+zip;version=3.3"
+                        dc:identifier="https://standardebooks.org/ebooks/walt-whitman/leaves-of-grass"
+                        dc:language="en-US"
+                        dc:publisher="Standard Ebooks"
+                        extended-properties:Characters="928680"
+                        rdf:about=""
+                        xmp:CreateDate="2026-08-04T14:59:44Z">
+         <dc:creator>
+            <rdf:Seq>
+               <rdf:li>Walt Whitman</rdf:li>
+            </rdf:Seq>
+         </dc:creator>
+         <dc:title>
+            <rdf:Alt>
+               <rdf:li xml:lang="x-default">Leaves of Grass</rdf:li>
+            </rdf:Alt>
+         </dc:title>
+         <dc:subject>
+            <rdf:Bag>
+               <rdf:li>American poetry -- 19th century</rdf:li>
+            </rdf:Bag>
+         </dc:subject>
+         <premis:hasEvent rdf:parseType="Resource">
+            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-06T17:32:58-07:00</premis:hasEventDateTime>
+            <premis:hasEventType rdf:resource="http://id.loc.gov/vocabulary/preservation/eventType/val"/>
+            <premis:hasEventDetail>Well-formed</premis:hasEventDetail>
+            <premis:hasEventRelatedAgent rdf:parseType="Resource">
+               <premis:hasAgentType rdf:resource="http://id.loc.gov/vocabulary/preservation/agentType/sof"/>
+               <premis:hasAgentName>epubcheck 5.3.0</premis:hasAgentName>
+            </premis:hasEventRelatedAgent>
+         </premis:hasEvent>
+         <premis:hasSignificantProperties>
+            <rdf:Bag>
+               <rdf:li premis:hasSignificantPropertiesType="renditionLayout"
+                        premis:hasSignificantPropertiesValue="reflowable"/>
+               <rdf:li premis:hasSignificantPropertiesType="isScripted"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasEncryption"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasAudio"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasVideo"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasSignatures"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasAllFontsEmbedded"
+                        premis:hasSignificantPropertiesValue="true"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://standardebooks.org/"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://www.theleagueofmoveabletype.com/"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://en.wikipedia.org/wiki/Leaves_of_Grass"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://github.com/standardebooks/walt-whitman_leaves-of-grass"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://en.wikipedia.org/wiki/Walt_Whitman"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://id.loc.gov/authorities/names/n79081476.html"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://alexcabal.com/"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://www.gutenberg.org/ebooks/1322"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://archive.org/details/leavesgrass03whitgoog"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://standardebooks.org/ebooks/walt-whitman/leaves-of-grass"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://creativecommons.org/publicdomain/zero/1.0/"/>
+            </rdf:Bag>
+         </premis:hasSignificantProperties>
+      </rdf:Description>
+   </rdf:RDF>
+</x:xmpmeta>

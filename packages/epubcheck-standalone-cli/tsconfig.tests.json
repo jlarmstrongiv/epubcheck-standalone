@@ -1,0 +1,18 @@
+{
+  // Type-check-only configuration for the test suite and the generator scripts.
+  // The build (tsconfig.json) compiles src/ only, so without this the test files
+  // and the scripts/ generators were never type-checked. This config emits
+  // nothing (noEmit); it just runs the strict base checks over test/ and
+  // scripts/ so a type error there is caught. Run with:
+  //   npx tsc -p tsconfig.tests.json
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": ".",
+    "types": ["node"],
+    // The test and script modules import sibling modules by their .ts path
+    // (e.g. "./matrix.ts"); allow that under a no-emit check.
+    "allowImportingTsExtensions": true
+  },
+  "include": ["test", "scripts"]
+}

@@ -1,0 +1,23 @@
+{
+  // Shared TypeScript compiler settings. The two Node/TypeScript packages
+  // (epubcheck-standalone and epubcheck-standalone-cli) extend this and set only their own
+  // rootDir/outDir/include. The web package (epubcheck-standalone-web) does NOT extend this
+  // -- it extends astro/tsconfigs/strict for the Astro/React/DOM toolchain.
+  // Pure ESM output (NodeNext), strict.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022"],
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
+  }
+}

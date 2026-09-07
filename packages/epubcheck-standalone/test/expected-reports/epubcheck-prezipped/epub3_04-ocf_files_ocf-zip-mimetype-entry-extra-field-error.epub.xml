@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:32:18-07:00</date>
+   <repInfo uri="epub3_04-ocf_files_ocf-zip-mimetype-entry-extra-field-error.epub">
+      <created>2019-03-18T12:32:16Z</created>
+      <lastModified>2017-06-14T00:00:01Z</lastModified>
+      <format>application/epub+zip</format>
+      <version>3.3</version>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="PKG-005" severity="error">PKG-005, ERROR, [The mimetype file has an extra field of length 28. The use of the extra field feature of the ZIP format is not permitted for the mimetype file.], ./epub3_04-ocf_files_ocf-zip-mimetype-entry-extra-field-error.epub</message>
+      </messages>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub3_04-ocf_files_ocf-zip-mimetype-entry-extra-field-error.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>CharacterCount</name>
+            <values arity="Scalar" type="Long">
+               <value>139</value>
+            </values>
+         </property>
+         <property>
+            <name>Language</name>
+            <values arity="Scalar" type="String">
+               <value>en</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>Identifier</name>
+                  <values arity="Scalar" type="String">
+                     <value>NOID</value>
+                  </values>
+               </property>
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2019-03-18T12:32:16Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>ModDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2017-06-14T00:00:01Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Title</name>
+                  <values arity="Scalar" type="String">
+                     <value>Minimal EPUB 3.0</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+         <property>
+            <name>MediaTypes</name>
+            <values arity="Scalar" type="String">
+               <value>application/xhtml+xml</value>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

@@ -1,0 +1,8 @@
+{
+  "args": [
+    "fatal.epub"
+  ],
+  "stdout": "Messages: 1 fatal / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n",
+  "stderr": "FATAL(OPF-002): fatal.epub/META-INF/container.xml(-1,-1): The OPF file \"EPUB/package.opf\" was not found in the EPUB.\n\nCheck finished with errors\n",
+  "code": 1
+}

@@ -1,0 +1,71 @@
+# Monorepo root toolchain -- the SINGLE SOURCE OF TRUTH for the pinned tools
+# used across both workspaces (packages/epubcheck-standalone compiles the engine
+# to plain JavaScript with TeaVM; packages/epubcheck-standalone-web builds the
+# static site). Neither package carries its own mise.toml; mise walks up to this
+# file from any subdirectory.
+#
+# mise provisions the ENTIRE toolchain -- Node, the Temurin JDK, and Gradle.
+# Nothing is installed globally: `mise install` puts everything under mise's
+# managed store (~/.local/share/mise).
+#
+#   mise install        # provision node + java + gradle (below)
+#   npm run build:deps  # fetch the build INPUTS (epubcheck release, JZlib) + patch Jing
+#   npm run build       # compile the engine to JavaScript with TeaVM (see README.md)
+#   npm test            # run the smoke + full parity suite
+#
+# The build (scripts/build.ts) runs `gradle generateJavaScript` then
+# teavm/fix-generated.ts via `mise exec java@temurin-21 gradle@9.7.1`, so
+# `mise install` is the only provisioning step. CI does the same with
+# jdx/mise-action (cached). No wasm anywhere in the pipeline.
+
+[settings]
+# Supply-chain cooldown: refuse tool versions published less than 14 days ago,
+# so a compromised release is caught and pulled upstream before we resolve it.
+# Pinned exact versions (everything below) install regardless of age.
+minimum_release_age = "14d"
+
+[tools]
+# npm is pinned as its own mise CORE tool (not node's bundled npm): the
+# engines.npm pin (root + web package.json) is 12.0.2, newer than the npm 11
+# that ships with Node 24. mise's core `npm` tool takes precedence over the
+# bundled npm on PATH (the ordering fix landed in mise v2026.1.0 / PR #7559), so
+# `mise install` is the ONLY provisioning step and CI needs no `npm i -g`.
+# Subject to the same 14d cooldown as every tool. Listed before node so the
+# standalone npm wins PATH priority.
+npm = "12.0.2"
+node = "24.19.0"
+
+# JDK + build tool for the TeaVM engine compile. packages/epubcheck-standalone/
+# teavm builds with the org.teavm gradle plugin (0.15.0); scripts/build.ts drives
+# it ad hoc via `mise exec java@temurin-21 gradle@9.7.1`, so these pins match that
+# invocation exactly. Bumping either is a deliberate engine event (the 28 TeaVM
+# classlib forks in teavm/shims must be re-ported), never an automatic bump.
+java = "temurin-21.0.12+101.0.LTS"
+gradle = "9.7.1"
+
+[env]
+# Build-INPUT version pins consumed by scripts/fetch-deps.ts (NOT tools -- tools
+# are provisioned by mise above). Bump EPUBCHECK_VERSION and rebuild to adopt a
+# new epubcheck (then publish <newversion>-build1); the
+# .github/workflows/update-epubcheck.yml pipeline automates this.
+EPUBCHECK_VERSION = "5.3.0"
+JZLIB_VERSION = "1.1.3"
+
+# Root-level convenience tasks (`mise run <name>`) that delegate into the npm
+# workspaces, so the toolchain and the task entrypoint live in one place. The
+# npm scripts in the root package.json do the same delegation; use whichever.
+[tasks.build]
+description = "Compile the epubcheck-standalone engine to JavaScript with TeaVM (packages/epubcheck-standalone)"
+run = "npm run build"
+
+[tasks.test]
+description = "Run the epubcheck-standalone smoke + parity + reports suite"
+run = "npm test"
+
+[tasks."web:dev"]
+description = "Run the web dev server (packages/epubcheck-standalone-web)"
+run = "npm run web:dev"
+
+[tasks."web:build"]
+description = "Build the static web site"
+run = "npm run web:build"

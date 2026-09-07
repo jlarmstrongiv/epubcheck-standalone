@@ -1,0 +1,12 @@
+{
+  "args": [
+    "--mode",
+    "xhtml",
+    "-v",
+    "3.0",
+    "content.xhtml"
+  ],
+  "stdout": "No errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n",
+  "stderr": "",
+  "code": 0
+}

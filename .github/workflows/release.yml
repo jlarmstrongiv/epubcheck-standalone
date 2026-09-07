@@ -1,0 +1,80 @@
+name: Release
+
+# Publishes to npm when a version tag is pushed (e.g. v5.3.0-build1).
+# The published artifact is BUILT FROM SOURCE in the gate: build-and-test reuses
+# ci.yml, which compiles the TeaVM engine from Java and the TypeScript into
+# dist/ (never the committed dist/ -- dist/ is gitignored) and uploads it as the
+# dist-bundle artifact. The publish job downloads that exact artifact and ships
+# it, so publishing is gated on the full from-source build + battery, and the
+# published bytes are the ones the gate tested. Nothing is rebuilt at publish.
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  # Reuse the exact from-source build + full test battery as the gate.
+  build-and-test:
+    uses: ./.github/workflows/ci.yml
+
+  publish:
+    needs: build-and-test
+    # The engine + library + CLI were already compiled from source in the gate
+    # (build-and-test / ci.yml) and uploaded as the dist-bundle artifact. This
+    # job downloads and ships that exact artifact, so the published bytes are the
+    # bytes the gate tested. No gradle/java here -- publishing only needs npm.
+    runs-on: ubuntu-latest
+    permissions:
+      # Required for npm provenance / trusted publishing (OIDC).
+      id-token: write
+      contents: read
+    steps:
+      # Checkout provides each package's package.json, README, LICENSE, and the
+      # committed THIRD-PARTY-NOTICES.txt that npm pack ships alongside dist/.
+      - uses: actions/checkout@v7
+
+      - name: Cache mise toolchain
+        uses: actions/cache@v6
+        with:
+          path: ~/.local/share/mise
+          key: mise-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('mise.toml') }}
+
+      # mise provisions npm 12 (core tool, ahead of Node 24's bundled npm 11).
+      # No java/gradle needed -- nothing is built here.
+      - name: Provision toolchain with mise
+        uses: jdx/mise-action@v4
+        with:
+          install: true
+
+      # The engine + compiled library + compiled CLI built once in the gate.
+      - name: Download dist bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-bundle
+
+      - name: Unpack dist bundle (restores packages/*/dist)
+        run: tar -xzf dist-bundle.tgz
+
+      # Registry auth WITHOUT setup-node: write the automation token into the
+      # user-level ~/.npmrc with a plain npm command (it merges with the repo
+      # .npmrc). Prefer npm Trusted Publishing (OIDC, no secret) once this repo
+      # is a configured trusted publisher on npmjs.com; this NPM_TOKEN path is
+      # the fallback (a granular automation token).
+      - name: Configure npm registry auth
+        run: npm config set "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Publishes with --provenance (package.json publishConfig.provenance=true).
+      # --tag latest is REQUIRED: our versions are always prereleases
+      # (<epubcheck>-buildN), and npm 12 refuses to publish a prerelease without
+      # an explicit --tag (npm 11 defaulted it to latest silently). Since every
+      # published version carries the -buildN suffix, latest must point at one
+      # or `npm install epubcheck-standalone` resolves nothing.
+      - name: Publish epubcheck-standalone to npm
+        working-directory: packages/epubcheck-standalone
+        run: npm publish --provenance --access public --tag latest
+
+      - name: Publish epubcheck-standalone-cli to npm
+        working-directory: packages/epubcheck-standalone-cli
+        run: npm publish --provenance --access public --tag latest

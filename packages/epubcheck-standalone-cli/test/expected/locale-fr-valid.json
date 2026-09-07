@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--locale",
+    "fr",
+    "valid.epub"
+  ],
+  "stdout": "Vérifications faites en utilisant les règles de la version epub 3.3.\nAucune erreur ou avertissement détecté.\nMessages: 0 fatale / 0 erreur / 0 avertissement / 0 info\n\nEPUBCheck terminé\n",
+  "stderr": "",
+  "code": 0
+}

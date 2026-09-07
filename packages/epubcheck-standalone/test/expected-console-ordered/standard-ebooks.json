@@ -1,0 +1,54 @@
+{
+  "arthur-conan-doyle_the-adventures-of-sherlock-holmes.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "bram-stoker_dracula.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "charles-dickens_a-tale-of-two-cities.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "h-g-wells_the-war-of-the-worlds.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "herman-melville_moby-dick.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "herman-melville_moby-dick_advanced.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "jane-austen_pride-and-prejudice.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "jane-austen_pride-and-prejudice_advanced.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "leo-tolstoy_war-and-peace_louise-maude_aylmer-maude.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "lewis-carroll_alices-adventures-in-wonderland_john-tenniel.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "mary-shelley_frankenstein.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "mary-shelley_frankenstein_advanced.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "walt-whitman_leaves-of-grass.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  }
+}

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:32:50-07:00</date>
+   <repInfo uri="mary-shelley_frankenstein_advanced.epub">
+      <created>2026-08-04T14:56:24Z</created>
+      <lastModified>2026-08-04T14:56:24Z</lastModified>
+      <format>application/epub+zip</format>
+      <version>3.3</version>
+      <status>Well-formed</status>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>mary-shelley_frankenstein_advanced.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>CharacterCount</name>
+            <values arity="Scalar" type="Long">
+               <value>447670</value>
+            </values>
+         </property>
+         <property>
+            <name>Language</name>
+            <values arity="Scalar" type="String">
+               <value>en-GB</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>Identifier</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://standardebooks.org/ebooks/mary-shelley/frankenstein</value>
+                  </values>
+               </property>
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2026-08-04T14:56:24Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>ModDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2026-08-04T14:56:24Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Title</name>
+                  <values arity="Array" type="String">
+                     <value>Frankenstein</value>
+                     <value>Or, the Modern Prometheus</value>
+                     <value>Frankenstein, or the Modern Prometheus</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Creator</name>
+                  <values arity="Scalar" type="String">
+                     <value>Mary Shelley</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Contributor</name>
+                  <values arity="Array" type="String">
+                     <value>The League of Moveable Type</value>
+                     <value>Percy Bysshe Shelley</value>
+                     <value>Giuseppe Arcimboldo</value>
+                     <value>Greg Weeks</value>
+                     <value>Mary Meehan</value>
+                     <value>Distributed Proofreaders</value>
+                     <value>Alex Cabal</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Date</name>
+                  <values arity="Scalar" type="String">
+                     <value>2015-05-12T00:01:00Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Publisher</name>
+                  <values arity="Scalar" type="String">
+                     <value>Standard Ebooks</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Subject</name>
+                  <values arity="Array" type="String">
+                     <value>Science fiction</value>
+                     <value>Horror tales</value>
+                     <value>Gothic fiction (Literary genre)</value>
+                     <value>Scientists -- Fiction</value>
+                     <value>Monsters -- Fiction</value>
+                     <value>Frankenstein, Victor (Fictitious character) -- Fiction</value>
+                     <value>Frankenstein's monster (Fictitious character) -- Fiction</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Rights</name>
+                  <values arity="Scalar" type="String">
+                     <value>The source text and artwork in this ebook are believed to be in the United States public domain; that is, they are believed to be free of copyright restrictions in the United States. They may still be copyrighted in other countries, so users located outside of the United States must check their local laws before using this ebook. The creators of, and contributors to, this ebook dedicate their contributions to the worldwide public domain via the terms in the [CC0 1.0 Universal Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+         <property>
+            <name>References</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://standardebooks.org/</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://www.theleagueofmoveabletype.com/</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://en.wikipedia.org/wiki/Frankenstein</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://github.com/standardebooks/mary-shelley_frankenstein</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://en.wikipedia.org/wiki/Mary_Shelley</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://id.loc.gov/authorities/names/n79061063.html</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://en.wikipedia.org/wiki/Percy_Bysshe_Shelley</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://id.loc.gov/authorities/names/n79054060.html</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://en.wikipedia.org/wiki/Giuseppe_Arcimboldo</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://id.loc.gov/authorities/names/n80038259.html</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://www.pgdp.net/</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://alexcabal.com/</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://www.gutenberg.org/ebooks/42324</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://archive.org/details/frankensteinormo00shel_9</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://standardebooks.org/ebooks/mary-shelley/frankenstein</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Reference</name>
+                  <values arity="Scalar" type="String">
+                     <value>https://creativecommons.org/publicdomain/zero/1.0/</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+         <property>
+            <name>MediaTypes</name>
+            <values arity="Array" type="String">
+               <value>text/css</value>
+               <value>image/svg+xml</value>
+               <value>application/xhtml+xml</value>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

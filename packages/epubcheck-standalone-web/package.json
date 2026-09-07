@@ -1,0 +1,36 @@
+{
+  "name": "epubcheck-standalone-web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Public web demo for the epubcheck-standalone library — validate EPUBs entirely client-side in a typed Web Worker.",
+  "scripts": {
+    "paraglide:compile": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide --emit-ts-declarations",
+    "dev": "npm run paraglide:compile && astro dev",
+    "build": "npm run paraglide:compile && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@ant-design/icons": "6.3.2",
+    "@astrojs/react": "6.0.4",
+    "antd": "6.6.1",
+    "astro": "7.2.4",
+    "comlink": "4.4.2",
+    "epubcheck-standalone": "*",
+    "pretty-bytes": "7.1.1",
+    "pretty-ms": "9.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@inlang/paraglide-js": "2.24.1",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": "24.19.0",
+    "npm": "12.0.2"
+  }
+}

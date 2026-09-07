@@ -1,0 +1,36 @@
+# Drift guard for the URLResourceProvider shadow.
+#
+# The URLResourceProvider.java sitting next to this file is a SHADOW of
+# epubcheck's own com.adobe.epubcheck.util.URLResourceProvider: it is the
+# upstream source copied verbatim, EXCEPT for the http(s) branch, which is
+# rerouted through the JS host http bridge (ecshim.HostHttp). Non-http(s) URLs
+# keep the original behavior verbatim. The shims jar precedes the epubcheck
+# jars on the TeaVM compiler classpath, so our copy wins.
+#
+# WHAT THIS GUARDS
+# The line below is the sha256 of the PRISTINE upstream URLResourceProvider.java
+# (no http(s) rerouting) for the epubcheck version the shadow was last ported
+# from. At build time scripts/check-shadow-drift.ts pulls that same file out of
+# the epubcheck-<version>-sources.jar and hashes it. If epubcheck changed the
+# file in a version bump, the hashes differ and the build FAILS loudly --
+# otherwise our shadow would silently keep the OLD upstream behavior (e.g. a
+# stale openStream flow) while pretending to be the new epubcheck.
+#
+# WHAT TO DO ON A MISMATCH
+# 1. Diff the new upstream file against our shadow:
+#      unzip -p build/epubcheck-<version>-sources.jar \
+#        com/adobe/epubcheck/util/URLResourceProvider.java > /tmp/upstream.java
+#      diff /tmp/upstream.java \
+#        teavm/shims/src-teavm/com/adobe/epubcheck/util/URLResourceProvider.java
+#    (our shadow only changes the http(s) branch and adds the doc comment; any
+#     OTHER difference is a real upstream change.)
+# 2. Re-port: start from the NEW upstream source and re-apply ONLY the http(s)
+#    HostHttp rerouting branch, plus the doc comment. Keep the rest
+#    byte-for-byte upstream.
+# 3. Replace the shadow file with that re-ported version.
+# 4. Update the hash line below to the new upstream file's sha256, e.g.:
+#      unzip -p build/epubcheck-<version>-sources.jar \
+#        com/adobe/epubcheck/util/URLResourceProvider.java | shasum -a 256
+#
+# epubcheck version the hash below is for: 5.3.0
+2829d891ba2f353ed7e7d352838466d94a4c5b651dc4118d76cc2455c334b07c

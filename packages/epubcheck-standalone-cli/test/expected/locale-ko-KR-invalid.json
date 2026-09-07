@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--locale",
+    "ko-KR",
+    "invalid.epub"
+  ],
+  "stdout": "EPUB 버전 2.0.1의 규칙을 사용해 유효성 검사를 진행합니다.\n메시지: 0건의 치명적인 오류 / 3건의 오류 / 1건의 경고 / 0건의 정보\n\n유효성 검사를 완료하였습니다.\n",
+  "stderr": "WARNING(PKG-010): invalid.epub/./invalid.epub(-1,-1): 파일 이름 \"OPS/content 001.xhtml\"에 공백이 포함되어 있습니다. 구 버전의 리더기와 호환성 문제가 발생할 수 있습니다.\nERROR(OPF-049): invalid.epub/OPS/package.opf(12,34): 메니페스트에서 아이템 ID \"content_001\"를(을) 찾을 수 없습니다.\nERROR(NCX-001): invalid.epub/OPS/toc.ncx(-1,-1): NCX 식별자 (\" q \")가(이) OPF 식별자 (\"NOID\")와 일치하지 않습니다.\nERROR(RSC-008): invalid.epub/OPS/toc.ncx(15,43): OPF manifest에서 정의하지 않은 \"OPS/content%20001.xhtml\" 리소스를 사용하였습니다.\n검사가 종료되었으나 오류가 발견되었습니다.\n",
+  "code": 1
+}

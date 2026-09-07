@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--locale",
+    "de-DE",
+    "invalid.epub"
+  ],
+  "stdout": "Verwendung der EPUB 2.0.1 Prüfungen\nMeldungen: 0 Schwerwiegende Fehler / 3 Fehler / 1 Warnung / 0 Informationen\n\nEPUBCheck abgeschlossen\n",
+  "stderr": "WARNING(PKG-010): invalid.epub/./invalid.epub(-1,-1): The file name \"OPS/content 001.xhtml\" contains spaces, which may create interoperability issues with older reading systems.\nERROR(OPF-049): invalid.epub/OPS/package.opf(12,34): Die Datei \"content_001\" wurde nicht im OPF-Manifest gefunden.\nERROR(NCX-001): invalid.epub/OPS/toc.ncx(-1,-1): Die NCX-ID (\" q \") gleicht nicht der OPF-ID (\"NOID\").\nERROR(RSC-008): invalid.epub/OPS/toc.ncx(15,43): Die referenzierte Datei \"OPS/content%20001.xhtml\" ist im OPF-Manifest nicht deklariert.\n\nEPUBCheck mit Fehlern abgeschlossen\n",
+  "code": 1
+}

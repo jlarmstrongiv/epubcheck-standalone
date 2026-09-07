@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:20:11-07:00</date>
+   <repInfo uri="epub2__files__epub__ocf-metainf-container-rootfile-full-path-empty-error.epub">
+      <created>2025-09-01T08:55:48Z</created>
+      <format>application/epub+zip</format>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="OPF-017" severity="error">OPF-017, ERROR, [The attribute "full-path" on element "rootfile" must not be empty.], META-INF/container.xml (4-74)</message>
+         <message id="RSC-003" severity="error">RSC-003, ERROR, [No rootfile tag with media type "application/oebps-package+xml" was found in the container.], META-INF/container.xml</message>
+      </messages>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub2__files__epub__ocf-metainf-container-rootfile-full-path-empty-error.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2025-09-01T08:55:48Z</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>
