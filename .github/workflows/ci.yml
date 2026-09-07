@@ -31,6 +31,16 @@ on:
       - ".github/workflows/ci.yml"
   # Allow the release workflow to reuse this exact build+test gate.
   workflow_call:
+    inputs:
+      keep-dist-bundle:
+        description: >-
+          When true, do NOT delete the dist-bundle artifact at the end, so the
+          caller (release.yml's publish job) can download it after this gate
+          completes and delete it itself once shipping is done. Defaults false:
+          on plain push/PR runs the bundle is transient and deleted here once the
+          test jobs have consumed it.
+        type: boolean
+        default: false
 
 # ENGINE ARTIFACT: REBUILD FROM SOURCE, no committed artifact to diff against.
 # The engine (dist/epubcheck-engine.js) is EPUBCheck 5.3.0 compiled to plain
@@ -231,3 +241,28 @@ jobs:
 
       - name: CLI golden suite
         run: npm run test --workspace epubcheck-standalone-cli
+
+  # Delete the transient dist-bundle once both test jobs have consumed it. Runs
+  # on plain push/PR gates; SKIPPED when release reuses this workflow
+  # (keep-dist-bundle=true), because release's publish job downloads the bundle
+  # after this gate ends and deletes it itself. retention-days:1 on the upload is
+  # the backstop if this ever fails.
+  cleanup-dist-bundle:
+    needs: [library-tests, cli-tests]
+    if: ${{ !inputs.keep-dist-bundle }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Delete the dist-bundle artifact for this run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          id=$(gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+            --jq '.artifacts[] | select(.name=="dist-bundle") | .id')
+          if [ -n "$id" ]; then
+            gh api --method DELETE "repos/${{ github.repository }}/actions/artifacts/$id"
+            echo "deleted dist-bundle artifact $id"
+          else
+            echo "no dist-bundle artifact found (already gone)"
+          fi

@@ -16,6 +16,10 @@ jobs:
   # Reuse the exact from-source build + full test battery as the gate.
   build-and-test:
     uses: ./.github/workflows/ci.yml
+    # Keep the dist-bundle: the publish job downloads it after this gate ends,
+    # then deletes it once both packages are shipped.
+    with:
+      keep-dist-bundle: true
 
   publish:
     needs: build-and-test
@@ -28,6 +32,8 @@ jobs:
       # Required for npm provenance / trusted publishing (OIDC).
       id-token: write
       contents: read
+      # Delete the dist-bundle artifact after publishing.
+      actions: write
     steps:
       # Checkout provides each package's package.json, README, LICENSE, and the
       # committed THIRD-PARTY-NOTICES.txt that npm pack ships alongside dist/.
@@ -78,3 +84,16 @@ jobs:
       - name: Publish epubcheck-standalone-cli to npm
         working-directory: packages/epubcheck-standalone-cli
         run: npm publish --provenance --access public --tag latest
+
+      # Both packages shipped -- delete the transient dist-bundle now rather than
+      # waiting out its 1-day retention (the retention is the backstop).
+      - name: Delete the dist-bundle artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          id=$(gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+            --jq '.artifacts[] | select(.name=="dist-bundle") | .id')
+          if [ -n "$id" ]; then
+            gh api --method DELETE "repos/${{ github.repository }}/actions/artifacts/$id"
+            echo "deleted dist-bundle artifact $id"
+          fi
