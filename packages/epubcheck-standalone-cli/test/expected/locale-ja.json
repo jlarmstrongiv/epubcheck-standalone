@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--locale",
+    "ja",
+    "invalid.epub"
+  ],
+  "stdout": "EPUB version 2.0.1 のルールを使って検証します.\nメッセージ: 0 件の致命的エラー / 3 件のエラー / 1 件の警告 / 0 件の情報\n\nEPUBCheck 完了\n",
+  "stderr": "WARNING(PKG-010): invalid.epub/./invalid.epub(-1,-1): ファイル名 \"OPS/content 001.xhtml\" にスペースが含まれていると, 古いリーダーとの相互運用性に問題が生じる可能性があります.\nERROR(OPF-049): invalid.epub/OPS/package.opf(12,34): ID \"content_001\" のアイテムがマニフェストにありません.\nERROR(NCX-001): invalid.epub/OPS/toc.ncx(-1,-1): NCX識別子 (\" q \") がOPF識別子(\"NOID\")と一致しません.\nERROR(RSC-008): invalid.epub/OPS/toc.ncx(15,43): 参照されているリソース \"OPS/content%20001.xhtml\" がOPF manifest内で宣言されていません.\n\nチェックは終了しましたがエラーが検出されました\n",
+  "code": 1
+}

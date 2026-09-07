@@ -1,0 +1,34 @@
+{
+  "name": "epubcheck-standalone-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Monorepo for the epubcheck-standalone npm package and its public web demo.",
+  "engines": {
+    "node": "26.7.0",
+    "npm": "11.19.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace epubcheck-standalone",
+    "build:deps": "npm run build:deps --workspace epubcheck-standalone",
+    "build:cli": "npm run build --workspace epubcheck-standalone-cli",
+    "test": "npm run test --workspace epubcheck-standalone && npm run test --workspace epubcheck-standalone-cli",
+    "test:smoke": "npm run test:smoke --workspace epubcheck-standalone",
+    "test:parity": "npm run test:parity --workspace epubcheck-standalone",
+    "test:reports": "npm run test:reports --workspace epubcheck-standalone",
+    "test:cli": "npm run test --workspace epubcheck-standalone-cli",
+    "web:dev": "npm run dev --workspace epubcheck-standalone-web",
+    "web:build": "npm run build --workspace epubcheck-standalone-web",
+    "web:preview": "npm run preview --workspace epubcheck-standalone-web",
+    "check:versions": "node scripts/check-versions.ts"
+  },
+  "license": "BSD-3-Clause",
+  "author": "John L. Armstrong IV",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlarmstrongiv/epubcheck-standalone.git"
+  }
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:30:24-07:00</date>
+   <repInfo uri="epub3__08-layout__files__content-fxl-xhtml-viewport-width-missing-error.epub">
+      <created>2025-09-01T08:55:48Z</created>
+      <lastModified>2017-06-14T00:00:01Z</lastModified>
+      <format>application/epub+zip</format>
+      <version>3.3</version>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="HTM_056" severity="error">HTM_056, ERROR, [Viewport metadata has no "width" dimension (both "width" and "height" properties are required)], EPUB/content_001.xhtml (5-48)</message>
+      </messages>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub3__08-layout__files__content-fxl-xhtml-viewport-width-missing-error.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>CharacterCount</name>
+            <values arity="Scalar" type="Long">
+               <value>116</value>
+            </values>
+         </property>
+         <property>
+            <name>Language</name>
+            <values arity="Scalar" type="String">
+               <value>en</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>Identifier</name>
+                  <values arity="Scalar" type="String">
+                     <value>NOID</value>
+                  </values>
+               </property>
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2025-09-01T08:55:48Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>ModDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2017-06-14T00:00:01Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Title</name>
+                  <values arity="Scalar" type="String">
+                     <value>Minimal EPUB 3.0</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+         <property>
+            <name>MediaTypes</name>
+            <values arity="Scalar" type="String">
+               <value>application/xhtml+xml</value>
+            </values>
+         </property>
+         <property>
+            <name>hasFixedLayout</name>
+            <values arity="Scalar" type="Boolean">
+               <value>true</value>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

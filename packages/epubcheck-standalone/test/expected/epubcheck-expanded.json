@@ -1,0 +1,2210 @@
+{
+  "cli__files__20-severity-tester.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(NCX-001): EPUB/OPS/toc.ncx(-1,-1): NCX identifier (\" q \") does not match OPF identifier (\"NOID\").",
+      "ERROR(OPF-049): EPUB/OPS/package.opf(12,34): Item id \"content_001\" was not found in the manifest.",
+      "ERROR(RSC-008): EPUB/OPS/toc.ncx(15,43): Referenced resource \"OPS/content%20001.xhtml\" is not declared in the OPF manifest.",
+      "WARNING(PKG-010): EPUB(-1,-1): The file name \"OPS/content 001.xhtml\" contains spaces, which may create interoperability issues with older reading systems."
+    ]
+  },
+  "cli__files__20-warning-tester.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(PKG-010): EPUB(-1,-1): The file name \"OPS/content 001.xhtml\" contains spaces, which may create interoperability issues with older reading systems."
+    ]
+  },
+  "cli__files__30-mimetype-invalid.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+    ]
+  },
+  "cli__files__30-valid-test.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-dictionaries__files__epub__dictionary-content-model-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(7,31): Error while parsing file: A \"dictionary\" must have at least one article child.",
+      "ERROR(RSC-005): EPUB/EPUB/content_002.xhtml(11,25): Error while parsing file: A dictionary entry must have at least one \"dfn\" descendant (outside of the optional condensed entry \"aside\").",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"dictionary\", validating using profile \"DICT\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-dc-type-missing-error.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-079): EPUB/EPUB/content_001.xhtml(7,31): Dictionary content was found (epub:type \"dictionary\"), the Package Document should declare the dc:type \"dictionary\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-multiple-no-content-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-078): EPUB/EPUB/package.opf(-1,-1): An EPUB Dictionary must contain at least one Content Document with dictionary content (epub:type \"dictionary\").",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"dictionary\", validating using profile \"DICT\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-multiple-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"dictionary\", validating using profile \"DICT\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-no-profile-dc-type-missing-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-079): EPUB/EPUB/content_001.xhtml(7,31): Dictionary content was found (epub:type \"dictionary\"), the Package Document should declare the dc:type \"dictionary\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-search-key-map-content-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/search.xml(8,18): Error while parsing file: element \"search-key-map\" incomplete; missing required element \"search-key-group\"",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"dictionary\", validating using profile \"DICT\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-search-key-map-extension-error.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"dictionary\", validating using profile \"DICT\".",
+      "WARNING(OPF-080): EPUB/EPUB/search.txt(-1,-1): A Search Key Map document file name should have the extension \".xml\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-search-key-map-link-css-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-021): EPUB/EPUB/search.xml(3,40): A Search Key Map Document must point to Content Documents (\"EPUB/style.css\" was not found in the spine).",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"dictionary\", validating using profile \"DICT\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-search-key-map-link-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/search.xml(3,51): Referenced resource \"EPUB/missing.xhtml\" could not be found in the EPUB.",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"dictionary\", validating using profile \"DICT\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-single-no-content-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-078): EPUB/EPUB/package.opf(-1,-1): An EPUB Dictionary must contain at least one Content Document with dictionary content (epub:type \"dictionary\").",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"dictionary\", validating using profile \"DICT\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__dictionary-single-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"dictionary\", validating using profile \"DICT\"."
+    ]
+  },
+  "epub-dictionaries__files__epub__glossary-single-package-property-not-defined-error.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-dictionaries__files__epub__glossary-single-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-edupub__files__epub__edupub-basic-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\"."
+    ]
+  },
+  "epub-edupub__files__epub__edupub-fxl-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\"."
+    ]
+  },
+  "epub-edupub__files__epub__edupub-microdata-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\".",
+      "WARNING(HTM-051): EPUB/EPUB/content_001.xhtml(10,56): Found Microdata semantic enrichments but no RDFa. EDUPUB recommends using RDFa Lite."
+    ]
+  },
+  "epub-edupub__files__epub__edupub-multiple-renditions-dctype-missing-for-publication-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/metadata.xml(2,121): Error while parsing file: A dc:type element with the value \"edupub\" is required.",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\"."
+    ]
+  },
+  "epub-edupub__files__epub__edupub-multiple-renditions-dctype-missing-for-rendition-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/package-fxl.opf(3,57): Error while parsing file: The dc:type identifier \"edupub\" is required.",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\"."
+    ]
+  },
+  "epub-edupub__files__epub__edupub-multiple-renditions-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\"."
+    ]
+  },
+  "epub-edupub__files__epub__edupub-non-linear-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\"."
+    ]
+  },
+  "epub-edupub__files__epub__edupub-pagelist-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(NAV-003): EPUB/EPUB/package.opf(-1,-1): The Navigation Document must have a page list when content document(s) contain page breaks (epub:type=\"pagebreak\").",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\"."
+    ]
+  },
+  "epub-edupub__files__epub__edupub-pagelist-no-source-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-066): EPUB/EPUB/package.opf(-1,-1): Missing \"dc:source\" or \"source-of\" pagination metadata. The pagination source must be identified using the \"dc:source\" and \"source-of\" properties when the content includes page break markers.",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\"."
+    ]
+  },
+  "epub-edupub__files__epub__edupub-pagelist-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"edupub\", validating using profile \"EDUPUB\"."
+    ]
+  },
+  "epub-indexes__files__epub__index-collection-content-model-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/index1.xhtml(8,29): Error while parsing file: An \"index\" must contain one and only one \"index-entry-list\" (possibly implied) OR one or more \"index-group\"s."
+    ]
+  },
+  "epub-indexes__files__epub__index-collection-no-index-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/index1.xhtml(2,68): Error while parsing file: At least one \"index\" element must be present in a document declared as an index in the OPF."
+    ]
+  },
+  "epub-indexes__files__epub__index-collection-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-indexes__files__epub__index-single-file-content-model-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/index.xhtml(8,29): Error while parsing file: An \"index\" must contain one and only one \"index-entry-list\" (possibly implied) OR one or more \"index-group\"s."
+    ]
+  },
+  "epub-indexes__files__epub__index-single-file-no-index-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-015): EPUB/EPUB/index.xhtml(-1,-1): The property \"index\" should not be declared in the OPF file.",
+      "ERROR(RSC-005): EPUB/EPUB/index.xhtml(2,68): Error while parsing file: At least one \"index\" element must be present in a document declared as an index in the OPF."
+    ]
+  },
+  "epub-indexes__files__epub__index-single-file-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-indexes__files__epub__index-whole-pub-content-model-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(17,30): Error while parsing file: An \"index\" must contain one and only one \"index-entry-list\" (possibly implied) OR one or more \"index-group\"s.",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"index\", validating using profile \"IDX\"."
+    ]
+  },
+  "epub-indexes__files__epub__index-whole-pub-no-index-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(2,68): Error while parsing file: At least one \"index\" element must be present in a document declared as an index in the OPF.",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"index\", validating using profile \"IDX\"."
+    ]
+  },
+  "epub-indexes__files__epub__index-whole-pub-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"index\", validating using profile \"IDX\"."
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-basic-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-multiple-renditions__files__epub__renditions-mapping-multiple-docs-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/container.xml(9,9): Error while parsing file: The Container Document must not reference more than one mapping document."
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-mapping-multiple-nav-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-multiple-renditions__files__epub__renditions-mapping-no-resourcemap-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/mapping.xhtml(8,8): Error while parsing file: A Rendition Mapping Document must contain exactly one \"resource-map\" nav element."
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-mapping-no-version-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/mapping.xhtml(3,8): Error while parsing file: A meta tag with the name \"epub.multiple.renditions.version\" and value \"1.0\" is required."
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-mapping-non-xhtml-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/container.xml(10,68): Error while parsing file: The media type of Rendition Mapping Documents must be \"application/xhtml+xml\"."
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-mapping-untyped-nav-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/mapping.xhtml(7,8): Error while parsing file: A nav element of a Rendition Mapping Document must identify its nature in an epub:type attribute."
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-metadata-file-missing-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(RSC-019): EPUB(-1,-1): EPUBs with Multiple Renditions should contain a META-INF/metadata.xml file."
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-metadata-identifier-incomplete-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/metadata.xml(2,121): Error while parsing file: dcterms:modified meta element must occur exactly once"
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-selection-attribute-missing-error.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(RSC-017): EPUB/META-INF/container.xml(6,87): Warning while parsing file: At least one rendition selection attribute should be specified for each non-first rootfile element, which represents a non-default rendition.\""
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-selection-attribute-unknown-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/container.xml(7,78): Error while parsing file: attribute \"rendition:unknown\" not allowed here; expected attribute \"rendition:accessMode\", \"rendition:label\", \"rendition:language\", \"rendition:layout\" or \"rendition:media\""
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-selection-mediaquery-syntax-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/container.xml(7,35): Error while parsing file: value of attribute \"rendition:media\" is invalid; must be a string matching the regular expression \"\\s*(((only|not)\\s+)?all|\\([^>)]+\\))(\\s+and\\s+\\([^>)]+\\))*\\s*(,\\s*(((only|not)\\s+)?all|\\([^>)]+\\))(\\s+and\\s+\\([^>)]+\\))*\\s*)*\""
+    ]
+  },
+  "epub-multiple-renditions__files__epub__renditions-unmanifested-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(RSC-017): EPUB/META-INF/container.xml(6,87): Warning while parsing file: At least one rendition selection attribute should be specified for each non-first rootfile element, which represents a non-default rendition.\"",
+      "WARNING(RSC-019): EPUB(-1,-1): EPUBs with Multiple Renditions should contain a META-INF/metadata.xml file."
+    ]
+  },
+  "epub-previews__files__epub__preview-embedded-link-cfi-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-076): EPUB/EPUB/package.opf(-1,-1): The URI of preview collections link elements must not include EPUB canonical fragment identifiers."
+    ]
+  },
+  "epub-previews__files__epub__preview-embedded-no-content-doc-link-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-075): EPUB/EPUB/package.opf(-1,-1): Preview collections must only point to EPUB Content Documents."
+    ]
+  },
+  "epub-previews__files__epub__preview-embedded-no-links-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/package.opf(21,28): Error while parsing file: A \"preview\" collection must include at least one child \"link\" element, pointing to an EPUB Content Document."
+    ]
+  },
+  "epub-previews__files__epub__preview-embedded-no-manifest-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/package.opf(21,28): Error while parsing file: A \"preview\" collection must include exactly one child \"manifest\" collection"
+    ]
+  },
+  "epub-previews__files__epub__preview-embedded-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-previews__files__epub__preview-pub-dc-type-missing-error.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-previews__files__epub__preview-pub-self-as-source-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/package.opf(9,14): Error while parsing file: A Preview Publication must not use the same package identifier as its source Publication.",
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"preview\", validating using profile \"PREVIEW\"."
+    ]
+  },
+  "epub-previews__files__epub__preview-pub-source-missing-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"preview\", validating using profile \"PREVIEW\".",
+      "WARNING(RSC-017): EPUB/EPUB/package.opf(3,55): Warning while parsing file: An EPUB Preview publication should link back to its source Publication using a \"dc:source\" element."
+    ]
+  },
+  "epub-previews__files__epub__preview-pub-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(OPF-064): EPUB/EPUB/package.opf(-1,-1): OPF declares type \"preview\", validating using profile \"PREVIEW\"."
+    ]
+  },
+  "epub-region-nav__files__epub__data-nav-in-spine-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-077): EPUB/EPUB/package.opf(12,104): A Data Navigation Document should not be included in the spine."
+    ]
+  },
+  "epub-region-nav__files__epub__data-nav-missing-type-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/data-nav.xhtml(8,8): Error while parsing file: A \"nav\" element in a Data Navigation Document must have an \"epub:type\" attribute (to identify the nature of the navigation component it contains)."
+    ]
+  },
+  "epub-region-nav__files__epub__data-nav-multiple-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/package.opf(9,11): Error while parsing file: Found 2 \"data-nav\" items. The manifest must not include more than one Data Navigation Document."
+    ]
+  },
+  "epub-region-nav__files__epub__data-nav-not-xhtml-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-012): EPUB/EPUB/package.opf(12,81): Item property \"data-nav\" is not defined for media type \"text/css\"."
+    ]
+  },
+  "epub-region-nav__files__epub__data-nav-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-region-nav__files__epub__region-based-nav-comics-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-region-nav__files__epub__region-based-nav-content-model-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/data-nav.xhtml(22,9): Error while parsing file: The first child of a region-based nav list item must be either an \"a\" or \"span\" element.",
+      "ERROR(RSC-005): EPUB/EPUB/data-nav.xhtml(31,12): Error while parsing file: \"span\" elements in region-base navs must contain exactly two \"a\" elements.",
+      "ERROR(RSC-005): EPUB/EPUB/data-nav.xhtml(36,12): Error while parsing file: \"span\" elements in region-base navs must contain exactly two \"a\" elements.",
+      "ERROR(RSC-005): EPUB/EPUB/data-nav.xhtml(38,9): Error while parsing file: The first child of a region-based nav list item can only be followed by a single \"ol\" element.",
+      "ERROR(RSC-005): EPUB/EPUB/data-nav.xhtml(53,9): Error while parsing file: The first child of a region-based nav list item can only be followed by a single \"ol\" element.",
+      "ERROR(RSC-005): EPUB/EPUB/data-nav.xhtml(73,9): Error while parsing file: The first child of a region-based nav list item must be either an \"a\" or \"span\" element.",
+      "ERROR(RSC-005): EPUB/EPUB/data-nav.xhtml(8,33): Error while parsing file: A region-based nav element must contain exactly one child ol element.",
+      "WARNING(RSC-017): EPUB/EPUB/data-nav.xhtml(20,57): Warning while parsing file: \"a\" elements in region-based navs should not contain text labels."
+    ]
+  },
+  "epub-region-nav__files__epub__region-based-nav-not-fxl-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(NAV-009): EPUB/EPUB/data-nav.xhtml(11,57): Region-based navigation links must point to Fixed-Layout Documents."
+    ]
+  },
+  "epub-region-nav__files__epub__region-based-nav-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub-region-nav__files__epub__region-based-nav-wrong-element-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-052): EPUB/EPUB/content_001.xhtml(10,33): The property \"region-based\" is only allowed on nav elements in Data Navigation Documents."
+    ]
+  },
+  "epub2__files__epub__minimal.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__ncx-id-duplicate-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/OPS/toc.ncx(10,39): Error while parsing file: The \"id\" attribute does not have a unique value",
+      "ERROR(RSC-005): EPUB/OPS/toc.ncx(9,21): Error while parsing file: The \"id\" attribute does not have a unique value"
+    ]
+  },
+  "epub2__files__epub__ncx-id-syntax-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/OPS/toc.ncx(10,39): Error while parsing file: value of attribute \"id\" is invalid; must be an XML name without colons"
+    ]
+  },
+  "epub2__files__epub__ncx-label-empty-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__ncx-link-to-non-ops-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-010): EPUB/OPS/toc.ncx(20,34): Reference to non-standard resource type found."
+    ]
+  },
+  "epub2__files__epub__ncx-missing-resource-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/OPS/toc.ncx(20,68): Referenced resource \"OPS/AppData/Local/Temp/www.NotARealWebsite.com\" could not be found in the EPUB."
+    ]
+  },
+  "epub2__files__epub__ncx-pagetarget-type-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/OPS/toc.ncx(18,41): Error while parsing file: value of attribute \"type\" is invalid; must be equal to \"front\", \"normal\" or \"special\""
+    ]
+  },
+  "epub2__files__epub__ncx-uid-mismatch-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(NCX-001): EPUB/OPS/toc.ncx(-1,-1): NCX identifier (\"foo\") does not match OPF identifier (\"NOID\")."
+    ]
+  },
+  "epub2__files__epub__ncx-uid-spaces-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__ocf-filename-with-space-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(PKG-010): EPUB(-1,-1): The file name \"OPS/content 001.xhtml\" contains spaces, which may create interoperability issues with older reading systems."
+    ]
+  },
+  "epub2__files__epub__ocf-metainf-container-alternative-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__ocf-metainf-container-file-missing-fatal.epub": {
+    "exit": 1,
+    "messages": [
+      "FATAL(RSC-002): EPUB(-1,-1): Required META-INF/container.xml resource could not be found."
+    ]
+  },
+  "epub2__files__epub__ocf-metainf-container-mediatype-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-003): EPUB/META-INF/container.xml(-1,-1): No rootfile tag with media type \"application/oebps-package+xml\" was found in the container."
+    ]
+  },
+  "epub2__files__epub__ocf-metainf-container-multiple-opf-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-013): EPUB/META-INF/container.xml(-1,-1): The EPUB file includes multiple OPS renditions."
+    ]
+  },
+  "epub2__files__epub__ocf-metainf-container-rootfile-full-path-empty-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-017): EPUB/META-INF/container.xml(4,74): The attribute \"full-path\" on element \"rootfile\" must not be empty.",
+      "ERROR(RSC-003): EPUB/META-INF/container.xml(-1,-1): No rootfile tag with media type \"application/oebps-package+xml\" was found in the container."
+    ]
+  },
+  "epub2__files__epub__ocf-metainf-container-rootfile-full-path-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-016): EPUB/META-INF/container.xml(4,61): The element \"rootfile\" is missing its required attribute \"full-path\".",
+      "ERROR(RSC-003): EPUB/META-INF/container.xml(-1,-1): No rootfile tag with media type \"application/oebps-package+xml\" was found in the container."
+    ]
+  },
+  "epub2__files__epub__ocf-metainf-file-unknown-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__ocf-mimetype-with-spaces-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+    ]
+  },
+  "epub2__files__epub__ocf-opf-missing-fatal.epub": {
+    "exit": 1,
+    "messages": [
+      "FATAL(OPF-002): EPUB/META-INF/container.xml(-1,-1): The OPF file \"OPS/package.opf\" was not found in the EPUB."
+    ]
+  },
+  "epub2__files__epub__opf-fallback-non-resolving-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-040): EPUB/OPS/package.opf(12,76): Fallback item with id \"img4\" could not be found.",
+      "ERROR(RSC-032): EPUB/OPS/content_001.xhtml(11,37): Fallback must be provided for foreign resources, but found none for resource \"OPS/image.xyz\" of type \"image/xyz\"."
+    ]
+  },
+  "epub2__files__epub__opf-guide-reference-to-image-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-032): EPUB/OPS/package.opf(17,62): Guide references \"OPS/cover.jpeg\" which is not a valid \"OPS Content Document\"."
+    ]
+  },
+  "epub2__files__epub__opf-guide-reference-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-031): EPUB/OPS/package.opf(17,57): File listed in reference element in guide was not declared in OPF manifest: OPS/toc.xhtml.",
+      "ERROR(RSC-007): EPUB/OPS/package.opf(17,57): Referenced resource \"OPS/toc.xhtml\" could not be found in the EPUB."
+    ]
+  },
+  "epub2__files__epub__opf-legacy-oebps12-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-001): EPUB/OPS/package.opf(-1,-1): There was an error when parsing the EPUB version: Version attribute not found."
+    ]
+  },
+  "epub2__files__epub__opf-legacy-oebps12-mediatype-css-warning.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-030): EPUB/OPS/package.opf(-1,-1): The unique-identifier \"q\" was not found.",
+      "ERROR(RSC-005): EPUB/OPS/package.opf(2,103): Error while parsing file: attribute \"version\" not allowed here; expected attribute \"id\" or \"unique-identifier\"",
+      "WARNING(OPF-038): EPUB/OPS/package.opf(12,77): Media type \"text/html\" is not appropriate for an OEBPS 1.2 context; Use \"text/x-oeb1-document\" instead."
+    ]
+  },
+  "epub2__files__epub__opf-legacy-oebps12-mediatype-html-warning.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-030): EPUB/OPS/package.opf(-1,-1): The unique-identifier \"q\" was not found.",
+      "ERROR(RSC-005): EPUB/OPS/package.opf(2,103): Error while parsing file: attribute \"version\" not allowed here; expected attribute \"id\" or \"unique-identifier\"",
+      "WARNING(OPF-039): EPUB/OPS/package.opf(13,60): Media-type \"text/css\" is not appropriate in an OEBPS 1.2 context. Use \"text/x-oeb1-css\" instead."
+    ]
+  },
+  "epub2__files__epub__opf-manifest-item-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/OPS/content_001.xhtml(9,40): Referenced resource \"OPS/missing.jpg\" could not be found in the EPUB."
+    ]
+  },
+  "epub2__files__epub__opf-manifest-item-resource-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-001): EPUB/OPS/fonts/FreeSerif.otf(-1,-1): File \"OPS/fonts/FreeSerif.otf\" could not be found."
+    ]
+  },
+  "epub2__files__epub__opf-manifest-item-xhtml-mediatype-html-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-035): EPUB/OPS/package.opf(10,76): Media type \"text/html\" is not appropriate for XHTML/OPS."
+    ]
+  },
+  "epub2__files__epub__opf-manifest-os-files-ignore-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__opf-manifest-resource-undeclared-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__opf-metadata-creator-role-clr-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__opf-package-id-spaces-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__opf-pagemap-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/OPS/package.opf(13,33): Error while parsing file: attribute \"page-map\" not allowed here; expected attribute \"id\""
+    ]
+  },
+  "epub2__files__epub__opf-pagemap-ref-not-found-warning.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/OPS/package.opf(13,38): Error while parsing file: attribute \"page-map\" not allowed here; expected attribute \"id\"",
+      "WARNING(OPF-063): EPUB/OPS/package.opf(13,38): Referenced Adobe page-map item \"notfound\" was not found in the manifest."
+    ]
+  },
+  "epub2__files__epub__opf-remote-object-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/OPS/content_001.xhtml(11,76): Remote resource reference is not allowed in this context; resource \"http://example.org/player.swf\" must be located in the EPUB container."
+    ]
+  },
+  "epub2__files__epub__opf-spine-itemref-repeated-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-034): EPUB/OPS/package.opf(9,88): The spine contains multiple references to the manifest item with id \"content_001\"."
+    ]
+  },
+  "epub2__files__epub__opf-spine-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/OPS/package.opf(15,11): Error while parsing file: element \"package\" incomplete; missing required element \"spine\""
+    ]
+  },
+  "epub2__files__epub__opf-spine-toc-attribute-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/OPS/package.opf(12,8): Error while parsing file: element \"spine\" missing required attribute \"toc\""
+    ]
+  },
+  "epub2__files__epub__opf-spine-toc-attribute-to-non-ncx-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CHK-008): EPUB/OPS/package.opf(-1,-1): Error encountered while processing an item \"OPS/content_001.xhtml\"; skip other checks for the item.",
+      "ERROR(OPF-050): EPUB/OPS/package.opf(9,88): TOC attribute references resource with non-NCX mime type; \"application/x-dtbncx+xml\" is expected."
+    ]
+  },
+  "epub2__files__epub__opf-unique-identifier-not-found-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-030): EPUB/OPS/package.opf(-1,-1): The unique-identifier \"notfound\" was not found."
+    ]
+  },
+  "epub2__files__epub__opf-version-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-001): EPUB/OPS/package.opf(-1,-1): There was an error when parsing the EPUB version: Version attribute not found."
+    ]
+  },
+  "epub2__files__epub__ops-dtbook-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__ops-xhtml-hyperlink-to-missing-fragment-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-012): EPUB/OPS/content_001.xhtml(9,32): Fragment identifier is not defined."
+    ]
+  },
+  "epub2__files__epub__ops-xhtml-link-to-missing-stylesheet-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/OPS/content_001.xhtml(6,63): Referenced resource \"OPS/missing.css\" could not be found in the EPUB."
+    ]
+  },
+  "epub2__files__epub__ops-xhtml-script-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub2__files__epub__ops-xhtml-unusual-extension-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__00-minimal__files__minimal.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__conformance-xml-id-leading-trailing-spaces-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__data-url-in-html-img-cmt-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__data-url-in-html-img-foreign-intrinsic-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__data-url-in-html-img-foreign-no-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(35,141): Fallback must be provided for foreign resources, but found none for resource \"data:image/vnd.xyz;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBYRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKKADAAQAAAABAAAANwAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgANwAoAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAgICAgICAwICAwQDAwMEBQQEBAQFBwUFBQUFBwgHBwcHBwcICAgICAgICAoKCgoKCgsLCwsLDQ0NDQ0NDQ0NDf/bAEMBAgICAwMDBgMDBg0JBwkNDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDf/dAAQAA//aAAwDAQACEQMRAD8A/fyvIvi58XNE+Fmh/a7rbc6pchhY2IbDSsOCzHqsSn7zf8BXLHh3xb+Leh/CzQvtl3i51O5DLY2Kth5nHVmPVYlP3m/AZY4r87/Dnhzx3+0H48nurqdpHkZXvr51PkWcGflVFzgYGRFEDyckn7zV8NxVxTPCyWXZcufEz0SWvLfq/Psum703+fzfN3RawuFV6r/D/g/8O/PmX+Jvjp/Gf/Cxf7RlGriXImAPlBcZ8jZ93ytnHl/3eevzV+mPwh+L2i/FTRPPt9trq1qqi+sS2WjY8B0zy0TH7rdQflbkc8P8QfDfwh+GPwgk8L69abtPbP2eJCv2+6v9vEyORxMOrPjaicEbMKfhL4Qad461Hx5YD4ds0Opwt5jTtnyIYMgSNcY4MRHDL/GcBRuxj4vCYnMOG8yp4apU9t7WznBayUn1V+vn9rqlozw6NXE5Xio0pS5+fVpb3f6/n16H7C0VDD5qxIJypk2jcVBClsc4BJIGegJqXNftqPvD/9D2z4oS+M5fHepH4ieaNWEoWVeNiw5PliDJ2+Vt/wBXjg9Tzur9NfgvD4Ci8AWB+HJDacwJkZ8faWucDzPtPcTZ6joBjb8uKg+L/wAINF+KmieTNttdXtVY2N8FyUJ5McmOWiY/eXqD8y89fz58I+LvHH7P3jm4sr63dNjrHqOnSN+6uYh910bpnHMUo4xweMgfjlOlPhbN5YjFx56NXT2m8l118+/8y1WzR8RGEsoxjqVlzQn9rqv669912Os+Ifg34v8AxE+MMvhvX7fdetk2rJu/s+307dxKjEcRD+In940nykbsAfZug6D4C/Z38AzXV1MI0jCveXjqPtN7ckYVVUckk5EcYOFH/AmreT4u+A38B/8ACx/t6jSguCSP34n/AOffy858/PGz8c7fmr86vGnjPxt8f/G9tYafbSOryNHpmmRtlIEP3pJG+7u28yyngDgYXAPRiqmAyGcsZhpe3xVbWF9bKWz0/wCHlsrK5rWlh8vbrUn7SrU+Hro/6+e3c6C5+LPxS+J3xT03UvCHnQXUEzJpenxNuhihP+s8/orhl5mduMYC4AWvor7T+1t/z66J+cH/AMXXq3wd+DujfCvRdibbvWbtV+3X23G4jnyo88rEp6Dqx+ZucAey4r1cq4Qx06Lr4/FVI1ZvmajKyV7fj6aLZaK514PJa8oe0xNaSnLVpP8Ar+tD/9H9/K8b+MHwf0X4qaL5Uu201i0VjY323JQnkxyY5aJj1HVT8y88H2MkDrXAeN/il4B+HUljD401q10qTUxMbSOctvmW32eaUVFZiI/MTccYG4etcmOwVDF0JYfEx5oS3X9fgzKvh4V6bpVFdM/Kdvh/44Txb/wrg6fP/a5nwLQE+WTjHnZ+55eznzemzv8Aw1+mHwc+Dmj/AAr0bauy71q7Rft19t+938qLPKxKeg6sfmbnAHbaJ428EeJJtPl8P6xp+oyarYS6hZPazpN9osoJEilljZM7o0lkRWIOAzAEZrG8R/GH4aeE45JNf8RWFn5WovpDq8hZhfRwLctBtRWbzFgYSFccIcnivlOHeCMJlVeWJ5ueX2W18K/z7vTyS1v4+WcP0cJUdS/M+l+i/wA/M9Lorl/CXjTwr470ka54Q1S11ax814GmtJBIqTRcPG46o6ZG5GAYZGRzz1FfbHun/9L9n/i3fXOnafplzNcpa6R9t8vUHZp1BWSJ1gDfZmWYoZtu4IeTjcCu6vCrh/GGqfEL4czeB9f04yzeH/GTR3mqWd7dQtZfbdICRBBd29wzIQAskkhJVeV3YI9f/aG/5J1L/wBf9h/6OFeS/Dv/AJGz4Uf9in4x/wDS/Sa+ZhVazydHpyc3W+6Vu1tL7btnm05v+0HD+7f9Pu/UydYGgfsweKfCnjH4g6vJNouo2/ijTtS1hLQoi674i1C11ZcWduZZI7eU286IIxKYyq+YzF2kPinibx9o2lQ+GfjfdeJbjwh4Z8X/ABF1zV9K1qKyW+n+wyeHzYQubRop9ouXtHYK8e9EZS4Rsgdz/wAFKf8Akjnhv/sbrD/0nua+Ovjx/wAmH/s/f9hBv/SK/r6GTs7HsxV7M/SH9lPxHD4ti8deJdJ1WTxTpGpeIlmg8S3NsthdanOllbwzLJaIsaxraLFFBGwii8xVyVLAySfXNfAH/BN3/k3ub/sY9T/9Bhr7/q4fCZS3P//Z\" of type \"image/vnd.xyz\"."
+    ]
+  },
+  "epub3__03-resources__files__data-url-in-html-link-exempt-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__data-url-with-unescaped-query-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__fallback-chain-circular-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-045): EPUB/EPUB/package.opf(13,76): Encountered circular reference in fallback chain."
+    ]
+  },
+  "epub3__03-resources__files__fallback-chain-n-to-1-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__fallback-chain-waterfall-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__file-url-in-css-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-030): EPUB/EPUB/package.opf(13,70): File URLs are not allowed in EPUB, but found \"file:///font.woff\".",
+      "ERROR(RSC-030): EPUB/EPUB/style.css(3,3): File URLs are not allowed in EPUB, but found \"file:/font.woff\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-exempt-font-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(CSS-007): EPUB/EPUB/style.css(5,5): Font-face reference \"https://UUID.epubcheck.w3c.org/EPUB/OpenSans-Regular.woff\" refers to non-standard font type \"application/x-font-woff\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-exempt-unused-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-link-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-link-xpgt-manifest-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-link-xpgt-no-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-track-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-video-in-img-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-video-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-audio-in-video-no-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(10,30): Fallback must be provided for foreign resources, but found none for resource \"EPUB/audio.foreign\" of type \"audio/foreign\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-audio-manifest-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-audio-no-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(10,30): Fallback must be provided for foreign resources, but found none for resource \"EPUB/audio.foreign\" of type \"audio/foreign\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-audio-no-fallback-with-flow-content-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(10,31): Fallback must be provided for foreign resources, but found none for resource \"EPUB/audio.foreign\" of type \"audio/foreign\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-audio-source-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-audio-source-no-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(12,11): Fallback must be provided for foreign resources, but found none for resource \"EPUB/audio.foreign\" of type \"audio/foreign\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-audio-source-remote-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-embed-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-embed-no-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(9,62): Fallback must be provided for foreign resources, but found none for resource \"EPUB/foreign.xyz\" of type \"application/vnd.epubcheck\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-img-manifest-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-img-src-no-manifest-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(8,42): Fallback must be provided for foreign resources, but found none for resource \"EPUB/image.xyz\" of type \"image/vnd.xyz\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-img-srcset-manifest-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-input-image-no-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(11,56): Fallback must be provided for foreign resources, but found none for resource \"EPUB/foreign.xyz\" of type \"application/vnd.epubcheck\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-math-altimg-no-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(9,91): Fallback must be provided for foreign resources, but found none for resource \"EPUB/foreign.xyz\" of type \"application/vnd.epubcheck\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-object-intrinsic-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-object-no-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(16,13): Fallback must be provided for foreign resources, but found none for resource \"EPUB/slideshow.xml\" of type \"application/x-demo-slideshow2\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-picture-img-src-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(MED-003): EPUB/EPUB/content_001.xhtml(10,43): Picture \"img\" elements must reference core media type resources, but found resource \"EPUB/image.xyz\" of type \"image/vnd.xyz\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-picture-img-srcset-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(MED-003): EPUB/EPUB/content_001.xhtml(9,78): Picture \"img\" elements must reference core media type resources, but found resource \"EPUB/image-2x.xyz\" of type \"image/vnd.xyz\".",
+      "ERROR(MED-003): EPUB/EPUB/content_001.xhtml(9,78): Picture \"img\" elements must reference core media type resources, but found resource \"EPUB/image.xyz\" of type \"image/vnd.xyz\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-picture-source-no-type-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(MED_007): EPUB/EPUB/content_001.xhtml(9,58): Picture \"source\" elements must define a \"type\" attribute when they reference foreign resources; found resource \"EPUB/image.xyz\" of type \"image/vnd.xyz\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-xhtml-picture-source-with-type-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-script-datablock-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-video-poster-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-xhtml-video-poster-no-fallback-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(8,111): Fallback must be provided for foreign resources, but found none for resource \"EPUB/poster.png\" of type \"text/abc\"."
+    ]
+  },
+  "epub3__03-resources__files__mailto-url-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-audio-mp3-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-audio-mp4-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-audio-opus-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-font-opentype-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-font-svg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-font-truetype-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-image-corrupt-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(MED-004): EPUB/EPUB/blank(-1,-1): Image file header may be corrupted.",
+      "ERROR(PKG-021): EPUB/EPUB/blank(-1,-1): Corrupted image file encountered."
+    ]
+  },
+  "epub3__03-resources__files__resources-cmt-image-gif-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-image-jpeg-declared-as-gif-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-029): EPUB/EPUB/image.jpeg(-1,-1): The file \"EPUB/image.jpeg\" does not appear to match the media type image/gif, as specified in the OPF file."
+    ]
+  },
+  "epub3__03-resources__files__resources-cmt-image-jpg-not-corrupt-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-image-jpg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-image-png-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-image-webp-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-image-wrong-extension-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(PKG-022): EPUB/EPUB/image.gif(-1,-1): Wrong file extension for image. The image is a \"JPEG\" file but has the file extension \"gif\"."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-audio-object-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-remote-audio-sources-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-remote-audio-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-remote-font-in-css-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(CSS-007): EPUB/EPUB/style.css(3,3): Font-face reference \"https://example.org/font\" refers to non-standard font type \"application/vnd.dafont\"."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-font-in-svg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-remote-font-svg-also-used-as-img-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(8,51): Remote resource reference is not allowed in this context; resource \"https://example.org/svg\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-font-svg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-remote-font-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-remote-iframe-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(8,84): Remote resource reference is not allowed in this context; resource \"https://www.youtube.com/embed/qlMuzbjMASo\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-iframe-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(8,84): Remote resource reference is not allowed in this context; resource \"https://www.youtube.com/embed/qlMuzbjMASo\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-img-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(9,53): Remote resource reference is not allowed in this context; resource \"http://example.org/remote.jpg\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-img-in-script-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(14,52): Remote resource reference is not allowed in this context; resource \"https://example.org/image.jpg\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-img-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(9,53): Remote resource reference is not allowed in this context; resource \"http://example.org/remote.jpg\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-not-https-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(RSC-031): EPUB/EPUB/content_001.xhtml(8,47): Remote resource references should use HTTPS, but found \"http://example.org/audio.mp4\".",
+      "WARNING(RSC-031): EPUB/EPUB/content_001.xhtml(9,47): Remote resource references should use HTTPS, but found \"http://example.org/video.mp4\".",
+      "WARNING(RSC-031): EPUB/EPUB/style.css(3,3): Remote resource references should use HTTPS, but found \"http://example.org/font\"."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-object-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(12,12): Remote resource reference is not allowed in this context; resource \"http://example.org/player.swf\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-resource-for-script-cmt-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-remote-resource-for-script-foreign-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-remote-script-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(6,47): Remote resource reference is not allowed in this context; resource \"https://example.org/script.js\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-spine-item-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/package.opf(11,94): Remote resource reference is not allowed in this context; resource \"https://example.org/doc.xhtml\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-stylesheet-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(6,95): Remote resource reference is not allowed in this context; resource \"https://fonts.example.com/css?family=MyFont\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-stylesheet-svg-import-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.svg(6,11): Remote resource reference is not allowed in this context; resource \"https://example.org/style.css\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-stylesheet-svg-xmlpi-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.svg(2,72): Remote resource reference is not allowed in this context; resource \"https://example.org/style.css\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-svg-contentdoc-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(8,58): Remote resource reference is not allowed in this context; resource \"https://example.org/cover.svg\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__03-resources__files__resources-remote-video-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__type-mismatch-in-audio-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(11,60): Resource \"EPUB/audio.mpeg\" is declared with MIME type \"audio/mp4\" in content, but has MIME type \"audio/mpeg\" in the package document."
+    ]
+  },
+  "epub3__03-resources__files__type-mismatch-in-embed-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(9,45): Resource \"EPUB/image.jpeg\" is declared with MIME type \"image/gif\" in content, but has MIME type \"image/jpeg\" in the package document."
+    ]
+  },
+  "epub3__03-resources__files__type-mismatch-in-object-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(11,81): Resource \"EPUB/slideshow.xml\" is declared with MIME type \"application/x-demo-other\" in content, but has MIME type \"application/x-demo-slideshow\" in the package document."
+    ]
+  },
+  "epub3__03-resources__files__type-mismatch-in-picture-source-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(9,52): Resource \"EPUB/image.xyz\" is declared with MIME type \"image/vnd.abc\" in content, but has MIME type \"image/vnd.xyz\" in the package document."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-container-content-model-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/container.xml(3,9): Error while parsing file: element \"foo\" not allowed anywhere; expected element \"rootfiles\""
+    ]
+  },
+  "epub3__04-ocf__files__ocf-container-file-missing-fatal.epub": {
+    "exit": 1,
+    "messages": [
+      "FATAL(RSC-002): EPUB(-1,-1): Required META-INF/container.xml resource could not be found."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-container-filename-character-composition-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__04-ocf__files__ocf-container-filename-character-plus-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__04-ocf__files__ocf-encryption-compression-attributes-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/encryption.xml(19,51): Error while parsing file: value of attribute \"Method\" is invalid; must be equal to \"0\" or \"8\"",
+      "ERROR(RSC-005): EPUB/META-INF/encryption.xml(19,51): Error while parsing file: value of attribute \"OriginalLength\" is invalid; must be an integer"
+    ]
+  },
+  "epub3__04-ocf__files__ocf-encryption-content-model-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/encryption.xml(2,82): Error while parsing file: element \"container\" not allowed here; expected element \"encryption\""
+    ]
+  },
+  "epub3__04-ocf__files__ocf-encryption-duplicate-ids-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/encryption.xml(13,29): Error while parsing file: Duplicate \"ID\"",
+      "ERROR(RSC-005): EPUB/META-INF/encryption.xml(4,28): Error while parsing file: Duplicate \"ID\"",
+      "INFO(RSC-004): EPUB/EPUB/content_001.xhtml(-1,-1): File \"EPUB/content_001.xhtml\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-encryption-unknown-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(RSC-004): EPUB/EPUB/content_001.xhtml(-1,-1): File \"EPUB/content_001.xhtml\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-filename-character-emoji-tag-sequence-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__04-ocf__files__ocf-filename-character-non-ascii-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__04-ocf__files__ocf-filename-character-space-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(PKG-010): EPUB(-1,-1): The file name \"EPUB/content 001.xhtml\" contains spaces, which may create interoperability issues with older reading systems."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-meta-inf-with-publication-resource-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-025): EPUB/EPUB/package.opf(12,75): Publication resource must not be located in the META-INF directory"
+    ]
+  },
+  "epub3__04-ocf__files__ocf-mimetype-file-incorrect-value-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-mimetype-file-leading-spaces-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-mimetype-file-trailing-newline-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-mimetype-file-trailing-spaces-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-obfuscation-duplicate-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(RSC-004): EPUB/EPUB/obfuscated-font.otf(-1,-1): File \"EPUB/obfuscated-font.otf\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-obfuscation-not-cmt-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-026): EPUB/META-INF/encryption.xml(6,56): Obfuscated resource must be a Font Core Media Type (was declared as \"font/opentype\" in \"EPUB/package.opf\").",
+      "INFO(RSC-004): EPUB/EPUB/obfuscated-font.otf(-1,-1): File \"EPUB/obfuscated-font.otf\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-obfuscation-not-font-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-026): EPUB/META-INF/encryption.xml(7,48): Obfuscated resource must be a Font Core Media Type (was declared as \"application/xml\" in \"EPUB/package.opf\").",
+      "INFO(RSC-004): EPUB/EPUB/doc.xml(-1,-1): File \"EPUB/doc.xml\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-obfuscation-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(RSC-004): EPUB/EPUB/obfuscated-font.otf(-1,-1): File \"EPUB/obfuscated-font.otf\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-package-document-missing-fatal.epub": {
+    "exit": 1,
+    "messages": [
+      "FATAL(OPF-002): EPUB/META-INF/container.xml(-1,-1): The OPF file \"EPUB/package.opf\" was not found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__ocf-signatures-content-model-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/META-INF/signatures.xml(2,82): Error while parsing file: element \"container\" not allowed here; expected element \"signatures\""
+    ]
+  },
+  "epub3__04-ocf__files__ocf-url-leaking-in-opf-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-026): EPUB/EPUB/package.opf(10,105): URL \"../../../../EPUB/content_001.xhtml\" leaks outside the container (it is not a valid-relative-ocf-URL-with-fragment string)",
+      "ERROR(RSC-026): EPUB/EPUB/package.opf(11,111): URL \"EPUB/../../../../EPUB/nav.xhtml\" leaks outside the container (it is not a valid-relative-ocf-URL-with-fragment string)"
+    ]
+  },
+  "epub3__04-ocf__files__ocf-url-path-absolute-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-026): EPUB/EPUB/package.opf(10,94): URL \"/EPUB/content_001.xhtml\" leaks outside the container (it is not a valid-relative-ocf-URL-with-fragment string)"
+    ]
+  },
+  "epub3__04-ocf__files__url-percent-encoded-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__04-ocf__files__url-xhtml-cite-absolute-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__04-ocf__files__url-xhtml-cite-missing-resource-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(10,36): Referenced resource \"EPUB/missing.xhtml\" could not be found in the EPUB.",
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(11,27): Referenced resource \"EPUB/missing.xhtml\" could not be found in the EPUB.",
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,29): Referenced resource \"EPUB/missing.xhtml\" could not be found in the EPUB.",
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(13,29): Referenced resource \"EPUB/missing.xhtml\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-xhtml-iframe-missing-resource-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(8,57): Referenced resource \"EPUB/missing.xhtml\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-xhtml-track-missing-resource-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(11,61): Referenced resource \"EPUB/subtitles.vtt\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__05-package-document__files__link-to-embedded-resource-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__manifest-not-listing-container-resource-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__manifest-self-referencing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-099): EPUB/EPUB/package.opf(10,86): The manifest must not list the package document."
+    ]
+  },
+  "epub3__05-package-document__files__package-file-extension-unusual-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__package-link-media-type-missing-local-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-093): EPUB/EPUB/package.opf(9,44): The \"media-type\" attribute is required for linked resources located in the EPUB container"
+    ]
+  },
+  "epub3__05-package-document__files__package-link-media-type-missing-remote-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__package-link-missing-resource-error.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(RSC-007w): EPUB/EPUB/package.opf(8,77): Referenced resource \"EPUB/record.json\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-duplicate-resource-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-074): EPUB/EPUB/package.opf(12,59): Package resource \"EPUB/style.css\" is declared in several manifest item."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-fonts-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-001): EPUB/EPUB/OldStandard-Bold.otf(-1,-1): File \"EPUB/OldStandard-Bold.otf\" could not be found.",
+      "ERROR(RSC-001): EPUB/EPUB/OldStandard-Italic.otf(-1,-1): File \"EPUB/OldStandard-Italic.otf\" could not be found.",
+      "ERROR(RSC-001): EPUB/EPUB/OldStandard-Regular.otf(-1,-1): File \"EPUB/OldStandard-Regular.otf\" could not be found."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-item-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-001): EPUB/EPUB/missing.xhtml(-1,-1): File \"EPUB/missing.xhtml\" could not be found."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-item-with-spaces-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(PKG-010): EPUB(-1,-1): The file name \"EPUB/content 001.xhtml\" contains spaces, which may create interoperability issues with older reading systems."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-remote-resource-declared-but-unnecessary-error.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-018): EPUB/EPUB/content_001.xhtml(11,8): The \"remote-resources\" property was declared in the Package Document, but no reference to remote resources has been found."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-remote-resource-object-param-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-018): EPUB/EPUB/content_001.xhtml(13,8): The \"remote-resources\" property was declared in the Package Document, but no reference to remote resources has been found."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-remote-resource-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/content_001.xhtml(-1,-1): The property \"remote-resources\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-scripted-declared-but-unnecessary-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-015): EPUB/EPUB/content_001.xhtml(-1,-1): The property \"scripted\" should not be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-scripted-not-required-for-script-data-block-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__package-manifest-prop-scripted-undeclared-form-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/content_001.xhtml(-1,-1): The property \"scripted\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-scripted-undeclared-javascript-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/content_001.xhtml(-1,-1): The property \"scripted\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-svg-declared-but-unnecessary-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-015): EPUB/EPUB/content_001.xhtml(-1,-1): The property \"svg\" should not be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-svg-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/content_001.xhtml(-1,-1): The property \"svg\" should be declared in the OPF file.",
+      "ERROR(OPF-014): EPUB/EPUB/content_002.xhtml(-1,-1): The property \"svg\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-svg-undeclared-partial-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/content_002.xhtml(-1,-1): The property \"svg\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-switch-not-declared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/content_001.xhtml(-1,-1): The property \"switch\" should be declared in the OPF file.",
+      "WARNING(RSC-017): EPUB/EPUB/content_001.xhtml(8,31): Warning while parsing file: The \"epub:switch\" element is deprecated."
+    ]
+  },
+  "epub3__05-package-document__files__package-manifest-prop-unknown-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-027): EPUB/EPUB/package.opf(10,132): Undefined property: \"rendition:layout-pre-paginated\"."
+    ]
+  },
+  "epub3__05-package-document__files__package-mathml-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__package-ncx-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-012): EPUB/EPUB/nav.ncx(20,49): Fragment identifier is not defined."
+    ]
+  },
+  "epub3__05-package-document__files__package-ncx-missing-references-to-spine-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__package-ncx-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__package-remote-audio-in-overlays-missing-property-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/chapter_001_overlay.smil(-1,-1): The property \"remote-resources\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-audio-missing-property-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/content_001.xhtml(-1,-1): The property \"remote-resources\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-audio-sources-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-008): EPUB/EPUB/content_001.xhtml(11,11): Referenced resource \"https://example.com/audio/src-2.mp4\" is not declared in the OPF manifest."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-audio-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-008): EPUB/EPUB/content_001.xhtml(9,49): Referenced resource \"https://example.org/remote.mp4\" is not declared in the OPF manifest."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-font-in-css-missing-property-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/style.css(0,0): The property \"remote-resources\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-font-in-inline-css-missing-property-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/content_001.xhtml(6,0): The property \"remote-resources\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-font-in-svg-missing-property-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/cover.svg(-1,-1): The property \"remote-resources\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-font-in-xhtml-missing-property-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-014): EPUB/EPUB/content_001.xhtml(5,0): The property \"remote-resources\" should be declared in the OPF file."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-font-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-008): EPUB/EPUB/style.css(3,3): Referenced resource \"https://example.org/font\" is not declared in the OPF manifest."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-img-in-link-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/package.opf(12,82): Remote resource reference is not allowed in this context; resource \"https://example.org/image.jpg\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__05-package-document__files__package-remote-resource-and-inline-css-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__spine-nonlinear-not-reachable-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-096): EPUB/EPUB/package.opf(11,88): Non-linear content must be reachable, but found no hyperlink to \"EPUB/content_002.xhtml\"."
+    ]
+  },
+  "epub3__05-package-document__files__spine-nonlinear-reachable-via-hyperlink-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__spine-nonlinear-reachable-via-nav-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__spine-nonlinear-reachable-via-script-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__05-package-document__files__spine-not-listing-hyperlink-target-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-011): EPUB/EPUB/content_001.xhtml(8,34): Found a reference to a resource that is not a spine item."
+    ]
+  },
+  "epub3__05-package-document__files__spine-not-listing-navigation-document-target-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-011): EPUB/EPUB/nav.xhtml(11,37): Found a reference to a resource that is not a spine item."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-encoding-latin1-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-004): EPUB/EPUB/style.css(-1,-1): CSS documents must be encoded in UTF-8, detected iso-8859-1;"
+    ]
+  },
+  "epub3__06-content-document__files__content-css-encoding-utf16-declared-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(CSS-003): EPUB/EPUB/style.css(-1,-1): CSS document is encoded in UTF-16. It should be encoded in UTF-8 instead."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-encoding-utf16-not-declared-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(CSS-003): EPUB/EPUB/style.css(-1,-1): CSS document is encoded in UTF-16. It should be encoded in UTF-8 instead."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-encoding-utf8-declared-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-css-font-face-empty-error.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(CSS-019): EPUB/EPUB/style.css(1,1): CSS font-face declaration has no attributes."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-font-face-url-empty-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-002): EPUB/EPUB/style.css(3,3): Empty or NULL reference found."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-font-size-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-css-font-size-value-error.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-css-import-not-declared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-008): EPUB/EPUB/style.css(1,9): Referenced resource \"EPUB/import.css\" is not declared in the OPF manifest."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-import-not-present-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-001): EPUB/EPUB/import.css(-1,-1): File \"EPUB/import.css\" could not be found."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-minimal-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-css-namespace-uri-not-resource-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-css-property-direction-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-001): EPUB/EPUB/style.css(3,3): The \"direction\" property must not be included in an EPUB Style Sheet."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-property-unicode-bidi-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-001): EPUB/EPUB/style.css(3,3): The \"unicode-bidi\" property must not be included in an EPUB Style Sheet."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-selectors-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-css-syntax-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-008): EPUB/EPUB/style.css(15,21): An error occurred while parsing the CSS: Premature end of grammar (expecting: ';' or '}').",
+      "ERROR(CSS-008): EPUB/EPUB/style.css(8,1): An error occurred while parsing the CSS: Token \"{\" not allowed here, expecting :."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-url-fragment-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-css-url-not-present-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/style.css(11,3): Referenced resource \"image/background.jpg\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__06-content-document__files__content-css-url-not-present-preceded-by-invalid-syntax-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-008): EPUB/EPUB/style.css(5,1): An error occurred while parsing the CSS: Token \"@font-face\" not allowed here, expecting a property name.",
+      "ERROR(RSC-007): EPUB/EPUB/style.css(10,3): Referenced resource \"EPUB/FreeSerif.otf\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__06-content-document__files__content-svg-file-extension-unusual-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-svg-in-spine-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-svg-no-viewbox-not-fxl-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-svg-use-href-no-fragment-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-015): EPUB/EPUB/cover.svg(5,68): A fragment identifier is required for svg use tag references."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-base-url-remote-relative-path-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(7,44): Remote resource reference is not allowed in this context; resource \"http://example.org/style.css\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-base-url-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-data-attr-removal-fragments-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-data-attr-removal-markup-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(11,30): Error while parsing file: element \"somebadxhtmlformatting\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:switch\", \"ns1:trigger\", \"ns2:math\", \"ns3:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.idpf.org/2007/ops\" xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns3=\"http://www.w3.org/2000/svg\") or an element from another namespace"
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-extension-warning.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-file-extension-unusual-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-iframe-basic-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-img-fragment-non-svg-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(RSC-009): EPUB/EPUB/content_001.xhtml(12,63): A non-SVG image resource should not be defined with a fragment identifier.",
+      "WARNING(RSC-009): EPUB/EPUB/content_001.xhtml(14,39): A non-SVG image resource should not be defined with a fragment identifier."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-img-fragment-svg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-img-srcset-undeclared-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-008): EPUB/EPUB/content_001.xhtml(8,83): Referenced resource \"EPUB/undeclared.jpeg\" is not declared in the OPF manifest."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-img-video-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-invalid-duplicate-id.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(7,16): Error while parsing file: Duplicate ID \"id\"",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(8,15): Error while parsing file: Duplicate ID \"id\""
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-lang-xml-lang-mismatch-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(2,68): Error while parsing file: The lang and xml:lang attributes must have the same value."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-link-href-empty-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-link-rel-path-dot-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-link-stylesheet-fragment-id-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-013): EPUB/EPUB/content_001.xhtml(6,66): Fragment identifier is used in a reference to a stylesheet resource."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-link-to-local-file-escaped-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-link-to-missing-doc-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/nav.xhtml(12,37): Referenced resource \"EPUB/content_003.xhtml\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-link-to-missing-id-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-012): EPUB/EPUB/content_001.xhtml(9,33): Fragment identifier is not defined."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-link-to-missing-id-in-nav-doc-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-012): EPUB/EPUB/nav.xhtml(11,45): Fragment identifier is not defined."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-link-to-missing-id-xref-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-012): EPUB/EPUB/content_001.xhtml(9,40): Fragment identifier is not defined."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-link-to-svg-fragment-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-014): EPUB/EPUB/content_001.xhtml(9,32): Fragment identifier defines an incompatible resource type."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-mathml-altimg-not-found-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,23): Referenced resource \"EPUB/mathml.png\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-mathml-altimg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-meta-viewport-non-fxl-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-referenced-resource-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(8,32): Referenced resource \"EPUB/image.jpg\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-relaxng-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(9,12): Error while parsing file: element \"unknown\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:switch\", \"ns1:trigger\", \"ns2:math\", \"ns3:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.idpf.org/2007/ops\" xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns3=\"http://www.w3.org/2000/svg\") or an element from another namespace"
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-schematron-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(9,18): Error while parsing file: The dfn element must not appear inside dfn elements."
+    ]
+  },
+  "epub3__06-content-document__files__content-xhtml-svg-fragment-svgview-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-svg-reference-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-svg-switch-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__content-xhtml-xml-base-url-remote-relative-path-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(6,61): Remote resource reference is not allowed in this context; resource \"http://example.org/style.css\" must be located in the EPUB container."
+    ]
+  },
+  "epub3__06-content-document__files__dc-source-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__object-pdf-fragment-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-content-document__files__type-mismatch-in-audio-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(11,60): Resource \"EPUB/audio.mpeg\" is declared with MIME type \"audio/mp4\" in content, but has MIME type \"audio/mpeg\" in the package document."
+    ]
+  },
+  "epub3__06-content-document__files__type-mismatch-in-object-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(11,81): Resource \"EPUB/slideshow.xml\" is declared with MIME type \"application/x-demo-other\" in content, but has MIME type \"application/x-demo-slideshow\" in the package document."
+    ]
+  },
+  "epub3__06-content-document__files__type-mismatch-in-picture-source-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(9,52): Resource \"EPUB/image.xyz\" is declared with MIME type \"image/vnd.abc\" in content, but has MIME type \"image/vnd.xyz\" in the package document."
+    ]
+  },
+  "epub3__07-navigation-document__files__nav-cfi-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-navigation-document__files__nav-links-out-of-spine-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-011): EPUB/EPUB/nav.xhtml(11,40): Found a reference to a resource that is not a spine item."
+    ]
+  },
+  "epub3__07-navigation-document__files__nav-links-remote-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(NAV-010): EPUB/EPUB/nav.xhtml(11,39): \"toc\" nav must not link to remote resources; found link to \"https://example.org\".",
+      "ERROR(NAV-010): EPUB/EPUB/nav.xhtml(18,62): \"landmarks\" nav must not link to remote resources; found link to \"https://example.org\".",
+      "ERROR(NAV-010): EPUB/EPUB/nav.xhtml(25,39): \"page-list\" nav must not link to remote resources; found link to \"https://example.org\"."
+    ]
+  },
+  "epub3__07-navigation-document__files__nav-links-to-non-content-document-type-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-010): EPUB/EPUB/nav.xhtml(11,30): Reference to non-standard resource type found."
+    ]
+  },
+  "epub3__07-navigation-document__files__nav-page-list-reading-order-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-navigation-document__files__nav-page-list-unordered-fragments-warning.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-navigation-document__files__nav-page-list-unordered-spine-warning.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-navigation-document__files__nav-toc-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/nav.xhtml(7,8): Error while parsing file: Exactly one \"toc\" nav element must be present"
+    ]
+  },
+  "epub3__07-navigation-document__files__nav-toc-missing-references-to-spine-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-navigation-document__files__nav-toc-reading-order-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-navigation-document__files__nav-toc-unordered-fragments-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(NAV-011): EPUB/EPUB/nav.xhtml(12,37): \"toc\" nav must be in reading order; link target \"EPUB/content_001.xhtml\" is before the previous link’s target in document order.",
+      "WARNING(NAV-011): EPUB/EPUB/nav.xhtml(15,41): \"toc\" nav must be in reading order; link target \"EPUB/content_001.xhtml#ch2\" is before the previous link’s target in document order."
+    ]
+  },
+  "epub3__07-navigation-document__files__nav-toc-unordered-spine-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(NAV-011): EPUB/EPUB/nav.xhtml(12,37): \"toc\" nav must be in reading order; link target \"EPUB/content_002.xhtml\" is before the previous link’s target in spine order."
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-item-xhtml-viewport-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-047): EPUB/EPUB/content_001.xhtml(6,56): Viewport metadata \"height=705, width=\" has a syntax error"
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-svg-no-viewbox-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-048): EPUB/EPUB/cover.svg(2,82): SVG Fixed-Layout Documents must have a \"viewBox\" attribute (on the outermost \"svg\" element)."
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-svg-no-viewbox-on-inner-svg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__08-layout__files__content-fxl-svg-no-viewbox-width-height-percent-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-048): EPUB/EPUB/cover.svg(2,82): SVG Fixed-Layout Documents must have a \"viewBox\" attribute (on the outermost \"svg\" element)."
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-svg-no-viewbox-width-height-units-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-048): EPUB/EPUB/cover.svg(2,55): SVG Fixed-Layout Documents must have a \"viewBox\" attribute (on the outermost \"svg\" element)."
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-svg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-duplicate-width-height-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_059): EPUB/EPUB/content_001.xhtml(5,99): Viewport \"height\" property must not be defined more than once, but found values [\"1200\", \"device-height\"].",
+      "ERROR(HTM_059): EPUB/EPUB/content_001.xhtml(5,99): Viewport \"width\" property must not be defined more than once, but found values [\"600\", \"device-width\"]."
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-float-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-height-empty-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_057): EPUB/EPUB/content_001.xhtml(5,54): Viewport \"height\" value must be a positive number or the keyword \"device-height\""
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-height-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,47): Viewport metadata has no \"height\" dimension (both \"width\" and \"height\" properties are required)"
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-icb-missing-in-first-meta-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,54): Viewport metadata has no \"height\" dimension (both \"width\" and \"height\" properties are required)",
+      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,54): Viewport metadata has no \"width\" dimension (both \"width\" and \"height\" properties are required)"
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-keywords-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-046): EPUB/EPUB/content_001.xhtml(6,9): Fixed layout document has no \"viewport\" meta element."
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-multiple-usage-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-syntax-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-047): EPUB/EPUB/content_001.xhtml(5,56): Viewport metadata \"width=600,height= \" has a syntax error"
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-units-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_057): EPUB/EPUB/content_001.xhtml(5,63): Viewport \"height\" value must be a positive number or the keyword \"device-height\"",
+      "ERROR(HTM_057): EPUB/EPUB/content_001.xhtml(5,63): Viewport \"width\" value must be a positive number or the keyword \"device-width\""
+    ]
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-whitespace-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__08-layout__files__content-fxl-xhtml-viewport-width-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,48): Viewport metadata has no \"width\" dimension (both \"width\" and \"height\" properties are required)"
+    ]
+  },
+  "epub3__08-layout__files__content-reflow-xhtml-viewport-height-missing-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-active-class-inline-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-active-class-style-not-found-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-030): EPUB/EPUB/content_001.xhtml(11,8): The package document declares media overlays styling class names but no CSS was found in the content document."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-active-class-stylesheet-undeclared-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-active-class-stylesheet-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-inline-style-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-style-not-found-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-030): EPUB/EPUB/content_001.svg(6,7): The package document declares media overlays styling class names but no CSS was found in the content document."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-stylesheet-import-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-stylesheet-link-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-stylesheet-xml-pi-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-audio-non-cmt-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(MED-005): EPUB/EPUB/content_001.smil(6,43): Media Overlay audio reference EPUB/content_001.m4a to non-standard audio type audio/m4a found."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-file-extension-unusual-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-incorrect-overlay-ref-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(MED_012): EPUB/EPUB/package.opf(14,111): The \"media-overlay\" attribute does not match the ID of the Media Overlay that refers to this document."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-minimal-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-missing-mo-attr-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(MED_010): EPUB/EPUB/package.opf(12,88): EPUB Content Documents referenced from a Media Overlay must specify the \"media-overlay\" attribute."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-multiple-overlay-ref-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(MED_011): EPUB/EPUB/content_002.smil(5,48): EPUB Content Document referenced from multiple Media Overlay Documents."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-no-overlay-ref-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(MED_013): EPUB/EPUB/package.opf(12,107): Media Overlay Document referenced from the \"media-overlay\" attribute does not contain a reference to this Content Document."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-playback-active-class-style-not-found-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-030): EPUB/EPUB/content_001.xhtml(11,8): The package document declares media overlays styling class names but no CSS was found in the content document."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-svg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-text-reading-order-error.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-textref-fragment-schemebased-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(MED_017): EPUB/EPUB/content_001.smil(5,64): URL fragment should indicate an element ID, but found '#xpointer(id('c01'))'."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-textref-fragment-unresolved-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-012): EPUB/EPUB/content_001.smil(4,50): Fragment identifier is not defined."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-textref-no-fragment-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-textref-svg-fragment-invalid-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(MED_018): EPUB/EPUB/content_001.smil(5,56): URL fragment should be an SVG fragment identifier, but found '#box=0,0,50,50'."
+    ]
+  },
+  "epub3__09-media-overlays__files__mediaoverlays-textref-svg-fragment-viewbox-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__B-external-identifiers__files__xml-external-identifier-allowed-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__B-external-identifiers__files__xml-external-identifier-bad-mediatype-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-073): EPUB/EPUB/toc.ncx(2,98): External identifiers must not appear in the document type declaration."
+    ]
+  },
+  "epub3__B-external-identifiers__files__xml-external-identifier-disallowed-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(OPF-073): EPUB/EPUB/toc.ncx(2,76): External identifiers must not appear in the document type declaration."
+    ]
+  },
+  "epub3__test-files-unused__content-page-list-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__test-files-unused__ocf-compression-valid.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/META-INF/encryption.xml(15,47): Referenced resource \"EPUB/video.mp4\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__test-files-unused__resources-remote-video-object-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "localization__files__css-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-008): EPUB/EPUB/content_001.xhtml(8,3): An error occurred while parsing the CSS: Token \".bold\" not allowed here, expecting :."
+    ]
+  },
+  "localization__files__nav-page-list-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "localization__files__schema-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(10,12): Error while parsing file: element \"invalid\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:switch\", \"ns1:trigger\", \"ns2:math\", \"ns3:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.idpf.org/2007/ops\" xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns3=\"http://www.w3.org/2000/svg\") or an element from another namespace"
+    ]
+  },
+  "reporting__files__fonts-embedded.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(OPF-018): EPUB/EPUB/style.css(0,0): The \"remote-resources\" property was declared in the Package Document, but no reference to remote resources has been found."
+    ]
+  },
+  "reporting__files__fonts-remote.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "reporting__files__layout-orientation-item.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "reporting__files__layout-orientation.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "reporting__files__layout-paginated-item.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "reporting__files__layout-paginated.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "reporting__files__layout-reflowable-item.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "reporting__files__layout-reflowable.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "reporting__files__layout-spread-item.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "reporting__files__layout-spread.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "reporting__files__minimal.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "stress.epub": {
+    "exit": 0,
+    "messages": []
+  }
+}

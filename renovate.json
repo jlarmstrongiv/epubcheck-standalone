@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "The mise manager tracks the build toolchain in mise.toml [tools]: node, java (Temurin JDK), and gradle. Node is grouped and auto-tracked. java and gradle require dependency-dashboard approval because they define the TeaVM engine build: bumping either means re-porting the 28 TeaVM classlib forks in teavm/shims (silent-regression risk), so it is a deliberate engineering event, never a bot bump.",
+    "The epubcheck jars and JZlib are build INPUTS fetched by `npm run build:deps` for the versions pinned in mise.toml [env] (EPUBCHECK_VERSION / JZLIB_VERSION). They are not npm/maven dependencies and are not committed, so Renovate cannot see or bump them. The engine JavaScript (dist/epubcheck-engine.js) is generated at build time from those inputs with TeaVM and is likewise not a tracked dependency. When epubcheck ships a new release, bump EPUBCHECK_VERSION, rebuild (npm run build:deps && npm run build), and publish <newversion>-build1; the .github/workflows/update-epubcheck.yml pipeline automates this."
+  ],
+  "extends": [
+    "config:recommended"
+  ],
+  "minimumReleaseAge": "14 days",
+  "labels": [
+    "dependencies"
+  ],
+  "mise": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": "Group GitHub Actions bumps into one PR.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "groupName": "github-actions"
+    },
+    {
+      "description": "Group mise toolchain bumps (node) into one PR. Node is the only mise tool Renovate auto-tracks; java and gradle are gated below behind dependency-dashboard approval.",
+      "matchManagers": [
+        "mise"
+      ],
+      "groupName": "mise toolchain"
+    },
+    {
+      "description": "The TeaVM engine toolchain (the org.teavm gradle plugin and the teavm-* dependencies in packages/epubcheck-standalone/teavm/build.gradle.kts, the only gradle deps in the repo) is never a bot bump. An engine upgrade is a deliberate engineering event: the 28 TeaVM classlib forks in teavm/shims must be re-ported, with silent-regression risk. Require explicit dependency-dashboard approval.",
+      "matchManagers": [
+        "gradle"
+      ],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "The mise-managed java and gradle tools define the engine build, so they follow the same rule as the engine dependencies above: a bump means re-porting the TeaVM classlib forks with silent-regression risk, never a bot bump. Require explicit dependency-dashboard approval. Node is exempt and stays in the grouped behavior above.",
+      "matchManagers": [
+        "mise"
+      ],
+      "matchDepNames": [
+        "java",
+        "gradle"
+      ],
+      "dependencyDashboardApproval": true
+    }
+  ]
+}

@@ -1,0 +1,1638 @@
+[
+  {
+    "name": "cli__files__20-severity-tester.epub",
+    "source": "cli/files/20-severity-tester"
+  },
+  {
+    "name": "cli__files__20-warning-tester.epub",
+    "source": "cli/files/20-warning-tester"
+  },
+  {
+    "name": "cli__files__30-mimetype-invalid.epub",
+    "source": "cli/files/30-mimetype-invalid"
+  },
+  {
+    "name": "cli__files__30-valid-test.epub",
+    "source": "cli/files/30-valid-test"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-content-model-error.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-content-model-error"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-dc-type-missing-error.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-dc-type-missing-error"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-multiple-no-content-error.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-multiple-no-content-error"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-multiple-valid.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-multiple-valid"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-no-profile-dc-type-missing-warning.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-no-profile-dc-type-missing-warning"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-search-key-map-content-error.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-search-key-map-content-error"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-search-key-map-extension-error.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-search-key-map-extension-error"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-search-key-map-link-css-error.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-search-key-map-link-css-error"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-search-key-map-link-missing-error.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-search-key-map-link-missing-error"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-single-no-content-error.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-single-no-content-error"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__dictionary-single-valid.epub",
+    "source": "epub-dictionaries/files/epub/dictionary-single-valid"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__glossary-single-package-property-not-defined-error.epub",
+    "source": "epub-dictionaries/files/epub/glossary-single-package-property-not-defined-error"
+  },
+  {
+    "name": "epub-dictionaries__files__epub__glossary-single-valid.epub",
+    "source": "epub-dictionaries/files/epub/glossary-single-valid"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-basic-valid.epub",
+    "source": "epub-edupub/files/epub/edupub-basic-valid"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-fxl-valid.epub",
+    "source": "epub-edupub/files/epub/edupub-fxl-valid"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-microdata-warning.epub",
+    "source": "epub-edupub/files/epub/edupub-microdata-warning"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-multiple-renditions-dctype-missing-for-publication-error.epub",
+    "source": "epub-edupub/files/epub/edupub-multiple-renditions-dctype-missing-for-publication-error"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-multiple-renditions-dctype-missing-for-rendition-error.epub",
+    "source": "epub-edupub/files/epub/edupub-multiple-renditions-dctype-missing-for-rendition-error"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-multiple-renditions-valid.epub",
+    "source": "epub-edupub/files/epub/edupub-multiple-renditions-valid"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-non-linear-valid.epub",
+    "source": "epub-edupub/files/epub/edupub-non-linear-valid"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-pagelist-missing-error.epub",
+    "source": "epub-edupub/files/epub/edupub-pagelist-missing-error"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-pagelist-no-source-error.epub",
+    "source": "epub-edupub/files/epub/edupub-pagelist-no-source-error"
+  },
+  {
+    "name": "epub-edupub__files__epub__edupub-pagelist-valid.epub",
+    "source": "epub-edupub/files/epub/edupub-pagelist-valid"
+  },
+  {
+    "name": "epub-indexes__files__epub__index-collection-content-model-error.epub",
+    "source": "epub-indexes/files/epub/index-collection-content-model-error"
+  },
+  {
+    "name": "epub-indexes__files__epub__index-collection-no-index-error.epub",
+    "source": "epub-indexes/files/epub/index-collection-no-index-error"
+  },
+  {
+    "name": "epub-indexes__files__epub__index-collection-valid.epub",
+    "source": "epub-indexes/files/epub/index-collection-valid"
+  },
+  {
+    "name": "epub-indexes__files__epub__index-single-file-content-model-error.epub",
+    "source": "epub-indexes/files/epub/index-single-file-content-model-error"
+  },
+  {
+    "name": "epub-indexes__files__epub__index-single-file-no-index-error.epub",
+    "source": "epub-indexes/files/epub/index-single-file-no-index-error"
+  },
+  {
+    "name": "epub-indexes__files__epub__index-single-file-valid.epub",
+    "source": "epub-indexes/files/epub/index-single-file-valid"
+  },
+  {
+    "name": "epub-indexes__files__epub__index-whole-pub-content-model-error.epub",
+    "source": "epub-indexes/files/epub/index-whole-pub-content-model-error"
+  },
+  {
+    "name": "epub-indexes__files__epub__index-whole-pub-no-index-error.epub",
+    "source": "epub-indexes/files/epub/index-whole-pub-no-index-error"
+  },
+  {
+    "name": "epub-indexes__files__epub__index-whole-pub-valid.epub",
+    "source": "epub-indexes/files/epub/index-whole-pub-valid"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-basic-valid.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-basic-valid"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-mapping-multiple-docs-error.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-mapping-multiple-docs-error"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-mapping-multiple-nav-valid.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-mapping-multiple-nav-valid"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-mapping-no-resourcemap-error.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-mapping-no-resourcemap-error"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-mapping-no-version-error.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-mapping-no-version-error"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-mapping-non-xhtml-error.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-mapping-non-xhtml-error"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-mapping-untyped-nav-error.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-mapping-untyped-nav-error"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-metadata-file-missing-warning.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-metadata-file-missing-warning"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-metadata-identifier-incomplete-error.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-metadata-identifier-incomplete-error"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-selection-attribute-missing-error.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-selection-attribute-missing-error"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-selection-attribute-unknown-error.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-selection-attribute-unknown-error"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-selection-mediaquery-syntax-error.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-selection-mediaquery-syntax-error"
+  },
+  {
+    "name": "epub-multiple-renditions__files__epub__renditions-unmanifested-warning.epub",
+    "source": "epub-multiple-renditions/files/epub/renditions-unmanifested-warning"
+  },
+  {
+    "name": "epub-previews__files__epub__preview-embedded-link-cfi-error.epub",
+    "source": "epub-previews/files/epub/preview-embedded-link-cfi-error"
+  },
+  {
+    "name": "epub-previews__files__epub__preview-embedded-no-content-doc-link-error.epub",
+    "source": "epub-previews/files/epub/preview-embedded-no-content-doc-link-error"
+  },
+  {
+    "name": "epub-previews__files__epub__preview-embedded-no-links-error.epub",
+    "source": "epub-previews/files/epub/preview-embedded-no-links-error"
+  },
+  {
+    "name": "epub-previews__files__epub__preview-embedded-no-manifest-error.epub",
+    "source": "epub-previews/files/epub/preview-embedded-no-manifest-error"
+  },
+  {
+    "name": "epub-previews__files__epub__preview-embedded-valid.epub",
+    "source": "epub-previews/files/epub/preview-embedded-valid"
+  },
+  {
+    "name": "epub-previews__files__epub__preview-pub-dc-type-missing-error.epub",
+    "source": "epub-previews/files/epub/preview-pub-dc-type-missing-error"
+  },
+  {
+    "name": "epub-previews__files__epub__preview-pub-self-as-source-error.epub",
+    "source": "epub-previews/files/epub/preview-pub-self-as-source-error"
+  },
+  {
+    "name": "epub-previews__files__epub__preview-pub-source-missing-warning.epub",
+    "source": "epub-previews/files/epub/preview-pub-source-missing-warning"
+  },
+  {
+    "name": "epub-previews__files__epub__preview-pub-valid.epub",
+    "source": "epub-previews/files/epub/preview-pub-valid"
+  },
+  {
+    "name": "epub-region-nav__files__epub__data-nav-in-spine-warning.epub",
+    "source": "epub-region-nav/files/epub/data-nav-in-spine-warning"
+  },
+  {
+    "name": "epub-region-nav__files__epub__data-nav-missing-type-error.epub",
+    "source": "epub-region-nav/files/epub/data-nav-missing-type-error"
+  },
+  {
+    "name": "epub-region-nav__files__epub__data-nav-multiple-error.epub",
+    "source": "epub-region-nav/files/epub/data-nav-multiple-error"
+  },
+  {
+    "name": "epub-region-nav__files__epub__data-nav-not-xhtml-error.epub",
+    "source": "epub-region-nav/files/epub/data-nav-not-xhtml-error"
+  },
+  {
+    "name": "epub-region-nav__files__epub__data-nav-valid.epub",
+    "source": "epub-region-nav/files/epub/data-nav-valid"
+  },
+  {
+    "name": "epub-region-nav__files__epub__region-based-nav-comics-valid.epub",
+    "source": "epub-region-nav/files/epub/region-based-nav-comics-valid"
+  },
+  {
+    "name": "epub-region-nav__files__epub__region-based-nav-content-model-error.epub",
+    "source": "epub-region-nav/files/epub/region-based-nav-content-model-error"
+  },
+  {
+    "name": "epub-region-nav__files__epub__region-based-nav-not-fxl-error.epub",
+    "source": "epub-region-nav/files/epub/region-based-nav-not-fxl-error"
+  },
+  {
+    "name": "epub-region-nav__files__epub__region-based-nav-valid.epub",
+    "source": "epub-region-nav/files/epub/region-based-nav-valid"
+  },
+  {
+    "name": "epub-region-nav__files__epub__region-based-nav-wrong-element-error.epub",
+    "source": "epub-region-nav/files/epub/region-based-nav-wrong-element-error"
+  },
+  {
+    "name": "epub2__files__epub__minimal.epub",
+    "source": "epub2/files/epub/minimal"
+  },
+  {
+    "name": "epub2__files__epub__ncx-id-duplicate-error.epub",
+    "source": "epub2/files/epub/ncx-id-duplicate-error"
+  },
+  {
+    "name": "epub2__files__epub__ncx-id-syntax-invalid-error.epub",
+    "source": "epub2/files/epub/ncx-id-syntax-invalid-error"
+  },
+  {
+    "name": "epub2__files__epub__ncx-label-empty-valid.epub",
+    "source": "epub2/files/epub/ncx-label-empty-valid"
+  },
+  {
+    "name": "epub2__files__epub__ncx-link-to-non-ops-error.epub",
+    "source": "epub2/files/epub/ncx-link-to-non-ops-error"
+  },
+  {
+    "name": "epub2__files__epub__ncx-missing-resource-error.epub",
+    "source": "epub2/files/epub/ncx-missing-resource-error"
+  },
+  {
+    "name": "epub2__files__epub__ncx-pagetarget-type-error.epub",
+    "source": "epub2/files/epub/ncx-pagetarget-type-error"
+  },
+  {
+    "name": "epub2__files__epub__ncx-uid-mismatch-error.epub",
+    "source": "epub2/files/epub/ncx-uid-mismatch-error"
+  },
+  {
+    "name": "epub2__files__epub__ncx-uid-spaces-valid.epub",
+    "source": "epub2/files/epub/ncx-uid-spaces-valid"
+  },
+  {
+    "name": "epub2__files__epub__ocf-filename-with-space-warning.epub",
+    "source": "epub2/files/epub/ocf-filename-with-space-warning"
+  },
+  {
+    "name": "epub2__files__epub__ocf-metainf-container-alternative-valid.epub",
+    "source": "epub2/files/epub/ocf-metainf-container-alternative-valid"
+  },
+  {
+    "name": "epub2__files__epub__ocf-metainf-container-file-missing-fatal.epub",
+    "source": "epub2/files/epub/ocf-metainf-container-file-missing-fatal"
+  },
+  {
+    "name": "epub2__files__epub__ocf-metainf-container-mediatype-invalid-error.epub",
+    "source": "epub2/files/epub/ocf-metainf-container-mediatype-invalid-error"
+  },
+  {
+    "name": "epub2__files__epub__ocf-metainf-container-multiple-opf-error.epub",
+    "source": "epub2/files/epub/ocf-metainf-container-multiple-opf-error"
+  },
+  {
+    "name": "epub2__files__epub__ocf-metainf-container-rootfile-full-path-empty-error.epub",
+    "source": "epub2/files/epub/ocf-metainf-container-rootfile-full-path-empty-error"
+  },
+  {
+    "name": "epub2__files__epub__ocf-metainf-container-rootfile-full-path-missing-error.epub",
+    "source": "epub2/files/epub/ocf-metainf-container-rootfile-full-path-missing-error"
+  },
+  {
+    "name": "epub2__files__epub__ocf-metainf-file-unknown-valid.epub",
+    "source": "epub2/files/epub/ocf-metainf-file-unknown-valid"
+  },
+  {
+    "name": "epub2__files__epub__ocf-mimetype-with-spaces-error.epub",
+    "source": "epub2/files/epub/ocf-mimetype-with-spaces-error"
+  },
+  {
+    "name": "epub2__files__epub__ocf-opf-missing-fatal.epub",
+    "source": "epub2/files/epub/ocf-opf-missing-fatal"
+  },
+  {
+    "name": "epub2__files__epub__opf-fallback-non-resolving-error.epub",
+    "source": "epub2/files/epub/opf-fallback-non-resolving-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-guide-reference-to-image-error.epub",
+    "source": "epub2/files/epub/opf-guide-reference-to-image-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-guide-reference-undeclared-error.epub",
+    "source": "epub2/files/epub/opf-guide-reference-undeclared-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-legacy-oebps12-error.epub",
+    "source": "epub2/files/epub/opf-legacy-oebps12-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-legacy-oebps12-mediatype-css-warning.epub",
+    "source": "epub2/files/epub/opf-legacy-oebps12-mediatype-css-warning"
+  },
+  {
+    "name": "epub2__files__epub__opf-legacy-oebps12-mediatype-html-warning.epub",
+    "source": "epub2/files/epub/opf-legacy-oebps12-mediatype-html-warning"
+  },
+  {
+    "name": "epub2__files__epub__opf-manifest-item-missing-error.epub",
+    "source": "epub2/files/epub/opf-manifest-item-missing-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-manifest-item-resource-missing-error.epub",
+    "source": "epub2/files/epub/opf-manifest-item-resource-missing-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-manifest-item-xhtml-mediatype-html-warning.epub",
+    "source": "epub2/files/epub/opf-manifest-item-xhtml-mediatype-html-warning"
+  },
+  {
+    "name": "epub2__files__epub__opf-manifest-os-files-ignore-valid.epub",
+    "source": "epub2/files/epub/opf-manifest-os-files-ignore-valid"
+  },
+  {
+    "name": "epub2__files__epub__opf-manifest-resource-undeclared-usage.epub",
+    "source": "epub2/files/epub/opf-manifest-resource-undeclared-usage"
+  },
+  {
+    "name": "epub2__files__epub__opf-metadata-creator-role-clr-valid.epub",
+    "source": "epub2/files/epub/opf-metadata-creator-role-clr-valid"
+  },
+  {
+    "name": "epub2__files__epub__opf-package-id-spaces-valid.epub",
+    "source": "epub2/files/epub/opf-package-id-spaces-valid"
+  },
+  {
+    "name": "epub2__files__epub__opf-pagemap-error.epub",
+    "source": "epub2/files/epub/opf-pagemap-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-pagemap-ref-not-found-warning.epub",
+    "source": "epub2/files/epub/opf-pagemap-ref-not-found-warning"
+  },
+  {
+    "name": "epub2__files__epub__opf-remote-object-undeclared-error.epub",
+    "source": "epub2/files/epub/opf-remote-object-undeclared-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-spine-itemref-repeated-error.epub",
+    "source": "epub2/files/epub/opf-spine-itemref-repeated-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-spine-missing-error.epub",
+    "source": "epub2/files/epub/opf-spine-missing-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-spine-toc-attribute-missing-error.epub",
+    "source": "epub2/files/epub/opf-spine-toc-attribute-missing-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-spine-toc-attribute-to-non-ncx-error.epub",
+    "source": "epub2/files/epub/opf-spine-toc-attribute-to-non-ncx-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-unique-identifier-not-found-error.epub",
+    "source": "epub2/files/epub/opf-unique-identifier-not-found-error"
+  },
+  {
+    "name": "epub2__files__epub__opf-version-missing-error.epub",
+    "source": "epub2/files/epub/opf-version-missing-error"
+  },
+  {
+    "name": "epub2__files__epub__ops-dtbook-valid.epub",
+    "source": "epub2/files/epub/ops-dtbook-valid"
+  },
+  {
+    "name": "epub2__files__epub__ops-xhtml-hyperlink-to-missing-fragment-error.epub",
+    "source": "epub2/files/epub/ops-xhtml-hyperlink-to-missing-fragment-error"
+  },
+  {
+    "name": "epub2__files__epub__ops-xhtml-link-to-missing-stylesheet-error.epub",
+    "source": "epub2/files/epub/ops-xhtml-link-to-missing-stylesheet-error"
+  },
+  {
+    "name": "epub2__files__epub__ops-xhtml-script-valid.epub",
+    "source": "epub2/files/epub/ops-xhtml-script-valid"
+  },
+  {
+    "name": "epub2__files__epub__ops-xhtml-unusual-extension-valid.epub",
+    "source": "epub2/files/epub/ops-xhtml-unusual-extension-valid"
+  },
+  {
+    "name": "epub3__00-minimal__files__minimal.epub",
+    "source": "epub3/00-minimal/files/minimal"
+  },
+  {
+    "name": "epub3__03-resources__files__conformance-xml-id-leading-trailing-spaces-valid.epub",
+    "source": "epub3/03-resources/files/conformance-xml-id-leading-trailing-spaces-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__data-url-in-html-img-cmt-valid.epub",
+    "source": "epub3/03-resources/files/data-url-in-html-img-cmt-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__data-url-in-html-img-foreign-intrinsic-fallback-valid.epub",
+    "source": "epub3/03-resources/files/data-url-in-html-img-foreign-intrinsic-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__data-url-in-html-img-foreign-no-fallback-error.epub",
+    "source": "epub3/03-resources/files/data-url-in-html-img-foreign-no-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__data-url-in-html-link-exempt-valid.epub",
+    "source": "epub3/03-resources/files/data-url-in-html-link-exempt-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__data-url-with-unescaped-query-valid.epub",
+    "source": "epub3/03-resources/files/data-url-with-unescaped-query-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__fallback-chain-circular-error.epub",
+    "source": "epub3/03-resources/files/fallback-chain-circular-error"
+  },
+  {
+    "name": "epub3__03-resources__files__fallback-chain-n-to-1-valid.epub",
+    "source": "epub3/03-resources/files/fallback-chain-n-to-1-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__fallback-chain-waterfall-valid.epub",
+    "source": "epub3/03-resources/files/fallback-chain-waterfall-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__file-url-in-css-error.epub",
+    "source": "epub3/03-resources/files/file-url-in-css-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-exempt-font-valid.epub",
+    "source": "epub3/03-resources/files/foreign-exempt-font-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-exempt-unused-valid.epub",
+    "source": "epub3/03-resources/files/foreign-exempt-unused-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-exempt-xhtml-link-valid.epub",
+    "source": "epub3/03-resources/files/foreign-exempt-xhtml-link-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-exempt-xhtml-link-xpgt-manifest-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-exempt-xhtml-link-xpgt-manifest-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-exempt-xhtml-link-xpgt-no-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-exempt-xhtml-link-xpgt-no-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-exempt-xhtml-track-valid.epub",
+    "source": "epub3/03-resources/files/foreign-exempt-xhtml-track-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-exempt-xhtml-video-in-img-valid.epub",
+    "source": "epub3/03-resources/files/foreign-exempt-xhtml-video-in-img-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-exempt-xhtml-video-valid.epub",
+    "source": "epub3/03-resources/files/foreign-exempt-xhtml-video-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-audio-in-video-no-fallback-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-audio-in-video-no-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-audio-manifest-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-audio-manifest-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-audio-no-fallback-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-audio-no-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-audio-no-fallback-with-flow-content-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-audio-no-fallback-with-flow-content-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-audio-source-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-audio-source-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-audio-source-no-fallback-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-audio-source-no-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-audio-source-remote-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-audio-source-remote-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-embed-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-embed-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-embed-no-fallback-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-embed-no-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-img-manifest-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-img-manifest-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-img-src-no-manifest-fallback-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-img-src-no-manifest-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-img-srcset-manifest-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-img-srcset-manifest-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-input-image-no-fallback-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-input-image-no-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-math-altimg-no-fallback-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-math-altimg-no-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-object-intrinsic-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-object-intrinsic-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-object-no-fallback-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-object-no-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-picture-img-src-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-picture-img-src-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-picture-img-srcset-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-picture-img-srcset-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-picture-source-no-type-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-picture-source-no-type-error"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-picture-source-with-type-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-picture-source-with-type-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-script-datablock-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-script-datablock-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-video-poster-fallback-valid.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-video-poster-fallback-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__foreign-xhtml-video-poster-no-fallback-error.epub",
+    "source": "epub3/03-resources/files/foreign-xhtml-video-poster-no-fallback-error"
+  },
+  {
+    "name": "epub3__03-resources__files__mailto-url-valid.epub",
+    "source": "epub3/03-resources/files/mailto-url-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-audio-mp3-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-audio-mp3-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-audio-mp4-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-audio-mp4-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-audio-opus-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-audio-opus-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-font-opentype-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-font-opentype-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-font-svg-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-font-svg-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-font-truetype-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-font-truetype-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-image-corrupt-error.epub",
+    "source": "epub3/03-resources/files/resources-cmt-image-corrupt-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-image-gif-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-image-gif-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-image-jpeg-declared-as-gif-error.epub",
+    "source": "epub3/03-resources/files/resources-cmt-image-jpeg-declared-as-gif-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-image-jpg-not-corrupt-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-image-jpg-not-corrupt-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-image-jpg-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-image-jpg-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-image-png-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-image-png-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-image-webp-valid.epub",
+    "source": "epub3/03-resources/files/resources-cmt-image-webp-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-cmt-image-wrong-extension-warning.epub",
+    "source": "epub3/03-resources/files/resources-cmt-image-wrong-extension-warning"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-audio-object-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-audio-object-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-audio-sources-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-audio-sources-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-audio-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-audio-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-font-in-css-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-font-in-css-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-font-in-svg-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-font-in-svg-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-font-svg-also-used-as-img-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-font-svg-also-used-as-img-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-font-svg-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-font-svg-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-font-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-font-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-iframe-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-iframe-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-iframe-undeclared-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-iframe-undeclared-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-img-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-img-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-img-in-script-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-img-in-script-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-img-undeclared-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-img-undeclared-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-not-https-warning.epub",
+    "source": "epub3/03-resources/files/resources-remote-not-https-warning"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-object-undeclared-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-object-undeclared-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-resource-for-script-cmt-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-resource-for-script-cmt-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-resource-for-script-foreign-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-resource-for-script-foreign-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-script-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-script-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-spine-item-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-spine-item-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-stylesheet-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-stylesheet-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-stylesheet-svg-import-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-stylesheet-svg-import-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-stylesheet-svg-xmlpi-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-stylesheet-svg-xmlpi-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-svg-contentdoc-error.epub",
+    "source": "epub3/03-resources/files/resources-remote-svg-contentdoc-error"
+  },
+  {
+    "name": "epub3__03-resources__files__resources-remote-video-valid.epub",
+    "source": "epub3/03-resources/files/resources-remote-video-valid"
+  },
+  {
+    "name": "epub3__03-resources__files__type-mismatch-in-audio-warning.epub",
+    "source": "epub3/03-resources/files/type-mismatch-in-audio-warning"
+  },
+  {
+    "name": "epub3__03-resources__files__type-mismatch-in-embed-warning.epub",
+    "source": "epub3/03-resources/files/type-mismatch-in-embed-warning"
+  },
+  {
+    "name": "epub3__03-resources__files__type-mismatch-in-object-warning.epub",
+    "source": "epub3/03-resources/files/type-mismatch-in-object-warning"
+  },
+  {
+    "name": "epub3__03-resources__files__type-mismatch-in-picture-source-warning.epub",
+    "source": "epub3/03-resources/files/type-mismatch-in-picture-source-warning"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-container-content-model-error.epub",
+    "source": "epub3/04-ocf/files/ocf-container-content-model-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-container-file-missing-fatal.epub",
+    "source": "epub3/04-ocf/files/ocf-container-file-missing-fatal"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-container-filename-character-composition-valid.epub",
+    "source": "epub3/04-ocf/files/ocf-container-filename-character-composition-valid"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-container-filename-character-plus-valid.epub",
+    "source": "epub3/04-ocf/files/ocf-container-filename-character-plus-valid"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-encryption-compression-attributes-invalid-error.epub",
+    "source": "epub3/04-ocf/files/ocf-encryption-compression-attributes-invalid-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-encryption-content-model-error.epub",
+    "source": "epub3/04-ocf/files/ocf-encryption-content-model-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-encryption-duplicate-ids-error.epub",
+    "source": "epub3/04-ocf/files/ocf-encryption-duplicate-ids-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-encryption-unknown-valid.epub",
+    "source": "epub3/04-ocf/files/ocf-encryption-unknown-valid"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-filename-character-emoji-tag-sequence-valid.epub",
+    "source": "epub3/04-ocf/files/ocf-filename-character-emoji-tag-sequence-valid"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-filename-character-non-ascii-usage.epub",
+    "source": "epub3/04-ocf/files/ocf-filename-character-non-ascii-usage"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-filename-character-space-warning.epub",
+    "source": "epub3/04-ocf/files/ocf-filename-character-space-warning"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-meta-inf-with-publication-resource-error.epub",
+    "source": "epub3/04-ocf/files/ocf-meta-inf-with-publication-resource-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-mimetype-file-incorrect-value-error.epub",
+    "source": "epub3/04-ocf/files/ocf-mimetype-file-incorrect-value-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-mimetype-file-leading-spaces-error.epub",
+    "source": "epub3/04-ocf/files/ocf-mimetype-file-leading-spaces-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-mimetype-file-trailing-newline-error.epub",
+    "source": "epub3/04-ocf/files/ocf-mimetype-file-trailing-newline-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-mimetype-file-trailing-spaces-error.epub",
+    "source": "epub3/04-ocf/files/ocf-mimetype-file-trailing-spaces-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-obfuscation-duplicate-valid.epub",
+    "source": "epub3/04-ocf/files/ocf-obfuscation-duplicate-valid"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-obfuscation-not-cmt-error.epub",
+    "source": "epub3/04-ocf/files/ocf-obfuscation-not-cmt-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-obfuscation-not-font-error.epub",
+    "source": "epub3/04-ocf/files/ocf-obfuscation-not-font-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-obfuscation-valid.epub",
+    "source": "epub3/04-ocf/files/ocf-obfuscation-valid"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-package-document-missing-fatal.epub",
+    "source": "epub3/04-ocf/files/ocf-package-document-missing-fatal"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-signatures-content-model-error.epub",
+    "source": "epub3/04-ocf/files/ocf-signatures-content-model-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-url-leaking-in-opf-error.epub",
+    "source": "epub3/04-ocf/files/ocf-url-leaking-in-opf-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__ocf-url-path-absolute-error.epub",
+    "source": "epub3/04-ocf/files/ocf-url-path-absolute-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__url-percent-encoded-valid.epub",
+    "source": "epub3/04-ocf/files/url-percent-encoded-valid"
+  },
+  {
+    "name": "epub3__04-ocf__files__url-xhtml-cite-absolute-valid.epub",
+    "source": "epub3/04-ocf/files/url-xhtml-cite-absolute-valid"
+  },
+  {
+    "name": "epub3__04-ocf__files__url-xhtml-cite-missing-resource-error.epub",
+    "source": "epub3/04-ocf/files/url-xhtml-cite-missing-resource-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__url-xhtml-iframe-missing-resource-error.epub",
+    "source": "epub3/04-ocf/files/url-xhtml-iframe-missing-resource-error"
+  },
+  {
+    "name": "epub3__04-ocf__files__url-xhtml-track-missing-resource-error.epub",
+    "source": "epub3/04-ocf/files/url-xhtml-track-missing-resource-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__link-to-embedded-resource-valid.epub",
+    "source": "epub3/05-package-document/files/link-to-embedded-resource-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__manifest-not-listing-container-resource-usage.epub",
+    "source": "epub3/05-package-document/files/manifest-not-listing-container-resource-usage"
+  },
+  {
+    "name": "epub3__05-package-document__files__manifest-self-referencing-error.epub",
+    "source": "epub3/05-package-document/files/manifest-self-referencing-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-file-extension-unusual-valid.epub",
+    "source": "epub3/05-package-document/files/package-file-extension-unusual-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-link-media-type-missing-local-error.epub",
+    "source": "epub3/05-package-document/files/package-link-media-type-missing-local-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-link-media-type-missing-remote-valid.epub",
+    "source": "epub3/05-package-document/files/package-link-media-type-missing-remote-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-link-missing-resource-error.epub",
+    "source": "epub3/05-package-document/files/package-link-missing-resource-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-duplicate-resource-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-duplicate-resource-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-fonts-missing-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-fonts-missing-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-item-missing-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-item-missing-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-item-with-spaces-warning.epub",
+    "source": "epub3/05-package-document/files/package-manifest-item-with-spaces-warning"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-remote-resource-declared-but-unnecessary-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-remote-resource-declared-but-unnecessary-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-remote-resource-object-param-warning.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-remote-resource-object-param-warning"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-remote-resource-undeclared-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-remote-resource-undeclared-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-scripted-declared-but-unnecessary-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-scripted-declared-but-unnecessary-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-scripted-not-required-for-script-data-block-valid.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-scripted-not-required-for-script-data-block-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-scripted-undeclared-form-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-scripted-undeclared-form-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-scripted-undeclared-javascript-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-scripted-undeclared-javascript-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-svg-declared-but-unnecessary-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-svg-declared-but-unnecessary-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-svg-undeclared-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-svg-undeclared-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-svg-undeclared-partial-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-svg-undeclared-partial-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-switch-not-declared-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-switch-not-declared-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-manifest-prop-unknown-error.epub",
+    "source": "epub3/05-package-document/files/package-manifest-prop-unknown-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-mathml-valid.epub",
+    "source": "epub3/05-package-document/files/package-mathml-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-ncx-invalid-error.epub",
+    "source": "epub3/05-package-document/files/package-ncx-invalid-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-ncx-missing-references-to-spine-valid.epub",
+    "source": "epub3/05-package-document/files/package-ncx-missing-references-to-spine-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-ncx-valid.epub",
+    "source": "epub3/05-package-document/files/package-ncx-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-audio-in-overlays-missing-property-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-audio-in-overlays-missing-property-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-audio-missing-property-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-audio-missing-property-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-audio-sources-undeclared-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-audio-sources-undeclared-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-audio-undeclared-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-audio-undeclared-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-font-in-css-missing-property-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-font-in-css-missing-property-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-font-in-inline-css-missing-property-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-font-in-inline-css-missing-property-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-font-in-svg-missing-property-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-font-in-svg-missing-property-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-font-in-xhtml-missing-property-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-font-in-xhtml-missing-property-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-font-undeclared-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-font-undeclared-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-img-in-link-error.epub",
+    "source": "epub3/05-package-document/files/package-remote-img-in-link-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__package-remote-resource-and-inline-css-valid.epub",
+    "source": "epub3/05-package-document/files/package-remote-resource-and-inline-css-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__spine-nonlinear-not-reachable-error.epub",
+    "source": "epub3/05-package-document/files/spine-nonlinear-not-reachable-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__spine-nonlinear-reachable-via-hyperlink-valid.epub",
+    "source": "epub3/05-package-document/files/spine-nonlinear-reachable-via-hyperlink-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__spine-nonlinear-reachable-via-nav-valid.epub",
+    "source": "epub3/05-package-document/files/spine-nonlinear-reachable-via-nav-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__spine-nonlinear-reachable-via-script-valid.epub",
+    "source": "epub3/05-package-document/files/spine-nonlinear-reachable-via-script-valid"
+  },
+  {
+    "name": "epub3__05-package-document__files__spine-not-listing-hyperlink-target-error.epub",
+    "source": "epub3/05-package-document/files/spine-not-listing-hyperlink-target-error"
+  },
+  {
+    "name": "epub3__05-package-document__files__spine-not-listing-navigation-document-target-error.epub",
+    "source": "epub3/05-package-document/files/spine-not-listing-navigation-document-target-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-encoding-latin1-error.epub",
+    "source": "epub3/06-content-document/files/content-css-encoding-latin1-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-encoding-utf16-declared-warning.epub",
+    "source": "epub3/06-content-document/files/content-css-encoding-utf16-declared-warning"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-encoding-utf16-not-declared-warning.epub",
+    "source": "epub3/06-content-document/files/content-css-encoding-utf16-not-declared-warning"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-encoding-utf8-declared-valid.epub",
+    "source": "epub3/06-content-document/files/content-css-encoding-utf8-declared-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-font-face-empty-error.epub",
+    "source": "epub3/06-content-document/files/content-css-font-face-empty-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-font-face-url-empty-error.epub",
+    "source": "epub3/06-content-document/files/content-css-font-face-url-empty-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-font-size-valid.epub",
+    "source": "epub3/06-content-document/files/content-css-font-size-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-font-size-value-error.epub",
+    "source": "epub3/06-content-document/files/content-css-font-size-value-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-import-not-declared-error.epub",
+    "source": "epub3/06-content-document/files/content-css-import-not-declared-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-import-not-present-error.epub",
+    "source": "epub3/06-content-document/files/content-css-import-not-present-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-minimal-valid.epub",
+    "source": "epub3/06-content-document/files/content-css-minimal-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-namespace-uri-not-resource-valid.epub",
+    "source": "epub3/06-content-document/files/content-css-namespace-uri-not-resource-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-property-direction-error.epub",
+    "source": "epub3/06-content-document/files/content-css-property-direction-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-property-unicode-bidi-error.epub",
+    "source": "epub3/06-content-document/files/content-css-property-unicode-bidi-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-selectors-valid.epub",
+    "source": "epub3/06-content-document/files/content-css-selectors-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-syntax-error.epub",
+    "source": "epub3/06-content-document/files/content-css-syntax-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-url-fragment-valid.epub",
+    "source": "epub3/06-content-document/files/content-css-url-fragment-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-url-not-present-error.epub",
+    "source": "epub3/06-content-document/files/content-css-url-not-present-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-css-url-not-present-preceded-by-invalid-syntax-error.epub",
+    "source": "epub3/06-content-document/files/content-css-url-not-present-preceded-by-invalid-syntax-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-svg-file-extension-unusual-valid.epub",
+    "source": "epub3/06-content-document/files/content-svg-file-extension-unusual-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-svg-in-spine-valid.epub",
+    "source": "epub3/06-content-document/files/content-svg-in-spine-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-svg-no-viewbox-not-fxl-valid.epub",
+    "source": "epub3/06-content-document/files/content-svg-no-viewbox-not-fxl-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-svg-use-href-no-fragment-error.epub",
+    "source": "epub3/06-content-document/files/content-svg-use-href-no-fragment-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-base-url-remote-relative-path-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-base-url-remote-relative-path-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-base-url-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-base-url-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-data-attr-removal-fragments-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-data-attr-removal-fragments-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-data-attr-removal-markup-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-data-attr-removal-markup-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-extension-warning.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-extension-warning"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-file-extension-unusual-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-file-extension-unusual-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-iframe-basic-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-iframe-basic-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-img-fragment-non-svg-warning.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-img-fragment-non-svg-warning"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-img-fragment-svg-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-img-fragment-svg-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-img-srcset-undeclared-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-img-srcset-undeclared-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-img-video-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-img-video-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-invalid-duplicate-id.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-invalid-duplicate-id"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-lang-xml-lang-mismatch-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-lang-xml-lang-mismatch-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-link-href-empty-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-link-href-empty-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-link-rel-path-dot-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-link-rel-path-dot-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-link-stylesheet-fragment-id-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-link-stylesheet-fragment-id-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-link-to-local-file-escaped-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-link-to-local-file-escaped-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-link-to-missing-doc-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-link-to-missing-doc-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-link-to-missing-id-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-link-to-missing-id-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-link-to-missing-id-in-nav-doc-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-link-to-missing-id-in-nav-doc-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-link-to-missing-id-xref-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-link-to-missing-id-xref-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-link-to-svg-fragment-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-link-to-svg-fragment-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-mathml-altimg-not-found-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-mathml-altimg-not-found-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-mathml-altimg-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-mathml-altimg-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-meta-viewport-non-fxl-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-meta-viewport-non-fxl-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-referenced-resource-missing-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-referenced-resource-missing-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-relaxng-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-relaxng-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-schematron-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-schematron-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-svg-fragment-svgview-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-svg-fragment-svgview-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-svg-reference-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-svg-reference-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-svg-switch-valid.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-svg-switch-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__content-xhtml-xml-base-url-remote-relative-path-error.epub",
+    "source": "epub3/06-content-document/files/content-xhtml-xml-base-url-remote-relative-path-error"
+  },
+  {
+    "name": "epub3__06-content-document__files__dc-source-valid.epub",
+    "source": "epub3/06-content-document/files/dc-source-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__object-pdf-fragment-valid.epub",
+    "source": "epub3/06-content-document/files/object-pdf-fragment-valid"
+  },
+  {
+    "name": "epub3__06-content-document__files__type-mismatch-in-audio-warning.epub",
+    "source": "epub3/06-content-document/files/type-mismatch-in-audio-warning"
+  },
+  {
+    "name": "epub3__06-content-document__files__type-mismatch-in-object-warning.epub",
+    "source": "epub3/06-content-document/files/type-mismatch-in-object-warning"
+  },
+  {
+    "name": "epub3__06-content-document__files__type-mismatch-in-picture-source-warning.epub",
+    "source": "epub3/06-content-document/files/type-mismatch-in-picture-source-warning"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-cfi-valid.epub",
+    "source": "epub3/07-navigation-document/files/nav-cfi-valid"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-links-out-of-spine-error.epub",
+    "source": "epub3/07-navigation-document/files/nav-links-out-of-spine-error"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-links-remote-error.epub",
+    "source": "epub3/07-navigation-document/files/nav-links-remote-error"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-links-to-non-content-document-type-error.epub",
+    "source": "epub3/07-navigation-document/files/nav-links-to-non-content-document-type-error"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-page-list-reading-order-valid.epub",
+    "source": "epub3/07-navigation-document/files/nav-page-list-reading-order-valid"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-page-list-unordered-fragments-warning.epub",
+    "source": "epub3/07-navigation-document/files/nav-page-list-unordered-fragments-warning"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-page-list-unordered-spine-warning.epub",
+    "source": "epub3/07-navigation-document/files/nav-page-list-unordered-spine-warning"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-toc-missing-error.epub",
+    "source": "epub3/07-navigation-document/files/nav-toc-missing-error"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-toc-missing-references-to-spine-valid.epub",
+    "source": "epub3/07-navigation-document/files/nav-toc-missing-references-to-spine-valid"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-toc-reading-order-valid.epub",
+    "source": "epub3/07-navigation-document/files/nav-toc-reading-order-valid"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-toc-unordered-fragments-warning.epub",
+    "source": "epub3/07-navigation-document/files/nav-toc-unordered-fragments-warning"
+  },
+  {
+    "name": "epub3__07-navigation-document__files__nav-toc-unordered-spine-warning.epub",
+    "source": "epub3/07-navigation-document/files/nav-toc-unordered-spine-warning"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-item-xhtml-viewport-invalid-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-item-xhtml-viewport-invalid-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-svg-no-viewbox-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-svg-no-viewbox-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-svg-no-viewbox-on-inner-svg-valid.epub",
+    "source": "epub3/08-layout/files/content-fxl-svg-no-viewbox-on-inner-svg-valid"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-svg-no-viewbox-width-height-percent-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-svg-no-viewbox-width-height-percent-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-svg-no-viewbox-width-height-units-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-svg-no-viewbox-width-height-units-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-svg-valid.epub",
+    "source": "epub3/08-layout/files/content-fxl-svg-valid"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-duplicate-width-height-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-duplicate-width-height-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-float-valid.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-float-valid"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-height-empty-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-height-empty-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-height-missing-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-height-missing-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-icb-missing-in-first-meta-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-icb-missing-in-first-meta-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-keywords-valid.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-keywords-valid"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-missing-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-missing-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-multiple-usage-valid.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-multiple-usage-valid"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-syntax-invalid-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-syntax-invalid-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-units-invalid-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-units-invalid-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-valid.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-valid"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-whitespace-valid.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-whitespace-valid"
+  },
+  {
+    "name": "epub3__08-layout__files__content-fxl-xhtml-viewport-width-missing-error.epub",
+    "source": "epub3/08-layout/files/content-fxl-xhtml-viewport-width-missing-error"
+  },
+  {
+    "name": "epub3__08-layout__files__content-reflow-xhtml-viewport-height-missing-valid.epub",
+    "source": "epub3/08-layout/files/content-reflow-xhtml-viewport-height-missing-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-active-class-inline-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-active-class-inline-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-active-class-style-not-found-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-active-class-style-not-found-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-active-class-stylesheet-undeclared-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-active-class-stylesheet-undeclared-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-active-class-stylesheet-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-active-class-stylesheet-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-inline-style-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-active-class-svg-inline-style-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-style-not-found-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-active-class-svg-style-not-found-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-stylesheet-import-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-active-class-svg-stylesheet-import-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-stylesheet-link-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-active-class-svg-stylesheet-link-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-active-class-svg-stylesheet-xml-pi-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-active-class-svg-stylesheet-xml-pi-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-audio-non-cmt-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-audio-non-cmt-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-file-extension-unusual-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-file-extension-unusual-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-incorrect-overlay-ref-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-incorrect-overlay-ref-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-minimal-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-minimal-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-missing-mo-attr-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-missing-mo-attr-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-multiple-overlay-ref-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-multiple-overlay-ref-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-no-overlay-ref-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-no-overlay-ref-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-playback-active-class-style-not-found-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-playback-active-class-style-not-found-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-svg-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-svg-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-text-reading-order-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-text-reading-order-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-textref-fragment-schemebased-warning.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-textref-fragment-schemebased-warning"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-textref-fragment-unresolved-error.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-textref-fragment-unresolved-error"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-textref-no-fragment-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-textref-no-fragment-valid"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-textref-svg-fragment-invalid-warning.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-textref-svg-fragment-invalid-warning"
+  },
+  {
+    "name": "epub3__09-media-overlays__files__mediaoverlays-textref-svg-fragment-viewbox-valid.epub",
+    "source": "epub3/09-media-overlays/files/mediaoverlays-textref-svg-fragment-viewbox-valid"
+  },
+  {
+    "name": "epub3__B-external-identifiers__files__xml-external-identifier-allowed-valid.epub",
+    "source": "epub3/B-external-identifiers/files/xml-external-identifier-allowed-valid"
+  },
+  {
+    "name": "epub3__B-external-identifiers__files__xml-external-identifier-bad-mediatype-error.epub",
+    "source": "epub3/B-external-identifiers/files/xml-external-identifier-bad-mediatype-error"
+  },
+  {
+    "name": "epub3__B-external-identifiers__files__xml-external-identifier-disallowed-error.epub",
+    "source": "epub3/B-external-identifiers/files/xml-external-identifier-disallowed-error"
+  },
+  {
+    "name": "epub3__test-files-unused__content-page-list-valid.epub",
+    "source": "epub3/test-files-unused/content-page-list-valid"
+  },
+  {
+    "name": "epub3__test-files-unused__ocf-compression-valid.epub",
+    "source": "epub3/test-files-unused/ocf-compression-valid"
+  },
+  {
+    "name": "epub3__test-files-unused__resources-remote-video-object-valid.epub",
+    "source": "epub3/test-files-unused/resources-remote-video-object-valid"
+  },
+  {
+    "name": "localization__files__css-error.epub",
+    "source": "localization/files/css-error"
+  },
+  {
+    "name": "localization__files__nav-page-list-valid.epub",
+    "source": "localization/files/nav-page-list-valid"
+  },
+  {
+    "name": "localization__files__schema-error.epub",
+    "source": "localization/files/schema-error"
+  },
+  {
+    "name": "reporting__files__fonts-embedded.epub",
+    "source": "reporting/files/fonts-embedded"
+  },
+  {
+    "name": "reporting__files__fonts-remote.epub",
+    "source": "reporting/files/fonts-remote"
+  },
+  {
+    "name": "reporting__files__layout-orientation.epub",
+    "source": "reporting/files/layout-orientation"
+  },
+  {
+    "name": "reporting__files__layout-orientation-item.epub",
+    "source": "reporting/files/layout-orientation-item"
+  },
+  {
+    "name": "reporting__files__layout-paginated.epub",
+    "source": "reporting/files/layout-paginated"
+  },
+  {
+    "name": "reporting__files__layout-paginated-item.epub",
+    "source": "reporting/files/layout-paginated-item"
+  },
+  {
+    "name": "reporting__files__layout-reflowable.epub",
+    "source": "reporting/files/layout-reflowable"
+  },
+  {
+    "name": "reporting__files__layout-reflowable-item.epub",
+    "source": "reporting/files/layout-reflowable-item"
+  },
+  {
+    "name": "reporting__files__layout-spread.epub",
+    "source": "reporting/files/layout-spread"
+  },
+  {
+    "name": "reporting__files__layout-spread-item.epub",
+    "source": "reporting/files/layout-spread-item"
+  },
+  {
+    "name": "reporting__files__minimal.epub",
+    "source": "reporting/files/minimal"
+  },
+  {
+    "name": "stress.epub",
+    "source": "stress"
+  }
+]

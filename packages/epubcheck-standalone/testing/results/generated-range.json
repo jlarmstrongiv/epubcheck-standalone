@@ -1,0 +1,67 @@
+{
+  "summary": {
+    "part": "generated-range",
+    "corpusDir": "testing/corpus/generated",
+    "total": 3,
+    "pass": 3,
+    "mismatch": 0,
+    "parityRate": 100,
+    "errLevelPass": 3,
+    "errLevelParityRate": 100,
+    "wasmCrashes": 0,
+    "generatedAt": "2026-09-03T11:35:33.671Z"
+  },
+  "results": [
+    {
+      "file": "deep-nesting-3000.epub",
+      "base": "deep-nesting-3000.epub",
+      "pass": true,
+      "msgsEqual": true,
+      "exitEqual": true,
+      "errLevelEqual": true,
+      "wasmCrash": false,
+      "nativeExit": 0,
+      "wasmExit": 0,
+      "nativeWall": 0.608,
+      "wasmWall": 1.696,
+      "nativeRssMB": 114.7,
+      "wasmRssMB": 508,
+      "nMsgs": 1,
+      "wMsgs": 1
+    },
+    {
+      "file": "image-heavy-100.epub",
+      "base": "image-heavy-100.epub",
+      "pass": true,
+      "msgsEqual": true,
+      "exitEqual": true,
+      "errLevelEqual": true,
+      "wasmCrash": false,
+      "nativeExit": 1,
+      "wasmExit": 1,
+      "nativeWall": 1.491,
+      "wasmWall": 10.808,
+      "nativeRssMB": 122.2,
+      "wasmRssMB": 820.8,
+      "nMsgs": 1,
+      "wMsgs": 1
+    },
+    {
+      "file": "image-heavy-300.epub",
+      "base": "image-heavy-300.epub",
+      "pass": true,
+      "msgsEqual": true,
+      "exitEqual": true,
+      "errLevelEqual": true,
+      "wasmCrash": false,
+      "nativeExit": 1,
+      "wasmExit": 1,
+      "nativeWall": 1.514,
+      "wasmWall": 5.247,
+      "nativeRssMB": 123.1,
+      "wasmRssMB": 639.3,
+      "nMsgs": 1,
+      "wMsgs": 1
+    }
+  ]
+}

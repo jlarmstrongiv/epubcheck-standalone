@@ -1,0 +1,376 @@
+# Automated epubcheck update pipeline.
+#
+# WHAT THIS DOES
+# Every day (and on manual dispatch) it asks w3c/epubcheck for its latest
+# release. When that release is NEWER than the version baked into our engine
+# (mise.toml [env] EPUBCHECK_VERSION) AND has been public for at least the
+# supply-chain cooldown (14 days, matching mise minimum_release_age and the
+# renovate minimumReleaseAge), it:
+#   1. branches,
+#   2. bumps EPUBCHECK_VERSION + the two publishable package versions
+#      (<new epubcheck>-build1),
+#   3. rebuilds the engine FROM the new release with TeaVM (build:deps + build),
+#   4. REBUILDS THE JAR CACHES from the new jar -- the console cache
+#      (test/expected) and the report cache (test/expected-reports) for ALL
+#      books -- plus the other bump-invalidated artifacts (CLI goldens, CLI
+#      help/list-checks data, THIRD-PARTY notices). The cache rebuild's git diff
+#      IS the behavioral-drift review: it shows exactly what the new jar changed.
+#   5. runs the FULL proof stack at PARITY=full (smoke + engine-vs-cache console
+#      parity + report byte-parity, both over the whole corpus + CLI golden suite
+#      + CLI parity (flag matrix vs the new jar, corpus phase vs the rebuilt
+#      cache) + web build), and
+#   6. opens a PR with a generated summary.
+# The live upstream jar-vs-engine sweep is RETIRED: the jar now runs only in the
+# cache builder (step 4), so there is no separate live jar comparison to gate on.
+# All green -> the PR is a normal PR that WAITS for human review; it is NEVER
+# auto-merged. An epubcheck bump is a re-baselining engineering event, not a
+# routine dependency bump: a lot of parity behavior is handwritten (CLI
+# EpubChecker routing pinned to a specific epubcheck version, message-id
+# handling, locale fallback, TeaVM shadow-drift guards), and auto-regenerated
+# goldens can quietly absorb a behavioral change instead of flagging it. So a
+# human reviews every bump PR; once reviewed and merged, tagging v<new>-build1
+# triggers release.yml which publishes to npm with provenance. Any failure ->
+# the PR still opens, but as a DRAFT with the failure summary, so a human sees
+# exactly what the new epubcheck broke. It NEVER auto-publishes on partial green.
+#
+# WHAT ONLY WORKS ONCE A REMOTE EXISTS (repo-side switches the user flips after
+# pushing to GitHub; this file is inert until then, like the other workflows):
+#   * Actions must be enabled, and Settings -> Actions -> "Allow GitHub Actions
+#     to create and approve pull requests" must be ON (for the PR step).
+#   * This workflow intentionally does NOT auto-merge, so no "Allow auto-merge"
+#     setting is required. Every epubcheck bump PR waits for human review before
+#     it can be merged (see the header note above on why).
+#   * For publish: either npm Trusted Publishing configured for this repo, or an
+#     NPM_TOKEN secret (see release.yml). Publishing is done by release.yml on
+#     the tag, NOT here.
+#   * The build runs on ubuntu-latest with the mise-pinned Temurin JDK 21 +
+#     Gradle (the TeaVM engine toolchain); this workflow uses the same runner +
+#     toolchain as ci.yml. TeaVM emits host-independent plain JavaScript, so the
+#     rebuilt engine does not depend on the runner OS.
+name: Update epubcheck (auto)
+
+on:
+  schedule:
+    # Daily at 07:17 UTC (odd minute to avoid the top-of-hour stampede).
+    - cron: "17 7 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Ignore the 14-day cooldown (still requires a newer release than the baked one)."
+        type: boolean
+        default: false
+
+# Least privilege by default; the update job raises what it needs.
+permissions:
+  contents: read
+
+concurrency:
+  group: update-epubcheck
+  cancel-in-progress: false
+
+jobs:
+  # --- 1. Decide whether there is an eligible update -------------------------
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      eligible: ${{ steps.check.outputs.eligible }}
+      has_update: ${{ steps.check.outputs.has_update }}
+      current: ${{ steps.check.outputs.current }}
+      latest: ${{ steps.check.outputs.latest }}
+      latest_tag: ${{ steps.check.outputs.latest_tag }}
+      new_version_label: ${{ steps.check.outputs.new_version_label }}
+      branch: ${{ steps.check.outputs.branch }}
+      published_at: ${{ steps.check.outputs.published_at }}
+      age_days: ${{ steps.check.outputs.age_days }}
+      reason: ${{ steps.check.outputs.reason }}
+    steps:
+      - uses: actions/checkout@v7
+
+      # Provision Node from mise (the same toolchain source local dev uses) so
+      # the check script runs on the pinned Node, no setup-node.
+      - name: Provision toolchain with mise
+        uses: jdx/mise-action@v4
+        with:
+          install: true
+
+      # check-version.ts reads the baked EPUBCHECK_VERSION straight from
+      # mise.toml, asks the GitHub API for w3c/epubcheck's latest release, and
+      # emits the eligibility outputs. It exits 0 for "nothing to do".
+      - name: Check upstream epubcheck release
+        id: check
+        working-directory: packages/epubcheck-standalone
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Manual dispatch with "force" bypasses the 14-day cooldown.
+          COOLDOWN_DAYS: ${{ (github.event_name == 'workflow_dispatch' && inputs.force) && '0' || '14' }}
+        run: node testing/upstream-sweep/check-version.ts
+
+      - name: Report decision
+        run: echo "::notice::${{ steps.check.outputs.reason }}"
+
+  # --- 2. Build the new engine, regenerate, run the full gauntlet, open a PR --
+  update:
+    needs: check
+    if: needs.check.outputs.eligible == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      LATEST: ${{ needs.check.outputs.latest }}
+      NEW_LABEL: ${{ needs.check.outputs.new_version_label }}
+      BRANCH: ${{ needs.check.outputs.branch }}
+      LATEST_TAG: ${{ needs.check.outputs.latest_tag }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # This job fetches the real epubcheck.jar (build:deps), so the
+      # jar-comparison suites MUST actually run against it: a missing jar is a
+      # hard FAILURE here, never a silent SKIP.
+      EPUBCHECK_REQUIRE_JAR: "1"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Cache mise toolchain
+        uses: actions/cache@v6
+        with:
+          path: ~/.local/share/mise
+          key: mise-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('mise.toml') }}
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v6
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/epubcheck-standalone/teavm/build.gradle.kts', 'packages/epubcheck-standalone/teavm/gradle.properties', 'packages/epubcheck-standalone/teavm/build-shims.sh') }}
+
+      - name: Provision toolchain with mise
+        uses: jdx/mise-action@v4
+        with:
+          install: true
+
+      - name: Install workspace
+        run: npm install --no-audit --no-fund
+
+      - name: Create update branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+
+      # Bump ONLY the source of truth: mise.toml [env] EPUBCHECK_VERSION and the
+      # two publishable package versions. Runtime EPUBCHECK_VERSION constants are
+      # single-sourced from the package version, so they propagate automatically
+      # -- do NOT hand-edit any constant here.
+      - name: Bump EPUBCHECK_VERSION + package versions
+        run: |
+          # shellcheck disable=SC2016  # $1/$2/${nv} below are JS (regex backrefs + template literal), not shell
+          node -e '
+            const fs=require("fs");
+            const f="mise.toml"; let t=fs.readFileSync(f,"utf8");
+            const nv=process.env.LATEST;
+            const before=t;
+            t=t.replace(/^(\s*EPUBCHECK_VERSION\s*=\s*")[^"]+(")/m,`$1${nv}$2`);
+            if(t===before){console.error("EPUBCHECK_VERSION line not found in mise.toml");process.exit(1);}
+            fs.writeFileSync(f,t);
+            console.log("mise.toml EPUBCHECK_VERSION ->",nv);
+          '
+          npm version "$NEW_LABEL" --no-git-tag-version -w epubcheck-standalone
+          npm version "$NEW_LABEL" --no-git-tag-version -w epubcheck-standalone-cli
+
+      # mise-action exported [env] EPUBCHECK_VERSION with the OLD (pre-bump)
+      # value, so re-export the new one for every subsequent step. Also pin
+      # EPUBCHECK_JAR at the newly fetched jar: the cache builders
+      # (build-console-cache + report-groundtruth) default their jar path to a
+      # fixed version, and the CLI generators honor this override, so every
+      # jar-consuming step uses the new jar. The
+      # java binary is auto-discovered by the scripts (mise which java / PATH),
+      # so it needs no export.
+      - name: Export new version + jar path
+        run: |
+          echo "EPUBCHECK_VERSION=${LATEST}" >> "$GITHUB_ENV"
+          echo "EPUBCHECK_JAR=$PWD/packages/epubcheck-standalone/build/epubcheck-${LATEST}/epubcheck.jar" >> "$GITHUB_ENV"
+
+      - name: Fetch build inputs for the new release
+        run: npm run build:deps
+
+      - name: Build engine from the new epubcheck release (TeaVM)
+        run: npm run build
+
+      # Regenerate everything a version bump invalidates, each generator called
+      # by its real package script name.
+      - name: Regenerate derived artifacts
+        run: |
+          # REBUILD BOTH JAR CACHES from the new jar (needs the jar + java):
+          # the console cache (test/expected) and the report cache
+          # (test/expected-reports) for ALL books -- NO --existing-only, so new
+          # books/formats are covered. This is the drift-review artifact: the git
+          # diff of these caches shows exactly what the new jar's output changed.
+          echo "::group::rebuild jar caches (console + reports, all books)"
+          npm run test:cache:build --workspace epubcheck-standalone
+          echo "::endgroup::"
+          # THIRD-PARTY notices (generated from the new build inputs).
+          echo "::group::regen THIRD-PARTY notices"
+          npm run generate:notices --workspace epubcheck-standalone
+          echo "::endgroup::"
+          # CLI goldens (needs the jar + java).
+          echo "::group::regen CLI goldens"
+          npm run goldens --workspace epubcheck-standalone-cli
+          echo "::endgroup::"
+          # CLI help + list-checks data, regenerated from the new jar's actual
+          # --help / --listChecks output.
+          echo "::group::regen CLI help/list-checks data"
+          npm run generate:cli-data --workspace epubcheck-standalone-cli
+          echo "::endgroup::"
+
+      # ---- Full gauntlet. Each gate is its own step with continue-on-error so a
+      # failure never short-circuits the others: we always reach the summary +
+      # PR step with the complete picture, and the PR opens as a draft if any
+      # gate failed. ----
+      - name: Smoke test
+        id: smoke
+        continue-on-error: true
+        run: npm run test:smoke
+
+      - name: Full-corpus console parity (engine vs rebuilt jar cache)
+        id: parity
+        continue-on-error: true
+        env:
+          CONCURRENCY: "4"
+          PARITY: "full"
+        run: npm run test:parity
+
+      - name: Full-corpus report byte-parity (engine vs rebuilt jar cache)
+        id: reports
+        continue-on-error: true
+        env:
+          CONCURRENCY: "4"
+          PARITY: "full"
+        run: npm run test:reports
+
+      - name: CLI golden suite (no Java)
+        id: cli
+        continue-on-error: true
+        run: npm run test:cli
+
+      # CLI parity: Phase 1 flag/scenario matrix vs the new jar; Phase 2 corpus
+      # console parity vs the rebuilt jar cache (no live jar). PARITY=full covers
+      # the whole corpus in Phase 2.
+      - name: CLI parity (flag matrix vs new jar + corpus vs cache)
+        id: clijar
+        continue-on-error: true
+        env:
+          PARITY: "full"
+        run: npm run test:jar --workspace epubcheck-standalone-cli
+
+      - name: Web build
+        id: web
+        continue-on-error: true
+        run: npm run web:build
+
+      # THIRD-PARTY notices must be current for the new build inputs: the
+      # regenerate step above rewrote them, so a diff here means the committed
+      # notices are stale (generator drift).
+      - name: THIRD-PARTY notices staleness check
+        id: notices
+        continue-on-error: true
+        run: npm run generate:notices --workspace epubcheck-standalone -- --check
+
+      # Single-source-of-truth consistency: engines pins match mise.toml + root
+      # package.json, every dependency is an exact pin, and the two publishable
+      # package versions share one <epubcheck> prefix.
+      - name: Version consistency check
+        id: versions
+        continue-on-error: true
+        run: npm run check:versions
+
+      # Compose a PR body from each gate's outcome.
+      - name: Build PR summary
+        id: summary
+        if: always()
+        run: |
+          verdict () { [ "$1" = "success" ] && echo "pass" || echo "FAIL"; }
+          ALL_OK=true
+          for o in "${{ steps.smoke.outcome }}" "${{ steps.parity.outcome }}" "${{ steps.reports.outcome }}" \
+                   "${{ steps.cli.outcome }}" "${{ steps.clijar.outcome }}" \
+                   "${{ steps.web.outcome }}" "${{ steps.notices.outcome }}" "${{ steps.versions.outcome }}"; do
+            [ "$o" != "success" ] && ALL_OK=false
+          done
+          echo "all_ok=$ALL_OK" >> "$GITHUB_OUTPUT"
+          {
+            echo "## Automated epubcheck update: ${{ needs.check.outputs.current }} -> ${LATEST}"
+            echo ""
+            echo "Upstream release **${LATEST_TAG}** published ${{ needs.check.outputs.published_at }} "
+            echo "(${{ needs.check.outputs.age_days }} days old, past the 14-day cooldown)."
+            echo ""
+            echo "New package version: \`${NEW_LABEL}\` (both epubcheck-standalone and epubcheck-standalone-cli)."
+            echo ""
+            echo "### Proof stack"
+            echo ""
+            echo "| Gate | Result |"
+            echo "| --- | --- |"
+            echo "| Smoke | $(verdict "${{ steps.smoke.outcome }}") |"
+            echo "| Full-corpus console parity (vs jar cache) | $(verdict "${{ steps.parity.outcome }}") |"
+            echo "| Full-corpus report byte-parity (vs jar cache) | $(verdict "${{ steps.reports.outcome }}") |"
+            echo "| CLI golden suite | $(verdict "${{ steps.cli.outcome }}") |"
+            echo "| CLI parity (matrix + corpus vs cache) | $(verdict "${{ steps.clijar.outcome }}") |"
+            echo "| Web build | $(verdict "${{ steps.web.outcome }}") |"
+            echo "| THIRD-PARTY notices staleness | $(verdict "${{ steps.notices.outcome }}") |"
+            echo "| Version consistency | $(verdict "${{ steps.versions.outcome }}") |"
+            echo ""
+            if [ "$ALL_OK" = "true" ]; then
+              echo "All gates green. Merge this PR, then push tag \`v${NEW_LABEL}\` to publish (release.yml)."
+            else
+              echo "One or more gates FAILED. This PR is a **draft**: review what the new epubcheck changed before merging. Never publish on partial green."
+            fi
+          } > pr-body.md
+          cat pr-body.md
+
+      # Stage ONLY the paths a version bump legitimately changes, by explicit
+      # path (never `git add -A`: the fetched jar/build inputs are gitignored).
+      # The rebuilt jar caches (test/expected + test/expected-reports) are staged
+      # here -- their diff is the behavioral-drift review the human approves.
+      - name: Commit the update
+        if: always()
+        run: |
+          git add \
+            mise.toml \
+            package.json package-lock.json \
+            packages/epubcheck-standalone/package.json \
+            packages/epubcheck-standalone-cli/package.json \
+            packages/epubcheck-standalone/THIRD-PARTY-NOTICES.txt \
+            packages/epubcheck-standalone/test/expected \
+            packages/epubcheck-standalone/test/expected-reports \
+            packages/epubcheck-standalone-cli/test/expected \
+            packages/epubcheck-standalone-cli/src \
+            2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "::warning::No staged changes to commit."
+          else
+            git commit -m "chore: update epubcheck to ${LATEST} (${NEW_LABEL})"
+          fi
+
+      - name: Push branch
+        if: always()
+        run: git push --force-with-lease origin "$BRANCH"
+
+      - name: Open or update the PR
+        if: always()
+        run: |
+          DRAFT_FLAG=""
+          [ "${{ steps.summary.outputs.all_ok }}" != "true" ] && DRAFT_FLAG="--draft"
+          TITLE="chore: update epubcheck to ${LATEST} (${NEW_LABEL})"
+          if gh pr view "$BRANCH" >/dev/null 2>&1; then
+            gh pr edit "$BRANCH" --title "$TITLE" --body-file pr-body.md
+          else
+            gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file pr-body.md $DRAFT_FLAG
+          fi
+
+      # NOTE: we intentionally do NOT auto-merge, even on all-green. An epubcheck
+      # bump is a re-baselining engineering event (see the header doc), so a
+      # green PR is simply left open and WAITS for human review before merge.
+
+      - name: Fail the job if any gate failed
+        if: steps.summary.outputs.all_ok != 'true'
+        run: |
+          echo "::error::One or more proof-stack gates failed for epubcheck ${LATEST}. See the draft PR."
+          exit 1

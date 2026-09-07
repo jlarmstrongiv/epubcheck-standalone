@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.1.0-jc003">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns:extended-properties="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties/"
+                        xmlns:premis="http://www.loc.gov/premis/rdf/v1#"
+                        xmlns:stFnt="http://ns.adobe.com/xap/1.0/sType/Font#"
+                        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+                        xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
+                        dc:format="application/epub+zip;version=3.3"
+                        dc:identifier="https://standardebooks.org/ebooks/h-g-wells/the-war-of-the-worlds"
+                        dc:language="en-GB"
+                        dc:publisher="Standard Ebooks"
+                        extended-properties:Characters="346950"
+                        rdf:about=""
+                        xmp:CreateDate="2026-08-15T17:39:28Z">
+         <dc:creator>
+            <rdf:Seq>
+               <rdf:li>H. G. Wells</rdf:li>
+            </rdf:Seq>
+         </dc:creator>
+         <dc:title>
+            <rdf:Alt>
+               <rdf:li xml:lang="x-default">The War of the Worlds</rdf:li>
+            </rdf:Alt>
+         </dc:title>
+         <dc:subject>
+            <rdf:Bag>
+               <rdf:li>Science fiction</rdf:li>
+               <rdf:li>War stories</rdf:li>
+               <rdf:li>Martians -- Fiction</rdf:li>
+               <rdf:li>Mars (Planet) -- Fiction</rdf:li>
+               <rdf:li>Space warfare -- Fiction</rdf:li>
+               <rdf:li>Imaginary wars and battles -- Fiction</rdf:li>
+               <rdf:li>Life on other planets -- Fiction</rdf:li>
+            </rdf:Bag>
+         </dc:subject>
+         <premis:hasEvent rdf:parseType="Resource">
+            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-06T17:32:39-07:00</premis:hasEventDateTime>
+            <premis:hasEventType rdf:resource="http://id.loc.gov/vocabulary/preservation/eventType/val"/>
+            <premis:hasEventDetail>Well-formed</premis:hasEventDetail>
+            <premis:hasEventRelatedAgent rdf:parseType="Resource">
+               <premis:hasAgentType rdf:resource="http://id.loc.gov/vocabulary/preservation/agentType/sof"/>
+               <premis:hasAgentName>epubcheck 5.3.0</premis:hasAgentName>
+            </premis:hasEventRelatedAgent>
+         </premis:hasEvent>
+         <premis:hasSignificantProperties>
+            <rdf:Bag>
+               <rdf:li premis:hasSignificantPropertiesType="renditionLayout"
+                        premis:hasSignificantPropertiesValue="reflowable"/>
+               <rdf:li premis:hasSignificantPropertiesType="isScripted"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasEncryption"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasAudio"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasVideo"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasSignatures"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasAllFontsEmbedded"
+                        premis:hasSignificantPropertiesValue="true"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://standardebooks.org/"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://www.theleagueofmoveabletype.com/"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://en.wikipedia.org/wiki/The_War_of_the_Worlds"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://github.com/standardebooks/h-g-wells_the-war-of-the-worlds"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://en.wikipedia.org/wiki/H._G._Wells"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://id.loc.gov/authorities/names/n79063613.html"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://www.pgdp.net/"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://alexcabal.com/"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://www.gutenberg.org/ebooks/36"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://catalog.hathitrust.org/Record/012293655"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://standardebooks.org/ebooks/h-g-wells/the-war-of-the-worlds"/>
+               <rdf:li premis:hasSignificantPropertiesType="reference"
+                        premis:hasSignificantPropertiesValue="https://creativecommons.org/publicdomain/zero/1.0/"/>
+            </rdf:Bag>
+         </premis:hasSignificantProperties>
+      </rdf:Description>
+   </rdf:RDF>
+</x:xmpmeta>

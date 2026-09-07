@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:31:48-07:00</date>
+   <repInfo uri="stress.epub">
+      <created>2025-09-01T08:55:48Z</created>
+      <lastModified>2012-10-01T17:18:00Z</lastModified>
+      <format>application/epub+zip</format>
+      <version>3.3</version>
+      <status>Well-formed</status>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>stress.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>CharacterCount</name>
+            <values arity="Scalar" type="Long">
+               <value>6087</value>
+            </values>
+         </property>
+         <property>
+            <name>Language</name>
+            <values arity="Scalar" type="String">
+               <value>la</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>Identifier</name>
+                  <values arity="Scalar" type="String">
+                     <value>urn:uuid:999e8000-e29b-41d4-a716-446667441231</value>
+                  </values>
+               </property>
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2025-09-01T08:55:48Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>ModDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2012-10-01T17:18:00Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Title</name>
+                  <values arity="Scalar" type="String">
+                     <value>Stress Test</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Date</name>
+                  <values arity="Scalar" type="String">
+                     <value>2012-10-01</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+         <property>
+            <name>MediaTypes</name>
+            <values arity="Array" type="String">
+               <value>application/xhtml+xml</value>
+               <value>text/css</value>
+               <value>image/png</value>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

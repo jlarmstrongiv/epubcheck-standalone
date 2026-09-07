@@ -1,0 +1,11 @@
+{
+  // Extends the monorepo base (strict, NodeNext ESM); only the CLI-specific
+  // rootDir/outDir/types differ from the shared settings.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"]
+}

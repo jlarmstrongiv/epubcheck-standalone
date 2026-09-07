@@ -1,0 +1,41 @@
+{
+  // Type-check-only config for the sources tsconfig.json does NOT compile:
+  // the test suites (test/), the verification/generation scripts (testing/),
+  // and the build scripts (scripts/). Those all run through Node's TypeScript
+  // type-stripping, which strips types WITHOUT checking them, so nothing else
+  // type-checks them. `tsc -p tsconfig.check.json` (noEmit) closes that gap.
+  //
+  // It inherits the same strict, NodeNext settings as the library build and the
+  // same lib set (WebWorker + esnext.disposable) because the emitted dist/*.d.ts
+  // these files import reference Worker-only globals (FileReaderSync, OPFS sync
+  // handles) and Symbol.dispose.
+  //
+  // Two of the base config's stricter-than-default flags are relaxed here:
+  // noUncheckedIndexedAccess and exactOptionalPropertyTypes. The shipping
+  // library keeps both on, but these helper scripts do a lot of index access on
+  // data they fully control (regex capture groups, parsed JSON, fixed arrays),
+  // where forcing a `!` on every access adds noise without catching real bugs.
+  // noImplicitAny and full strictNullChecks stay ON, so the meaningful checks
+  // (untyped surfaces, genuine nullables, arity, type mismatches) are enforced.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "lib": ["ES2022", "WebWorker", "esnext.disposable"],
+    "noEmit": true,
+    // The parity/reports suites import the test-only worker-pool driver by its
+    // .ts path (Node strips types and loads it directly; it is never compiled to
+    // .js). noEmit is on here, so importing a .ts extension is safe to allow.
+    "allowImportingTsExtensions": true,
+    "noUncheckedIndexedAccess": false,
+    "exactOptionalPropertyTypes": false,
+    "baseUrl": ".",
+    "paths": {
+      "epubcheck-standalone/plugins": ["./plugins.ts"]
+    }
+  },
+  "include": [
+    "test/**/*.ts",
+    "testing/**/*.ts",
+    "scripts/**/*.ts"
+  ]
+}

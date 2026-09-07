@@ -1,0 +1,8 @@
+{
+  "args": [
+    "-version"
+  ],
+  "stdout": "EPUBCheck v5.3.0\n",
+  "stderr": "",
+  "code": 0
+}

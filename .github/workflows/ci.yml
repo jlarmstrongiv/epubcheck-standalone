@@ -1,0 +1,137 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    # Monorepo: only the packages (and the shared toolchain / this workflow)
+    # affect the from-source build. Demo-only changes don't run CI.
+    paths:
+      - "packages/epubcheck-standalone/**"
+      - "packages/epubcheck-standalone-cli/**"
+      - "mise.toml"
+      # Root wiring that governs the build/consistency gates.
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.base.json"
+      - ".npmrc"
+      - "scripts/**"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/epubcheck-standalone/**"
+      - "packages/epubcheck-standalone-cli/**"
+      - "mise.toml"
+      # Root wiring that governs the build/consistency gates.
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.base.json"
+      - ".npmrc"
+      - "scripts/**"
+      - ".github/workflows/ci.yml"
+  # Allow the release workflow to reuse this exact build+test job.
+  workflow_call:
+
+# ENGINE ARTIFACT: REBUILD FROM SOURCE, no committed artifact to diff against.
+# The engine (dist/epubcheck-engine.js) is EPUBCheck 5.3.0 compiled to plain
+# JavaScript by TeaVM's JS backend (`gradle generateJavaScript` + the
+# fix-generated.ts post-processor). Both dist/ and teavm/build/ are gitignored
+# (`git ls-files` shows zero engine files), and every suite imports the freshly
+# built dist/epubcheck-engine.js. So there is nothing committed to diff a
+# rebuild against: CI compiles the engine from Java with the mise-pinned
+# toolchain (Temurin JDK 21 + Gradle 9.7.1) and runs the full battery against
+# that fresh build. That from-source rebuild is the drift protection.
+#
+# Runner OS: ubuntu-latest. TeaVM emits plain, host-independent JavaScript, so
+# the engine byte-for-byte does not depend on the build host. The verification
+# that matters is not the host OS -- it is the full from-source build plus the
+# whole test battery, and both run inside this job on every push. Linux runners
+# are faster and cheaper, and the toolchain (Node + Temurin JDK 21 + Gradle)
+# comes from mise, which installs the correct platform binaries automatically.
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Cache the mise-managed toolchain (Node + Temurin JDK 21 + Gradle),
+      # keyed on mise.toml so a toolchain bump busts the cache.
+      - name: Cache mise toolchain
+        uses: actions/cache@v6
+        with:
+          path: ~/.local/share/mise
+          key: mise-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('mise.toml') }}
+
+      # Cache the Gradle dependency store (TeaVM plugin + classlib jars pulled
+      # from Maven Central by the engine compile), keyed on the engine build
+      # definition so an engine-toolchain change busts it.
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v6
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/epubcheck-standalone/teavm/build.gradle.kts', 'packages/epubcheck-standalone/teavm/gradle.properties', 'packages/epubcheck-standalone/teavm/build-shims.sh') }}
+
+      # Provisions the WHOLE toolchain from mise.toml (Node + Temurin JDK 21 +
+      # Gradle) and exports its [env] table (EPUBCHECK_VERSION, JZLIB_VERSION)
+      # and PATH to the steps that follow, so `npm run build:deps` / `npm run build`
+      # see the pinned build-input versions and the pinned java/gradle.
+      - name: Provision toolchain with mise
+        uses: jdx/mise-action@v4
+        with:
+          install: true
+
+      # npm ci installs the WHOLE workspace from the root lockfile. npm 11.19.0
+      # (root/web engines pin) matches mise Node 26.7.0's bundled npm, so the
+      # strict engine check passes with no override.
+      - name: Install workspace (root lockfile)
+        run: npm ci --no-audit --no-fund
+
+      # Single-source-of-truth consistency (engines by package kind, exact pins,
+      # internal-dep pinning, shared epubcheck version). Cheap; fail fast.
+      - name: Version consistency check
+        run: npm run check:versions
+
+      # Fetch build INPUTS only (epubcheck release + JZlib; apply the Jing
+      # patch). The toolchain already came from mise above.
+      - name: Fetch build inputs
+        run: npm run build:deps
+
+      # Compile the engine from Java with TeaVM (gradle generateJavaScript ->
+      # fix-generated.ts -> dist/epubcheck-engine.js) and the TypeScript library
+      # into dist/. This is the from-source engine rebuild the whole battery
+      # runs against.
+      - name: Build engine + library from source (TeaVM)
+        run: npm run build
+
+      # Full library battery in one gate: smoke, validate, reuse,
+      # memory-plateau (bounded RSS across 30 warm runs -- unbounded memory
+      # growth is what sank the previous engine), engine-error-cleanup, abort,
+      # 446-book parity, report byte-parity, flags, expanded, custom-messages,
+      # url. EPUBCHECK_REQUIRE_JAR turns the jar-backed suites (flags,
+      # custom-messages, url) into hard FAILs rather than skips when the jar is
+      # absent -- the jar is present here because build:deps fetched it.
+      - name: Library battery (parity + reports + all library suites)
+        run: npm run test --workspace epubcheck-standalone
+        env:
+          CONCURRENCY: "4"
+          EPUBCHECK_REQUIRE_JAR: "1"
+
+      # CLI golden suite: compiles the CLI TypeScript and diffs it against the
+      # frozen jar-derived goldens (the documented directory-mode cases skip).
+      - name: CLI golden suite
+        run: npm run test --workspace epubcheck-standalone-cli
+
+      # Type-check the CLI's own test sources so test-only type regressions are
+      # caught in CI.
+      - name: Type-check CLI tests
+        run: npm run typecheck:tests --workspace epubcheck-standalone-cli
+
+      # Type-check the library's test/testing/scripts sources.
+      - name: Type-check library tests and scripts
+        run: npm run check:types --workspace epubcheck-standalone
+
+      # Build the web package against the freshly built library (paraglide
+      # compile + astro build). Exercises the web package's TypeScript through
+      # the Astro/Vite build.
+      - name: Build web
+        run: npm run web:build

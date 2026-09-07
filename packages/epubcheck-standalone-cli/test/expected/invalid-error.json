@@ -1,0 +1,9 @@
+{
+  "args": [
+    "-e",
+    "invalid.epub"
+  ],
+  "stdout": "Messages: 0 fatals / 3 errors\n\nEPUBCheck completed\n",
+  "stderr": "ERROR(OPF-049): invalid.epub/OPS/package.opf(12,34): Item id \"content_001\" was not found in the manifest.\nERROR(NCX-001): invalid.epub/OPS/toc.ncx(-1,-1): NCX identifier (\" q \") does not match OPF identifier (\"NOID\").\nERROR(RSC-008): invalid.epub/OPS/toc.ncx(15,43): Referenced resource \"OPS/content%20001.xhtml\" is not declared in the OPF manifest.\n\nCheck finished with errors\n",
+  "code": 1
+}

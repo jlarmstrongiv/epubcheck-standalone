@@ -1,0 +1,104 @@
+name: Release
+
+# Publishes to npm when a version tag is pushed (e.g. v5.3.0-build1).
+# The published artifact is BUILT FROM SOURCE on the runner (same as CI): the
+# TeaVM engine is compiled from Java and the TypeScript is compiled into dist/,
+# never the committed dist/ (dist/ is gitignored). Publishing is gated on the
+# full from-source build + test battery passing.
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  # Reuse the exact from-source build + full test battery as the gate.
+  build-and-test:
+    uses: ./.github/workflows/ci.yml
+
+  publish:
+    needs: build-and-test
+    # ubuntu-latest: TeaVM emits host-independent plain JavaScript, so the
+    # published engine is byte-identical regardless of build host. The published
+    # tarball is rebuilt from source and re-verified by the full battery below,
+    # which is the real gate -- not the runner OS. The mise toolchain (Node +
+    # Temurin JDK 21 + Gradle) installs the correct platform binaries on Linux.
+    runs-on: ubuntu-latest
+    permissions:
+      # Required for npm provenance / trusted publishing (OIDC).
+      id-token: write
+      contents: read
+    # One from-source build feeds BOTH publishes (library, then CLI) on the same
+    # checkout; any failed step fails the whole release.
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Cache mise toolchain
+        uses: actions/cache@v6
+        with:
+          path: ~/.local/share/mise
+          key: mise-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('mise.toml') }}
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v6
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/epubcheck-standalone/teavm/build.gradle.kts', 'packages/epubcheck-standalone/teavm/gradle.properties', 'packages/epubcheck-standalone/teavm/build-shims.sh') }}
+
+      # Provisions the WHOLE toolchain from mise.toml (Node + Temurin JDK 21 +
+      # Gradle) and exports its [env] table + PATH, so the build below sees the
+      # pinned build-input versions and the pinned java/gradle.
+      - name: Provision toolchain with mise
+        uses: jdx/mise-action@v4
+        with:
+          install: true
+
+      # Pin Node explicitly so setup-node cannot shadow the mise toolchain with a
+      # different version; its only job here is npm registry auth wiring.
+      - name: Set up Node + npm registry auth
+        uses: actions/setup-node@v7
+        with:
+          node-version: "26.7.0"
+          registry-url: "https://registry.npmjs.org"
+
+      # npm 11.19.0 (engines pin) matches mise Node 26.7.0's bundled npm, so the
+      # strict engine check passes with no override.
+      - name: Install
+        run: npm ci --no-audit --no-fund
+
+      # Fetch build inputs, then rebuild the engine + library from source so the
+      # PUBLISHED tarball ships the CI-built artifact, not whatever was committed.
+      - name: Fetch build inputs
+        run: npm run build:deps
+
+      - name: Build engine + library from source (TeaVM)
+        run: npm run build
+
+      # EPUBCHECK_REQUIRE_JAR turns the jar-comparison suites' jar-absent SKIP
+      # into a FAIL: a release must never green-light with parity gates skipped.
+      # (This re-runs the battery on the publish checkout as a final gate.)
+      - name: Verify the freshly built engine before publishing
+        run: npm test
+        env:
+          CONCURRENCY: "4"
+          EPUBCHECK_REQUIRE_JAR: "1"
+
+      # prepack hooks are dead under the repo-wide ignore-scripts=true, so the
+      # CLI build must be explicit before its publish.
+      - name: Build epubcheck-standalone-cli
+        run: npm run build --workspace epubcheck-standalone-cli
+
+      # Publishes with --provenance (package.json publishConfig.provenance=true).
+      # Auth: prefer npm Trusted Publishing (OIDC, no secret) once this repo is a
+      # configured trusted publisher on npmjs.com; otherwise the NODE_AUTH_TOKEN
+      # fallback uses the NPM_TOKEN secret (a granular automation token).
+      - name: Publish epubcheck-standalone to npm
+        working-directory: packages/epubcheck-standalone
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish epubcheck-standalone-cli to npm
+        working-directory: packages/epubcheck-standalone-cli
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

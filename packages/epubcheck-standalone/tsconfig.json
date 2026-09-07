@@ -1,0 +1,40 @@
+{
+  // Library core build. Extends the monorepo base (strict, NodeNext ESM) and
+  // compiles the hand-written TypeScript sources (at the package root) INTO
+  // dist/ (outDir "./dist", rootDir "."). All generated artifacts therefore
+  // live in one place: the emitted .js/.d.ts land beside the generated engine
+  // (dist/epubcheck-engine.js, the compiled-once TeaVM JS the drivers load) --
+  // the package root holds only hand-written sources.
+  //
+  // The browser-facing plugins use Worker-only sync file APIs (FileReaderSync,
+  // FileSystemSyncAccessHandle, OPFS), so the WebWorker lib is included
+  // alongside ES2022 and the Node types.
+  //
+  // esnext.disposable supplies the Symbol.dispose type the RangeSource contract
+  // and `using` declarations depend on. With target ES2022 (below the ES2024
+  // level that supports `using` natively) TypeScript DOWNLEVELS every `using`
+  // to its try/finally helper form, so the emitted .js npm ships contains no
+  // `using` syntax and runs in stock, flagless Safari.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "lib": ["ES2022", "WebWorker", "esnext.disposable"],
+    "rootDir": ".",
+    "outDir": "./dist",
+    "baseUrl": "."
+  },
+  "include": [
+    "index.ts",
+    "validate-core.ts",
+    "validate-browser.ts",
+    "run-core.ts",
+    "engine-run.ts",
+    "engine-node.ts",
+    "engine-browser.ts",
+    "plugins.ts",
+    "http-bridge.ts",
+    "parse.ts",
+    "version.ts",
+    "formatters/index.ts"
+  ]
+}

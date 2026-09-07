@@ -1,0 +1,14 @@
+{
+  "args": [
+    "-c",
+    "cm-promote.txt",
+    "--mode",
+    "xhtml",
+    "-v",
+    "3.0",
+    "acc.xhtml"
+  ],
+  "stdout": "Messages: 0 fatals / 0 errors / 1 warning / 0 infos\n\nEPUBCheck completed\n",
+  "stderr": "WARNING(ACC-004): acc.xhtml/./acc.xhtml(6,30):  (severity overridden from SUPPRESSED) Html \"a\" element must have text.\n\nCheck finished with warnings\n",
+  "code": 0
+}

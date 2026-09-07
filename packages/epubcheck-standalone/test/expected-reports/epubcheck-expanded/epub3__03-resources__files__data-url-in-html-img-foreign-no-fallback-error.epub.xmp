@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.1.0-jc003">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns:extended-properties="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties/"
+                        xmlns:premis="http://www.loc.gov/premis/rdf/v1#"
+                        xmlns:stFnt="http://ns.adobe.com/xap/1.0/sType/Font#"
+                        xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+                        xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
+                        dc:format="application/epub+zip;version=3.3"
+                        dc:identifier="NOID"
+                        dc:language="en"
+                        extended-properties:Characters="86"
+                        rdf:about=""
+                        xmp:CreateDate="2025-09-01T08:55:48Z">
+         <dc:title>
+            <rdf:Alt>
+               <rdf:li xml:lang="x-default">Minimal EPUB 3.0</rdf:li>
+            </rdf:Alt>
+         </dc:title>
+         <premis:hasEvent rdf:parseType="Resource">
+            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-06T17:21:20-07:00</premis:hasEventDateTime>
+            <premis:hasEventType rdf:resource="http://id.loc.gov/vocabulary/preservation/eventType/val"/>
+            <premis:hasEventDetail>Not well-formed</premis:hasEventDetail>
+            <premis:hasEventOutcomeInformation>
+               <rdf:Seq>
+                  <rdf:li rdf:parseType="Resource">
+                     <premis:hasEventOutcome>RSC-032, ERROR, Fallback must be provided for foreign resources, but found none for resource "data:image/vnd.xyz;base64,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" of type "image/vnd.xyz".</premis:hasEventOutcome>
+                     <premis:hasEventOutcomeDetail>
+                        <rdf:Seq>
+                           <rdf:li premis:hasEventOutcomeDetailNote="EPUB/content_001.xhtml (35-141)"/>
+                        </rdf:Seq>
+                     </premis:hasEventOutcomeDetail>
+                  </rdf:li>
+               </rdf:Seq>
+            </premis:hasEventOutcomeInformation>
+            <premis:hasEventRelatedAgent rdf:parseType="Resource">
+               <premis:hasAgentType rdf:resource="http://id.loc.gov/vocabulary/preservation/agentType/sof"/>
+               <premis:hasAgentName>epubcheck 5.3.0</premis:hasAgentName>
+            </premis:hasEventRelatedAgent>
+         </premis:hasEvent>
+         <premis:hasSignificantProperties>
+            <rdf:Bag>
+               <rdf:li premis:hasSignificantPropertiesType="renditionLayout"
+                        premis:hasSignificantPropertiesValue="reflowable"/>
+               <rdf:li premis:hasSignificantPropertiesType="isScripted"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasEncryption"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasAudio"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasVideo"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasSignatures"
+                        premis:hasSignificantPropertiesValue="false"/>
+               <rdf:li premis:hasSignificantPropertiesType="hasAllFontsEmbedded"
+                        premis:hasSignificantPropertiesValue="true"/>
+            </rdf:Bag>
+         </premis:hasSignificantProperties>
+      </rdf:Description>
+   </rdf:RDF>
+</x:xmpmeta>

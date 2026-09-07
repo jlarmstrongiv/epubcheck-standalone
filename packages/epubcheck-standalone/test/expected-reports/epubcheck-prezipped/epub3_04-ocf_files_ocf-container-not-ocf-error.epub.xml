@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:31:51-07:00</date>
+   <repInfo uri="epub3_04-ocf_files_ocf-container-not-ocf-error.epub">
+      <format>application/octet-stream</format>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="RSC-002" severity="error">RSC-002, FATAL, [Required META-INF/container.xml resource could not be found.], ./epub3_04-ocf_files_ocf-container-not-ocf-error.epub</message>
+         <message id="PKG-006" severity="error">PKG-006, ERROR, [Mimetype file entry is missing or is not the first file in the archive.], ./epub3_04-ocf_files_ocf-container-not-ocf-error.epub</message>
+      </messages>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub3_04-ocf_files_ocf-container-not-ocf-error.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property"/>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

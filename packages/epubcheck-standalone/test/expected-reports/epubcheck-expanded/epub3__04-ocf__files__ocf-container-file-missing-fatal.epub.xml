@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:24:24-07:00</date>
+   <repInfo uri="epub3__04-ocf__files__ocf-container-file-missing-fatal.epub">
+      <format>application/epub+zip</format>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="RSC-002" severity="error">RSC-002, FATAL, [Required META-INF/container.xml resource could not be found.], ./epub3__04-ocf__files__ocf-container-file-missing-fatal.epub</message>
+      </messages>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub3__04-ocf__files__ocf-container-file-missing-fatal.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property"/>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

@@ -1,0 +1,130 @@
+{
+  "name": "epubcheck-standalone",
+  "version": "5.3.0-build1",
+  "description": "EPUBCheck, the official W3C EPUB validator, compiled to plain JavaScript with TeaVM: an embeddable library that validates EPUBs in Node.js and the browser with byte-identical output to the Java tool, no Java to install.",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=24"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "browser": {
+        "types": "./dist/validate-browser.d.ts",
+        "default": "./dist/validate-browser.js"
+      },
+      "node": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "default": {
+        "types": "./dist/validate-browser.d.ts",
+        "default": "./dist/validate-browser.js"
+      }
+    },
+    "./plugins": {
+      "types": "./dist/plugins.d.ts",
+      "default": "./dist/plugins.js"
+    },
+    "./parse": {
+      "types": "./dist/parse.d.ts",
+      "default": "./dist/parse.js"
+    },
+    "./formatters": {
+      "types": "./dist/formatters/index.d.ts",
+      "default": "./dist/formatters/index.js"
+    },
+    "./epubcheck-engine.js": "./dist/epubcheck-engine.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "THIRD-PARTY-NOTICES.txt"
+  ],
+  "scripts": {
+    "//": "ignore-scripts=true is set repo-wide (.npmrc), so npm never auto-runs prepare/prepack -- the test scripts therefore compile the TypeScript core explicitly via build:ts before importing the emitted .js. build:ts does NOT rebuild the engine (that is `build` -> scripts/build.ts); the generated dist/epubcheck-engine.js must already be present.",
+    "//build:ts": "version.ts imports the package.json (for EPUBCHECK_VERSION); with outDir set, tsc COPIES that JSON into dist/package.json. A package.json inside dist/ shadows the real package scope and breaks every `epubcheck-standalone/*` self-reference at runtime and for consumers (Node resolves export targets relative to dist/, doubling it). So build:ts deletes that stray copy after tsc; the emitted dist/*.js resolve `epubcheck-standalone/package.json` up to the one real package.json. It also deletes dist/vfs.* and dist/formatters/adapter.* -- stale outputs of removed source files (tsc never deletes outputs for deleted inputs, and `files: [dist/]` would ship them; testing/pack-consumer.ts guards the tarball contents).",
+    "build:ts": "tsc -p tsconfig.json && rm -f dist/package.json dist/vfs.js dist/vfs.d.ts dist/formatters/adapter.js dist/formatters/adapter.d.ts",
+    "check:types": "tsc -p tsconfig.check.json",
+    "//test": "EPUBCHECK_REQUIRE_JAR=1 is exported so the jar-backed suites (flags, custom-messages, url) FAIL rather than skip-and-pass when the jar+java are absent: this repo's dev flow always has them (the engine build needs them). Jar-less consumers unset it to get the graceful skip.",
+    "test": "export EPUBCHECK_REQUIRE_JAR=1 && npm run build:ts && node test/smoke.ts && node test/validate.ts && node test/fs-async.ts && node test/plugins-async.ts && node test/tap-coverage.ts && node test/reuse.ts && node test/memory-plateau.ts && node test/engine-error-cleanup.ts && node test/abort.ts && node test/abort-suspension.ts && node test/parity.ts && node test/reports.ts && node test/formatters.ts && node test/console.ts && node test/flags.ts && node test/expanded.ts && node test/custom-messages.ts && node test/url.ts && node test/s3.ts && node test/plugins-name-defaulting.ts && node test/http-bridge.ts",
+    "test:abort": "npm run build:ts && node test/abort.ts",
+    "test:abort-suspension": "npm run build:ts && node test/abort-suspension.ts",
+    "test:validate": "npm run build:ts && node test/validate.ts",
+    "test:fs-async": "npm run build:ts && node test/fs-async.ts",
+    "test:plugins-async": "npm run build:ts && node test/plugins-async.ts",
+    "test:tap-coverage": "npm run build:ts && node test/tap-coverage.ts",
+    "test:reuse": "npm run build:ts && node test/reuse.ts",
+    "test:memory-plateau": "npm run build:ts && node test/memory-plateau.ts",
+    "test:flags": "npm run build:ts && node test/flags.ts",
+    "test:expanded": "npm run build:ts && node test/expanded.ts",
+    "test:custom-messages": "npm run build:ts && node test/custom-messages.ts",
+    "test:url": "npm run build:ts && node test/url.ts",
+    "test:s3": "npm run build:ts && node test/s3.ts",
+    "test:reports": "npm run build:ts && node test/reports.ts",
+    "test:formatters": "npm run build:ts && node test/formatters.ts",
+    "test:console": "npm run build:ts && node test/console.ts",
+    "//test:reports:generate": "Regenerate the committed report ground truth with the real epubcheck.jar (needs a jar + java: set EPUBCHECK_JAR / EPUBCHECK_JAVA, or run `npm run build:deps` first and let it resolve the mise GraalVM). Writes test/expected-reports/<sub>/<book>.epub.{json,xml,xmp} for every .epub under test/corpus, which is what test/reports.ts checks byte-for-byte. Pass `-- --existing-only` to only refresh books that already have expected reports (how update-epubcheck.yml keeps the committed set at its current size).",
+    "test:reports:generate": "node testing/report-groundtruth.ts test/corpus test/expected-reports",
+    "test:smoke": "npm run build:ts && node test/smoke.ts",
+    "test:parity": "npm run build:ts && node test/parity.ts",
+    "//test:parity:generate": "Rebuild the committed JAR CONSOLE ANSWER KEYS by running the real epubcheck.jar ONCE per book in test/corpus (testing/build-console-cache.ts). From that single merged `2>&1` run it writes BOTH: (1) test/expected/<group>.json -- the sorted, order-insensitive MESSAGE cache test/parity.ts checks, and (2) test/expected-console-ordered/<group>.json -- the ORDERED full console text test/console.ts checks byte-for-byte. Both are the jar's output, NOT captured from our engine. Needs a jar + java (set EPUBCHECK_JAR / EPUBCHECK_JAVA, or run `npm run build:deps` first); hard-fails if absent. Bump-only: the git diff of both caches is the console behavioral-drift review.",
+    "test:parity:generate": "node testing/build-console-cache.ts",
+    "//test:cache:build": "Rebuild ALL committed jar answer keys in one go -- the console MESSAGE cache (test/expected) + the ORDERED console cache (test/expected-console-ordered), both from the single build-console-cache.ts run, and the report cache (test/expected-reports) for ALL books. This is the whole answer key the engine-vs-cache suites (parity, console, reports, formatters) compare against; run it only when epubcheck's Java version bumps and review the resulting git diff. It also folds in what the retired live upstream-sweep used to do: the jar's answers are captured once, here, instead of recomputed live on every compare.",
+    "test:cache:build": "npm run test:parity:generate && npm run test:reports:generate",
+    "//test:pack-consumer": "Packs the library with `npm pack` and exercises the tarball as a real consumer (fresh install, ESM import, validate a fixture, typecheck against the shipped .d.ts). Runs build:ts itself and needs the built engine present plus network for the consumer install, so it lives outside the `test` chain -- run it before publishing.",
+    "test:pack-consumer": "node testing/pack-consumer.ts",
+    "build": "node scripts/build.ts",
+    "build:deps": "node scripts/fetch-deps.ts",
+    "generate:notices": "node scripts/generate-notices.ts"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-s3": "3.1116.0",
+    "@types/node": "22.20.1",
+    "typescript": "5.9.3"
+  },
+  "peerDependencies": {
+    "@aws-sdk/client-s3": "^3"
+  },
+  "peerDependenciesMeta": {
+    "@aws-sdk/client-s3": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "epub",
+    "epubcheck",
+    "epub3",
+    "ebook",
+    "validator",
+    "validation",
+    "accessibility",
+    "opf",
+    "ncx",
+    "w3c",
+    "teavm",
+    "standalone",
+    "browser",
+    "opfs",
+    "worker"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "John L. Armstrong IV",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlarmstrongiv/epubcheck-standalone.git",
+    "directory": "packages/epubcheck-standalone"
+  },
+  "homepage": "https://github.com/jlarmstrongiv/epubcheck-standalone#readme",
+  "bugs": {
+    "url": "https://github.com/jlarmstrongiv/epubcheck-standalone/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

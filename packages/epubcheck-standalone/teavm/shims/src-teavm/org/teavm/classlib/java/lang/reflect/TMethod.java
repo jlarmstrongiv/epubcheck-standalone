@@ -1,0 +1,103 @@
+/*
+ *  Copyright 2016 Alexey Andreev.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+package org.teavm.classlib.java.lang.reflect;
+
+import org.teavm.classlib.java.lang.TClass;
+import org.teavm.classlib.java.lang.TIllegalAccessException;
+import org.teavm.classlib.java.lang.TIllegalArgumentException;
+import org.teavm.runtime.reflect.ClassInfoUtil;
+import org.teavm.runtime.reflect.MethodInfo;
+import org.teavm.runtime.reflect.ModifiersInfo;
+
+public class TMethod extends TExecutable implements TMember {
+    private TType genericReturnType;
+
+    public TMethod(TClass<?> declaringClass, MethodInfo info) {
+        super(declaringClass, info);
+    }
+
+    @Override
+    public String getName() {
+        return methodInfo.name().getStringObject();
+    }
+
+    public TClass<?> getReturnType() {
+        return (TClass<?>) (Object) ClassInfoUtil.resolve(methodInfo.returnType()).classObject();
+    }
+
+    public TType getGenericReturnType() {
+        if (genericReturnType == null) {
+            var reflection = methodInfo.reflection();
+            if (reflection == null || reflection.genericReturnType() == null) {
+                genericReturnType = getReturnType();
+            } else {
+                genericReturnType = TGenericTypeFactory.create(this, reflection.genericReturnType());
+            }
+        }
+        return genericReturnType;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(TModifier.toString(getModifiers(), (getDeclaringClass().getModifiers() & TModifier.INTERFACE) != 0));
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        sb.append(getReturnType().getName()).append(' ').append(getDeclaringClass().getName()).append('.')
+                .append(getName()).append('(');
+        TClass<?>[] parameterTypes = getParameterTypes();
+        if (parameterTypes.length > 0) {
+            sb.append(parameterTypes[0].getName());
+            for (int i = 1; i < parameterTypes.length; ++i) {
+                sb.append(',').append(parameterTypes[i].getName());
+            }
+        }
+        sb.append(')');
+
+        return sb.toString();
+    }
+
+    public Object invoke(Object obj, Object... args) throws TIllegalAccessException, TIllegalArgumentException,
+            TInvocationTargetException {
+        // --- epubcheck-standalone TeaVM shim fix (fork of the stock classlib file) ---
+        // The JDK treats a null args array as no-args (jackson calls
+        // method.invoke(bean, (Object[]) null) on getters); stock code
+        // dereferenced it and died with a JS TypeError.
+        if (args == null) {
+            args = new Object[0];
+        }
+        if (args.length != methodInfo.parameterCount()) {
+            throw new TIllegalArgumentException();
+        }
+
+        if ((methodInfo.modifiers() & ModifiersInfo.STATIC) == 0) {
+            if (!declaringClass.isInstance(obj)) {
+                throw new TIllegalArgumentException();
+            }
+        }
+        validateArgs(args);
+        if ((methodInfo.modifiers() & ModifiersInfo.STATIC) != 0) {
+            declaringClass.initialize();
+        }
+
+        return methodInfo.call(obj, args);
+    }
+
+    public boolean isBridge() {
+        return (methodInfo.modifiers() & ModifiersInfo.BRIDGE) != 0;
+    }
+}

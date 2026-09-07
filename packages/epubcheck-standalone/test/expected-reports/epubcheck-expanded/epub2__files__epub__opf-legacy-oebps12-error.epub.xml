@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:20:13-07:00</date>
+   <repInfo uri="epub2__files__epub__opf-legacy-oebps12-error.epub">
+      <created>2025-09-01T08:55:48Z</created>
+      <format>application/epub+zip</format>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="OPF-001" severity="error">OPF-001, ERROR, [There was an error when parsing the EPUB version: Version attribute not found.], OPS/package.opf</message>
+      </messages>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub2__files__epub__opf-legacy-oebps12-error.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2025-09-01T08:55:48Z</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

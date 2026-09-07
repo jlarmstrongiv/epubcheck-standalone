@@ -1,0 +1,13 @@
+# Monorepo root ignores. Per-package build artifacts are ignored by each
+# package's own .gitignore (packages/*/.gitignore).
+
+# Dependencies (npm workspaces hoist installs to the root node_modules/)
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+*.log
+*.swp
+
+# Internal agent working docs (handoffs, scratch notes) -- never committed
+agent-docs/

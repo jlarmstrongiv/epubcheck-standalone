@@ -1,0 +1,8 @@
+{
+  "args": [
+    "valid.epub"
+  ],
+  "stdout": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n",
+  "stderr": "",
+  "code": 0
+}

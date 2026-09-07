@@ -1,0 +1,9 @@
+{
+  "args": [
+    "-f",
+    "invalid.epub"
+  ],
+  "stdout": "No errors or warnings detected.\nMessages: 0 fatals\n\nEPUBCheck completed\n",
+  "stderr": "",
+  "code": 0
+}

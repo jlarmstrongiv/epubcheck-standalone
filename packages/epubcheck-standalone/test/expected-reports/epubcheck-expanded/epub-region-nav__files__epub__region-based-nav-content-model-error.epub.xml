@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:19:49-07:00</date>
+   <repInfo uri="epub-region-nav__files__epub__region-based-nav-content-model-error.epub">
+      <created>2025-09-01T08:55:48Z</created>
+      <lastModified>2017-06-14T00:00:01Z</lastModified>
+      <format>application/epub+zip</format>
+      <version>3.3</version>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: A region-based nav element must contain exactly one child ol element.], EPUB/data-nav.xhtml (8-33)</message>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: The first child of a region-based nav list item must be either an "a" or "span" element.], EPUB/data-nav.xhtml (22-9)</message>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: The first child of a region-based nav list item must be either an "a" or "span" element.], EPUB/data-nav.xhtml (73-9)</message>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: "span" elements in region-base navs must contain exactly two "a" elements.], EPUB/data-nav.xhtml (31-12)</message>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: "span" elements in region-base navs must contain exactly two "a" elements.], EPUB/data-nav.xhtml (36-12)</message>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: The first child of a region-based nav list item can only be followed by a single "ol" element.], EPUB/data-nav.xhtml (38-9)</message>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: The first child of a region-based nav list item can only be followed by a single "ol" element.], EPUB/data-nav.xhtml (53-9)</message>
+         <message id="RSC-017" severity="warning">RSC-017, WARN, [Warning while parsing file: "a" elements in region-based navs should not contain text labels.], EPUB/data-nav.xhtml (20-57)</message>
+      </messages>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub-region-nav__files__epub__region-based-nav-content-model-error.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>CharacterCount</name>
+            <values arity="Scalar" type="Long">
+               <value>652</value>
+            </values>
+         </property>
+         <property>
+            <name>Language</name>
+            <values arity="Scalar" type="String">
+               <value>en</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>Identifier</name>
+                  <values arity="Scalar" type="String">
+                     <value>NOID</value>
+                  </values>
+               </property>
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2025-09-01T08:55:48Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>ModDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2017-06-14T00:00:01Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Title</name>
+                  <values arity="Scalar" type="String">
+                     <value>Minimal EPUB 3.0</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+         <property>
+            <name>MediaTypes</name>
+            <values arity="Array" type="String">
+               <value>application/xhtml+xml</value>
+               <value>text/css</value>
+            </values>
+         </property>
+         <property>
+            <name>hasFixedLayout</name>
+            <values arity="Scalar" type="Boolean">
+               <value>true</value>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

@@ -1,0 +1,38 @@
+# Drift guard for the EpubCheck shadow.
+#
+# The EpubCheck.java sitting next to this file is a SHADOW of epubcheck's own
+# com.adobe.epubcheck.api.EpubCheck: it is the upstream source copied verbatim,
+# EXCEPT inside the InputStream constructor. There, when the InputStream is the
+# JS host http bridge's body stream (ecshim.HostHttp.BodyStream), the shadow
+# registers the body with ecshim.HostBook for host range reads instead of
+# copying the whole download into the in-memory VFS. Every other path is
+# byte-for-byte upstream. The shims jar precedes the epubcheck jars on the
+# TeaVM compiler classpath, so our copy wins.
+#
+# WHAT THIS GUARDS
+# The line below is the sha256 of the PRISTINE upstream EpubCheck.java (no host
+# range-read change) for the epubcheck version the shadow was last ported from.
+# At build time scripts/check-shadow-drift.ts pulls that same file out of the
+# epubcheck-<version>-sources.jar and hashes it. If epubcheck changed the file
+# in a version bump, the hashes differ and the build FAILS loudly -- otherwise
+# our shadow would silently keep the OLD upstream behavior (e.g. a stale
+# constructor / checker-routing flow) while pretending to be the new epubcheck.
+#
+# WHAT TO DO ON A MISMATCH
+# 1. Diff the new upstream file against our shadow:
+#      unzip -p build/epubcheck-<version>-sources.jar \
+#        com/adobe/epubcheck/api/EpubCheck.java > /tmp/upstream.java
+#      diff /tmp/upstream.java \
+#        teavm/shims/src-teavm/com/adobe/epubcheck/api/EpubCheck.java
+#    (our shadow only changes the InputStream constructor's host-book wiring and
+#     adds the doc comment; any OTHER difference is a real upstream change.)
+# 2. Re-port: start from the NEW upstream source and re-apply ONLY the
+#    HostBook body-registration change inside the InputStream constructor,
+#    plus the doc comment. Keep the rest byte-for-byte upstream.
+# 3. Replace the shadow file with that re-ported version.
+# 4. Update the hash line below to the new upstream file's sha256, e.g.:
+#      unzip -p build/epubcheck-<version>-sources.jar \
+#        com/adobe/epubcheck/api/EpubCheck.java | shasum -a 256
+#
+# epubcheck version the hash below is for: 5.3.0
+13af175953e7db6e01c9107523ffa050a284f6e56c7755c7cc029e6f46458edd

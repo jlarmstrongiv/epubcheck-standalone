@@ -1,0 +1,98 @@
+{
+  "cli_files_valid.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub2_files_epub_ocf-directory-empty-warning.epub": {
+    "exit": 0,
+    "text": "WARNING(PKG-014): epub2_files_epub_ocf-directory-empty-warning.epub/./epub2_files_epub_ocf-directory-empty-warning.epub(-1,-1): The EPUB contains empty directory \"Empty/\".\nValidating using EPUB version 2.0.1 rules.\n\nCheck finished with warnings\nMessages: 0 fatals / 0 errors / 1 warning / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub2_files_epub_ocf-minimal-valid.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 2.0.1 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_00-minimal_files_minimal.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_02-epub-publication-conformance_files_minimal.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-container-not-ocf-error.epub": {
+    "exit": 1,
+    "text": "ERROR(PKG-006): epub3_04-ocf_files_ocf-container-not-ocf-error.epub/./epub3_04-ocf_files_ocf-container-not-ocf-error.epub(-1,-1): Mimetype file entry is missing or is not the first file in the archive.\nFATAL(RSC-002): epub3_04-ocf_files_ocf-container-not-ocf-error.epub/./epub3_04-ocf_files_ocf-container-not-ocf-error.epub(-1,-1): Required META-INF/container.xml resource could not be found.\n\nCheck finished with errors\nMessages: 1 fatal / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filename-character-forbidden-error.epub": {
+    "exit": 1,
+    "text": "ERROR(PKG-009): epub3_04-ocf_files_ocf-filename-character-forbidden-error.epub/./epub3_04-ocf_files_ocf-filename-character-forbidden-error.epub(-1,-1): The file name \"EPUB/content_|.xhtml\" contains characters that are not allowed in OCF file names: U+007C (|).\nValidating using EPUB version 3.3 rules.\n\nCheck finished with errors\nMessages: 0 fatals / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filename-character-forbidden-non-publication-resource-error.epub": {
+    "exit": 1,
+    "text": "ERROR(PKG-009): epub3_04-ocf_files_ocf-filename-character-forbidden-non-publication-resource-error.epub/./epub3_04-ocf_files_ocf-filename-character-forbidden-non-publication-resource-error.epub(-1,-1): The file name \"META-INF/file_<>.txt\" contains characters that are not allowed in OCF file names: U+003C (<), U+003E (>).\nValidating using EPUB version 3.3 rules.\n\nCheck finished with errors\nMessages: 0 fatals / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filename-duplicate-after-canonical-normalization-error.epub": {
+    "exit": 1,
+    "text": "ERROR(OPF-060): epub3_04-ocf_files_ocf-filename-duplicate-after-canonical-normalization-error.epub/./epub3_04-ocf_files_ocf-filename-duplicate-after-canonical-normalization-error.epub(-1,-1): Duplicate entry in the ZIP file: \"EPUB/content_Á.xhtml\" (file names must be unique after Unicode canonical normalization and full case folding).\nValidating using EPUB version 3.3 rules.\n\nCheck finished with errors\nMessages: 0 fatals / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filename-duplicate-after-common-case-folding-error.epub": {
+    "exit": 1,
+    "text": "ERROR(OPF-060): epub3_04-ocf_files_ocf-filename-duplicate-after-common-case-folding-error.epub/./epub3_04-ocf_files_ocf-filename-duplicate-after-common-case-folding-error.epub(-1,-1): Duplicate entry in the ZIP file: \"EPUB/content_001.xhtml\" (file names must be unique after Unicode canonical normalization and full case folding).\nValidating using EPUB version 3.3 rules.\n\nCheck finished with errors\nMessages: 0 fatals / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filename-duplicate-after-compatibility-normalization-valid.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filename-duplicate-after-full-case-folding-error.epub": {
+    "exit": 1,
+    "text": "ERROR(OPF-060): epub3_04-ocf_files_ocf-filename-duplicate-after-full-case-folding-error.epub/./epub3_04-ocf_files_ocf-filename-duplicate-after-full-case-folding-error.epub(-1,-1): Duplicate entry in the ZIP file: \"EPUB/content_ß.xhtml\" (file names must be unique after Unicode canonical normalization and full case folding).\nValidating using EPUB version 3.3 rules.\n\nCheck finished with errors\nMessages: 0 fatals / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filename-duplicate-zip-entry-error.epub": {
+    "exit": 1,
+    "text": "ERROR(OPF-060): epub3_04-ocf_files_ocf-filename-duplicate-zip-entry-error.epub/./epub3_04-ocf_files_ocf-filename-duplicate-zip-entry-error.epub(-1,-1): Duplicate entry in the ZIP file: \"OPS/content_001.xhtml\" (file names must be unique after Unicode canonical normalization and full case folding).\nValidating using EPUB version 3.3 rules.\n\nCheck finished with errors\nMessages: 0 fatals / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filename-not-utf8-error.epub": {
+    "exit": 1,
+    "text": "FATAL(PKG-027): epub3_04-ocf_files_ocf-filename-not-utf8-error.epub/./epub3_04-ocf_files_ocf-filename-not-utf8-error.epub(-1,-1): Could not extract EPUB ZIP content, probably due to file names not encoded in UTF-8. \n\nCheck finished with errors\nMessages: 1 fatal / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filename-utf8-valid.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filepath-not-utf8-error.epub": {
+    "exit": 1,
+    "text": "FATAL(PKG-027): epub3_04-ocf_files_ocf-filepath-not-utf8-error.epub/./epub3_04-ocf_files_ocf-filepath-not-utf8-error.epub(-1,-1): Could not extract EPUB ZIP content, probably due to file names not encoded in UTF-8. \n\nCheck finished with errors\nMessages: 1 fatal / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-filepath-utf8-valid.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-mimetype-file-missing-error.epub": {
+    "exit": 1,
+    "text": "ERROR(PKG-006): epub3_04-ocf_files_ocf-mimetype-file-missing-error.epub/./epub3_04-ocf_files_ocf-mimetype-file-missing-error.epub(-1,-1): Mimetype file entry is missing or is not the first file in the archive.\nValidating using EPUB version 3.3 rules.\n\nCheck finished with errors\nMessages: 0 fatals / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-zip-mimetype-entry-extra-field-error.epub": {
+    "exit": 1,
+    "text": "ERROR(PKG-005): epub3_04-ocf_files_ocf-zip-mimetype-entry-extra-field-error.epub/./epub3_04-ocf_files_ocf-zip-mimetype-entry-extra-field-error.epub(-1,-1): The mimetype file has an extra field of length 28. The use of the extra field feature of the ZIP format is not permitted for the mimetype file.\nValidating using EPUB version 3.3 rules.\n\nCheck finished with errors\nMessages: 0 fatals / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-zip-unreadable-empty-fatal.epub": {
+    "exit": 1,
+    "text": "ERROR(PKG-003): epub3_04-ocf_files_ocf-zip-unreadable-empty-fatal.epub/./epub3_04-ocf_files_ocf-zip-unreadable-empty-fatal.epub(-1,-1): Unable to read EPUB file header. This is likely a corrupted EPUB file.\nFATAL(PKG-008): epub3_04-ocf_files_ocf-zip-unreadable-empty-fatal.epub/./epub3_04-ocf_files_ocf-zip-unreadable-empty-fatal.epub(-1,-1): Unable to read file \"zip file is empty\".\n\nCheck finished with errors\nMessages: 1 fatal / 1 error / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-zip-unreadable-image-with-epub-extension-fatal.epub": {
+    "exit": 1,
+    "text": "FATAL(PKG-004): epub3_04-ocf_files_ocf-zip-unreadable-image-with-epub-extension-fatal.epub/./epub3_04-ocf_files_ocf-zip-unreadable-image-with-epub-extension-fatal.epub(-1,-1): Corrupted EPUB ZIP header.\nFATAL(PKG-008): epub3_04-ocf_files_ocf-zip-unreadable-image-with-epub-extension-fatal.epub/./epub3_04-ocf_files_ocf-zip-unreadable-image-with-epub-extension-fatal.epub(-1,-1): Unable to read file \"zip END header not found\".\n\nCheck finished with errors\nMessages: 2 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-zip-unreadable-no-end-header-fatal.epub": {
+    "exit": 1,
+    "text": "FATAL(PKG-008): epub3_04-ocf_files_ocf-zip-unreadable-no-end-header-fatal.epub/./epub3_04-ocf_files_ocf-zip-unreadable-no-end-header-fatal.epub(-1,-1): Unable to read file \"zip END header not found\".\n\nCheck finished with errors\nMessages: 1 fatal / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "epub3_04-ocf_files_ocf-zip-valid.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  },
+  "reporting_files_minimal.epub": {
+    "exit": 0,
+    "text": "Validating using EPUB version 3.3 rules.\nNo errors or warnings detected.\nMessages: 0 fatals / 0 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n"
+  }
+}

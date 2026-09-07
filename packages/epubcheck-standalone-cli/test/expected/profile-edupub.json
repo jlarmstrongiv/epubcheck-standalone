@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--profile",
+    "edupub",
+    "valid.epub"
+  ],
+  "stdout": "Validating using EPUB version 3.3 rules.\nMessages: 0 fatals / 2 errors / 0 warnings / 0 infos\n\nEPUBCheck completed\n",
+  "stderr": "ERROR(RSC-005): valid.epub/OPS/package.opf(3,55): Error while parsing file: The dc:type identifier \"edupub\" is required.\nERROR(RSC-005): valid.epub/OPS/package.opf(3,55): Error while parsing file: At least one schema:accessibilityFeature declaration is required.\n\nCheck finished with errors\n",
+  "code": 1
+}

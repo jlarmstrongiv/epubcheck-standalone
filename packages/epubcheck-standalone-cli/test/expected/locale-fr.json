@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--locale",
+    "fr",
+    "invalid.epub"
+  ],
+  "stdout": "Vérifications faites en utilisant les règles de la version epub 2.0.1.\nMessages: 0 fatale / 3 erreurs / 1 avertissement / 0 info\n\nEPUBCheck terminé\n",
+  "stderr": "WARNING(PKG-010): invalid.epub/./invalid.epub(-1,-1): The file name \"OPS/content 001.xhtml\" contains spaces, which may create interoperability issues with older reading systems.\nERROR(OPF-049): invalid.epub/OPS/package.opf(12,34): L’id de l’élément \"content_001\" est introuvable dans le manifest.\nERROR(NCX-001): invalid.epub/OPS/toc.ncx(-1,-1): L’identifiant NCX (\" q \") ne correspond pas à l’identifiant OPF (\"NOID\").\nERROR(RSC-008): invalid.epub/OPS/toc.ncx(15,43): La ressource référencée \"OPS/content%20001.xhtml\" n’est pas déclarée dans le manifest de l’OPF.\n\nVérification terminée avec des erreurs\n",
+  "code": 1
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        date="2025-09-01"
+        name="epubcheck"
+        release="5.3.0"
+        xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
+   <date>2026-09-06T17:32:03-07:00</date>
+   <repInfo uri="epub3_04-ocf_files_ocf-filename-duplicate-after-canonical-normalization-error.epub">
+      <created>2020-07-08T11:43:18Z</created>
+      <lastModified>2017-06-14T00:00:01Z</lastModified>
+      <format>application/epub+zip</format>
+      <version>3.3</version>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="OPF-060" severity="error">OPF-060, ERROR, [Duplicate entry in the ZIP file: "EPUB/content_Á.xhtml" (file names must be unique after Unicode canonical normalization and full case folding).], ./epub3_04-ocf_files_ocf-filename-duplicate-after-canonical-normalization-error.epub</message>
+      </messages>
+      <mimeType>application/epub+zip</mimeType>
+      <properties>
+         <property>
+            <name>FileName</name>
+            <values arity="Scalar" type="String">
+               <value>epub3_04-ocf_files_ocf-filename-duplicate-after-canonical-normalization-error.epub</value>
+            </values>
+         </property>
+         <property>
+            <name>CharacterCount</name>
+            <values arity="Scalar" type="Long">
+               <value>114</value>
+            </values>
+         </property>
+         <property>
+            <name>Language</name>
+            <values arity="Scalar" type="String">
+               <value>en</value>
+            </values>
+         </property>
+         <property>
+            <name>Info</name>
+            <values arity="List" type="Property">
+               <property>
+                  <name>Identifier</name>
+                  <values arity="Scalar" type="String">
+                     <value>NOID</value>
+                  </values>
+               </property>
+               <property>
+                  <name>CreationDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2020-07-08T11:43:18Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>ModDate</name>
+                  <values arity="Scalar" type="Date">
+                     <value>2017-06-14T00:00:01Z</value>
+                  </values>
+               </property>
+               <property>
+                  <name>Title</name>
+                  <values arity="Scalar" type="String">
+                     <value>Minimal EPUB 3.0</value>
+                  </values>
+               </property>
+            </values>
+         </property>
+         <property>
+            <name>MediaTypes</name>
+            <values arity="Scalar" type="String">
+               <value>application/xhtml+xml</value>
+            </values>
+         </property>
+      </properties>
+   </repInfo>
+</jhove>

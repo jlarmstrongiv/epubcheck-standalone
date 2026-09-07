@@ -1,0 +1,3 @@
+com.thaiopensource.validate.schematron.NewSaxonSchemaReaderFactory
+com.thaiopensource.validate.schematron.SchematronSchemaReaderFactory
+com.thaiopensource.validate.xerces.XsdSchemaReaderFactory

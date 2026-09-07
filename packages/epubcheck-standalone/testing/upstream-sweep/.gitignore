@@ -1,0 +1,10 @@
+# The live upstream parity sweep was retired (its jar role is now the bump-time
+# cache builder, testing/build-console-cache.ts). check-version.ts -- the CI
+# release-eligibility checker -- still lives here and is the only tracked tool.
+# These ignores remain so any leftover working artifacts from the old sweep (or a
+# manual clone) are never accidentally committed.
+corpus/
+upstream-clone/
+ec-src/
+results.jsonl
+summary.json

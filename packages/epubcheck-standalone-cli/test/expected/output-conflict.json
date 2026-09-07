@@ -1,0 +1,12 @@
+{
+  "args": [
+    "--json",
+    "-",
+    "--out",
+    "-",
+    "valid.epub"
+  ],
+  "stdout": "",
+  "stderr": "Only one output format can be specified at a time.\n",
+  "code": 1
+}
