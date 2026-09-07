@@ -12,6 +12,16 @@ on:
     tags:
       - "v*"
 
+# The reusable ci.yml gate contains a cleanup-dist-bundle job that requests
+# actions: write. It is SKIPPED here (keep-dist-bundle=true), but a nested
+# reusable job's permission request is still validated against the caller's
+# ceiling at startup -- so the caller must be able to grant actions: write or
+# the whole run is rejected as a startup failure. contents: read covers checkout
+# in the reused build/test jobs; the publish job below narrows to its own set.
+permissions:
+  contents: read
+  actions: write
+
 jobs:
   # Reuse the exact from-source build + full test battery as the gate.
   build-and-test:
