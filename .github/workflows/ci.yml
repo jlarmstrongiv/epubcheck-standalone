@@ -138,7 +138,7 @@ jobs:
         run: tar -czf dist-bundle.tgz packages/epubcheck-standalone/dist packages/epubcheck-standalone-cli/dist
 
       - name: Upload dist bundle
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dist-bundle
           path: dist-bundle.tgz
@@ -178,7 +178,7 @@ jobs:
 
       # Restore the engine + compiled library built in `build` (skip recompiling).
       - name: Download dist bundle
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: dist-bundle
 
@@ -222,7 +222,7 @@ jobs:
       # suite rebuilds its own CLI dist via its test script; the downloaded CLI
       # dist is for the release publish job, not needed here.)
       - name: Download dist bundle
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: dist-bundle
 

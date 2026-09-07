@@ -1,6 +1,6 @@
 {
   "name": "epubcheck-standalone",
-  "version": "5.3.0-build1",
+  "version": "5.3.0-build2",
   "description": "EPUBCheck, the official W3C EPUB validator, compiled to plain JavaScript with TeaVM: an embeddable library that validates EPUBs in Node.js and the browser with byte-identical output to the Java tool, no Java to install.",
   "type": "module",
   "sideEffects": false,
