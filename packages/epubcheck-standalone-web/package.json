@@ -14,7 +14,7 @@
   "dependencies": {
     "@ant-design/icons": "6.3.2",
     "@astrojs/react": "6.0.4",
-    "antd": "6.6.1",
+    "antd": "6.6.2",
     "astro": "7.2.4",
     "comlink": "4.4.2",
     "epubcheck-standalone": "*",
