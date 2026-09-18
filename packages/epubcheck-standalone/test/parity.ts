@@ -27,7 +27,7 @@
 // NORMALIZE (byte-identical to the cache builder): mask the container path to
 // "EPUB" and the per-run UUID host; everything else compares literally.
 //
-// The committed corpus is 446 books (epubcheck-expanded + epubcheck-prezipped +
+// The committed corpus is 491 books (epubcheck-expanded + epubcheck-prezipped +
 // standard-ebooks). The generated stress books (88 MB image book, multi-GB
 // ZIP64 books) are NOT in test/corpus/ -- they are regenerable with
 // testing/generate-books.ts / testing/generate-big-books.ts and excluded from CI

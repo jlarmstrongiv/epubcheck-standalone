@@ -34,12 +34,25 @@
 // with EPUBCHECK_JAVA. The jar defaults to the one `npm run build:deps`
 // fetches; override with EPUBCHECK_JAR.
 
-import { spawn, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
+import { execFile, spawn } from 'node:child_process';
+import { access, mkdir, readFile, readdir, rm } from 'node:fs/promises';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { promisify } from 'node:util';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
+const packageVersion = (JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as { version: string }).version;
+const epubcheckVersion = packageVersion.split('-build')[0]!;
+const execFileAsync = promisify(execFile);
+
+async function pathExists(path: string): Promise<boolean> {
+  try {
+    await access(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 const rawArgs = process.argv.slice(2);
 const existingOnly = rawArgs.includes('--existing-only');
@@ -52,19 +65,30 @@ if (!corpusRoot || !outRoot) {
   process.exit(64);
 }
 
-function resolveJava() {
+// A full corpus refresh is a mirror operation: remove reports for fixtures that
+// upstream renamed or deleted before writing the current set. The opt-in
+// --existing-only mode deliberately preserves its historical subset semantics.
+if (!existingOnly) {
+  await rm(resolve(outRoot), { recursive: true, force: true });
+  await mkdir(resolve(outRoot), { recursive: true });
+}
+
+async function resolveJava(): Promise<string> {
   if (process.env.EPUBCHECK_JAVA) return process.env.EPUBCHECK_JAVA;
-  const r = spawnSync('mise', ['which', 'java'], { encoding: 'utf8' });
-  if (r.status === 0 && r.stdout) {
-    const java = r.stdout.trim();
-    if (existsSync(java)) return java;
+  try {
+    const { stdout } = await execFileAsync('mise', ['which', 'java'], { encoding: 'utf8' });
+    const java = stdout.trim();
+    if (java && await pathExists(java)) return java;
+  } catch {
+    // Fall through to PATH, which is mise-managed when invoked by package scripts.
   }
   return 'java';
 }
 
-const JAVA = resolveJava();
-const JAR = process.env.EPUBCHECK_JAR || join(root, 'build', 'epubcheck-5.3.0', 'epubcheck.jar');
-if (!existsSync(JAR)) {
+const JAVA = await resolveJava();
+const JAR = process.env.EPUBCHECK_JAR
+  || join(root, 'build', `epubcheck-${epubcheckVersion}`, 'epubcheck.jar');
+if (!(await pathExists(JAR))) {
   console.error(`epubcheck.jar not found at ${JAR} -- run: npm run build:deps`);
   process.exit(1);
 }
@@ -82,17 +106,23 @@ const FORMATS: Format[] = [
 // included only if at least one of its three expected files is already present
 // (all three are then regenerated so the triple stays consistent).
 const jobs: Job[] = [];
-for (const sub of readdirSync(resolve(corpusRoot)).sort()) {
+const corpusEntries = await readdir(resolve(corpusRoot), { withFileTypes: true });
+for (const entry of corpusEntries.sort((a, b) => a.name.localeCompare(b.name))) {
+  if (!entry.isDirectory()) continue;
+  const sub = entry.name;
   const dir = join(resolve(corpusRoot), sub);
-  if (!statSync(dir).isDirectory()) continue;
-  let books = readdirSync(dir).filter((f) => f.endsWith('.epub')).sort();
+  let books = (await readdir(dir)).filter((file) => file.endsWith('.epub')).sort();
   if (existingOnly) {
-    books = books.filter((book) =>
-      FORMATS.some((format) => existsSync(join(resolve(outRoot), sub, `${book}.${format.ext}`))),
-    );
+    const existingBooks: string[] = [];
+    for (const book of books) {
+      const checks = FORMATS.map((format) =>
+        pathExists(join(resolve(outRoot), sub, `${book}.${format.ext}`)));
+      if ((await Promise.all(checks)).some(Boolean)) existingBooks.push(book);
+    }
+    books = existingBooks;
   }
   if (books.length === 0) continue;
-  mkdirSync(join(resolve(outRoot), sub), { recursive: true });
+  await mkdir(join(resolve(outRoot), sub), { recursive: true });
   for (const book of books) jobs.push({ sub, dir, book });
 }
 

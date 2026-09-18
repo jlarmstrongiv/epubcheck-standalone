@@ -32,5 +32,4 @@
 #      unzip -p build/epubcheck-<version>-sources.jar \
 #        com/adobe/epubcheck/util/URLResourceProvider.java | shasum -a 256
 #
-# epubcheck version the hash below is for: 5.3.0
 2829d891ba2f353ed7e7d352838466d94a4c5b651dc4118d76cc2455c334b07c

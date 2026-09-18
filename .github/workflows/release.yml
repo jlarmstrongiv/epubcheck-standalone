@@ -1,6 +1,6 @@
 name: Release
 
-# Publishes to npm when a version tag is pushed (e.g. v5.3.0-build1).
+# Publishes to npm when a release tag is pushed.
 # The published artifact is BUILT FROM SOURCE in the gate: build-and-test reuses
 # ci.yml, which compiles the TeaVM engine from Java and the TypeScript into
 # dist/ (never the committed dist/ -- dist/ is gitignored) and uploads it as the

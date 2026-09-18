@@ -20,9 +20,9 @@
   "checker" : {
     "path" : "./epub2__files__epub__ocf-metainf-container-multiple-opf-error.epub",
     "filename" : "epub2__files__epub__ocf-metainf-container-multiple-opf-error.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:20:01",
-    "elapsedTime" : 5001,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:57:16",
+    "elapsedTime" : 4883,
     "nFatal" : 0,
     "nError" : 1,
     "nWarning" : 0,

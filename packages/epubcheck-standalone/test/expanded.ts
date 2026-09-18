@@ -242,7 +242,7 @@ console.log("\ndirect directory mode (dirMode: 'direct'):");
 // is 3.0." to STDOUT (a plain println, NOT a coded message) and exits 1 -- see
 // EpubChecker.processArguments (`path.matches(".+\\.[Ee][Pp][Uu][Bb]")` else
 // `mode == null && profile == null`). Verified byte-for-byte against the live
-// 5.3.0 jar (`java -jar epubcheck.jar minimal`): stdout is exactly that line,
+// live jar (`java -jar epubcheck.jar minimal`): stdout is exactly that line,
 // stderr empty, exit 1. Because dirMode 'direct' hands the engine the bare
 // directory NAME with no mode, the library reproduces this exactly -- and since
 // 'direct' is now the DEFAULT, omitting dirMode must produce the same bytes.

@@ -4,9 +4,9 @@
   "checker" : {
     "path" : "./epub2_files_epub_ocf-minimal-valid.epub",
     "filename" : "epub2_files_epub_ocf-minimal-valid.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:31:45",
-    "elapsedTime" : 4695,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 22:10:20",
+    "elapsedTime" : 5196,
     "nFatal" : 0,
     "nError" : 0,
     "nWarning" : 0,

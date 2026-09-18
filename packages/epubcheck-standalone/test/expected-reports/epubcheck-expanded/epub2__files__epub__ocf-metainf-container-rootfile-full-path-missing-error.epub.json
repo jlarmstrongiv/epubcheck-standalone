@@ -36,9 +36,9 @@
   "checker" : {
     "path" : "./epub2__files__epub__ocf-metainf-container-rootfile-full-path-missing-error.epub",
     "filename" : "epub2__files__epub__ocf-metainf-container-rootfile-full-path-missing-error.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:20:10",
-    "elapsedTime" : 221,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:57:27",
+    "elapsedTime" : 184,
     "nFatal" : 0,
     "nError" : 2,
     "nWarning" : 0,

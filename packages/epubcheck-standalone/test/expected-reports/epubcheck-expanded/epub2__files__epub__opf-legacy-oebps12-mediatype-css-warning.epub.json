@@ -52,9 +52,9 @@
   "checker" : {
     "path" : "./epub2__files__epub__opf-legacy-oebps12-mediatype-css-warning.epub",
     "filename" : "epub2__files__epub__opf-legacy-oebps12-mediatype-css-warning.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:20:13",
-    "elapsedTime" : 4490,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:57:29",
+    "elapsedTime" : 4815,
     "nFatal" : 0,
     "nError" : 2,
     "nWarning" : 1,

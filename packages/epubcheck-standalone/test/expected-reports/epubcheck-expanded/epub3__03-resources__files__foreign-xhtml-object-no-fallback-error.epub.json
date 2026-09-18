@@ -1,5 +1,21 @@
 {
   "messages" : [ {
+    "ID" : "RSC-005",
+    "severity" : "ERROR",
+    "message" : "Error while parsing file: element \"object\" missing required attribute \"data\"",
+    "additionalLocations" : 0,
+    "locations" : [ {
+      "url" : {
+        "opaque" : false,
+        "hierarchical" : true
+      },
+      "path" : "EPUB/content_001.xhtml",
+      "line" : 13,
+      "column" : 48,
+      "context" : null
+    } ],
+    "suggestion" : null
+  }, {
     "ID" : "RSC-032",
     "severity" : "ERROR",
     "message" : "Fallback must be provided for foreign resources, but found none for resource \"EPUB/slideshow.xml\" of type \"application/x-demo-slideshow2\".",
@@ -20,11 +36,11 @@
   "checker" : {
     "path" : "./epub3__03-resources__files__foreign-xhtml-object-no-fallback-error.epub",
     "filename" : "epub3__03-resources__files__foreign-xhtml-object-no-fallback-error.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:22:08",
-    "elapsedTime" : 4872,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:59:48",
+    "elapsedTime" : 5076,
     "nFatal" : 0,
-    "nError" : 1,
+    "nError" : 2,
     "nWarning" : 0,
     "nUsage" : 0
   },
@@ -43,7 +59,7 @@
     "renditionLayout" : "reflowable",
     "renditionOrientation" : "auto",
     "renditionSpread" : "auto",
-    "ePubVersion" : "3.3",
+    "ePubVersion" : "3.4",
     "isScripted" : true,
     "hasFixedFormat" : false,
     "isBackwardCompatible" : false,

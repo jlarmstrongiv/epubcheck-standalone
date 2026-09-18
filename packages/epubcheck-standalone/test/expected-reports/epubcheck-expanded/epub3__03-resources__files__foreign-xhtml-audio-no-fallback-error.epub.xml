@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        date="2025-09-01"
+        date="2026-09-15"
         name="epubcheck"
-        release="5.3.0"
+        release="5.4.0"
         xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
-   <date>2026-09-06T17:21:56-07:00</date>
+   <date>2026-09-17T21:59:39-07:00</date>
    <repInfo uri="epub3__03-resources__files__foreign-xhtml-audio-no-fallback-error.epub">
-      <created>2025-09-01T08:55:48Z</created>
+      <created>2000-01-01T00:00:00Z</created>
       <lastModified>2017-06-14T00:00:01Z</lastModified>
       <format>application/epub+zip</format>
-      <version>3.3</version>
+      <version>3.4</version>
       <status>Not well-formed</status>
       <messages>
          <message id="RSC-032" severity="error">RSC-032, ERROR, [Fallback must be provided for foreign resources, but found none for resource "EPUB/audio.foreign" of type "audio/foreign".], EPUB/content_001.xhtml (10-30)</message>
@@ -47,7 +47,7 @@
                <property>
                   <name>CreationDate</name>
                   <values arity="Scalar" type="Date">
-                     <value>2025-09-01T08:55:48Z</value>
+                     <value>2000-01-01T00:00:00Z</value>
                   </values>
                </property>
                <property>

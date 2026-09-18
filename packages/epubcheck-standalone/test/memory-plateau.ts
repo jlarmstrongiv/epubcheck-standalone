@@ -33,15 +33,15 @@ const MiB = 1024 * 1024;
 
 // --- calibration -------------------------------------------------------------
 // Measured plateaus (warm, 30 back-to-back small-book runs, in-process reuse):
-//   Node 24.19.0 (repo's pinned mise runtime): ~1014 MB
+//   Pinned Node runtime (calibration baseline): ~1014 MB
 // The RSS floor tracks the Node version -- newer Node plateaus lower. The
-// package supports Node >= 24, so the ceiling must clear the highest known
-// plateau (Node 24, ~1014 MB) with headroom for runtime variance, while staying
+// ceiling must clear the highest known supported-runtime plateau (~1014 MB)
+// with headroom for runtime variance, while staying
 // tight enough that a real leak trips it fast.
 //
-// 1.5 GB gives ~520 MB of headroom over the Node 24 plateau (and ~630 MB over
-// the pinned Node 26 plateau) yet still catches the historical leak within two
-// runs: a ~450 MB/run leak past a 1014 MB plateau reaches 1464 MB after one
+// 1.5 GB gives ~520 MB of headroom over the measured plateau, yet still
+// catches the historical leak within two runs: a ~450 MB/run leak past a 1014 MB
+// plateau reaches 1464 MB after one
 // leaking run and 1914 MB after two -- over the ceiling. On the pinned runtime
 // it trips even sooner. So the bound absorbs normal cross-runtime variance but
 // cannot absorb a genuine per-run leak.

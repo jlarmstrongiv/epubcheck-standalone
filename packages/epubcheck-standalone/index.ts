@@ -1,9 +1,9 @@
 // epubcheck-standalone -- Node public API.
 //
-// This is the real epubcheck 5.3.0 (w3c/epubcheck, the Java validator) compiled
+// This is the pinned epubcheck release (w3c/epubcheck, the Java validator) compiled
 // to plain JavaScript with TeaVM (JS backend). Output is byte-for-byte identical
-// to the native epubcheck (verified across the 446-book committed corpus with
-// strict message + exit-code parity, and against 105 committed report files).
+// to the native epubcheck (verified across the 491-book committed corpus with
+// strict message + exit-code parity, and against 1,473 committed report files).
 //
 // ISOMORPHIC API. There is ONE entry point, `validate(source, options)`, and it
 // is the SAME in Node and in the browser -- the package's `exports` conditions
@@ -74,8 +74,8 @@ export { EPUBCHECK_VERSION };
  *                 `--mode exp` automatically), or raw bytes (`Uint8Array`). Your
  *                 own implementation of either source contract works too.
  *                 `validate` disposes the source when the run ends.
- * @param options  Optional `name`, `args`, `customMessages`, `reports`, `tz`,
- *                 `onMessage`.
+ * @param options  Optional `name`, `args`, `customMessages`, `reports`,
+ *                 `maxOfEachMessage`, `tz`, and live event callbacks.
  * @returns The structured `EpubCheckResult`.
  */
 export function validate(

@@ -34,8 +34,8 @@ interface InputCardProps {
   onCancel: () => void;
   uploadProps: UploadProps;
   runSample: (name: string) => void;
-  fileInputRef: RefObject<HTMLInputElement>;
-  folderInputRef: RefObject<HTMLInputElement>;
+  fileInputRef: RefObject<HTMLInputElement | null>;
+  folderInputRef: RefObject<HTMLInputElement | null>;
   handleFilePicked: (event: ChangeEvent<HTMLInputElement>) => void;
   handleFolderPicked: (event: ChangeEvent<HTMLInputElement>) => void;
   url: string;

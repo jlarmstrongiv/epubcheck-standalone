@@ -1,5 +1,5 @@
 // The parity matrix: scenarios compared byte-for-byte between the real
-// epubcheck 5.3.0 jar and this CLI. Each case runs from the fixtures directory
+// upstream epubcheck jar and this CLI. Each case runs from the fixtures directory
 // with the given argv. Cases whose args contain the literal token "OUTFILE"
 // write a report to a file (the token is replaced with a temp path, and the
 // file's bytes are compared too).
@@ -48,6 +48,16 @@ export const CASES = [
   { name: "valid-json-file", args: ["-j", "OUTFILE", "valid.epub"], outExt: "json" },
   { name: "valid-xml-file", args: ["-o", "OUTFILE", "valid.epub"], outExt: "xml" },
 
+  // --- report location caps ---
+  // The cap applies to all XML-family/JSON reports but never to live console.
+  { name: "max-json-zero", args: ["--maxOfEachMessage", "0", "--json", "-", "invalid.epub"] },
+  { name: "max-xml-zero", args: ["--maxofeachmessage", "0", "--out", "-", "invalid.epub"] },
+  { name: "max-xmp-zero", args: ["--maxOfEachMessage", "0", "--xmp", "-", "invalid.epub"] },
+  { name: "max-console-unchanged", args: ["--maxOfEachMessage", "0", "invalid.epub"] },
+  { name: "max-json-unlimited", args: ["--maxOfEachMessage", "unlimited", "--json", "-", "invalid.epub"] },
+  { name: "max-json-negative", args: ["--maxOfEachMessage", "-2", "--json", "-", "invalid.epub"] },
+  { name: "max-unicode-digit", args: ["--maxOfEachMessage", "١", "valid.epub"] },
+
   // --- help / version ---
   { name: "help", args: ["--help"] },
   { name: "help-short", args: ["-h"] },
@@ -63,6 +73,12 @@ export const CASES = [
   { name: "missing-file", args: ["does-not-exist.epub"] },
   { name: "two-positionals", args: ["valid.epub", "extra.epub"] },
   { name: "output-conflict", args: ["--json", "-", "--out", "-", "valid.epub"] },
+  { name: "max-missing", args: ["--maxOfEachMessage"] },
+  { name: "max-invalid", args: ["--maxOfEachMessage", "1.5", "valid.epub"] },
+  { name: "max-unlimited-case-sensitive", args: ["--maxOfEachMessage", "Unlimited", "valid.epub"] },
+  { name: "max-overflow", args: ["--maxOfEachMessage", "2147483648", "valid.epub"] },
+  { name: "max-trailing-newline", args: ["--maxOfEachMessage", "1\n", "valid.epub"] },
+  { name: "max-invalid-after-locale", args: ["--locale", "fr", "--maxOfEachMessage", "bad", "valid.epub"] },
 
   // --- profile: default and invalid (both -> default) ---
   { name: "profile-default", args: ["--profile", "default", "valid.epub"] },
@@ -116,7 +132,7 @@ export const CASES = [
   { name: "listchecks-en-US", args: ["--listChecks", "--locale", "en-US"] },
   { name: "listchecks-pl", args: ["--listChecks", "--locale", "pl"] },
   // listChecks to FILE with a locale: localized dictionary in the file AND the
-  // localized completion summary on stdout (the to-file path prints the summary).
+  // The upstream to-file path produces no stdout.
   { name: "listchecks-de-file", args: ["--listChecks", "OUTFILE", "--locale", "de"], outExt: "txt" },
 
   // --- -o/-j/-x auto-derive with no input path (M3): the jar NPEs internally ---

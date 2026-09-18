@@ -1,14 +1,39 @@
 {
-  "messages" : [ ],
+  "messages" : [ {
+    "ID" : "RSC-005",
+    "severity" : "ERROR",
+    "message" : "Error while parsing file: attribute \"aria-labelledby\" not allowed here; expected attribute \"accesskey\", \"aria-expanded\", \"autocapitalize\", \"autocorrect\", \"autofocus\", \"class\", \"contenteditable\", \"dir\", \"draggable\", \"enterkeyhint\", \"epub:type\", \"headingoffset\", \"headingreset\", \"hidden\", \"id\", \"inert\", \"inputmode\", \"is\", \"lang\", \"nonce\", \"ns:alphabet\", \"ns:ph\", \"onauxclick\", \"onbeforeinput\", \"onbeforematch\", \"onbeforetoggle\", \"onblur\", \"oncancel\", \"oncanplay\", \"oncanplaythrough\", \"onchange\", \"onclick\", \"onclose\", \"oncommand\", \"oncontextlost\", \"oncontextmenu\", \"oncontextrestored\", \"oncopy\", \"oncuechange\", \"oncut\", \"ondblclick\", \"ondrag\", \"ondragend\", \"ondragenter\", \"ondragleave\", \"ondragover\", \"ondragstart\", \"ondrop\", \"ondurationchange\", \"onemptied\", \"onended\", \"onerror\", \"onfocus\", \"onformdata\", \"ongotpointercapture\", \"oninput\", \"oninvalid\", \"onkeydown\", \"onkeypress\", \"onkeyup\", \"onload\", \"onloadeddata\", \"onloadedmetadata\", \"onloadstart\", \"onlostpointercapture\", \"onmousedown\", \"onmouseenter\", \"onmouseleave\", \"onmousemove\", \"onmouseout\", \"onmouseover\", \"onmouseup\", \"onpaste\", \"onpause\", \"onplay\", \"onplaying\", \"onpointercancel\", \"onpointerdown\", \"onpointerenter\", \"onpointerleave\", \"onpointermove\", \"onpointerout\", \"onpointerover\", \"onpointerrawupdate\", \"onpointerup\", \"onprogress\", \"onratechange\", \"onreset\", \"onresize\", \"onscroll\", \"onscrollend\", \"onsecuritypolicyviolation\", \"onseeked\", \"onseeking\", \"onselect\", \"onslotchange\", \"onstalled\", \"onsubmit\", \"onsuspend\", \"ontimeupdate\", \"ontoggle\", \"ontouchcancel\", \"ontouchend\", \"ontouchmove\", \"ontouchstart\", \"onvolumechange\", \"onwaiting\", \"onwheel\", \"popover\", \"role\", \"slot\", \"spellcheck\", \"style\", \"tabindex\", \"title\", \"translate\", \"writingsuggestions\", \"xml:base\", \"xml:lang\" or \"xml:space\" (with xmlns:ns=\"http://www.w3.org/2001/10/synthesis\")",
+    "additionalLocations" : 0,
+    "locations" : [ {
+      "url" : {
+        "opaque" : false,
+        "hierarchical" : true
+      },
+      "path" : "epub/toc.xhtml",
+      "line" : 7,
+      "column" : 76,
+      "context" : null
+    }, {
+      "url" : {
+        "opaque" : false,
+        "hierarchical" : true
+      },
+      "path" : "epub/toc.xhtml",
+      "line" : 207,
+      "column" : 79,
+      "context" : null
+    } ],
+    "suggestion" : null
+  } ],
   "customMessageFileName" : null,
   "checker" : {
     "path" : "./jane-austen_pride-and-prejudice.epub",
     "filename" : "jane-austen_pride-and-prejudice.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:32:29",
-    "elapsedTime" : 6021,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 22:11:11",
+    "elapsedTime" : 6970,
     "nFatal" : 0,
-    "nError" : 0,
+    "nError" : 1,
     "nWarning" : 0,
     "nUsage" : 0
   },
@@ -27,7 +52,7 @@
     "renditionLayout" : "reflowable",
     "renditionOrientation" : "auto",
     "renditionSpread" : "auto",
-    "ePubVersion" : "3.3",
+    "ePubVersion" : "3.4",
     "isScripted" : false,
     "hasFixedFormat" : false,
     "isBackwardCompatible" : true,

@@ -20,9 +20,9 @@
   "checker" : {
     "path" : "./epub3__04-ocf__files__ocf-container-file-missing-fatal.epub",
     "filename" : "epub3__04-ocf__files__ocf-container-file-missing-fatal.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:24:23",
-    "elapsedTime" : 206,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 22:01:56",
+    "elapsedTime" : 203,
     "nFatal" : 1,
     "nError" : 0,
     "nWarning" : 0,

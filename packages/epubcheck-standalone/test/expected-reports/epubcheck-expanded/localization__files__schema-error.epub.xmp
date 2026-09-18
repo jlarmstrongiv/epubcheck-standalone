@@ -7,25 +7,25 @@
                         xmlns:stFnt="http://ns.adobe.com/xap/1.0/sType/Font#"
                         xmlns:xmp="http://ns.adobe.com/xap/1.0/"
                         xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
-                        dc:format="application/epub+zip;version=3.3"
+                        dc:format="application/epub+zip;version=3.4"
                         dc:identifier="NOID"
                         dc:language="en"
                         extended-properties:Characters="142"
                         rdf:about=""
-                        xmp:CreateDate="2025-09-01T08:55:48Z">
+                        xmp:CreateDate="2000-01-01T00:00:00Z">
          <dc:title>
             <rdf:Alt>
                <rdf:li xml:lang="x-default">Minimal EPUB 3.0</rdf:li>
             </rdf:Alt>
          </dc:title>
          <premis:hasEvent rdf:parseType="Resource">
-            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-06T17:31:30-07:00</premis:hasEventDateTime>
+            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-17T22:10:03-07:00</premis:hasEventDateTime>
             <premis:hasEventType rdf:resource="http://id.loc.gov/vocabulary/preservation/eventType/val"/>
             <premis:hasEventDetail>Not well-formed</premis:hasEventDetail>
             <premis:hasEventOutcomeInformation>
                <rdf:Seq>
                   <rdf:li rdf:parseType="Resource">
-                     <premis:hasEventOutcome>RSC-005, ERROR, Error while parsing file: element "invalid" not allowed here; expected the element end-tag, text, element "a", "abbr", "address", "area", "article", "aside", "audio", "b", "bdi", "bdo", "blockquote", "br", "button", "canvas", "cite", "code", "data", "datalist", "del", "details", "dfn", "dialog", "div", "dl", "em", "embed", "fieldset", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "i", "iframe", "img", "input", "ins", "kbd", "label", "link", "main", "map", "mark", "menu", "meta", "meter", "nav", "ns1:switch", "ns1:trigger", "ns2:math", "ns3:svg", "object", "ol", "output", "p", "picture", "pre", "progress", "q", "ruby", "s", "samp", "script", "search", "section", "select", "slot", "small", "span", "strong", "sub", "sup", "table", "template", "textarea", "time", "u", "ul", "var", "video" or "wbr" (with xmlns:ns1="http://www.idpf.org/2007/ops" xmlns:ns2="http://www.w3.org/1998/Math/MathML" xmlns:ns3="http://www.w3.org/2000/svg") or an element from another namespace</premis:hasEventOutcome>
+                     <premis:hasEventOutcome>RSC-005, ERROR, Error while parsing file: element "invalid" not allowed here; expected the element end-tag, text, element "a", "abbr", "address", "area", "article", "aside", "audio", "b", "bdi", "bdo", "blockquote", "br", "button", "canvas", "cite", "code", "data", "datalist", "del", "details", "dfn", "dialog", "div", "dl", "em", "embed", "fieldset", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "i", "iframe", "img", "input", "ins", "kbd", "label", "link", "main", "map", "mark", "menu", "meta", "meter", "nav", "ns1:switch", "ns1:trigger", "ns2:math", "ns3:svg", "object", "ol", "output", "p", "picture", "pre", "progress", "q", "ruby", "s", "samp", "script", "search", "section", "select", "selectedcontent", "slot", "small", "span", "strong", "sub", "sup", "table", "template", "textarea", "time", "u", "ul", "var", "video" or "wbr" (with xmlns:ns1="http://www.idpf.org/2007/ops" xmlns:ns2="http://www.w3.org/1998/Math/MathML" xmlns:ns3="http://www.w3.org/2000/svg") or an element from another namespace</premis:hasEventOutcome>
                      <premis:hasEventOutcomeDetail>
                         <rdf:Seq>
                            <rdf:li premis:hasEventOutcomeDetailNote="EPUB/content_001.xhtml (10-12)"/>
@@ -36,7 +36,7 @@
             </premis:hasEventOutcomeInformation>
             <premis:hasEventRelatedAgent rdf:parseType="Resource">
                <premis:hasAgentType rdf:resource="http://id.loc.gov/vocabulary/preservation/agentType/sof"/>
-               <premis:hasAgentName>epubcheck 5.3.0</premis:hasAgentName>
+               <premis:hasAgentName>epubcheck 5.4.0</premis:hasAgentName>
             </premis:hasEventRelatedAgent>
          </premis:hasEvent>
          <premis:hasSignificantProperties>

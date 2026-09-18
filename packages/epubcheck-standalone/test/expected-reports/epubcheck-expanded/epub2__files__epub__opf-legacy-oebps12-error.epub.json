@@ -20,9 +20,9 @@
   "checker" : {
     "path" : "./epub2__files__epub__opf-legacy-oebps12-error.epub",
     "filename" : "epub2__files__epub__opf-legacy-oebps12-error.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:20:12",
-    "elapsedTime" : 235,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:57:28",
+    "elapsedTime" : 245,
     "nFatal" : 0,
     "nError" : 1,
     "nWarning" : 0,

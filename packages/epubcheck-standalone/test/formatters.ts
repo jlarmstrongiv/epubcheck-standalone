@@ -39,9 +39,75 @@ import {
   formatXmpReport,
 } from '../dist/formatters/index.js';
 import type { ReportData } from '../dist/formatters/index.js';
+import assert from 'node:assert/strict';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+// Fast, synthetic coverage for epubcheck's configurable per-message
+// location cap. This runs before the corpus parity sweep and pins the boundary
+// values from upstream's reporting feature tests without needing a fixture.
+const cappedData: ReportData = {
+  messages: Array.from({ length: 30 }, (_, i) => ({
+    id: 'RSC-005',
+    severity: 'ERROR' as const,
+    message: 'Synthetic repeated message',
+    suggestion: '',
+    path: `EPUB/content-${String(i).padStart(2, '0')}.xhtml`,
+    line: i + 1,
+    column: 1,
+    context: null,
+    sequence: i,
+  })),
+  features: [],
+};
+const fixedJsonOptions = {
+  filename: 'max.epub',
+  checkDate: '09-17-2026 12:00:00',
+  elapsedTime: 1,
+};
+function jsonGroup(maxOfEachMessage?: number): {
+  locations: unknown[];
+  additionalLocations: number;
+} {
+  const options = maxOfEachMessage === undefined
+    ? fixedJsonOptions
+    : { ...fixedJsonOptions, maxOfEachMessage };
+  const parsed = JSON.parse(formatJsonReport(cappedData, options)) as {
+    messages: Array<{ locations: unknown[]; additionalLocations: number }>;
+  };
+  return parsed.messages[0]!;
+}
+assert.deepEqual(
+  [jsonGroup().locations.length, jsonGroup().additionalLocations],
+  [25, 5],
+  'default maxOfEachMessage is 25',
+);
+assert.deepEqual(
+  [jsonGroup(10).locations.length, jsonGroup(10).additionalLocations],
+  [10, 20],
+  'a positive maxOfEachMessage caps JSON locations',
+);
+assert.deepEqual(
+  [jsonGroup(0).locations.length, jsonGroup(0).additionalLocations],
+  [0, 30],
+  'zero retains no JSON locations',
+);
+assert.deepEqual(
+  [jsonGroup(-1).locations.length, jsonGroup(-1).additionalLocations],
+  [30, 0],
+  'a negative maxOfEachMessage is unlimited',
+);
+const cappedXml = formatXmlReport(cappedData, {
+  filename: 'max.epub',
+  generationDate: '2026-09-17T12:00:00-07:00',
+  maxOfEachMessage: 10,
+});
+assert.equal(cappedXml.match(/<message\b/g)?.length, 10, 'the XML report uses the same cap');
+assert.throws(
+  () => formatJsonReport(cappedData, { ...fixedJsonOptions, maxOfEachMessage: 1.5 }),
+  /must be an integer/,
+);
 
 const here = dirname(fileURLToPath(import.meta.url));
 const expectedRoot = join(here, 'expected-reports');

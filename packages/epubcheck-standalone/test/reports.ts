@@ -10,7 +10,7 @@
 //   PARITY=full node test/reports.ts    every book with committed ground truth
 //   PARITY=120 node test/reports.ts     ~120 stable-sampled books
 //
-// The report cache covers ALL 446 committed books (rebuilt from the jar by
+// The report cache covers ALL 491 committed books (rebuilt from the jar by
 // npm run test:reports:generate -> testing/report-groundtruth.ts). The PARITY
 // dial (test/sample.ts, the SAME dial + stable sample the console runner uses)
 // picks how many the everyday run checks; `full` checks them all.
@@ -27,7 +27,9 @@
 
 import { validatePool } from './validate-pool.ts';
 import { parseDial, inSample } from './sample.ts';
-import type { EpubCheckResult } from '../dist/index.js';
+import { validate, type EpubCheckResult } from '../dist/index.js';
+import { fs } from '../dist/plugins.js';
+import assert from 'node:assert/strict';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -37,6 +39,32 @@ const expectedRoot = join(here, 'expected-reports');
 const corpusRoot = join(here, 'corpus');
 const CONCURRENCY = Number(process.env.CONCURRENCY || 6);
 const dial = parseDial();
+
+// Pin the public validate() option all the way through validate-core/run-core
+// into the JSON formatter. The report retains ten locations while the result's
+// live message data remains complete and uncapped.
+const maxCountBook = join(corpusRoot, 'epubcheck-expanded', 'reporting__files__messages-maxcount.epub');
+const maxCountResult = await validate(await fs(maxCountBook), {
+  reports: ['json'],
+  maxOfEachMessage: 10,
+});
+const maxCountJson = JSON.parse(maxCountResult.reports?.json ?? '{}') as {
+  messages?: Array<{
+    ID: string;
+    message: string;
+    locations: unknown[];
+    additionalLocations: number;
+  }>;
+};
+const cappedGroup = maxCountJson.messages?.find((message) => message.additionalLocations === 20);
+assert.ok(cappedGroup, 'max-count fixture must contain a message group with 20 omitted locations');
+assert.equal(cappedGroup.locations.length, 10, 'validate maxOfEachMessage retains ten locations');
+assert.equal(
+  maxCountResult.messages.filter((message) =>
+    message.id === cappedGroup.ID && message.message === cappedGroup.message).length,
+  30,
+  'validate result.messages remains uncapped',
+);
 
 const canonUuid = (text: string): string => text.replaceAll(
   /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}(?=\.epubcheck\.w3c\.org)/g,

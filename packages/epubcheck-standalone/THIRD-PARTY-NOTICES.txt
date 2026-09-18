@@ -4,21 +4,22 @@ THIRD-PARTY NOTICES for epubcheck-standalone
 GENERATED FILE -- do not hand-edit.
 Produced by scripts/generate-notices.ts from the epubcheck release license
 inventory (build/epubcheck-THIRD-PARTY.txt, build/epubcheck-LICENSE.txt), the
-build-input versions pinned in mise.toml, and the TeaVM version pinned in
-teavm/build.gradle.kts. To update, run: npm run generate:notices
+build-input versions pinned in mise.toml, the resolved EPUBCheck release JARs,
+and the TeaVM version pinned in teavm/build.gradle.kts. To update, run:
+mise exec -- npm run generate:notices
 
 The shipped engine (dist/epubcheck-engine.js) is produced by compiling epubcheck
-5.3.0 and its Java dependencies to plain JavaScript with TeaVM
+5.4.0 and its Java dependencies to plain JavaScript with TeaVM
 (github.com/konsoletyper/teavm). It therefore embeds code from the components
 below. This file reproduces the license inventory published with epubcheck
-5.3.0, plus the extra components this project adds for the engine build,
+5.4.0, plus the extra components this project adds for the engine build,
 plus the toolchain that generated the engine.
 
 --------------------------------------------------------------------------------
 1. Primary component
 --------------------------------------------------------------------------------
 
-epubcheck, 5.3.0  (w3c/epubcheck)
+epubcheck, 5.4.0  (w3c/epubcheck)
   BSD 3-Clause License.
   Copyright © 2007 Adobe Systems Incorporated
   Copyright © 2008 IDPF
@@ -26,13 +27,14 @@ epubcheck, 5.3.0  (w3c/epubcheck)
   https://github.com/w3c/epubcheck
 
 --------------------------------------------------------------------------------
-2. Dependencies bundled inside epubcheck 5.3.0 (compiled into the engine)
-   (verbatim from the epubcheck 5.3.0 THIRD-PARTY.txt inventory)
+2. Dependencies bundled inside epubcheck 5.4.0 (compiled into the engine)
+   (license inventory from epubcheck 5.4.0 THIRD-PARTY.txt; resolved
+   Jackson versions from the fetched release JARs)
 --------------------------------------------------------------------------------
 
-  Jackson-annotations, 2.18.2 .................................. Apache License, Version 2.0
-  Jackson-core, 2.18.2 ......................................... Apache License, Version 2.0
-  jackson-databind, 2.18.2 ..................................... Apache License, Version 2.0
+  Jackson-annotations, 2.18.9 .................................. Apache License, Version 2.0
+  Jackson-core, 2.18.8 ......................................... Apache License, Version 2.0
+  jackson-databind, 2.18.9 ..................................... Apache License, Version 2.0
   error-prone annotations, 2.36.0 .............................. Apache License, Version 2.0
   Guava InternalFutureFailureAccess and InternalFutures, 1.0.3 . Apache License, Version 2.0
   Guava: Google Core Libraries for Java, 33.4.8-jre ............ Apache License, Version 2.0

@@ -58,6 +58,7 @@ const KEYS = [
   "mode_version_ignored", "mode_required", "validating_version_message", "output_type_conflict",
   "file_not_found", "directory_not_found", "deleting_archive", "epubcheck_completed", "error_creating_config_file",
   "expected_message_filename", "unrecognized_argument", "epubcheck_version_text", "incorrect_locale", "missing_locale",
+  "incorrect_maxofeach", "missing_maxofeach",
 ];
 
 /** Minimal java.util.Properties parser for the UTF-8 bundles: handles line

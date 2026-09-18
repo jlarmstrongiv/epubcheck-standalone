@@ -84,7 +84,7 @@ public class TInputStreamReader extends TReader {
     @Override
     public int read(char[] cbuf, int off, int len) throws IOException {
         // --- epubcheck-standalone TeaVM shim fix (fork of the stock classlib file) ---
-        // Stock 0.15.0 bug: when the underlying stream hits EOF exactly at a decode-buffer
+        // Stock classlib bug: when the underlying stream hits EOF exactly at a decode-buffer
         // boundary, fillBuffer(force=true) sets `eof` but still returns true, and this method
         // returned 0 for a len>0 request on a blocking stream — a JDK Reader contract
         // violation. Jing's JavaCC JavaCharStream.FillBuff treats only -1 as EOF; a 0 return

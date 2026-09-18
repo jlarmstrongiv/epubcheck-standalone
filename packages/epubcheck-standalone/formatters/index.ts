@@ -3,8 +3,8 @@
 //
 // The native epubcheck CLI can write three report documents, one per run:
 //   --json  com.adobe.epubcheck.reporting.CheckingReport  (Jackson)
-//   --out   com.adobe.epubcheck.util.XmlReportImpl        (DOM -> Saxon-HE 11.4)
-//   --xmp   com.adobe.epubcheck.util.XmpReportImpl        (DOM -> Saxon-HE 11.4)
+//   --out   com.adobe.epubcheck.util.XmlReportImpl        (DOM -> Saxon-HE)
+//   --xmp   com.adobe.epubcheck.util.XmpReportImpl        (DOM -> Saxon-HE)
 //
 // This module reproduces those three writers in pure, environment-neutral ESM,
 // fed by the complete REPORT DATA of one validation run ({ messages, features }:
@@ -18,10 +18,10 @@
 //
 // Recovered from the retired wasm-era implementation (git 25b4b40, root
 // formatters.mjs; re-vendored at 4178e25) and ported to first-class TypeScript.
-// The logic is unchanged from that proven implementation (449/449 corpus books
-// x 3 formats byte-identical to `java -jar epubcheck.jar` at the time).
+// The logic is unchanged from that implementation, which was verified across
+// the full corpus in all three formats against `java -jar epubcheck.jar`.
 //
-// FIDELITY: every aggregation rule is ported from the epubcheck 5.3.0 sources
+// FIDELITY: every aggregation rule is ported from the upstream sources
 // (CheckingReport / CheckerMetadata / PublicationMetadata / ItemMetadata /
 // CheckMessage / EPUBLocation / XmlReportAbstract / XmlReportImpl /
 // XmpReportImpl), and the two serializers reproduce the exact bytes of the
@@ -29,7 +29,7 @@
 //   - JSON: Jackson 2.x DefaultPrettyPrinter ("key" : value, 2-space object
 //     indent, single-line arrays with ", " separators), ESCAPE_NON_ASCII
 //     (every char > 0x7F as \uXXXX, uppercase hex).
-//   - XML/XMP: Saxon-HE 11.4 XMLEmitter/XMLIndenter (3-space indent, sorted
+//   - XML/XMP: Saxon-HE XMLEmitter/XMLIndenter (3-space indent, sorted
 //     attributes after sorted namespace declarations -- the Xerces
 //     NamedNodeMap sorts by node name -- Saxon's exact attribute-wrapping
 //     length rule and escape tables, trailing newline).
@@ -61,7 +61,8 @@
 
 import { EPUBCHECK_VERSION } from '../version.js';
 
-const MAX_LOCATIONS = 25; // CheckMessage.MAX_LOCATIONS
+/** Upstream Report.DEFAULT_MAX_OF_EACH_MESSAGE. Negative values mean unlimited. */
+export const DEFAULT_MAX_OF_EACH_MESSAGE = 25;
 
 // ---------------------------------------------------------------------------
 // public report-data types (the formatter input contract; also the shape
@@ -160,6 +161,13 @@ export interface FormatterOptions {
    * like native ("yyyy-MM-ddTHH:mm:ss+hh:mm", local time).
    */
   generationDate?: string | Date;
+  /**
+   * Maximum distinct locations retained for each message-ID-and-text group.
+   * Defaults to 25, matching
+   * `Report.DEFAULT_MAX_OF_EACH_MESSAGE`; any negative integer removes the
+   * limit. Omitted locations are reflected in JSON's `additionalLocations`.
+   */
+  maxOfEachMessage?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -205,12 +213,17 @@ interface ResolvedOptions {
   checkDate: string | Date;
   elapsedTime: number;
   generationDate: string | Date;
+  maxOfEachMessage: number;
 }
 
 function resolveOptions(options: FormatterOptions): ResolvedOptions {
   const filename = options && options.filename;
   if (typeof filename !== 'string' || filename.length === 0) {
     throw new Error('formatters: options.filename (string) is required -- the EPUB file name');
+  }
+  const maxOfEachMessage = options.maxOfEachMessage ?? DEFAULT_MAX_OF_EACH_MESSAGE;
+  if (!Number.isInteger(maxOfEachMessage)) {
+    throw new Error('formatters: options.maxOfEachMessage must be an integer');
   }
   return {
     filename,
@@ -221,6 +234,7 @@ function resolveOptions(options: FormatterOptions): ResolvedOptions {
     generationDate: options.generationDate !== undefined
       ? options.generationDate
       : formatGenerationDate(new Date()),
+    maxOfEachMessage,
   };
 }
 
@@ -288,10 +302,11 @@ function locationCompare(a: CheckLocation, b: CheckLocation): number {
 
 /**
  * CheckMessage.addCheckMessage: group tap messages by (ID, text), dedupe
- * locations, cap at MAX_LOCATIONS with the additionalLocations counter.
+ * retained locations, and apply the report's configurable location cap.
  */
 function addCheckMessage(
   list: CheckMessageGroup[],
+  maxCount: number,
   tap: ReportMessage,
   mapPath: PathMapper['mapPath'],
   mapText: PathMapper['mapText'],
@@ -310,20 +325,18 @@ function addCheckMessage(
       severity: tap.severity,
       message: text,
       additionalLocations: 0,
-      locations: [location],
+      locations: [],
       // CheckMessage: "".equals(suggestion) ? null : suggestion
       suggestion: tap.suggestion === '' ? null : tap.suggestion,
     };
     list.push(cm);
-  } else if (!cm.locations.some((l) => locationEquals(l, location))) {
-    if (cm.locations.length === MAX_LOCATIONS) {
-      cm.additionalLocations++;
-    } else if (cm.locations.length < MAX_LOCATIONS) {
-      cm.locations.push(location);
-    } else {
-      cm.additionalLocations++;
-      cm.locations.pop();
-    }
+  }
+  // This deliberately checks only retained locations, like upstream's
+  // List.contains(). Once the cap is reached, every further occurrence is an
+  // additional location even if an identical omitted location repeats.
+  if (!cm.locations.some((l) => locationEquals(l, location))) {
+    if (maxCount < 0 || cm.locations.length < maxCount) cm.locations.push(location);
+    else cm.additionalLocations++;
   }
   return cm;
 }
@@ -575,7 +588,9 @@ export function formatJsonReport(reportData: ReportData, options: FormatterOptio
 
   // --- collect messages (CheckingReport.message) ---
   const messages: CheckMessageGroup[] = [];
-  for (const tap of reportData.messages) addCheckMessage(messages, tap, mapPath, mapText);
+  for (const tap of reportData.messages) {
+    addCheckMessage(messages, opts.maxOfEachMessage, tap, mapPath, mapText);
+  }
 
   // --- collect publication + items (CheckingReport.info) ---
   const pub: PublicationMetadata = {
@@ -760,6 +775,7 @@ interface XmlAbstractState {
 /** XmlReportAbstract state + info() aggregation. */
 function xmlAbstractAggregate(
   reportData: ReportData,
+  maxOfEachMessage: number,
   mapPath: PathMapper['mapPath'],
   mapText: PathMapper['mapText'],
 ): XmlAbstractState {
@@ -779,10 +795,10 @@ function xmlAbstractAggregate(
   };
   for (const tap of reportData.messages) {
     switch (tap.severity) {
-      case 'FATAL': addCheckMessage(st.fatalErrors, tap, mapPath, mapText); break;
-      case 'ERROR': addCheckMessage(st.errors, tap, mapPath, mapText); break;
-      case 'WARNING': addCheckMessage(st.warns, tap, mapPath, mapText); break;
-      case 'USAGE': addCheckMessage(st.hints, tap, mapPath, mapText); break;
+      case 'FATAL': addCheckMessage(st.fatalErrors, maxOfEachMessage, tap, mapPath, mapText); break;
+      case 'ERROR': addCheckMessage(st.errors, maxOfEachMessage, tap, mapPath, mapText); break;
+      case 'WARNING': addCheckMessage(st.warns, maxOfEachMessage, tap, mapPath, mapText); break;
+      case 'USAGE': addCheckMessage(st.hints, maxOfEachMessage, tap, mapPath, mapText); break;
       default: break; // INFO / SUPPRESSED dropped
     }
   }
@@ -909,7 +925,7 @@ class XmlBuilder {
   }
 }
 
-// --- Saxon-HE 11.4 XMLEmitter/XMLIndenter emulation -------------------------
+// --- Saxon-HE XMLEmitter/XMLIndenter emulation ------------------------------
 
 function saxonEscapeText(s: string): string {
   let out = '';
@@ -945,7 +961,7 @@ function saxonEscapeAttr(s: string): string {
 }
 
 /**
- * Serialize one element tree exactly as Saxon-HE 11.4 does for
+ * Serialize one element tree exactly as the bundled Saxon-HE does for
  * transformer.setOutputProperty(INDENT, "yes") over a Xerces DOM:
  * - 3-space indentation; elements with a text child stay on one line;
  * - namespace declarations (from xmlns:* attrs) before attributes, sorted by
@@ -1077,12 +1093,12 @@ function xmlMessages(
 
 /**
  * Format the XML report -- byte-identical to `epubcheck --out`
- * (com.adobe.epubcheck.util.XmlReportImpl rendered by Saxon-HE 11.4).
+ * (com.adobe.epubcheck.util.XmlReportImpl rendered by Saxon-HE).
  */
 export function formatXmlReport(reportData: ReportData, options: FormatterOptions): string {
   const opts = resolveOptions(options);
   const { mapPath, mapText } = makePathMapper(opts.filename);
-  const st = xmlAbstractAggregate(reportData, mapPath, mapText);
+  const st = xmlAbstractAggregate(reportData, opts.maxOfEachMessage, mapPath, mapText);
   const generationDate = opts.generationDate instanceof Date
     ? formatGenerationDate(opts.generationDate) : opts.generationDate;
 
@@ -1223,12 +1239,12 @@ function xmpEventOutcome(x: XmlBuilder, list: CheckMessageGroup[], sev: string):
 
 /**
  * Format the XMP report -- byte-identical to `epubcheck --xmp`
- * (com.adobe.epubcheck.util.XmpReportImpl rendered by Saxon-HE 11.4).
+ * (com.adobe.epubcheck.util.XmpReportImpl rendered by Saxon-HE).
  */
 export function formatXmpReport(reportData: ReportData, options: FormatterOptions): string {
   const opts = resolveOptions(options);
   const { mapPath, mapText } = makePathMapper(opts.filename);
-  const st = xmlAbstractAggregate(reportData, mapPath, mapText);
+  const st = xmlAbstractAggregate(reportData, opts.maxOfEachMessage, mapPath, mapText);
   const generationDate = opts.generationDate instanceof Date
     ? formatGenerationDate(opts.generationDate) : opts.generationDate;
 

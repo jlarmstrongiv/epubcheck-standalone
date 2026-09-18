@@ -4,9 +4,9 @@
   "checker" : {
     "path" : "./epub2__files__epub__ocf-metainf-file-unknown-valid.epub",
     "filename" : "epub2__files__epub__ocf-metainf-file-unknown-valid.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:20:10",
-    "elapsedTime" : 4091,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:57:27",
+    "elapsedTime" : 4503,
     "nFatal" : 0,
     "nError" : 0,
     "nWarning" : 0,

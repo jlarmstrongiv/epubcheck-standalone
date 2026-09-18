@@ -45,7 +45,7 @@ import com.adobe.epubcheck.util.WriterReportImpl;
 /**
  * Public interface to epub validator.
  *
- * SHIM-JAR SHADOW of epubcheck 5.3.0's EpubCheck (upstream source verbatim
+ * SHIM-JAR SHADOW of upstream EpubCheck (source verbatim
  * except inside the InputStream constructor) -- the shims jar precedes the
  * epubcheck jars on the TeaVM compiler classpath, so this class replaces the
  * stock one. The one change: when the InputStream is the JS host http bridge's

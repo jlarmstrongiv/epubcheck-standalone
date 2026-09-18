@@ -303,7 +303,7 @@ public class TDefaultPath implements TPath {
 
     @Override
     public Iterator<TPath> iterator() {
-        // epubcheck-standalone shim (fork of the stock 0.15.0 file): the stock
+        // epubcheck-standalone shim (fork of the stock classlib file): the stock
         // method was an unimplemented stub returning NULL, which made every
         // path stream (e.g. StreamSupport.stream(path.spliterator(), ...), as
         // epubcheck's OCFDirectoryResources.getPath does over

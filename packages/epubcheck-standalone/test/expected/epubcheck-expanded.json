@@ -17,7 +17,7 @@
   "cli__files__30-mimetype-invalid.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+      "ERROR(PKG-007): EPUB(-1,-1): The content of the mimetype file must be the string \"application/epub+zip\""
     ]
   },
   "cli__files__30-valid-test.epub": {
@@ -510,7 +510,7 @@
   "epub2__files__epub__ocf-mimetype-with-spaces-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+      "ERROR(PKG-007): EPUB(-1,-1): The content of the mimetype file must be the string \"application/epub+zip\"with no whitespace or newline."
     ]
   },
   "epub2__files__epub__ocf-opf-missing-fatal.epub": {
@@ -748,11 +748,56 @@
     "exit": 0,
     "messages": []
   },
+  "epub3__03-resources__files__foreign-exempt-xhtml-script-module-not-javascript-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-034): EPUB/EPUB/content_001.xhtml(7,45): Scripts must have a JavaScript media type."
+    ]
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-script-module-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-script-no-type-javascript-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-script-no-type-not-javascript-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-034): EPUB/EPUB/content_001.xhtml(7,31): Scripts must have a JavaScript media type."
+    ]
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-script-type-javascript-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-script-type-not-javascript-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(7,55): Error while parsing file: A 'script' element must not have an 'src' attribute if it has 'type' attribute whose value is neither a JavaScript MIME Type nor 'module'.",
+      "ERROR(RSC-034): EPUB/EPUB/content_001.xhtml(7,55): Scripts must have a JavaScript media type."
+    ]
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-script-using-wasm-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
   "epub3__03-resources__files__foreign-exempt-xhtml-track-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__03-resources__files__foreign-exempt-xhtml-video-in-img-valid.epub": {
+  "epub3__03-resources__files__foreign-exempt-xhtml-video-in-img-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(8,46): Fallback must be provided for foreign resources, but found none for resource \"EPUB/animation.avi\" of type \"video/avi\"."
+    ]
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-video-mediatype-application-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__foreign-exempt-xhtml-video-source-valid.epub": {
     "exit": 0,
     "messages": []
   },
@@ -765,10 +810,6 @@
     "messages": [
       "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(10,30): Fallback must be provided for foreign resources, but found none for resource \"EPUB/audio.foreign\" of type \"audio/foreign\"."
     ]
-  },
-  "epub3__03-resources__files__foreign-xhtml-audio-manifest-fallback-valid.epub": {
-    "exit": 0,
-    "messages": []
   },
   "epub3__03-resources__files__foreign-xhtml-audio-no-fallback-error.epub": {
     "exit": 1,
@@ -796,10 +837,6 @@
     "exit": 0,
     "messages": []
   },
-  "epub3__03-resources__files__foreign-xhtml-embed-fallback-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
   "epub3__03-resources__files__foreign-xhtml-embed-no-fallback-error.epub": {
     "exit": 1,
     "messages": [
@@ -820,6 +857,12 @@
     "exit": 0,
     "messages": []
   },
+  "epub3__03-resources__files__foreign-xhtml-img-video-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(8,46): Fallback must be provided for foreign resources, but found none for resource \"EPUB/animation.mp4\" of type \"video/mp4\"."
+    ]
+  },
   "epub3__03-resources__files__foreign-xhtml-input-image-no-fallback-error.epub": {
     "exit": 1,
     "messages": [
@@ -839,6 +882,7 @@
   "epub3__03-resources__files__foreign-xhtml-object-no-fallback-error.epub": {
     "exit": 1,
     "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(13,48): Error while parsing file: element \"object\" missing required attribute \"data\"",
       "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(16,13): Fallback must be provided for foreign resources, but found none for resource \"EPUB/slideshow.xml\" of type \"application/x-demo-slideshow2\"."
     ]
   },
@@ -869,7 +913,7 @@
     "exit": 0,
     "messages": []
   },
-  "epub3__03-resources__files__foreign-xhtml-video-poster-fallback-valid.epub": {
+  "epub3__03-resources__files__foreign-xhtml-script-importmap-block-valid.epub": {
     "exit": 0,
     "messages": []
   },
@@ -879,17 +923,33 @@
       "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(8,111): Fallback must be provided for foreign resources, but found none for resource \"EPUB/poster.png\" of type \"text/abc\"."
     ]
   },
-  "epub3__03-resources__files__mailto-url-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
   "epub3__03-resources__files__resources-cmt-audio-mp3-valid.epub": {
     "exit": 0,
     "messages": []
   },
+  "epub3__03-resources__files__resources-cmt-audio-mp4-aac-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-audio-mp4-opus-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-audio-mp4-other-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(10,28): Fallback must be provided for foreign resources, but found none for resource \"EPUB/audio.mp4\" of type \"audio/mp4;codecs=flac\"."
+    ]
+  },
   "epub3__03-resources__files__resources-cmt-audio-mp4-valid.epub": {
     "exit": 0,
     "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-audio-opus-mimetype-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-032): EPUB/EPUB/content_001.xhtml(10,29): Fallback must be provided for foreign resources, but found none for resource \"EPUB/audio.opus\" of type \"audio/opus\"."
+    ]
   },
   "epub3__03-resources__files__resources-cmt-audio-opus-valid.epub": {
     "exit": 0,
@@ -904,6 +964,10 @@
     "messages": []
   },
   "epub3__03-resources__files__resources-cmt-font-truetype-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-image-avif-valid.epub": {
     "exit": 0,
     "messages": []
   },
@@ -929,6 +993,10 @@
     "messages": []
   },
   "epub3__03-resources__files__resources-cmt-image-jpg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__resources-cmt-image-jxl-valid.epub": {
     "exit": 0,
     "messages": []
   },
@@ -1074,29 +1142,41 @@
     "exit": 0,
     "messages": []
   },
-  "epub3__03-resources__files__type-mismatch-in-audio-warning.epub": {
+  "epub3__03-resources__files__type-audio-source-mismatch-warning.epub": {
     "exit": 0,
     "messages": [
-      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(11,60): Resource \"EPUB/audio.mpeg\" is declared with MIME type \"audio/mp4\" in content, but has MIME type \"audio/mpeg\" in the package document."
+      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(11,48): Resource \"EPUB/audio.mpeg\" is declared with MIME type \"audio/mp4\" in content, but has MIME type \"audio/mpeg\" in the package document."
     ]
   },
-  "epub3__03-resources__files__type-mismatch-in-embed-warning.epub": {
+  "epub3__03-resources__files__type-audio-source-mp3-codecs-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__type-embed-mismatch-warning.epub": {
     "exit": 0,
     "messages": [
       "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(9,45): Resource \"EPUB/image.jpeg\" is declared with MIME type \"image/gif\" in content, but has MIME type \"image/jpeg\" in the package document."
     ]
   },
-  "epub3__03-resources__files__type-mismatch-in-object-warning.epub": {
+  "epub3__03-resources__files__type-object-mismatch-warning.epub": {
     "exit": 0,
     "messages": [
       "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(11,81): Resource \"EPUB/slideshow.xml\" is declared with MIME type \"application/x-demo-other\" in content, but has MIME type \"application/x-demo-slideshow\" in the package document."
     ]
   },
-  "epub3__03-resources__files__type-mismatch-in-picture-source-warning.epub": {
+  "epub3__03-resources__files__type-picture-source-mismatch-warning.epub": {
     "exit": 0,
     "messages": [
       "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(9,52): Resource \"EPUB/image.xyz\" is declared with MIME type \"image/vnd.abc\" in content, but has MIME type \"image/vnd.xyz\" in the package document."
     ]
+  },
+  "epub3__03-resources__files__url-absolute-not-resource-mailto-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__03-resources__files__url-absolute-not-resource-xhtml-cite-valid.epub": {
+    "exit": 0,
+    "messages": []
   },
   "epub3__04-ocf__files__ocf-container-content-model-error.epub": {
     "exit": 1,
@@ -1168,51 +1248,25 @@
   "epub3__04-ocf__files__ocf-mimetype-file-incorrect-value-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+      "ERROR(PKG-007): EPUB(-1,-1): The content of the mimetype file must be the string \"application/epub+zip\""
     ]
   },
   "epub3__04-ocf__files__ocf-mimetype-file-leading-spaces-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+      "ERROR(PKG-007): EPUB(-1,-1): The content of the mimetype file must be the string \"application/epub+zip\"with no whitespace or newline."
     ]
   },
   "epub3__04-ocf__files__ocf-mimetype-file-trailing-newline-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
+      "ERROR(PKG-007): EPUB(-1,-1): The content of the mimetype file must be the string \"application/epub+zip\"with no whitespace or newline."
     ]
   },
   "epub3__04-ocf__files__ocf-mimetype-file-trailing-spaces-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(PKG-007): EPUB(-1,-1): Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed."
-    ]
-  },
-  "epub3__04-ocf__files__ocf-obfuscation-duplicate-valid.epub": {
-    "exit": 0,
-    "messages": [
-      "INFO(RSC-004): EPUB/EPUB/obfuscated-font.otf(-1,-1): File \"EPUB/obfuscated-font.otf\" is encrypted, its content will not be checked."
-    ]
-  },
-  "epub3__04-ocf__files__ocf-obfuscation-not-cmt-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(PKG-026): EPUB/META-INF/encryption.xml(6,56): Obfuscated resource must be a Font Core Media Type (was declared as \"font/opentype\" in \"EPUB/package.opf\").",
-      "INFO(RSC-004): EPUB/EPUB/obfuscated-font.otf(-1,-1): File \"EPUB/obfuscated-font.otf\" is encrypted, its content will not be checked."
-    ]
-  },
-  "epub3__04-ocf__files__ocf-obfuscation-not-font-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(PKG-026): EPUB/META-INF/encryption.xml(7,48): Obfuscated resource must be a Font Core Media Type (was declared as \"application/xml\" in \"EPUB/package.opf\").",
-      "INFO(RSC-004): EPUB/EPUB/doc.xml(-1,-1): File \"EPUB/doc.xml\" is encrypted, its content will not be checked."
-    ]
-  },
-  "epub3__04-ocf__files__ocf-obfuscation-valid.epub": {
-    "exit": 0,
-    "messages": [
-      "INFO(RSC-004): EPUB/EPUB/obfuscated-font.otf(-1,-1): File \"EPUB/obfuscated-font.otf\" is encrypted, its content will not be checked."
+      "ERROR(PKG-007): EPUB(-1,-1): The content of the mimetype file must be the string \"application/epub+zip\"with no whitespace or newline."
     ]
   },
   "epub3__04-ocf__files__ocf-package-document-missing-fatal.epub": {
@@ -1240,15 +1294,74 @@
       "ERROR(RSC-026): EPUB/EPUB/package.opf(10,94): URL \"/EPUB/content_001.xhtml\" leaks outside the container (it is not a valid-relative-ocf-URL-with-fragment string)"
     ]
   },
-  "epub3__04-ocf__files__url-percent-encoded-valid.epub": {
-    "exit": 0,
-    "messages": []
+  "epub3__04-ocf__files__url-missing-resource-css-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/style.css(11,3): Referenced resource \"image/background.jpg\" could not be found in the EPUB."
+    ]
   },
-  "epub3__04-ocf__files__url-xhtml-cite-absolute-valid.epub": {
-    "exit": 0,
-    "messages": []
+  "epub3__04-ocf__files__url-missing-resource-css-preceded-by-invalid-syntax-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(CSS-008): EPUB/EPUB/style.css(5,1): An error occurred while parsing the CSS: Token \"@font-face\" not allowed here, expecting a property name.",
+      "ERROR(RSC-007): EPUB/EPUB/style.css(10,3): Referenced resource \"EPUB/FreeSerif.otf\" could not be found in the EPUB."
+    ]
   },
-  "epub3__04-ocf__files__url-xhtml-cite-missing-resource-error.epub": {
+  "epub3__04-ocf__files__url-missing-resource-package-link-warning.epub": {
+    "exit": 0,
+    "messages": [
+      "WARNING(RSC-007w): EPUB/EPUB/package.opf(8,77): Referenced resource \"EPUB/record.json\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-svg-a-href-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,32): Referenced resource \"EPUB/content_002.xhtml\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-svg-a-xlink-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,38): Referenced resource \"EPUB/content_002.xhtml\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-svg-a-xlink-same-as-href-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,63): Referenced resource \"EPUB/content_002.xhtml\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-svg-a-xlink-with-href-ok-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,63): Referenced resource \"EPUB/content_002.xhtml\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-svg-image-href-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,52): Referenced resource \"EPUB/missing.png\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-svg-image-xlink-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,58): Referenced resource \"EPUB/missing.png\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-svg-image-xlink-same-as-href-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,77): Referenced resource \"EPUB/missing.png\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-svg-image-xlink-with-href-ok-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,75): Referenced resource \"EPUB/missing.png\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-xhtml-cite-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(10,36): Referenced resource \"EPUB/missing.xhtml\" could not be found in the EPUB.",
@@ -1257,17 +1370,39 @@
       "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(13,29): Referenced resource \"EPUB/missing.xhtml\" could not be found in the EPUB."
     ]
   },
-  "epub3__04-ocf__files__url-xhtml-iframe-missing-resource-error.epub": {
+  "epub3__04-ocf__files__url-missing-resource-xhtml-hyperlink-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/nav.xhtml(12,37): Referenced resource \"EPUB/content_003.xhtml\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-xhtml-iframe-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(8,57): Referenced resource \"EPUB/missing.xhtml\" could not be found in the EPUB."
     ]
   },
-  "epub3__04-ocf__files__url-xhtml-track-missing-resource-error.epub": {
+  "epub3__04-ocf__files__url-missing-resource-xhtml-img-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(8,32): Referenced resource \"EPUB/image.jpg\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-xhtml-mathml-altimg-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,23): Referenced resource \"EPUB/mathml.png\" could not be found in the EPUB."
+    ]
+  },
+  "epub3__04-ocf__files__url-missing-resource-xhtml-track-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(11,61): Referenced resource \"EPUB/subtitles.vtt\" could not be found in the EPUB."
     ]
+  },
+  "epub3__04-ocf__files__url-percent-encoded-valid.epub": {
+    "exit": 0,
+    "messages": []
   },
   "epub3__05-package-document__files__link-to-embedded-resource-valid.epub": {
     "exit": 0,
@@ -1297,16 +1432,10 @@
     "exit": 0,
     "messages": []
   },
-  "epub3__05-package-document__files__package-link-missing-resource-error.epub": {
-    "exit": 0,
-    "messages": [
-      "WARNING(RSC-007w): EPUB/EPUB/package.opf(8,77): Referenced resource \"EPUB/record.json\" could not be found in the EPUB."
-    ]
-  },
   "epub3__05-package-document__files__package-manifest-duplicate-resource-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(OPF-074): EPUB/EPUB/package.opf(12,59): Package resource \"EPUB/style.css\" is declared in several manifest item."
+      "ERROR(OPF-074): EPUB/EPUB/package.opf(12,59): Package resource \"EPUB/style.css\" is declared in several manifest items."
     ]
   },
   "epub3__05-package-document__files__package-manifest-fonts-missing-error.epub": {
@@ -1333,12 +1462,6 @@
     "exit": 0,
     "messages": [
       "WARNING(OPF-018): EPUB/EPUB/content_001.xhtml(11,8): The \"remote-resources\" property was declared in the Package Document, but no reference to remote resources has been found."
-    ]
-  },
-  "epub3__05-package-document__files__package-manifest-prop-remote-resource-object-param-warning.epub": {
-    "exit": 0,
-    "messages": [
-      "WARNING(OPF-018): EPUB/EPUB/content_001.xhtml(13,8): The \"remote-resources\" property was declared in the Package Document, but no reference to remote resources has been found."
     ]
   },
   "epub3__05-package-document__files__package-manifest-prop-remote-resource-undeclared-error.epub": {
@@ -1402,20 +1525,6 @@
     ]
   },
   "epub3__05-package-document__files__package-mathml-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__05-package-document__files__package-ncx-invalid-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(RSC-012): EPUB/EPUB/nav.ncx(20,49): Fragment identifier is not defined."
-    ]
-  },
-  "epub3__05-package-document__files__package-ncx-missing-references-to-spine-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__05-package-document__files__package-ncx-valid.epub": {
     "exit": 0,
     "messages": []
   },
@@ -1513,327 +1622,475 @@
       "ERROR(RSC-011): EPUB/EPUB/nav.xhtml(11,37): Found a reference to a resource that is not a spine item."
     ]
   },
-  "epub3__06-content-document__files__content-css-encoding-latin1-error.epub": {
+  "epub3__06-layouts__files__layout-page-spread-pre-paginated-override-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-page-spread-pre-paginated-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-page-spread-reflowable-override-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-page-spread-reflowable-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-page-spread-roll-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-pre-paginated-content-invalid-fxl-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-047): EPUB/EPUB/content_001.xhtml(5,55): Viewport metadata \"width=600,height=\" has a syntax error"
+    ]
+  },
+  "epub3__06-layouts__files__layout-pre-paginated-content-reflowable-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-046): EPUB/EPUB/content_001.xhtml(6,9): Fixed layout document has no \"viewport\" meta element."
+    ]
+  },
+  "epub3__06-layouts__files__layout-pre-paginated-fallback-reflowable-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-046): EPUB/EPUB/content_001.xhtml(6,9): Fixed layout document has no \"viewport\" meta element."
+    ]
+  },
+  "epub3__06-layouts__files__layout-pre-paginated-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-pre-paginated-override-content-invalid-fxl-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-047): EPUB/EPUB/content_001.xhtml(6,55): Viewport metadata \"width=600,height=\" has a syntax error"
+    ]
+  },
+  "epub3__06-layouts__files__layout-pre-paginated-override-content-reflowable-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-046): EPUB/EPUB/content_001.xhtml(6,9): Fixed layout document has no \"viewport\" meta element."
+    ]
+  },
+  "epub3__06-layouts__files__layout-pre-paginated-override-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-pre-paginated-override-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-pre-paginated-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-reflowable-override-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-reflowable-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-roll-content-reflowable-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-046): EPUB/EPUB/content_001.xhtml(6,9): Fixed layout document has no \"viewport\" meta element."
+    ]
+  },
+  "epub3__06-layouts__files__layout-roll-fallback-reflowable-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-046): EPUB/EPUB/content_001.xhtml(6,9): Fixed layout document has no \"viewport\" meta element."
+    ]
+  },
+  "epub3__06-layouts__files__layout-roll-fallback-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__06-layouts__files__layout-roll-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-css-encoding-latin1-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(CSS-004): EPUB/EPUB/style.css(-1,-1): CSS documents must be encoded in UTF-8, detected iso-8859-1;"
     ]
   },
-  "epub3__06-content-document__files__content-css-encoding-utf16-declared-warning.epub": {
+  "epub3__07-content-documents__files__content-css-encoding-utf16-declared-warning.epub": {
     "exit": 0,
     "messages": [
       "WARNING(CSS-003): EPUB/EPUB/style.css(-1,-1): CSS document is encoded in UTF-16. It should be encoded in UTF-8 instead."
     ]
   },
-  "epub3__06-content-document__files__content-css-encoding-utf16-not-declared-warning.epub": {
+  "epub3__07-content-documents__files__content-css-encoding-utf16-not-declared-warning.epub": {
     "exit": 0,
     "messages": [
       "WARNING(CSS-003): EPUB/EPUB/style.css(-1,-1): CSS document is encoded in UTF-16. It should be encoded in UTF-8 instead."
     ]
   },
-  "epub3__06-content-document__files__content-css-encoding-utf8-declared-valid.epub": {
+  "epub3__07-content-documents__files__content-css-encoding-utf8-declared-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-css-font-face-empty-error.epub": {
+  "epub3__07-content-documents__files__content-css-font-face-empty-error.epub": {
     "exit": 0,
     "messages": [
       "WARNING(CSS-019): EPUB/EPUB/style.css(1,1): CSS font-face declaration has no attributes."
     ]
   },
-  "epub3__06-content-document__files__content-css-font-face-url-empty-error.epub": {
+  "epub3__07-content-documents__files__content-css-font-face-url-empty-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(CSS-002): EPUB/EPUB/style.css(3,3): Empty or NULL reference found."
     ]
   },
-  "epub3__06-content-document__files__content-css-font-size-valid.epub": {
+  "epub3__07-content-documents__files__content-css-font-size-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-css-font-size-value-error.epub": {
+  "epub3__07-content-documents__files__content-css-font-size-value-error.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-css-import-not-declared-error.epub": {
+  "epub3__07-content-documents__files__content-css-import-not-declared-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-008): EPUB/EPUB/style.css(1,9): Referenced resource \"EPUB/import.css\" is not declared in the OPF manifest."
     ]
   },
-  "epub3__06-content-document__files__content-css-import-not-present-error.epub": {
+  "epub3__07-content-documents__files__content-css-import-not-present-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-001): EPUB/EPUB/import.css(-1,-1): File \"EPUB/import.css\" could not be found."
     ]
   },
-  "epub3__06-content-document__files__content-css-minimal-valid.epub": {
+  "epub3__07-content-documents__files__content-css-minimal-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-css-namespace-uri-not-resource-valid.epub": {
+  "epub3__07-content-documents__files__content-css-namespace-uri-not-resource-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-css-property-direction-error.epub": {
+  "epub3__07-content-documents__files__content-css-property-direction-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(CSS-001): EPUB/EPUB/style.css(3,3): The \"direction\" property must not be included in an EPUB Style Sheet."
     ]
   },
-  "epub3__06-content-document__files__content-css-property-unicode-bidi-error.epub": {
+  "epub3__07-content-documents__files__content-css-property-unicode-bidi-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(CSS-001): EPUB/EPUB/style.css(3,3): The \"unicode-bidi\" property must not be included in an EPUB Style Sheet."
     ]
   },
-  "epub3__06-content-document__files__content-css-selectors-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__06-content-document__files__content-css-syntax-error.epub": {
+  "epub3__07-content-documents__files__content-css-syntax-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(CSS-008): EPUB/EPUB/style.css(15,21): An error occurred while parsing the CSS: Premature end of grammar (expecting: ';' or '}').",
       "ERROR(CSS-008): EPUB/EPUB/style.css(8,1): An error occurred while parsing the CSS: Token \"{\" not allowed here, expecting :."
     ]
   },
-  "epub3__06-content-document__files__content-css-url-fragment-valid.epub": {
+  "epub3__07-content-documents__files__content-css-syntax-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-css-url-not-present-error.epub": {
+  "epub3__07-content-documents__files__content-css-url-fragment-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-fxl-svg-no-viewbox-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(RSC-007): EPUB/EPUB/style.css(11,3): Referenced resource \"image/background.jpg\" could not be found in the EPUB."
+      "ERROR(HTM-048): EPUB/EPUB/cover.svg(2,82): SVG Fixed-Layout Documents must have a \"viewBox\" attribute (on the outermost \"svg\" element)."
     ]
   },
-  "epub3__06-content-document__files__content-css-url-not-present-preceded-by-invalid-syntax-error.epub": {
+  "epub3__07-content-documents__files__content-fxl-svg-no-viewbox-on-inner-svg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-fxl-svg-no-viewbox-width-height-percent-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(CSS-008): EPUB/EPUB/style.css(5,1): An error occurred while parsing the CSS: Token \"@font-face\" not allowed here, expecting a property name.",
-      "ERROR(RSC-007): EPUB/EPUB/style.css(10,3): Referenced resource \"EPUB/FreeSerif.otf\" could not be found in the EPUB."
+      "ERROR(HTM-048): EPUB/EPUB/cover.svg(2,82): SVG Fixed-Layout Documents must have a \"viewBox\" attribute (on the outermost \"svg\" element)."
     ]
   },
-  "epub3__06-content-document__files__content-svg-file-extension-unusual-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__06-content-document__files__content-svg-in-spine-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__06-content-document__files__content-svg-no-viewbox-not-fxl-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__06-content-document__files__content-svg-use-href-no-fragment-error.epub": {
+  "epub3__07-content-documents__files__content-fxl-svg-no-viewbox-width-height-units-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(RSC-015): EPUB/EPUB/cover.svg(5,68): A fragment identifier is required for svg use tag references."
+      "ERROR(HTM-048): EPUB/EPUB/cover.svg(2,55): SVG Fixed-Layout Documents must have a \"viewBox\" attribute (on the outermost \"svg\" element)."
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-base-url-remote-relative-path-error.epub": {
+  "epub3__07-content-documents__files__content-fxl-svg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-duplicate-width-height-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_059): EPUB/EPUB/content_001.xhtml(5,99): Viewport \"height\" property must not be defined more than once, but found values [\"1200\", \"device-height\"].",
+      "ERROR(HTM_059): EPUB/EPUB/content_001.xhtml(5,99): Viewport \"width\" property must not be defined more than once, but found values [\"600\", \"device-width\"]."
+    ]
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-float-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-height-empty-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_057): EPUB/EPUB/content_001.xhtml(5,54): Viewport \"height\" value must be a positive number or the keyword \"device-height\""
+    ]
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-height-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,47): Viewport metadata has no \"height\" dimension (both \"width\" and \"height\" properties are required)"
+    ]
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-icb-missing-in-first-meta-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,54): Viewport metadata has no \"height\" dimension (both \"width\" and \"height\" properties are required)",
+      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,54): Viewport metadata has no \"width\" dimension (both \"width\" and \"height\" properties are required)"
+    ]
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-keywords-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-046): EPUB/EPUB/content_001.xhtml(6,9): Fixed layout document has no \"viewport\" meta element."
+    ]
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-multiple-usage-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-syntax-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM-047): EPUB/EPUB/content_001.xhtml(5,56): Viewport metadata \"width=600,height= \" has a syntax error"
+    ]
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-units-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_057): EPUB/EPUB/content_001.xhtml(5,63): Viewport \"height\" value must be a positive number or the keyword \"device-height\"",
+      "ERROR(HTM_057): EPUB/EPUB/content_001.xhtml(5,63): Viewport \"width\" value must be a positive number or the keyword \"device-width\""
+    ]
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-whitespace-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-fxl-xhtml-viewport-width-missing-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,48): Viewport metadata has no \"width\" dimension (both \"width\" and \"height\" properties are required)"
+    ]
+  },
+  "epub3__07-content-documents__files__content-reflow-xhtml-viewport-height-missing-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-svg-clippath-url-target-unexpected-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-svg-file-extension-unusual-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-svg-fill-url-target-unexpected-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-svg-in-spine-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-svg-no-viewbox-not-fxl-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-svg-stroke-url-target-unexpected-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-svg-use-href-no-fragment-usage.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-xhtml-base-url-remote-relative-path-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(7,44): Remote resource reference is not allowed in this context; resource \"http://example.org/style.css\" must be located in the EPUB container."
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-base-url-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-base-url-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-data-attr-removal-fragments-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-data-attr-removal-fragments-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-data-attr-removal-markup-error.epub": {
+  "epub3__07-content-documents__files__content-xhtml-data-attr-removal-markup-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(11,30): Error while parsing file: element \"somebadxhtmlformatting\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:switch\", \"ns1:trigger\", \"ns2:math\", \"ns3:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.idpf.org/2007/ops\" xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns3=\"http://www.w3.org/2000/svg\") or an element from another namespace"
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(11,30): Error while parsing file: element \"somebadxhtmlformatting\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:switch\", \"ns1:trigger\", \"ns2:math\", \"ns3:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.idpf.org/2007/ops\" xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns3=\"http://www.w3.org/2000/svg\") or an element from another namespace"
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-extension-warning.epub": {
+  "epub3__07-content-documents__files__content-xhtml-extension-warning.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-file-extension-unusual-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-file-extension-unusual-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-iframe-basic-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-iframe-basic-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-img-fragment-non-svg-warning.epub": {
+  "epub3__07-content-documents__files__content-xhtml-img-fragment-non-svg-warning.epub": {
     "exit": 0,
     "messages": [
       "WARNING(RSC-009): EPUB/EPUB/content_001.xhtml(12,63): A non-SVG image resource should not be defined with a fragment identifier.",
       "WARNING(RSC-009): EPUB/EPUB/content_001.xhtml(14,39): A non-SVG image resource should not be defined with a fragment identifier."
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-img-fragment-svg-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-img-fragment-svg-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-img-srcset-undeclared-error.epub": {
+  "epub3__07-content-documents__files__content-xhtml-img-srcset-undeclared-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-008): EPUB/EPUB/content_001.xhtml(8,83): Referenced resource \"EPUB/undeclared.jpeg\" is not declared in the OPF manifest."
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-img-video-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__06-content-document__files__content-xhtml-invalid-duplicate-id.epub": {
+  "epub3__07-content-documents__files__content-xhtml-invalid-duplicate-id.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(7,16): Error while parsing file: Duplicate ID \"id\"",
       "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(8,15): Error while parsing file: Duplicate ID \"id\""
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-lang-xml-lang-mismatch-error.epub": {
+  "epub3__07-content-documents__files__content-xhtml-lang-xml-lang-mismatch-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(2,68): Error while parsing file: The lang and xml:lang attributes must have the same value."
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-link-href-empty-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-link-href-empty-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-link-rel-path-dot-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-link-rel-path-dot-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-link-stylesheet-fragment-id-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(RSC-013): EPUB/EPUB/content_001.xhtml(6,66): Fragment identifier is used in a reference to a stylesheet resource."
-    ]
-  },
-  "epub3__06-content-document__files__content-xhtml-link-to-local-file-escaped-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-link-to-local-file-escaped-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-link-to-missing-doc-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(RSC-007): EPUB/EPUB/nav.xhtml(12,37): Referenced resource \"EPUB/content_003.xhtml\" could not be found in the EPUB."
-    ]
-  },
-  "epub3__06-content-document__files__content-xhtml-link-to-missing-id-error.epub": {
+  "epub3__07-content-documents__files__content-xhtml-link-to-missing-id-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-012): EPUB/EPUB/content_001.xhtml(9,33): Fragment identifier is not defined."
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-link-to-missing-id-in-nav-doc-error.epub": {
+  "epub3__07-content-documents__files__content-xhtml-link-to-missing-id-in-nav-doc-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-012): EPUB/EPUB/nav.xhtml(11,45): Fragment identifier is not defined."
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-link-to-missing-id-xref-error.epub": {
+  "epub3__07-content-documents__files__content-xhtml-link-to-missing-id-xref-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-012): EPUB/EPUB/content_001.xhtml(9,40): Fragment identifier is not defined."
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-link-to-svg-fragment-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(RSC-014): EPUB/EPUB/content_001.xhtml(9,32): Fragment identifier defines an incompatible resource type."
-    ]
-  },
-  "epub3__06-content-document__files__content-xhtml-mathml-altimg-not-found-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(12,23): Referenced resource \"EPUB/mathml.png\" could not be found in the EPUB."
-    ]
-  },
-  "epub3__06-content-document__files__content-xhtml-mathml-altimg-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-link-to-stylesheet-fragment-id-usage.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-meta-viewport-non-fxl-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-link-to-svg-symbol-usage.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-referenced-resource-missing-error.epub": {
+  "epub3__07-content-documents__files__content-xhtml-mathml-altimg-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-xhtml-meta-viewport-non-fxl-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__07-content-documents__files__content-xhtml-relaxng-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(RSC-007): EPUB/EPUB/content_001.xhtml(8,32): Referenced resource \"EPUB/image.jpg\" could not be found in the EPUB."
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(9,12): Error while parsing file: element \"unknown\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:switch\", \"ns1:trigger\", \"ns2:math\", \"ns3:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.idpf.org/2007/ops\" xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns3=\"http://www.w3.org/2000/svg\") or an element from another namespace"
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-relaxng-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(9,12): Error while parsing file: element \"unknown\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:switch\", \"ns1:trigger\", \"ns2:math\", \"ns3:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.idpf.org/2007/ops\" xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns3=\"http://www.w3.org/2000/svg\") or an element from another namespace"
-    ]
-  },
-  "epub3__06-content-document__files__content-xhtml-schematron-error.epub": {
+  "epub3__07-content-documents__files__content-xhtml-schematron-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(9,18): Error while parsing file: The dfn element must not appear inside dfn elements."
     ]
   },
-  "epub3__06-content-document__files__content-xhtml-svg-fragment-svgview-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-svg-fragment-svgview-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-svg-reference-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-svg-reference-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-svg-switch-valid.epub": {
+  "epub3__07-content-documents__files__content-xhtml-svg-switch-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__content-xhtml-xml-base-url-remote-relative-path-error.epub": {
+  "epub3__07-content-documents__files__content-xhtml-xml-base-url-remote-relative-path-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-006): EPUB/EPUB/content_001.xhtml(6,61): Remote resource reference is not allowed in this context; resource \"http://example.org/style.css\" must be located in the EPUB container."
     ]
   },
-  "epub3__06-content-document__files__dc-source-valid.epub": {
+  "epub3__07-content-documents__files__dc-source-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__object-pdf-fragment-valid.epub": {
+  "epub3__07-content-documents__files__object-pdf-fragment-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__06-content-document__files__type-mismatch-in-audio-warning.epub": {
-    "exit": 0,
-    "messages": [
-      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(11,60): Resource \"EPUB/audio.mpeg\" is declared with MIME type \"audio/mp4\" in content, but has MIME type \"audio/mpeg\" in the package document."
-    ]
-  },
-  "epub3__06-content-document__files__type-mismatch-in-object-warning.epub": {
-    "exit": 0,
-    "messages": [
-      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(11,81): Resource \"EPUB/slideshow.xml\" is declared with MIME type \"application/x-demo-other\" in content, but has MIME type \"application/x-demo-slideshow\" in the package document."
-    ]
-  },
-  "epub3__06-content-document__files__type-mismatch-in-picture-source-warning.epub": {
-    "exit": 0,
-    "messages": [
-      "WARNING(OPF-013): EPUB/EPUB/content_001.xhtml(9,52): Resource \"EPUB/image.xyz\" is declared with MIME type \"image/vnd.abc\" in content, but has MIME type \"image/vnd.xyz\" in the package document."
-    ]
-  },
-  "epub3__07-navigation-document__files__nav-cfi-valid.epub": {
+  "epub3__08-navigation-document__files__nav-cfi-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__07-navigation-document__files__nav-links-out-of-spine-error.epub": {
+  "epub3__08-navigation-document__files__nav-links-out-of-spine-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-011): EPUB/EPUB/nav.xhtml(11,40): Found a reference to a resource that is not a spine item."
     ]
   },
-  "epub3__07-navigation-document__files__nav-links-remote-error.epub": {
+  "epub3__08-navigation-document__files__nav-links-remote-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(NAV-010): EPUB/EPUB/nav.xhtml(11,39): \"toc\" nav must not link to remote resources; found link to \"https://example.org\".",
@@ -1841,157 +2098,50 @@
       "ERROR(NAV-010): EPUB/EPUB/nav.xhtml(25,39): \"page-list\" nav must not link to remote resources; found link to \"https://example.org\"."
     ]
   },
-  "epub3__07-navigation-document__files__nav-links-to-non-content-document-type-error.epub": {
+  "epub3__08-navigation-document__files__nav-links-to-non-content-document-type-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-010): EPUB/EPUB/nav.xhtml(11,30): Reference to non-standard resource type found."
     ]
   },
-  "epub3__07-navigation-document__files__nav-page-list-reading-order-valid.epub": {
+  "epub3__08-navigation-document__files__nav-page-list-reading-order-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__07-navigation-document__files__nav-page-list-unordered-fragments-warning.epub": {
+  "epub3__08-navigation-document__files__nav-page-list-unordered-fragments-warning.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__07-navigation-document__files__nav-page-list-unordered-spine-warning.epub": {
+  "epub3__08-navigation-document__files__nav-page-list-unordered-spine-warning.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__07-navigation-document__files__nav-toc-missing-error.epub": {
+  "epub3__08-navigation-document__files__nav-toc-missing-error.epub": {
     "exit": 1,
     "messages": [
       "ERROR(RSC-005): EPUB/EPUB/nav.xhtml(7,8): Error while parsing file: Exactly one \"toc\" nav element must be present"
     ]
   },
-  "epub3__07-navigation-document__files__nav-toc-missing-references-to-spine-valid.epub": {
+  "epub3__08-navigation-document__files__nav-toc-missing-references-to-spine-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__07-navigation-document__files__nav-toc-reading-order-valid.epub": {
+  "epub3__08-navigation-document__files__nav-toc-reading-order-valid.epub": {
     "exit": 0,
     "messages": []
   },
-  "epub3__07-navigation-document__files__nav-toc-unordered-fragments-warning.epub": {
+  "epub3__08-navigation-document__files__nav-toc-unordered-fragments-warning.epub": {
     "exit": 0,
     "messages": [
       "WARNING(NAV-011): EPUB/EPUB/nav.xhtml(12,37): \"toc\" nav must be in reading order; link target \"EPUB/content_001.xhtml\" is before the previous link’s target in document order.",
       "WARNING(NAV-011): EPUB/EPUB/nav.xhtml(15,41): \"toc\" nav must be in reading order; link target \"EPUB/content_001.xhtml#ch2\" is before the previous link’s target in document order."
     ]
   },
-  "epub3__07-navigation-document__files__nav-toc-unordered-spine-warning.epub": {
+  "epub3__08-navigation-document__files__nav-toc-unordered-spine-warning.epub": {
     "exit": 0,
     "messages": [
       "WARNING(NAV-011): EPUB/EPUB/nav.xhtml(12,37): \"toc\" nav must be in reading order; link target \"EPUB/content_002.xhtml\" is before the previous link’s target in spine order."
     ]
-  },
-  "epub3__08-layout__files__content-fxl-item-xhtml-viewport-invalid-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM-047): EPUB/EPUB/content_001.xhtml(6,56): Viewport metadata \"height=705, width=\" has a syntax error"
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-svg-no-viewbox-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM-048): EPUB/EPUB/cover.svg(2,82): SVG Fixed-Layout Documents must have a \"viewBox\" attribute (on the outermost \"svg\" element)."
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-svg-no-viewbox-on-inner-svg-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__08-layout__files__content-fxl-svg-no-viewbox-width-height-percent-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM-048): EPUB/EPUB/cover.svg(2,82): SVG Fixed-Layout Documents must have a \"viewBox\" attribute (on the outermost \"svg\" element)."
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-svg-no-viewbox-width-height-units-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM-048): EPUB/EPUB/cover.svg(2,55): SVG Fixed-Layout Documents must have a \"viewBox\" attribute (on the outermost \"svg\" element)."
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-svg-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-duplicate-width-height-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM_059): EPUB/EPUB/content_001.xhtml(5,99): Viewport \"height\" property must not be defined more than once, but found values [\"1200\", \"device-height\"].",
-      "ERROR(HTM_059): EPUB/EPUB/content_001.xhtml(5,99): Viewport \"width\" property must not be defined more than once, but found values [\"600\", \"device-width\"]."
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-float-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-height-empty-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM_057): EPUB/EPUB/content_001.xhtml(5,54): Viewport \"height\" value must be a positive number or the keyword \"device-height\""
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-height-missing-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,47): Viewport metadata has no \"height\" dimension (both \"width\" and \"height\" properties are required)"
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-icb-missing-in-first-meta-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,54): Viewport metadata has no \"height\" dimension (both \"width\" and \"height\" properties are required)",
-      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,54): Viewport metadata has no \"width\" dimension (both \"width\" and \"height\" properties are required)"
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-keywords-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-missing-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM-046): EPUB/EPUB/content_001.xhtml(6,9): Fixed layout document has no \"viewport\" meta element."
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-multiple-usage-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-syntax-invalid-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM-047): EPUB/EPUB/content_001.xhtml(5,56): Viewport metadata \"width=600,height= \" has a syntax error"
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-units-invalid-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM_057): EPUB/EPUB/content_001.xhtml(5,63): Viewport \"height\" value must be a positive number or the keyword \"device-height\"",
-      "ERROR(HTM_057): EPUB/EPUB/content_001.xhtml(5,63): Viewport \"width\" value must be a positive number or the keyword \"device-width\""
-    ]
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-whitespace-valid.epub": {
-    "exit": 0,
-    "messages": []
-  },
-  "epub3__08-layout__files__content-fxl-xhtml-viewport-width-missing-error.epub": {
-    "exit": 1,
-    "messages": [
-      "ERROR(HTM_056): EPUB/EPUB/content_001.xhtml(5,48): Viewport metadata has no \"width\" dimension (both \"width\" and \"height\" properties are required)"
-    ]
-  },
-  "epub3__08-layout__files__content-reflow-xhtml-viewport-height-missing-valid.epub": {
-    "exit": 0,
-    "messages": []
   },
   "epub3__09-media-overlays__files__mediaoverlays-active-class-inline-valid.epub": {
     "exit": 0,
@@ -2127,6 +2277,62 @@
       "ERROR(OPF-073): EPUB/EPUB/toc.ncx(2,76): External identifiers must not appear in the document type declaration."
     ]
   },
+  "epub3__E-obsolete-features__files__outdated-css-prefixed-properties-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__E-obsolete-features__files__outdated-manifest-fallback-xhtml-audio-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__E-obsolete-features__files__outdated-manifest-fallback-xhtml-embed-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__E-obsolete-features__files__outdated-manifest-fallback-xhtml-video-poster-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__E-obsolete-features__files__outdated-ocf-obfuscation-duplicate-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(RSC-004): EPUB/EPUB/obfuscated-font.otf(-1,-1): File \"EPUB/obfuscated-font.otf\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__E-obsolete-features__files__outdated-ocf-obfuscation-not-cmt-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-026): EPUB/META-INF/encryption.xml(6,56): Obfuscated resource must be a Font Core Media Type (was declared as \"font/opentype\" in \"EPUB/package.opf\").",
+      "INFO(RSC-004): EPUB/EPUB/obfuscated-font.otf(-1,-1): File \"EPUB/obfuscated-font.otf\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__E-obsolete-features__files__outdated-ocf-obfuscation-not-font-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(PKG-026): EPUB/META-INF/encryption.xml(7,48): Obfuscated resource must be a Font Core Media Type (was declared as \"application/xml\" in \"EPUB/package.opf\").",
+      "INFO(RSC-004): EPUB/EPUB/doc.xml(-1,-1): File \"EPUB/doc.xml\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__E-obsolete-features__files__outdated-ocf-obfuscation-valid.epub": {
+    "exit": 0,
+    "messages": [
+      "INFO(RSC-004): EPUB/EPUB/obfuscated-font.otf(-1,-1): File \"EPUB/obfuscated-font.otf\" is encrypted, its content will not be checked."
+    ]
+  },
+  "epub3__E-obsolete-features__files__outdated-package-ncx-invalid-error.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-012): EPUB/EPUB/nav.ncx(20,49): Fragment identifier is not defined."
+    ]
+  },
+  "epub3__E-obsolete-features__files__outdated-package-ncx-missing-references-to-spine-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
+  "epub3__E-obsolete-features__files__outdated-package-ncx-valid.epub": {
+    "exit": 0,
+    "messages": []
+  },
   "epub3__test-files-unused__content-page-list-valid.epub": {
     "exit": 0,
     "messages": []
@@ -2154,7 +2360,7 @@
   "localization__files__schema-error.epub": {
     "exit": 1,
     "messages": [
-      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(10,12): Error while parsing file: element \"invalid\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:switch\", \"ns1:trigger\", \"ns2:math\", \"ns3:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.idpf.org/2007/ops\" xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns3=\"http://www.w3.org/2000/svg\") or an element from another namespace"
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(10,12): Error while parsing file: element \"invalid\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:switch\", \"ns1:trigger\", \"ns2:math\", \"ns3:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.idpf.org/2007/ops\" xmlns:ns2=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns3=\"http://www.w3.org/2000/svg\") or an element from another namespace"
     ]
   },
   "reporting__files__fonts-embedded.epub": {
@@ -2198,6 +2404,41 @@
   "reporting__files__layout-spread.epub": {
     "exit": 0,
     "messages": []
+  },
+  "reporting__files__messages-maxcount.epub": {
+    "exit": 1,
+    "messages": [
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(11,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(12,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(13,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(14,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(15,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(16,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(17,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(18,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(19,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(20,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(21,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(22,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(23,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(24,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(25,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(26,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(27,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(28,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(29,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(30,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(31,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(32,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(33,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(34,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(35,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(36,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(37,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(38,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(39,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace",
+      "ERROR(RSC-005): EPUB/EPUB/content_001.xhtml(40,9): Error while parsing file: element \"foo\" not allowed here; expected the element end-tag, text, element \"a\", \"abbr\", \"address\", \"area\", \"article\", \"aside\", \"audio\", \"b\", \"bdi\", \"bdo\", \"blockquote\", \"br\", \"button\", \"canvas\", \"cite\", \"code\", \"data\", \"datalist\", \"del\", \"details\", \"dfn\", \"dialog\", \"div\", \"dl\", \"em\", \"embed\", \"epub:switch\", \"epub:trigger\", \"fieldset\", \"figure\", \"footer\", \"form\", \"h1\", \"h2\", \"h3\", \"h4\", \"h5\", \"h6\", \"header\", \"hgroup\", \"hr\", \"i\", \"iframe\", \"img\", \"input\", \"ins\", \"kbd\", \"label\", \"link\", \"main\", \"map\", \"mark\", \"menu\", \"meta\", \"meter\", \"nav\", \"ns1:math\", \"ns2:svg\", \"object\", \"ol\", \"output\", \"p\", \"picture\", \"pre\", \"progress\", \"q\", \"ruby\", \"s\", \"samp\", \"script\", \"search\", \"section\", \"select\", \"selectedcontent\", \"slot\", \"small\", \"span\", \"strong\", \"sub\", \"sup\", \"table\", \"template\", \"textarea\", \"time\", \"u\", \"ul\", \"var\", \"video\" or \"wbr\" (with xmlns:ns1=\"http://www.w3.org/1998/Math/MathML\" xmlns:ns2=\"http://www.w3.org/2000/svg\") or an element from another namespace"
+    ]
   },
   "reporting__files__minimal.epub": {
     "exit": 0,

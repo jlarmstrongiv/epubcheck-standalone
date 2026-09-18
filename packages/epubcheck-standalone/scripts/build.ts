@@ -13,7 +13,7 @@
 //
 // The engine build is expensive (~80s, needs -Xmx4g -- set in
 // teavm/gradle.properties) and deliberate: it is never run implicitly by the
-// test scripts. The toolchain comes from mise (java@temurin-21, gradle@9.7.1).
+// test scripts. The toolchain comes from mise.
 
 import { existsSync, mkdirSync, copyFileSync, rmSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';

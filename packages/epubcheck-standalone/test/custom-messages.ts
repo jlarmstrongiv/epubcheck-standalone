@@ -26,11 +26,12 @@
 // release or a java binary is absent. Set EPUBCHECK_REQUIRE_JAR=1 to fail
 // instead.
 
-import { validate } from '../dist/index.js';
+import { EPUBCHECK_VERSION, validate } from '../dist/index.js';
 import { fs, memory } from '../dist/plugins.js';
 import type { EpubCheckResult, ValidateOptions } from '../dist/index.js';
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, existsSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
+import { access } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -39,15 +40,15 @@ const here = dirname(fileURLToPath(import.meta.url));
 const pkgRoot = dirname(here);
 
 // --- locate the jar + java (same rules as test/flags.ts) ---------------------
-function findJar(): string | null {
-  const buildDir = join(pkgRoot, 'build');
-  if (!existsSync(buildDir)) return null;
-  for (const entry of readdirSync(buildDir).sort()) {
-    if (!entry.startsWith('epubcheck-')) continue;
-    const jar = join(buildDir, entry, 'epubcheck.jar');
-    if (existsSync(jar)) return jar;
+async function findJar(): Promise<string | null> {
+  const jar = process.env.EPUBCHECK_JAR
+    ?? join(pkgRoot, 'build', `epubcheck-${EPUBCHECK_VERSION}`, 'epubcheck.jar');
+  try {
+    await access(jar);
+    return jar;
+  } catch {
+    return null;
   }
-  return null;
 }
 
 function findJava(): string[] | null {
@@ -59,11 +60,11 @@ function findJava(): string[] | null {
   return null;
 }
 
-const jar = findJar();
+const jar = await findJar();
 const java = findJava();
 if (!jar || !java) {
   const why = !jar
-    ? 'epubcheck.jar not found under build/epubcheck-*/ (run: npm run build:deps)'
+    ? `epubcheck ${EPUBCHECK_VERSION} jar not found (run: npm run build:deps)`
     : 'no working java binary (mise exec -- java, or PATH)';
   if (process.env.EPUBCHECK_REQUIRE_JAR === '1') {
     console.error(`CUSTOM-MESSAGES SUITE FAILED: EPUBCHECK_REQUIRE_JAR=1 but ${why}`);

@@ -1,6 +1,6 @@
 // Edge-input parity for the CLI: inputs that cannot be committed fixtures
 // (permission bits, empty directories, directories named `*.epub`) are built
-// fresh in a temp dir and run through BOTH the real epubcheck 5.3.0 jar and
+// fresh in a temp dir and run through BOTH the real epubcheck jar and
 // the compiled CLI (dist/cli.js) with identical args and cwd, asserting
 // byte-identical stdout/stderr and matching exit codes -- the same live
 // pattern as expanded.test.ts (and like it, these SKIP cleanly when the jar

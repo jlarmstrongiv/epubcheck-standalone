@@ -4,8 +4,8 @@
 // exception -- it prints the ABSOLUTE path (listChecksOut.getAbsoluteFile()) via
 // the "error_creating_config_file" message plus the IOException message
 // ("<original path> (<os strerror>)") to stderr, but run() still returns 0 on the
-// listChecks branch and its finally still prints the completion summary. So the
-// run exits 0 with the summary on stdout and the two error lines on stderr.
+// listChecks branch. Upstream exits 0 with no stdout and the two error
+// lines on stderr.
 //
 // This can't be a frozen golden (the absolute path and the OS strerror are
 // environment-specific), so it compares the compiled CLI (dist/cli.js) live
@@ -45,7 +45,7 @@ function run(bin: string, args: string[], cwd: string) {
 // FileNotFoundException). A RELATIVE path exercises the jar's getAbsoluteFile()
 // absolutization on line 1 while the IOException on line 2 keeps the original
 // (relative) path, so both must be reproduced.
-test("listChecks: write-failure mirrors the jar (absolute path + exception line, summary, exit 0)", { skip }, () => {
+test("listChecks: write-failure mirrors the jar (absolute path + exception line, empty stdout, exit 0)", { skip }, () => {
   const cwd = realpathSync(mkdtempSync(join(tmpdir(), "ecw-lc-")));
   try {
     const target = "nonexistent-subdir/checks.txt";
@@ -53,7 +53,7 @@ test("listChecks: write-failure mirrors the jar (absolute path + exception line,
     const c = run(process.execPath, [CLI, "--listChecks", target], cwd);
     assert.equal(c.code, j.code, "exit code");
     assert.equal(c.code, 0, "listChecks write-failure exits 0 (dumpMessageDictionary swallows)");
-    assert.equal(c.stdout, j.stdout, "stdout (completion summary)");
+    assert.equal(c.stdout, j.stdout, "stdout");
     assert.equal(c.stderr, j.stderr, "stderr (absolute path + IO exception line)");
   } finally {
     rmSync(cwd, { recursive: true, force: true });

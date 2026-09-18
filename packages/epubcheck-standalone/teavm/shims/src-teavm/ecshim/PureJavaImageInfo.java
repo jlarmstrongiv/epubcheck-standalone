@@ -25,6 +25,10 @@ import io.mola.galimatias.URL;
  */
 public final class PureJavaImageInfo {
 
+  // AVIF/JXL dimensions live near the beginning of the file. Retain a bounded
+  // prefix, then stream the remainder only to count its length.
+  private static final int HEADER_LIMIT = 64 * 1024;
+
   private PureJavaImageInfo() {
   }
 
@@ -62,7 +66,15 @@ public final class PureJavaImageInfo {
       Cursor in = new Cursor(raw);
       in.fillHead();
 
-      String formatFromStream = in.isWbmpCandidate() ? sniffWbmp(in) : sniffFormat(in);
+      String formatFromStream;
+      if (in.isIsoBmffCandidate()) {
+        formatFromStream = sniffIsoBmff(in);
+      } else {
+        formatFromStream = sniffFormat(in);
+        if (formatFromStream == null && in.isWbmpCandidate()) {
+          formatFromStream = sniffWbmp(in);
+        }
+      }
       // Like the original loop: the suffix format is only computed when the
       // magic-byte sniff recognized at least one format.
       String formatFromSuffix = (formatFromStream == null) ? null : formatForSuffix(suffix);
@@ -115,7 +127,47 @@ public final class PureJavaImageInfo {
     if (n >= 2 && b[0] == (byte) 0xFF && b[1] == (byte) 0xD8) {
       return "JPEG";
     }
+    // JPEG XL naked codestream signature (ISO/IEC 18181-2, Annex A).
+    if (n >= 2 && b[0] == (byte) 0xFF && b[1] == (byte) 0x0A) {
+      return "jxl";
+    }
+    // JPEG XL container signature box.
+    if (n >= 12 && u32be(b, 0) == 12 && u32be(b, 4) == fourcc("JXL ")
+        && u32be(b, 8) == 0x0D0A870AL) {
+      return "jxl";
+    }
     return null;
+  }
+
+  /**
+   * AVIF is an ISO BMFF file. Accept only an {@code ftyp} box carrying the
+   * {@code avif} or {@code avis} major/compatible brand; a generic HEIF file is
+   * not necessarily AVIF. Buffering this branch also lets the dimension reader
+   * locate the {@code ispe} image spatial extents property without seeking.
+   */
+  private static String sniffIsoBmff(Cursor in) throws IOException {
+    byte[] all = in.head;
+    int length = in.headLen;
+    if (length < 16 || u32be(all, 4) != fourcc("ftyp")) {
+      return null;
+    }
+    long size = u32be(all, 0);
+    if (size < 16 || size > length) {
+      return null;
+    }
+    if (isAvifBrand(u32be(all, 8))) {
+      return "avif";
+    }
+    for (int p = 16; p + 4 <= size; p += 4) {
+      if (isAvifBrand(u32be(all, p))) {
+        return "avif";
+      }
+    }
+    return null;
+  }
+
+  private static boolean isAvifBrand(long brand) {
+    return brand == fourcc("avif") || brand == fourcc("avis");
   }
 
   /**
@@ -169,6 +221,8 @@ public final class PureJavaImageInfo {
     if ("tif".equalsIgnoreCase(suffix) || "tiff".equalsIgnoreCase(suffix)) return "tif";
     if ("png".equalsIgnoreCase(suffix)) return "png";
     if ("jpg".equalsIgnoreCase(suffix) || "jpeg".equalsIgnoreCase(suffix)) return "JPEG";
+    if ("avif".equalsIgnoreCase(suffix)) return "avif";
+    if ("jxl".equalsIgnoreCase(suffix)) return "jxl";
     return null;
   }
 
@@ -188,9 +242,192 @@ public final class PureJavaImageInfo {
         return tiffDims(in);
       case "wbmp":
         return new long[] { in.wbmpWidth, in.wbmpHeight };
+      case "avif":
+        return avifDims(in);
+      case "jxl":
+        return jxlDims(in);
       default:
         throw new IOException("Unknown image format: " + format);
     }
+  }
+
+  /** AVIF: read the first valid image-spatial-extents ({@code ispe}) property. */
+  private static long[] avifDims(Cursor in) throws IOException {
+    long[] dims = findIspe(in.head, 0, in.headLen, 0);
+    if (dims == null || dims[0] <= 0 || dims[1] <= 0) {
+      throw new IOException("Missing AVIF image dimensions");
+    }
+    return dims;
+  }
+
+  /** Walk only ISO BMFF boxes that can contain AVIF item properties. */
+  private static long[] findIspe(byte[] all, int start, int end, int depth) throws IOException {
+    if (depth > 8) {
+      throw new IOException("AVIF box nesting is too deep");
+    }
+    int p = start;
+    while (p + 8 <= end) {
+      long size = u32be(all, p);
+      long type = u32be(all, p + 4);
+      int header = 8;
+      if (size == 1) {
+        if (p + 16 > end) throw new IOException("Truncated AVIF extended-size box");
+        long high = u32be(all, p + 8);
+        long low = u32be(all, p + 12);
+        if (high != 0) throw new IOException("AVIF box is too large");
+        size = low;
+        header = 16;
+      } else if (size == 0) {
+        size = end - p;
+      }
+      if (size < header || size > end - p) {
+        throw new IOException("Invalid AVIF box size");
+      }
+      int boxEnd = p + (int) size;
+      int payload = p + header;
+      if (type == fourcc("ispe")) {
+        if (payload + 12 > boxEnd) throw new IOException("Truncated AVIF ispe box");
+        long width = u32be(all, payload + 4); // skip FullBox version + flags
+        long height = u32be(all, payload + 8);
+        return new long[] { width, height };
+      }
+      if (type == fourcc("meta")) {
+        if (payload + 4 > boxEnd) throw new IOException("Truncated AVIF meta box");
+        long[] dims = findIspe(all, payload + 4, boxEnd, depth + 1);
+        if (dims != null) return dims;
+      } else if (type == fourcc("iprp") || type == fourcc("ipco")) {
+        long[] dims = findIspe(all, payload, boxEnd, depth + 1);
+        if (dims != null) return dims;
+      }
+      p = boxEnd;
+    }
+    return null;
+  }
+
+  /** JPEG XL size header, for naked codestreams and jxlc/jxlp containers. */
+  private static long[] jxlDims(Cursor in) throws IOException {
+    byte[] bytes = in.head;
+    int length = in.headLen;
+    int codestream;
+    if (length >= 2 && bytes[0] == (byte) 0xFF && bytes[1] == 0x0A) {
+      codestream = 2;
+    } else {
+      codestream = findJxlCodestream(bytes, length);
+      if (codestream < 0 || codestream + 2 > length
+          || bytes[codestream] != (byte) 0xFF || bytes[codestream + 1] != 0x0A) {
+        throw new IOException("Missing JPEG XL codestream");
+      }
+      codestream += 2;
+    }
+    BitCursor bits = new BitCursor(bytes, codestream, length);
+    boolean small = bits.read(1) != 0;
+    long height = small ? (bits.read(5) + 1L) * 8L : readJxlU32(bits);
+    int ratio = (int) bits.read(3);
+    long width;
+    if (ratio == 0) {
+      width = small ? (bits.read(5) + 1L) * 8L : readJxlU32(bits);
+    } else {
+      int[] numerators = { 1, 12, 4, 3, 16, 5, 2 };
+      int[] denominators = { 1, 10, 3, 2, 9, 4, 1 };
+      width = height * numerators[ratio - 1] / denominators[ratio - 1];
+    }
+    if (width <= 0 || height <= 0 || width > 0xFFFFFFFFL || height > 0xFFFFFFFFL) {
+      throw new IOException("Bad JPEG XL image dimensions");
+    }
+    return new long[] { width, height };
+  }
+
+  private static long readJxlU32(BitCursor bits) throws IOException {
+    int selector = (int) bits.read(2);
+    int[] widths = { 9, 13, 18, 30 };
+    return bits.read(widths[selector]) + 1L;
+  }
+
+  private static int findJxlCodestream(byte[] bytes, int length) throws IOException {
+    if (length < 12 || u32be(bytes, 0) != 12 || u32be(bytes, 4) != fourcc("JXL ")
+        || u32be(bytes, 8) != 0x0D0A870AL) return -1;
+    int p = 12;
+    while (p + 8 <= length) {
+      long size = u32be(bytes, p);
+      long type = u32be(bytes, p + 4);
+      int header = 8;
+      if (size == 1) {
+        if (p + 16 > length) throw new IOException("Truncated JPEG XL box");
+        if (u32be(bytes, p + 8) != 0) throw new IOException("JPEG XL box is too large");
+        size = u32be(bytes, p + 12);
+        header = 16;
+      } else if (size == 0) {
+        size = length - p;
+      }
+      if (size < header || size > length - p) throw new IOException("Invalid JPEG XL box size");
+      int payload = p + header;
+      if (type == fourcc("jxlc")) return payload;
+      if (type == fourcc("jxlp")) {
+        if (payload + 4 > p + size) throw new IOException("Truncated JPEG XL partial box");
+        return payload + 4;
+      }
+      p += (int) size;
+    }
+    return -1;
+  }
+
+  /** JPEG XL bit fields are packed least-significant bit first. */
+  private static final class BitCursor {
+    private final byte[] bytes;
+    private final int end;
+    private int bit;
+
+    BitCursor(byte[] bytes, int start, int end) {
+      this.bytes = bytes;
+      this.bit = start * 8;
+      this.end = end * 8;
+    }
+
+    long read(int count) throws IOException {
+      if (count < 0 || count > 32 || bit + count > end) {
+        throw new EOFException("Truncated JPEG XL size header");
+      }
+      long value = 0;
+      for (int i = 0; i < count; i++, bit++) {
+        value |= (long) ((bytes[bit >>> 3] >>> (bit & 7)) & 1) << i;
+      }
+      return value;
+    }
+  }
+
+  private static long fourcc(String value) {
+    return ((long) value.charAt(0) << 24)
+        | ((long) value.charAt(1) << 16)
+        | ((long) value.charAt(2) << 8)
+        | value.charAt(3);
+  }
+
+  private static long u32be(byte[] bytes, int offset) {
+    return ((long) (bytes[offset] & 0xff) << 24)
+        | ((long) (bytes[offset + 1] & 0xff) << 16)
+        | ((long) (bytes[offset + 2] & 0xff) << 8)
+        | (bytes[offset + 3] & 0xffL);
+  }
+
+  // Focused package-private seam for the JVM test harness. Production calls
+  // follow the same sniff/suffix/dimension path above.
+  static long[] inspectForTesting(byte[] bytes, String suffix) throws IOException {
+    Cursor in = new Cursor(new java.io.ByteArrayInputStream(bytes));
+    in.fillHead();
+    String format;
+    if (in.isIsoBmffCandidate()) {
+      format = sniffIsoBmff(in);
+    } else {
+      format = sniffFormat(in);
+      if (format == null && in.isWbmpCandidate()) {
+        format = sniffWbmp(in);
+      }
+    }
+    String expected = formatForSuffix(suffix);
+    if (format == null || !format.equals(expected)) {
+      throw new IOException("Image format does not match suffix");
+    }
+    return readDimensions(format, in);
   }
 
   /** PNG: 8-byte signature, then the IHDR chunk (mirrors PNGImageReader.readHeader). */
@@ -361,13 +598,13 @@ public final class PureJavaImageInfo {
   }
 
   /**
-   * Single-pass reader: buffers the first 8 bytes for sniffing, then serves
+   * Single-pass reader: buffers a bounded header prefix for sniffing, then serves
    * sequential reads (head first, then the stream) while counting every byte,
    * so the total resource length is known once the stream is drained.
    */
   private static final class Cursor {
     final InputStream in;
-    final byte[] head = new byte[8];
+    final byte[] head = new byte[HEADER_LIMIT];
     int headLen;
     int pos; // read position within head
     long count; // total bytes consumed from the underlying stream
@@ -395,7 +632,14 @@ public final class PureJavaImageInfo {
       return headLen >= 2 && head[0] == 0 && head[1] == 0;
     }
 
+    boolean isIsoBmffCandidate() {
+      return headLen >= 8 && PureJavaImageInfo.u32be(head, 4) == fourcc("ftyp");
+    }
+
     byte[] bufferFully() throws IOException {
+      if (buffered != null) {
+        return buffered;
+      }
       java.io.ByteArrayOutputStream bos = new java.io.ByteArrayOutputStream();
       bos.write(head, 0, headLen);
       byte[] scratch = new byte[64 * 1024];

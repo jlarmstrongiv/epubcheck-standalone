@@ -4,9 +4,9 @@
   "checker" : {
     "path" : "./epub2__files__epub__ops-dtbook-valid.epub",
     "filename" : "epub2__files__epub__ops-dtbook-valid.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:20:48",
-    "elapsedTime" : 4647,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:58:07",
+    "elapsedTime" : 5787,
     "nFatal" : 0,
     "nError" : 0,
     "nWarning" : 0,

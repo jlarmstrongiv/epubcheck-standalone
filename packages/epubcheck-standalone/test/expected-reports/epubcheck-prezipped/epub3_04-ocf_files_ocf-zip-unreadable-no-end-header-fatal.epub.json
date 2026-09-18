@@ -20,9 +20,9 @@
   "checker" : {
     "path" : "./epub3_04-ocf_files_ocf-zip-unreadable-no-end-header-fatal.epub",
     "filename" : "epub3_04-ocf_files_ocf-zip-unreadable-no-end-header-fatal.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:32:14",
-    "elapsedTime" : 141,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 22:10:54",
+    "elapsedTime" : 90,
     "nFatal" : 1,
     "nError" : 0,
     "nWarning" : 0,

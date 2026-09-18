@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        date="2025-09-01"
+        date="2026-09-15"
         name="epubcheck"
-        release="5.3.0"
+        release="5.4.0"
         xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
-   <date>2026-09-06T17:32:42-07:00</date>
+   <date>2026-09-17T22:11:26-07:00</date>
    <repInfo uri="jane-austen_pride-and-prejudice.epub">
       <created>2026-08-27T20:50:48Z</created>
       <lastModified>2026-08-27T20:50:49Z</lastModified>
       <format>application/epub+zip</format>
-      <version>3.3</version>
-      <status>Well-formed</status>
+      <version>3.4</version>
+      <status>Not well-formed</status>
+      <messages>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: attribute "aria-labelledby" not allowed here; expected attribute "accesskey", "aria-expanded", "autocapitalize", "autocorrect", "autofocus", "class", "contenteditable", "dir", "draggable", "enterkeyhint", "epub:type", "headingoffset", "headingreset", "hidden", "id", "inert", "inputmode", "is", "lang", "nonce", "ns:alphabet", "ns:ph", "onauxclick", "onbeforeinput", "onbeforematch", "onbeforetoggle", "onblur", "oncancel", "oncanplay", "oncanplaythrough", "onchange", "onclick", "onclose", "oncommand", "oncontextlost", "oncontextmenu", "oncontextrestored", "oncopy", "oncuechange", "oncut", "ondblclick", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "ondurationchange", "onemptied", "onended", "onerror", "onfocus", "onformdata", "ongotpointercapture", "oninput", "oninvalid", "onkeydown", "onkeypress", "onkeyup", "onload", "onloadeddata", "onloadedmetadata", "onloadstart", "onlostpointercapture", "onmousedown", "onmouseenter", "onmouseleave", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onpaste", "onpause", "onplay", "onplaying", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerrawupdate", "onpointerup", "onprogress", "onratechange", "onreset", "onresize", "onscroll", "onscrollend", "onsecuritypolicyviolation", "onseeked", "onseeking", "onselect", "onslotchange", "onstalled", "onsubmit", "onsuspend", "ontimeupdate", "ontoggle", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "onvolumechange", "onwaiting", "onwheel", "popover", "role", "slot", "spellcheck", "style", "tabindex", "title", "translate", "writingsuggestions", "xml:base", "xml:lang" or "xml:space" (with xmlns:ns="http://www.w3.org/2001/10/synthesis")], epub/toc.xhtml (7-76)</message>
+         <message id="RSC-005" severity="error">RSC-005, ERROR, [Error while parsing file: attribute "aria-labelledby" not allowed here; expected attribute "accesskey", "aria-expanded", "autocapitalize", "autocorrect", "autofocus", "class", "contenteditable", "dir", "draggable", "enterkeyhint", "epub:type", "headingoffset", "headingreset", "hidden", "id", "inert", "inputmode", "is", "lang", "nonce", "ns:alphabet", "ns:ph", "onauxclick", "onbeforeinput", "onbeforematch", "onbeforetoggle", "onblur", "oncancel", "oncanplay", "oncanplaythrough", "onchange", "onclick", "onclose", "oncommand", "oncontextlost", "oncontextmenu", "oncontextrestored", "oncopy", "oncuechange", "oncut", "ondblclick", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "ondurationchange", "onemptied", "onended", "onerror", "onfocus", "onformdata", "ongotpointercapture", "oninput", "oninvalid", "onkeydown", "onkeypress", "onkeyup", "onload", "onloadeddata", "onloadedmetadata", "onloadstart", "onlostpointercapture", "onmousedown", "onmouseenter", "onmouseleave", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onpaste", "onpause", "onplay", "onplaying", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerrawupdate", "onpointerup", "onprogress", "onratechange", "onreset", "onresize", "onscroll", "onscrollend", "onsecuritypolicyviolation", "onseeked", "onseeking", "onselect", "onslotchange", "onstalled", "onsubmit", "onsuspend", "ontimeupdate", "ontoggle", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "onvolumechange", "onwaiting", "onwheel", "popover", "role", "slot", "spellcheck", "style", "tabindex", "title", "translate", "writingsuggestions", "xml:base", "xml:lang" or "xml:space" (with xmlns:ns="http://www.w3.org/2001/10/synthesis")], epub/toc.xhtml (207-79)</message>
+      </messages>
       <mimeType>application/epub+zip</mimeType>
       <properties>
          <property>

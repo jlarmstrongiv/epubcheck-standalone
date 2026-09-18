@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // epubcheck-standalone-cli -- a zero-Java command-line EPUB validator that mirrors the
-// official epubcheck 5.3.0 CLI (com.adobe.epubcheck.tool.EpubChecker /
+// official epubcheck CLI (com.adobe.epubcheck.tool.EpubChecker /
 // Checker) byte-for-byte, on top of the epubcheck-standalone engine.
 //
-// The behavior here is a faithful re-implementation of epubcheck 5.3.0's
+// The behavior here is a faithful re-implementation of upstream's
 // EpubChecker.processArguments / run / validateFile / processFile and
 // DefaultReportImpl (see the source files named in the package README). Flags
 // that change what the engine validates or which locale it speaks (--mode,
@@ -35,6 +35,7 @@ import type { ReportMessage } from "epubcheck-standalone/formatters";
 // run. CLI-specific concerns (flag/--quiet handling, reporting-level selection,
 // locale wiring, stream routing) stay here.
 import {
+  DEFAULT_MAX_OF_EACH_MESSAGE,
   type ConsoleCounts,
   renderConsoleMessageLine,
   countConsoleSeverities,
@@ -46,14 +47,13 @@ import {
 } from "epubcheck-standalone/formatters";
 import type { RangeSource } from "epubcheck-standalone/plugins";
 import {
-  M,
   type Messages,
   messagesFor,
   resolveLocale,
   EPUBCHECK_VERSION,
   ReportingLevel,
 } from "./messages.js";
-import { HELP_OUTPUT } from "./help-text.js";
+import { HELP_OUTPUT, HELP_OUTPUT_BY_LOCALE } from "./help-text.js";
 import { createArchive } from "./archive.js";
 import { LIST_CHECKS_TSV } from "./list-checks-data.js";
 import { LIST_CHECKS_TSV_BY_LOCALE } from "./list-checks-locale-data.js";
@@ -69,6 +69,7 @@ interface EngineOpts {
   customMessages?: string;
   customMessagesName?: string;
   reports?: Array<"json" | "xml" | "xmp">;
+  maxOfEachMessage?: number;
   dirMode?: "exp" | "direct";
   /** Live per-message stream (see run()'s streaming console driver). */
   onMessage?: (message: ReportMessage) => void;
@@ -133,6 +134,8 @@ interface State {
   reportingLevel: number;
   quiet: boolean;
   localeTag: string | null;
+  /** Report-only location cap. Any negative value means unlimited. */
+  maxOfEachMessage: number;
 }
 
 class ParseError extends Error {}
@@ -158,6 +161,7 @@ export async function run(args: string[]): Promise<number> {
     reportingLevel: ReportingLevel.Info,
     quiet: false,
     localeTag: null,
+    maxOfEachMessage: DEFAULT_MAX_OF_EACH_MESSAGE,
   };
 
   // Emit helpers. Everything that epubcheck routes through `outWriter` (stdout)
@@ -174,9 +178,13 @@ export async function run(args: string[]): Promise<number> {
   const usageln = (s: string): void => {
     process.stdout.write(s + "\n");
   };
-  const displayHelp = (): void => outln(HELP_OUTPUT.slice(0, -1)); // HELP_OUTPUT ends with the println newline
+  const displayHelp = (): void => {
+    const locale = st.localeTag === null ? null : resolveLocale(st.localeTag);
+    const output = (locale === null ? undefined : HELP_OUTPUT_BY_LOCALE[locale]) ?? HELP_OUTPUT;
+    outln(output.slice(0, -1)); // help output ends with the println newline
+  };
   const displayVersion = (): void =>
-    outln(formatTemplate(M.epubcheck_version_text, EPUBCHECK_VERSION));
+    outln(formatTemplate(messagesFor(st.localeTag).epubcheck_version_text, EPUBCHECK_VERSION));
 
   // --- processArguments -------------------------------------------------------
   let parsedOk = true;
@@ -209,7 +217,6 @@ export async function run(args: string[]): Promise<number> {
   // localized dump the SAME way a run resolves the locale (resolveLocale): a shipped
   // non-English key -> its dump; English / an English-fallback tag -> the default.
   if (st.listChecks) {
-    const listZero: ConsoleCounts = { fatal: 0, error: 0, warning: 0, info: 0, usage: 0 };
     const listKey = st.localeTag !== null ? resolveLocale(st.localeTag) : null;
     const listTsv =
       (listKey !== null && LIST_CHECKS_TSV_BY_LOCALE[listKey]) || LIST_CHECKS_TSV;
@@ -220,16 +227,14 @@ export async function run(args: string[]): Promise<number> {
     } else {
       // EpubChecker.dumpMessageDictionary SWALLOWS a write failure: it prints the
       // absolute path (listChecksOut.getAbsoluteFile()) + the IOException message
-      // to stderr, but run() still returns 0 on the listChecks branch and its
-      // finally still prints the completion summary. So a write failure exits 0
-      // with the summary, NOT 1 without it.
+      // to stderr, but run() still returns 0. Upstream does not print a
+      // completion summary for either the successful or failed file-output path.
       try {
         await writeFile(st.listChecksOut, listTsv);
       } catch (e) {
         errln(formatTemplate(msgs.error_creating_config_file, pathResolve(process.cwd(), st.listChecksOut)));
         errln(javaIoErrorMessage(e, st.listChecksOut));
       }
-      printCompleted(st, listZero, outln, msgs);
     }
     return 0;
   }
@@ -255,7 +260,7 @@ export async function run(args: string[]): Promise<number> {
   const zeroCounts: ConsoleCounts = { fatal: 0, error: 0, warning: 0, info: 0, usage: 0 };
 
   // Expanded (directory / --mode exp) vs packaged/single-file routing, mirroring
-  // epubcheck 5.3.0's EpubChecker: `-mode exp` (st.expanded) always means expanded
+  // Upstream's EpubChecker: `-mode exp` (st.expanded) always means expanded
   // validation, and a directory input with no single-file `-mode` is auto-detected
   // as expanded too (a `.epub`-named directory, or a directory validated under a
   // `--profile`). A single-file `-mode` (xhtml/opf/svg/mo/nav) is never expanded.
@@ -626,6 +631,9 @@ async function buildEngineOpts(
   if (st.xmlOutput) reports.push("xml");
   if (st.xmpOutput) reports.push("xmp");
   if (reports.length > 0) opts.reports = reports;
+  // Upstream applies this only to its JSON/XML-family report implementations;
+  // the engine tap and live console stream remain complete and uncapped.
+  if (reports.length > 0) opts.maxOfEachMessage = st.maxOfEachMessage;
   return opts;
 }
 
@@ -636,10 +644,55 @@ interface Emit {
   displayVersion: () => void;
 }
 
+// The BMP decimal-digit blocks accepted by Java 21's Character.digit(char, 10).
+// Integer.parseInt iterates UTF-16 chars, so supplementary-plane decimal digits
+// are deliberately rejected even though JavaScript can represent their code
+// points. Each block contains ten contiguous digits starting at zero.
+const JAVA_21_BMP_DECIMAL_ZEROES = [
+  0x0030, 0x0660, 0x06f0, 0x07c0, 0x0966, 0x09e6, 0x0a66, 0x0ae6, 0x0b66,
+  0x0be6, 0x0c66, 0x0ce6, 0x0d66, 0x0de6, 0x0e50, 0x0ed0, 0x0f20, 0x1040,
+  0x1090, 0x17e0, 0x1810, 0x1946, 0x19d0, 0x1a80, 0x1a90, 0x1b50, 0x1bb0,
+  0x1c40, 0x1c50, 0xa620, 0xa8d0, 0xa900, 0xa9d0, 0xa9f0, 0xaa50, 0xabf0,
+  0xff10,
+] as const;
+
+function javaDecimalDigit(codeUnit: number): number {
+  for (const zero of JAVA_21_BMP_DECIMAL_ZEROES) {
+    if (codeUnit >= zero && codeUnit <= zero + 9) return codeUnit - zero;
+  }
+  return -1;
+}
+
+/** Match Java 21 Integer.parseInt(raw), including Character.digit and overflow. */
+function parseJavaInt32(raw: string): number | null {
+  if (raw.length === 0) return null;
+  let index = 0;
+  let negative = false;
+  const first = raw.charCodeAt(0);
+  if (first === 0x2d || first === 0x2b) {
+    negative = first === 0x2d;
+    index = 1;
+    if (raw.length === 1) return null;
+  }
+
+  const limit = negative ? -2147483648 : -2147483647;
+  const multmin = Math.trunc(limit / 10);
+  let result = 0;
+  for (; index < raw.length; index++) {
+    const digit = javaDecimalDigit(raw.charCodeAt(index));
+    if (digit < 0 || result < multmin) return null;
+    result *= 10;
+    if (result < limit + digit) return null;
+    result -= digit;
+  }
+  return negative ? result : -result;
+}
+
 /** Faithful port of EpubChecker.processArguments (returns false == exit 1). */
 async function processArguments(args: string[], st: State, e: Emit): Promise<boolean> {
+  const messages = (): Messages => messagesFor(st.localeTag);
   if (args.length < 1) {
-    e.errln(M.argument_needed);
+    e.errln(messages().argument_needed);
     return false;
   }
 
@@ -664,11 +717,11 @@ async function processArguments(args: string[], st: State, e: Emit): Promise<boo
             if (v === "2.0" || v === "2") st.version = "2.0";
             else if (v === "3.0" || v === "3") st.version = "3.0";
             else {
-              e.outln(M.display_help);
+              e.outln(messages().display_help);
               throw new ParseError("unsupported version");
             }
           } else {
-            e.outln(M.display_help);
+            e.outln(messages().display_help);
             throw new ParseError("version argument expected");
           }
           break;
@@ -678,7 +731,7 @@ async function processArguments(args: string[], st: State, e: Emit): Promise<boo
             st.mode = args[++i] as string;
             st.expanded = st.mode === "exp";
           } else {
-            e.outln(M.display_help);
+            e.outln(messages().display_help);
             throw new ParseError("mode argument expected");
           }
           break;
@@ -692,11 +745,11 @@ async function processArguments(args: string[], st: State, e: Emit): Promise<boo
             } else {
               // epubcheck prints the (mis-keyed) mode_version_ignored text and
               // falls back to the default profile.
-              e.errln(M.mode_version_ignored);
+              e.errln(messages().mode_version_ignored);
               st.profile = "DEFAULT";
             }
           } else {
-            e.outln(M.display_help);
+            e.outln(messages().display_help);
             throw new ParseError("profile argument expected");
           }
           break;
@@ -766,7 +819,7 @@ async function processArguments(args: string[], st: State, e: Emit): Promise<boo
               st.customMessagesPath = fileName;
               ++i;
             } else {
-              e.errln(formatTemplate(M.expected_message_filename, fileName));
+              e.errln(formatTemplate(messages().expected_message_filename, fileName));
               e.displayHelp();
               return false;
             }
@@ -786,18 +839,39 @@ async function processArguments(args: string[], st: State, e: Emit): Promise<boo
         case "locale":
           if (i + 1 < args.length) {
             if ((args[i + 1] as string).startsWith("-")) {
-              e.errln(formatTemplate(M.incorrect_locale, args[i + 1] as string));
+              e.errln(formatTemplate(messages().incorrect_locale, args[i + 1] as string));
               e.displayHelp();
               return false;
             } else {
               st.localeTag = args[++i] as string;
             }
           } else {
-            e.errln(formatTemplate(M.missing_locale));
+            e.errln(formatTemplate(messages().missing_locale));
             e.displayHelp();
             return false;
           }
           break;
+        case "maxOfEachMessage":
+        case "maxofeachmessage": {
+          if (i + 1 >= args.length) {
+            e.errln(messages().missing_maxofeach);
+            e.displayHelp();
+            return false;
+          }
+          const maxValue = args[++i] as string;
+          if (maxValue === "unlimited") {
+            st.maxOfEachMessage = -1;
+            break;
+          }
+          const max = parseJavaInt32(maxValue);
+          if (max === null) {
+            e.errln(formatTemplate(messages().incorrect_maxofeach, maxValue));
+            e.displayHelp();
+            return false;
+          }
+          st.maxOfEachMessage = max;
+          break;
+        }
         case "h":
         case "?":
         case "help":
@@ -809,7 +883,7 @@ async function processArguments(args: string[], st: State, e: Emit): Promise<boo
           st.displayVersion = true;
           break;
         default:
-          e.errln(formatTemplate(M.unrecognized_argument, arg));
+          e.errln(formatTemplate(messages().unrecognized_argument, arg));
           e.displayHelp();
           return false;
       }
@@ -817,7 +891,7 @@ async function processArguments(args: string[], st: State, e: Emit): Promise<boo
       if (st.path === null) {
         st.path = arg;
       } else {
-        e.errln(formatTemplate(M.unrecognized_argument, arg));
+        e.errln(formatTemplate(messages().unrecognized_argument, arg));
         e.displayHelp();
         return false;
       }
@@ -829,7 +903,7 @@ async function processArguments(args: string[], st: State, e: Emit): Promise<boo
     (st.xmlOutput && st.jsonOutput) ||
     (st.xmpOutput && st.jsonOutput)
   ) {
-    e.errln(M.output_type_conflict);
+    e.errln(messages().output_type_conflict);
     return false;
   }
 
@@ -841,15 +915,15 @@ async function processArguments(args: string[], st: State, e: Emit): Promise<boo
     if (st.listChecks || st.displayHelp || st.displayVersion) {
       return true;
     }
-    e.errln(M.no_file_specified);
+    e.errln(messages().no_file_specified);
     return false;
   } else if (/^.+\.[Ee][Pp][Uu][Bb]$/.test(st.path)) {
     if (st.mode !== null || st.version !== "3.0") {
-      e.errln(M.mode_version_ignored);
+      e.errln(messages().mode_version_ignored);
       st.mode = null;
     }
   } else if (st.mode === null && st.profile === null) {
-    e.outln(M.mode_required);
+    e.outln(messages().mode_required);
     return false;
   }
 

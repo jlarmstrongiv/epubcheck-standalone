@@ -1,4 +1,4 @@
-// Port of com.adobe.epubcheck.util.Archive (epubcheck 5.3.0) for the CLI's
+// Port of com.adobe.epubcheck.util.Archive for the CLI's
 // `-s`/`--save` flag: package an expanded EPUB directory into
 // `<canonical-parent>/<directory-name>.epub`, laid out the way the jar's
 // commons-compress ZipArchiveOutputStream writes it.

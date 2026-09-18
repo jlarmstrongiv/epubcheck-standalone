@@ -27,7 +27,7 @@ import com.adobe.epubcheck.messages.Message;
 import com.adobe.epubcheck.messages.Severity;
 
 /**
- * SHIM-JAR SHADOW of epubcheck 5.3.0's DefaultReportImpl (upstream source
+ * SHIM-JAR SHADOW of upstream DefaultReportImpl (source
  * verbatim except the two ecshim.ReportTap blocks) -- the shims jar precedes
  * the epubcheck jars on the TeaVM compiler classpath, so this class replaces
  * the stock one.

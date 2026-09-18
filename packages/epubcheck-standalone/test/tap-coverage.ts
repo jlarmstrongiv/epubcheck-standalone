@@ -27,7 +27,7 @@ import { validate } from '../dist/index.js';
 import { fs } from '../dist/plugins.js';
 import { parseConsoleReport } from '../dist/parse.js';
 import type { ReportMessage } from '../dist/formatters/index.js';
-import { readdirSync } from 'node:fs';
+import { readdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -37,13 +37,13 @@ const fixtures = join(here, 'corpus', 'epubcheck-expanded');
 // The 14 books the tap hole dropped messages on (parity-audit appendix).
 const GAP_A_BOOKS = [
   'epub3__03-resources__files__foreign-xhtml-picture-source-no-type-error.epub',
-  'epub3__05-package-document__files__package-link-missing-resource-error.epub',
-  'epub3__08-layout__files__content-fxl-xhtml-viewport-duplicate-width-height-error.epub',
-  'epub3__08-layout__files__content-fxl-xhtml-viewport-height-empty-error.epub',
-  'epub3__08-layout__files__content-fxl-xhtml-viewport-height-missing-error.epub',
-  'epub3__08-layout__files__content-fxl-xhtml-viewport-icb-missing-in-first-meta-error.epub',
-  'epub3__08-layout__files__content-fxl-xhtml-viewport-units-invalid-error.epub',
-  'epub3__08-layout__files__content-fxl-xhtml-viewport-width-missing-error.epub',
+  'epub3__04-ocf__files__url-missing-resource-package-link-warning.epub',
+  'epub3__07-content-documents__files__content-fxl-xhtml-viewport-duplicate-width-height-error.epub',
+  'epub3__07-content-documents__files__content-fxl-xhtml-viewport-height-empty-error.epub',
+  'epub3__07-content-documents__files__content-fxl-xhtml-viewport-height-missing-error.epub',
+  'epub3__07-content-documents__files__content-fxl-xhtml-viewport-icb-missing-in-first-meta-error.epub',
+  'epub3__07-content-documents__files__content-fxl-xhtml-viewport-units-invalid-error.epub',
+  'epub3__07-content-documents__files__content-fxl-xhtml-viewport-width-missing-error.epub',
   'epub3__09-media-overlays__files__mediaoverlays-incorrect-overlay-ref-error.epub',
   'epub3__09-media-overlays__files__mediaoverlays-missing-mo-attr-error.epub',
   'epub3__09-media-overlays__files__mediaoverlays-multiple-overlay-ref-error.epub',
@@ -125,7 +125,7 @@ for (const book of [...GAP_A_BOOKS, ...HEALTHY_BOOKS]) {
 
 // The 14 pinned books must keep existing in the corpus (a rename would
 // silently drop the regression coverage).
-const present = new Set(readdirSync(fixtures));
+const present = new Set(await readdir(fixtures));
 for (const book of [...GAP_A_BOOKS, ...HEALTHY_BOOKS]) {
   check(book, present.has(book), 'book missing from test/corpus/epubcheck-expanded');
 }

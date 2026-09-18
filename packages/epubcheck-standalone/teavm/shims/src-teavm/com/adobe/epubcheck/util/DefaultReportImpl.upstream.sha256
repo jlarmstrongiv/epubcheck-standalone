@@ -32,5 +32,4 @@
 #      unzip -p build/epubcheck-<version>-sources.jar \
 #        com/adobe/epubcheck/util/DefaultReportImpl.java | shasum -a 256
 #
-# EPUBCheck version the hash below is for: 5.3.0
 57e986cdddabb4d0221376574c16191da898079b0b0ca96e534466ab1197f378

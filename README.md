@@ -64,7 +64,7 @@ See the [demo README](packages/epubcheck-standalone-web/README.md) for details.
 
 ## Identical output
 
-The test suite runs this build and the official EPUBCheck side by side over 446 EPUBs: EPUBCheck's own test fixtures, published Standard Ebooks, and generated stress books. Every message, severity, and exit code matches, 446 of 446, with no crashes. It also checks 105 report files byte for byte against what `epubcheck.jar` writes, across 35 books in the JSON, XML, and XMP formats.
+The test suite compares this build with official EPUBCheck answers over 491 EPUBs: EPUBCheck's own test fixtures, published Standard Ebooks, and generated stress books. Every message, severity, and exit code matches, 491 of 491, with no crashes. It also checks 1,473 report files against what `epubcheck.jar` writes, covering all 491 books in the JSON, XML, and XMP formats.
 
 ```sh
 npm test

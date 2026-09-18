@@ -47,6 +47,7 @@ val epubcheckJars: FileCollection =
     files(file("../build/jzlib-$jzlibVersion.jar"))
 
 val shimsJar = layout.buildDirectory.file("shims/shims.jar")
+val imageInfoTestClasses = layout.buildDirectory.dir("tests/image-info")
 
 // Compile classpath for the shim jar (T-class forks compile against the real
 // classlib + compiler APIs; PureJavaImageInfo against the epubcheck jars).
@@ -77,6 +78,30 @@ tasks.register<Exec>("buildShims") {
     environment("JAR", "$javaHomePath/bin/jar")
     environment("SHIM_CP", (shimCompile + epubcheckJars).asPath)
 }
+
+val compileImageInfoTest by tasks.registering(Exec::class) {
+    dependsOn("buildShims")
+    inputs.dir("shims/test")
+    outputs.dir(imageInfoTestClasses)
+    doFirst { imageInfoTestClasses.get().asFile.mkdirs() }
+    commandLine(
+        "$javaHomePath/bin/javac",
+        "-proc:none",
+        "-cp", (files(shimsJar) + epubcheckJars).asPath,
+        "-d", imageInfoTestClasses.get().asFile.absolutePath,
+        file("shims/test/ecshim/PureJavaImageInfoTest.java").absolutePath,
+    )
+}
+
+val testImageInfo by tasks.registering(JavaExec::class) {
+    group = "verification"
+    description = "Runs focused AVIF/JPEG XL checks against the pure-Java image shim."
+    dependsOn(compileImageInfoTest)
+    classpath = files(imageInfoTestClasses, shimsJar) + epubcheckJars
+    mainClass = "ecshim.PureJavaImageInfoTest"
+}
+
+tasks.named("check") { dependsOn(testImageInfo) }
 
 java {
     toolchain {

@@ -4,9 +4,9 @@
   "checker" : {
     "path" : "./epub2__files__epub__opf-manifest-resource-undeclared-usage.epub",
     "filename" : "epub2__files__epub__opf-manifest-resource-undeclared-usage.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:20:26",
-    "elapsedTime" : 4559,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:57:44",
+    "elapsedTime" : 5586,
     "nFatal" : 0,
     "nError" : 0,
     "nWarning" : 0,

@@ -136,7 +136,7 @@ public abstract class TResourceBundle {
             theParent = theParent.parent;
         } while (theParent != null);
         // --- epubcheck-standalone TeaVM shim workaround (fork of the stock classlib file) ---
-        // TeaVM 0.15.0 CPS-lowering bug: epubcheck's
+        // TeaVM CPS-lowering bug: epubcheck's
         // LocalizedMessages.getStringFromBundle compiles to a state machine in
         // which the catch handler after the (async) getString call reads a
         // local whose constant "" initializer was dropped on the first-pass

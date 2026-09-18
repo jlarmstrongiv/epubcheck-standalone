@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 // Generate packages/epubcheck-standalone/THIRD-PARTY-NOTICES.txt.
 //
-//   node scripts/generate-notices.ts            # (re)write the notices file
-//   node scripts/generate-notices.ts --check    # fail if the committed file is stale
+//   mise exec -- node scripts/generate-notices.ts            # (re)write the notices file
+//   mise exec -- node scripts/generate-notices.ts --check    # fail if stale
 //
-// Run directly with Node 26+ (native TypeScript). No build step, no deps.
+// Run directly with the pinned Node runtime (native TypeScript). No build
+// step or extra dependencies are required.
 //
 // EVERYTHING that can drift is read from tracked sources -- nothing is
 // hardcoded here except the fixed template prose:
 //   - the bundled-dependency inventory + primary copyright come from the
 //     epubcheck release files build/epubcheck-THIRD-PARTY.txt and
 //     build/epubcheck-LICENSE.txt (tracked copies of the fetched release);
+//   - Jackson versions come from the actual fetched release JAR names, since
+//     upstream's published inventory can lag its resolved dependencies;
 //   - the epubcheck / JZlib VERSIONS come from mise.toml [env] (the single
 //     source of truth for the pinned build inputs);
 //   - the TeaVM version comes from teavm/build.gradle.kts (the teavmVersion val);
@@ -19,7 +22,7 @@
 // Same inputs -> byte-identical output (determinism), so `--check` can guard
 // against a hand-edited or stale committed file in CI.
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -36,7 +39,7 @@ const paths = {
   out: join(pkgRoot, "THIRD-PARTY-NOTICES.txt"),
 };
 
-const read = (p: string): string => readFileSync(p, "utf8");
+const read = (p: string): Promise<string> => readFile(p, "utf8");
 
 // --- version + checksum inputs ----------------------------------------------
 
@@ -46,13 +49,15 @@ function must(re: RegExp, text: string, what: string): string {
   return m[1];
 }
 
-function readVersions() {
-  const mise = read(paths.miseToml);
-  const teavmGradle = read(paths.teavmBuildGradle);
-  const fetchDeps = read(paths.fetchDeps);
+async function readVersions() {
+  const [mise, teavmGradle, fetchDeps] = await Promise.all([
+    read(paths.miseToml),
+    read(paths.teavmBuildGradle),
+    read(paths.fetchDeps),
+  ]);
   const epubcheck = must(/^EPUBCHECK_VERSION\s*=\s*"([^"]+)"/m, mise, "EPUBCHECK_VERSION (mise.toml [env])");
   const jzlib = must(/^JZLIB_VERSION\s*=\s*"([^"]+)"/m, mise, "JZLIB_VERSION (mise.toml [env])");
-  // val teavmVersion = "0.15.0"
+  // teavmVersion is declared in the Gradle build file.
   const teavm = must(/\bteavmVersion\s*=\s*"([^"]+)"/, teavmGradle, "teavmVersion (teavm/build.gradle.kts)");
   const jzlibSha = must(/JZLIB_SHA256\s*=\s*['"]([0-9a-f]+)['"]/, fetchDeps, "JZLIB_SHA256 (scripts/fetch-deps.ts)");
   return { epubcheck, jzlib, teavm, jzlibSha };
@@ -60,8 +65,8 @@ function readVersions() {
 
 // --- primary component copyright (verbatim from epubcheck-LICENSE.txt) -------
 
-function readPrimaryCopyright(): string[] {
-  return read(paths.license)
+async function readPrimaryCopyright(): Promise<string[]> {
+  return (await read(paths.license))
     .split(/\r?\n/)
     .map((l) => l.trim())
     .filter((l) => /^Copyright\b/.test(l));
@@ -71,8 +76,8 @@ function readPrimaryCopyright(): string[] {
 
 type Dep = { name: string; version: string; licenses: string[] };
 
-function readInventory(): Dep[] {
-  const blocks = read(paths.thirdParty)
+async function readInventory(): Promise<Dep[]> {
+  const blocks = (await read(paths.thirdParty))
     .replace(/\r\n/g, "\n")
     .split(/\n\s*\n/)
     .map((b) => b.split("\n").map((l) => l.trim()).filter(Boolean))
@@ -95,6 +100,36 @@ function readInventory(): Dep[] {
   return deps;
 }
 
+/**
+ * Replace upstream's occasionally stale Jackson version labels with the
+ * versions actually present in the fetched EPUBCheck distribution. The JARs
+ * are the inputs Gradle compiles into the TeaVM engine, so they are the
+ * authoritative versions for this notice.
+ */
+async function applyResolvedJarVersions(deps: Dep[], epubcheckVersion: string): Promise<Dep[]> {
+  const libDir = join(pkgRoot, "build", `epubcheck-${epubcheckVersion}`, "lib");
+  const jars = await readdir(libDir);
+  const artifacts = new Map([
+    ["jackson-annotations", "jackson-annotations"],
+    ["jackson-core", "jackson-core"],
+    ["jackson-databind", "jackson-databind"],
+  ]);
+
+  return deps.map((dep) => {
+    const artifact = artifacts.get(dep.name.toLowerCase());
+    if (artifact === undefined) return dep;
+    const prefix = `${artifact}-`;
+    const matches = jars.filter((name) => name.startsWith(prefix) && name.endsWith(".jar"));
+    if (matches.length !== 1) {
+      throw new Error(
+        `expected exactly one ${artifact}-*.jar in ${libDir}, found ${matches.length}`,
+      );
+    }
+    const jar = matches[0];
+    return { ...dep, version: jar.slice(prefix.length, -".jar".length) };
+  });
+}
+
 function renderInventory(deps: Dep[]): string {
   const lefts = deps.map((d) => `${d.name}, ${d.version}`);
   // Align the license column to the longest name -- but cap it so a single
@@ -115,10 +150,13 @@ function renderInventory(deps: Dep[]): string {
 
 const RULE = "-".repeat(80);
 
-function generate(): string {
-  const v = readVersions();
-  const copyrights = readPrimaryCopyright();
-  const inventory = renderInventory(readInventory());
+async function generate(): Promise<string> {
+  const [v, copyrights, deps] = await Promise.all([
+    readVersions(),
+    readPrimaryCopyright(),
+    readInventory(),
+  ]);
+  const inventory = renderInventory(await applyResolvedJarVersions(deps, v.epubcheck));
 
   return `THIRD-PARTY NOTICES for epubcheck-standalone
 ============================================
@@ -126,8 +164,9 @@ function generate(): string {
 GENERATED FILE -- do not hand-edit.
 Produced by scripts/generate-notices.ts from the epubcheck release license
 inventory (build/epubcheck-THIRD-PARTY.txt, build/epubcheck-LICENSE.txt), the
-build-input versions pinned in mise.toml, and the TeaVM version pinned in
-teavm/build.gradle.kts. To update, run: npm run generate:notices
+build-input versions pinned in mise.toml, the resolved EPUBCheck release JARs,
+and the TeaVM version pinned in teavm/build.gradle.kts. To update, run:
+mise exec -- npm run generate:notices
 
 The shipped engine (dist/epubcheck-engine.js) is produced by compiling epubcheck
 ${v.epubcheck} and its Java dependencies to plain JavaScript with TeaVM
@@ -147,7 +186,8 @@ ${copyrights.map((c) => `  ${c}`).join("\n")}
 
 ${RULE}
 2. Dependencies bundled inside epubcheck ${v.epubcheck} (compiled into the engine)
-   (verbatim from the epubcheck ${v.epubcheck} THIRD-PARTY.txt inventory)
+   (license inventory from epubcheck ${v.epubcheck} THIRD-PARTY.txt; resolved
+   Jackson versions from the fetched release JARs)
 ${RULE}
 
 ${inventory}
@@ -185,24 +225,24 @@ TeaVM, ${v.teavm}  (org.teavm)
 
 // --- entrypoint -------------------------------------------------------------
 
-const content = generate();
+const content = await generate();
 
 if (process.argv.includes("--check")) {
   let committed = "";
   try {
-    committed = read(paths.out);
+    committed = await read(paths.out);
   } catch {
     committed = "";
   }
   if (committed !== content) {
     console.error(
       "THIRD-PARTY-NOTICES.txt is stale or hand-edited.\n" +
-        "Run: npm run generate:notices",
+        "Run: mise exec -- npm run generate:notices",
     );
     process.exit(1);
   }
   console.log("THIRD-PARTY-NOTICES.txt is up to date.");
 } else {
-  writeFileSync(paths.out, content);
+  await writeFile(paths.out, content);
   console.log(`Wrote ${paths.out}`);
 }

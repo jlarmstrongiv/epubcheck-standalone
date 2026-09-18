@@ -1,4 +1,4 @@
-// -s/--save behavior, matching the real epubcheck 5.3.0 jar (ground truth
+// -s/--save behavior, matching the real epubcheck jar (ground truth
 // observed live on 2026-09-05, and mirrored in EpubChecker.processFile +
 // util/Archive.java):
 //

@@ -67,6 +67,8 @@ export interface CoreRunOptions {
   customMessages?: ResolvedCustomMessages;
   /** Report formats to render from the run's live report-event stream. */
   reports?: Array<'json' | 'xml' | 'xmp'>;
+  /** Per-message location cap for rendered reports; negative means unlimited. */
+  maxOfEachMessage?: number;
   /** IANA time zone id for report timestamps (defaults to the host zone). */
   tz?: string;
   /**
@@ -340,6 +342,9 @@ export async function runToResult(
       const filename = isDir && opts.dirMode === 'exp' ? `${name}.epub` : name;
       const reportData: ReportData = { messages: tapMessages, features: tapFeatures };
       const generationDate = new Date();
+      const capOptions = opts.maxOfEachMessage === undefined
+        ? {}
+        : { maxOfEachMessage: opts.maxOfEachMessage };
       reports = {};
       for (const fmt of wantReports) {
         if (fmt === 'json') {
@@ -347,11 +352,20 @@ export async function runToResult(
             filename,
             checkDate: startDate,
             elapsedTime,
+            ...capOptions,
           });
         } else if (fmt === 'xml') {
-          reports.xml = formatXmlReport(reportData, { filename, generationDate });
+          reports.xml = formatXmlReport(reportData, {
+            filename,
+            generationDate,
+            ...capOptions,
+          });
         } else {
-          reports.xmp = formatXmpReport(reportData, { filename, generationDate });
+          reports.xmp = formatXmpReport(reportData, {
+            filename,
+            generationDate,
+            ...capOptions,
+          });
         }
       }
     }

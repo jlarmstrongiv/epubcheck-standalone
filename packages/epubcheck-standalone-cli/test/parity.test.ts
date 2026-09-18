@@ -1,6 +1,6 @@
 // CI-safe parity suite: runs the COMPILED CLI (dist/cli.js) across the parity
 // matrix and asserts byte-for-byte equality with the frozen golden outputs
-// captured from the real epubcheck 5.3.0 jar (test/expected/*.json, regenerated
+// captured from the real epubcheck jar (test/expected/*.json, regenerated
 // by test/generate-goldens.ts). Only the documented run-varying report fields
 // are normalized (see test/normalize.ts); every other byte must match.
 //

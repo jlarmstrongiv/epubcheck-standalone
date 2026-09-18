@@ -28,7 +28,7 @@ import java.io.InputStream;
 import io.mola.galimatias.URL;
 
 /**
- * SHIM-JAR SHADOW of epubcheck 5.3.0's URLResourceProvider (upstream source
+ * SHIM-JAR SHADOW of upstream URLResourceProvider (source
  * verbatim except for the http(s) branch) -- the shims jar precedes the
  * epubcheck jars on the TeaVM compiler classpath, so this class replaces the
  * stock one. This is the TeaVM equivalent of the wasm era's GraalVM
@@ -62,7 +62,7 @@ public class URLResourceProvider implements GenericResourceProvider
     {
       return ecshim.HostHttp.open(s);
     }
-    // Original URLResourceProvider.openStream body (epubcheck 5.3.0).
+    // Original URLResourceProvider.openStream body.
     return url.toJavaURL().openStream();
   }
 }

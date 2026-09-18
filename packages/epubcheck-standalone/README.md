@@ -97,6 +97,7 @@ await validate(source, {
   name: "book.epub",
   args: ["--profile", "edupub"],
   reports: ["json"],
+  maxOfEachMessage: 25,
 });
 ```
 
@@ -105,6 +106,7 @@ await validate(source, {
 - `customMessages`: message overrides (see below).
 - `customMessagesName`: the file name the overrides are reported under. Defaults to `messages.txt`.
 - `reports`: report formats to produce, any of `"json"`, `"xml"`, `"xmp"` (see below).
+- `maxOfEachMessage`: maximum locations retained for each message ID and text in JSON, XML, and XMP reports. Defaults to `25`; a negative integer keeps every location. The complete `result.messages` and live callbacks remain uncapped.
 - `dirMode`: how a directory source is validated, `"direct"` (the default) or `"exp"` (see expanded directories below).
 - `tz`: IANA time zone id for report timestamps. Defaults to the host zone.
 - `onMessage`: a callback that fires once per message, live during the run, in the order EPUBCheck emits them. Each argument is the same `ReportMessage` object that lands in `result.messages`.
@@ -361,7 +363,7 @@ interface RangeSource {
 
 The engine instantiates and validates in stock, flagless Chrome, Firefox, and Safari, with no `unsafe-eval`. A headless-Chrome proof serves a page under a content security policy with no `unsafe-eval` and validates a book both in a dedicated Worker and on the main thread through `memory()`, with zero policy violations.
 
-The full committed corpus of 446 books runs on Chrome and Node. Firefox and Safari have small-book smoke coverage: a clean book and a bad book reporting RSC-005 and RSC-007 byte-identical to the native binary.
+The full committed corpus of 491 books runs on Chrome and Node. Firefox and Safari have small-book smoke coverage: a clean book and a bad book reporting RSC-005 and RSC-007 byte-identical to the native binary.
 
 ## Versioning
 
@@ -369,6 +371,14 @@ The version is the upstream EPUBCheck release baked into the module, then a buil
 
 ## Build and license
 
-The engine is built from source with TeaVM, and this repo contains everything needed to reproduce it: `mise install`, `npm run build:deps`, then `npm run build` in this package. The `dist/` directory is a build artifact, not committed to git, but packed into the published npm tarball.
+The engine is built from source with TeaVM, and this repo contains everything needed to reproduce it: `mise install`, `mise exec -- npm run build:deps`, then `mise exec -- npm run build` in this package. The `dist/` directory is a build artifact, not committed to git, but packed into the published npm tarball.
+
+When the pinned EPUBCheck release changes, refresh its committed test fixtures from the exact upstream GitHub tag before rebuilding parity baselines:
+
+```sh
+mise exec -- node testing/pack-fixtures.ts
+```
+
+The importer stages deterministic EPUB archives, copies upstream's already-zipped malformed fixtures byte for byte, and records the source tag, commit, and SHA-256 hashes in each corpus manifest.
 
 BSD-3-Clause, matching EPUBCheck. Bundled third-party components are listed in `THIRD-PARTY-NOTICES.txt`.

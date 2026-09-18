@@ -36,13 +36,14 @@
 // release or a java binary is absent. Set EPUBCHECK_REQUIRE_JAR=1 to turn that
 // skip into a FAILURE instead.
 
-import { validate } from '../dist/index.js';
+import { EPUBCHECK_VERSION, validate } from '../dist/index.js';
 import { url } from '../dist/plugins.js';
 import type { EpubCheckResult } from '../dist/index.js';
 import { spawn, spawnSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import type { Server } from 'node:http';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
+import { access } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -50,15 +51,15 @@ const here = dirname(fileURLToPath(import.meta.url));
 const pkgRoot = dirname(here);
 
 // --- locate the jar + java (same rules as test/flags.ts) ---------------------
-function findJar(): string | null {
-  const buildDir = join(pkgRoot, 'build');
-  if (!existsSync(buildDir)) return null;
-  for (const entry of readdirSync(buildDir).sort()) {
-    if (!entry.startsWith('epubcheck-')) continue;
-    const jar = join(buildDir, entry, 'epubcheck.jar');
-    if (existsSync(jar)) return jar;
+async function findJar(): Promise<string | null> {
+  const jar = process.env.EPUBCHECK_JAR
+    ?? join(pkgRoot, 'build', `epubcheck-${EPUBCHECK_VERSION}`, 'epubcheck.jar');
+  try {
+    await access(jar);
+    return jar;
+  } catch {
+    return null;
   }
-  return null;
 }
 
 function findJava(): string[] | null {
@@ -70,11 +71,11 @@ function findJava(): string[] | null {
   return null;
 }
 
-const jar = findJar();
+const jar = await findJar();
 const java = findJava();
 if (!jar || !java) {
   const why = !jar
-    ? 'epubcheck.jar not found under build/epubcheck-*/ (run: npm run build:deps)'
+    ? `epubcheck ${EPUBCHECK_VERSION} jar not found (run: npm run build:deps)`
     : 'no working java binary (mise exec -- java, or PATH)';
   if (process.env.EPUBCHECK_REQUIRE_JAR === '1') {
     console.error(`URL SUITE FAILED: EPUBCHECK_REQUIRE_JAR=1 but ${why}`);

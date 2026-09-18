@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jhove xmlns="http://schema.openpreservation.org/ois/xml/ns/jhove"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        date="2025-09-01"
+        date="2026-09-15"
         name="epubcheck"
-        release="5.3.0"
+        release="5.4.0"
         xsi:schemaLocation="http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd">
-   <date>2026-09-06T17:32:02-07:00</date>
+   <date>2026-09-17T22:10:45-07:00</date>
    <repInfo uri="epub3_04-ocf_files_ocf-filename-not-utf8-error.epub">
       <format>application/octet-stream</format>
       <status>Not well-formed</status>

@@ -7,7 +7,7 @@
                         xmlns:stFnt="http://ns.adobe.com/xap/1.0/sType/Font#"
                         xmlns:xmp="http://ns.adobe.com/xap/1.0/"
                         xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
-                        dc:format="application/epub+zip;version=3.3"
+                        dc:format="application/epub+zip;version=3.4"
                         dc:identifier="https://standardebooks.org/ebooks/herman-melville/moby-dick"
                         dc:language="en-US"
                         dc:publisher="Standard Ebooks"
@@ -40,12 +40,25 @@
             </rdf:Bag>
          </dc:subject>
          <premis:hasEvent rdf:parseType="Resource">
-            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-06T17:32:44-07:00</premis:hasEventDateTime>
+            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-17T22:11:31-07:00</premis:hasEventDateTime>
             <premis:hasEventType rdf:resource="http://id.loc.gov/vocabulary/preservation/eventType/val"/>
-            <premis:hasEventDetail>Well-formed</premis:hasEventDetail>
+            <premis:hasEventDetail>Not well-formed</premis:hasEventDetail>
+            <premis:hasEventOutcomeInformation>
+               <rdf:Seq>
+                  <rdf:li rdf:parseType="Resource">
+                     <premis:hasEventOutcome>RSC-005, ERROR, Error while parsing file: attribute "aria-labelledby" not allowed here; expected attribute "accesskey", "aria-expanded", "autocapitalize", "autocorrect", "autofocus", "class", "contenteditable", "dir", "draggable", "enterkeyhint", "epub:type", "headingoffset", "headingreset", "hidden", "id", "inert", "inputmode", "is", "lang", "nonce", "ns:alphabet", "ns:ph", "onauxclick", "onbeforeinput", "onbeforematch", "onbeforetoggle", "onblur", "oncancel", "oncanplay", "oncanplaythrough", "onchange", "onclick", "onclose", "oncommand", "oncontextlost", "oncontextmenu", "oncontextrestored", "oncopy", "oncuechange", "oncut", "ondblclick", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "ondurationchange", "onemptied", "onended", "onerror", "onfocus", "onformdata", "ongotpointercapture", "oninput", "oninvalid", "onkeydown", "onkeypress", "onkeyup", "onload", "onloadeddata", "onloadedmetadata", "onloadstart", "onlostpointercapture", "onmousedown", "onmouseenter", "onmouseleave", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onpaste", "onpause", "onplay", "onplaying", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerrawupdate", "onpointerup", "onprogress", "onratechange", "onreset", "onresize", "onscroll", "onscrollend", "onsecuritypolicyviolation", "onseeked", "onseeking", "onselect", "onslotchange", "onstalled", "onsubmit", "onsuspend", "ontimeupdate", "ontoggle", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "onvolumechange", "onwaiting", "onwheel", "popover", "role", "slot", "spellcheck", "style", "tabindex", "title", "translate", "writingsuggestions", "xml:base", "xml:lang" or "xml:space" (with xmlns:ns="http://www.w3.org/2001/10/synthesis")</premis:hasEventOutcome>
+                     <premis:hasEventOutcomeDetail>
+                        <rdf:Seq>
+                           <rdf:li premis:hasEventOutcomeDetailNote="epub/toc.xhtml (7-76)"/>
+                           <rdf:li premis:hasEventOutcomeDetailNote="epub/toc.xhtml (449-79)"/>
+                        </rdf:Seq>
+                     </premis:hasEventOutcomeDetail>
+                  </rdf:li>
+               </rdf:Seq>
+            </premis:hasEventOutcomeInformation>
             <premis:hasEventRelatedAgent rdf:parseType="Resource">
                <premis:hasAgentType rdf:resource="http://id.loc.gov/vocabulary/preservation/agentType/sof"/>
-               <premis:hasAgentName>epubcheck 5.3.0</premis:hasAgentName>
+               <premis:hasAgentName>epubcheck 5.4.0</premis:hasAgentName>
             </premis:hasEventRelatedAgent>
          </premis:hasEvent>
          <premis:hasSignificantProperties>

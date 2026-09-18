@@ -399,7 +399,7 @@ try {
   console.log('\ns3() single packaged .epub -- parity with blob() + ranged reads:');
   {
     // (a) A real, clean book: prove s3() == blob() and validates clean (exit 0).
-    const bookPath = join(here, 'corpus', 'standard-ebooks', 'arthur-conan-doyle_the-adventures-of-sherlock-holmes.epub');
+    const bookPath = join(here, 'corpus', 'epubcheck-expanded', 'cli__files__30-valid-test.epub');
     check('corpus book exists', existsSync(bookPath), bookPath);
     const bytes = new Uint8Array(readFileSync(bookPath));
     const key = 'books/mybook.epub';

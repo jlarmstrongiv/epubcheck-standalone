@@ -7,24 +7,24 @@
                         xmlns:stFnt="http://ns.adobe.com/xap/1.0/sType/Font#"
                         xmlns:xmp="http://ns.adobe.com/xap/1.0/"
                         xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
-                        dc:format="application/epub+zip;version=3.3"
+                        dc:format="application/epub+zip;version=3.4"
                         dc:identifier="NOID"
                         dc:language="en"
                         extended-properties:Characters="132"
                         rdf:about=""
-                        xmp:CreateDate="2025-09-01T08:55:48Z">
+                        xmp:CreateDate="2000-01-01T00:00:00Z">
          <dc:title>
             <rdf:Alt>
                <rdf:li xml:lang="x-default">Minimal EPUB 3.0</rdf:li>
             </rdf:Alt>
          </dc:title>
          <premis:hasEvent rdf:parseType="Resource">
-            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-06T17:18:16-07:00</premis:hasEventDateTime>
+            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-17T21:55:26-07:00</premis:hasEventDateTime>
             <premis:hasEventType rdf:resource="http://id.loc.gov/vocabulary/preservation/eventType/val"/>
             <premis:hasEventDetail>Well-formed</premis:hasEventDetail>
             <premis:hasEventRelatedAgent rdf:parseType="Resource">
                <premis:hasAgentType rdf:resource="http://id.loc.gov/vocabulary/preservation/agentType/sof"/>
-               <premis:hasAgentName>epubcheck 5.3.0</premis:hasAgentName>
+               <premis:hasAgentName>epubcheck 5.4.0</premis:hasAgentName>
             </premis:hasEventRelatedAgent>
          </premis:hasEvent>
          <premis:hasSignificantProperties>

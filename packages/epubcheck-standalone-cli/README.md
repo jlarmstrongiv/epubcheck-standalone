@@ -45,6 +45,7 @@ Same short and long forms as the official EPUBCheck CLI.
 | `-j`, `--json <file>` | Write a JSON report to `<file>`. Use `-` for the console. |
 | `-o`, `--out <file>` | Write an XML report to `<file>`. Use `-` for the console. |
 | `-x`, `--xmp <file>` | Write an XMP report to `<file>`. Use `-` for the console. |
+| `--maxOfEachMessage <number\|unlimited>` | Limit locations retained for each repeated message in JSON, XML, and XMP reports. Defaults to `25`; `unlimited` or a negative integer removes the limit. |
 | `-q`, `--quiet` | Silence normal stdout. Message lines, the summary, and any requested report still print. |
 | `-f`, `--fatal` | Show fatal messages only. |
 | `-e`, `--error` | Show error and fatal messages. |

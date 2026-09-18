@@ -43,13 +43,13 @@ on:
         default: false
 
 # ENGINE ARTIFACT: REBUILD FROM SOURCE, no committed artifact to diff against.
-# The engine (dist/epubcheck-engine.js) is EPUBCheck 5.3.0 compiled to plain
+# The engine (dist/epubcheck-engine.js) is the pinned EPUBCheck release compiled to plain
 # JavaScript by TeaVM's JS backend (`gradle generateJavaScript` + the
 # fix-generated.ts post-processor). Both dist/ and teavm/build/ are gitignored
 # (`git ls-files` shows zero engine files), and every suite imports the freshly
 # built dist/epubcheck-engine.js. So there is nothing committed to diff a
 # rebuild against: CI compiles the engine from Java with the mise-pinned
-# toolchain (Temurin JDK 21 + Gradle 9.7.1) and runs the full battery against
+# toolchain declared in mise and runs the full battery against
 # that fresh build. That from-source rebuild is the drift protection.
 #
 # STRUCTURE: the engine is built ONCE in `build`, which uploads dist/ as an
@@ -196,7 +196,7 @@ jobs:
         run: tar -xzf dist-bundle.tgz
 
       # smoke, validate, reuse, memory-plateau (bounded RSS across 30 warm runs),
-      # engine-error-cleanup, abort, 446-book parity, report byte-parity, flags,
+      # engine-error-cleanup, abort, 491-book parity, report byte-parity, flags,
       # expanded, custom-messages, url, s3, http-bridge. (npm test re-runs the
       # library's tsc build:ts for the compiled-TS part; the engine comes from
       # the downloaded dist.)

@@ -34,5 +34,4 @@
 #      unzip -p build/epubcheck-<version>-sources.jar \
 #        com/adobe/epubcheck/api/EpubCheck.java | shasum -a 256
 #
-# epubcheck version the hash below is for: 5.3.0
 13af175953e7db6e01c9107523ffa050a284f6e56c7755c7cc029e6f46458edd

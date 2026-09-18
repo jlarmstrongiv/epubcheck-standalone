@@ -12,14 +12,14 @@
                         dc:language="en"
                         extended-properties:Characters="40"
                         rdf:about=""
-                        xmp:CreateDate="2025-09-01T08:55:48Z">
+                        xmp:CreateDate="2000-01-01T00:00:00Z">
          <dc:title>
             <rdf:Alt>
                <rdf:li xml:lang="x-default">Minimal EPUB 2.0</rdf:li>
             </rdf:Alt>
          </dc:title>
          <premis:hasEvent rdf:parseType="Resource">
-            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-06T17:20:25-07:00</premis:hasEventDateTime>
+            <premis:hasEventDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2026-09-17T21:57:43-07:00</premis:hasEventDateTime>
             <premis:hasEventType rdf:resource="http://id.loc.gov/vocabulary/preservation/eventType/val"/>
             <premis:hasEventDetail>Not well-formed</premis:hasEventDetail>
             <premis:hasEventOutcomeInformation>
@@ -44,7 +44,7 @@
             </premis:hasEventOutcomeInformation>
             <premis:hasEventRelatedAgent rdf:parseType="Resource">
                <premis:hasAgentType rdf:resource="http://id.loc.gov/vocabulary/preservation/agentType/sof"/>
-               <premis:hasAgentName>epubcheck 5.3.0</premis:hasAgentName>
+               <premis:hasAgentName>epubcheck 5.4.0</premis:hasAgentName>
             </premis:hasEventRelatedAgent>
          </premis:hasEvent>
          <premis:hasSignificantProperties>

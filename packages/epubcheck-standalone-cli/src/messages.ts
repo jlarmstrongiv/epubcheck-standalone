@@ -1,4 +1,4 @@
-// Verbatim message strings from epubcheck 5.3.0's default (English) resource
+// Verbatim message strings from epubcheck's default (English) resource
 // bundle: src/main/resources/com/adobe/epubcheck/util/messages.properties.
 // These are reproduced exactly so the CLI's console text is byte-identical to
 // the real `epubcheck` tool. `%1$s`-style Java placeholders are rendered by the
@@ -47,6 +47,9 @@ export const M = {
   epubcheck_version_text: "EPUBCheck v%1$s",
   incorrect_locale: 'Argument "%1$s" to the --locale option is incorrect.',
   missing_locale: "Argument to the --locale option is missing.",
+  incorrect_maxofeach:
+    'Argument "%1$s" to the --maxOfEachMessage option must be a number or \'unlimited\'.',
+  missing_maxofeach: "Argument to the --maxOfEachMessage option is missing.",
 } as const;
 
 /**

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// TeaVM parity suite: runs the full 446-book committed corpus through the
+// TeaVM parity suite: runs the full 491-book committed corpus through the
 // TeaVM build (one fresh child process per book, plain-CLI output) and
 // compares each result to the SAME baselines the wasm suite uses
 // (test/expected/*.json -- captured from the parity-verified wasm build, i.e.

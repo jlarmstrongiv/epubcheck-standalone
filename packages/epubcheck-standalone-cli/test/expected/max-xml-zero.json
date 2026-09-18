@@ -1,0 +1,12 @@
+{
+  "args": [
+    "--maxofeachmessage",
+    "0",
+    "--out",
+    "-",
+    "invalid.epub"
+  ],
+  "stdout": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<jhove xmlns=\"http://schema.openpreservation.org/ois/xml/ns/jhove\"\n        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n        date=\"2026-09-15\"\n        name=\"epubcheck\"\n        release=\"5.4.0\"\n        xsi:schemaLocation=\"http://schema.openpreservation.org/ois/xml/ns/jhove https://schema.openpreservation.org/ois/xml/xsd/jhove/jhove.xsd\">\n   <date><NORM></date>\n   <repInfo uri=\"invalid.epub\">\n      <created><NORM></created>\n      <format>application/epub+zip</format>\n      <version>2.0.1</version>\n      <status>Not well-formed</status>\n      <messages/>\n      <mimeType>application/epub+zip</mimeType>\n      <properties>\n         <property>\n            <name>FileName</name>\n            <values arity=\"Scalar\" type=\"String\">\n               <value>invalid.epub</value>\n            </values>\n         </property>\n         <property>\n            <name>Language</name>\n            <values arity=\"Scalar\" type=\"String\">\n               <value>en</value>\n            </values>\n         </property>\n         <property>\n            <name>Info</name>\n            <values arity=\"List\" type=\"Property\">\n               <property>\n                  <name>Identifier</name>\n                  <values arity=\"Scalar\" type=\"String\">\n                     <value>NOID</value>\n                  </values>\n               </property>\n               <property>\n                  <name>CreationDate</name>\n                  <values arity=\"Scalar\" type=\"Date\">\n                     <value>2025-09-01T08:55:48Z</value>\n                  </values>\n               </property>\n               <property>\n                  <name>Title</name>\n                  <values arity=\"Scalar\" type=\"String\">\n                     <value>Minimal EPUB 2.0</value>\n                  </values>\n               </property>\n            </values>\n         </property>\n         <property>\n            <name>MediaTypes</name>\n            <values arity=\"Scalar\" type=\"String\">\n               <value>application/x-dtbncx+xml</value>\n            </values>\n         </property>\n      </properties>\n   </repInfo>\n</jhove>\n",
+  "stderr": "\nCheck finished with errors\n",
+  "code": 1
+}

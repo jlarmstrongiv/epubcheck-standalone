@@ -70,7 +70,7 @@ public class TFileTime implements Comparable<TFileTime> {
         return toInstant().hashCode();
     }
 
-    // epubcheck-standalone shim (fork of the stock 0.15.0 file): the stock class had
+    // epubcheck-standalone shim (fork of the stock classlib file): the stock class had
     // no toString(), so code that formats a file time (epubcheck's
     // OCFDirectoryResources puts attributes.creationTime().toString() into the
     // CREATION_DATE feature event) got Object's "<java_object>@hash". The JDK

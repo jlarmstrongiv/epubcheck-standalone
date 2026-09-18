@@ -12,7 +12,7 @@
       "path" : "EPUB/content_001.smil",
       "line" : 4,
       "column" : 50,
-      "context" : "https://c286b317-46ba-4109-a6b5-3567eb7ea35f.epubcheck.w3c.org/EPUB/content_001.xhtml#c1111"
+      "context" : "https://346a76b9-3201-449e-bed3-a27a3514ccc2.epubcheck.w3c.org/EPUB/content_001.xhtml#c1111"
     } ],
     "suggestion" : null
   } ],
@@ -20,9 +20,9 @@
   "checker" : {
     "path" : "./epub3__09-media-overlays__files__mediaoverlays-textref-fragment-unresolved-error.epub",
     "filename" : "epub3__09-media-overlays__files__mediaoverlays-textref-fragment-unresolved-error.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:30:53",
-    "elapsedTime" : 4814,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 22:09:01",
+    "elapsedTime" : 5421,
     "nFatal" : 0,
     "nError" : 1,
     "nWarning" : 0,
@@ -43,7 +43,7 @@
     "renditionLayout" : "reflowable",
     "renditionOrientation" : "auto",
     "renditionSpread" : "auto",
-    "ePubVersion" : "3.3",
+    "ePubVersion" : "3.4",
     "isScripted" : false,
     "hasFixedFormat" : false,
     "isBackwardCompatible" : false,

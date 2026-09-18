@@ -2,7 +2,7 @@
   "messages" : [ {
     "ID" : "CSS-007",
     "severity" : "INFO",
-    "message" : "Font-face reference \"https://99e2f505-7f41-4040-9da3-111134cf4cd9.epubcheck.w3c.org/EPUB/OpenSans-Regular.woff\" refers to non-standard font type \"application/x-font-woff\".",
+    "message" : "Font-face reference \"https://08580a85-53e5-43f2-a2b1-01902feb21ac.epubcheck.w3c.org/EPUB/OpenSans-Regular.woff\" refers to non-standard font type \"application/x-font-woff\".",
     "additionalLocations" : 0,
     "locations" : [ {
       "url" : {
@@ -20,9 +20,9 @@
   "checker" : {
     "path" : "./epub3__03-resources__files__foreign-exempt-font-valid.epub",
     "filename" : "epub3__03-resources__files__foreign-exempt-font-valid.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:21:19",
-    "elapsedTime" : 4662,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:58:43",
+    "elapsedTime" : 5163,
     "nFatal" : 0,
     "nError" : 0,
     "nWarning" : 0,
@@ -43,7 +43,7 @@
     "renditionLayout" : "reflowable",
     "renditionOrientation" : "auto",
     "renditionSpread" : "auto",
-    "ePubVersion" : "3.3",
+    "ePubVersion" : "3.4",
     "isScripted" : false,
     "hasFixedFormat" : false,
     "isBackwardCompatible" : false,

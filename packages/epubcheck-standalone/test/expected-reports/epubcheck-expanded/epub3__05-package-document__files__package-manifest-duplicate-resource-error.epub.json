@@ -2,7 +2,7 @@
   "messages" : [ {
     "ID" : "OPF-074",
     "severity" : "ERROR",
-    "message" : "Package resource \"EPUB/style.css\" is declared in several manifest item.",
+    "message" : "Package resource \"EPUB/style.css\" is declared in several manifest items.",
     "additionalLocations" : 0,
     "locations" : [ {
       "url" : {
@@ -20,9 +20,9 @@
   "checker" : {
     "path" : "./epub3__05-package-document__files__package-manifest-duplicate-resource-error.epub",
     "filename" : "epub3__05-package-document__files__package-manifest-duplicate-resource-error.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:25:28",
-    "elapsedTime" : 5098,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 22:03:25",
+    "elapsedTime" : 5300,
     "nFatal" : 0,
     "nError" : 1,
     "nWarning" : 0,
@@ -43,7 +43,7 @@
     "renditionLayout" : "reflowable",
     "renditionOrientation" : "auto",
     "renditionSpread" : "auto",
-    "ePubVersion" : "3.3",
+    "ePubVersion" : "3.4",
     "isScripted" : false,
     "hasFixedFormat" : false,
     "isBackwardCompatible" : false,

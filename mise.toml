@@ -14,7 +14,7 @@
 #   npm test            # run the smoke + full parity suite
 #
 # The build (scripts/build.ts) runs `gradle generateJavaScript` then
-# teavm/fix-generated.ts via `mise exec java@temurin-21 gradle@9.7.1`, so
+# teavm/fix-generated.ts via the configured Java and Gradle tools, so
 # `mise install` is the only provisioning step. CI does the same with
 # jdx/mise-action (cached). No wasm anywhere in the pipeline.
 
@@ -26,19 +26,18 @@ minimum_release_age = "14d"
 
 [tools]
 # npm is pinned as its own mise CORE tool (not node's bundled npm): the
-# engines.npm pin (root + web package.json) is 12.0.2, newer than the npm 11
-# that ships with Node 24. mise's core `npm` tool takes precedence over the
-# bundled npm on PATH (the ordering fix landed in mise v2026.1.0 / PR #7559), so
+# engines.npm pin lives in the root and web package manifests. mise's core
+# `npm` tool takes precedence over the bundled npm on PATH, so
 # `mise install` is the ONLY provisioning step and CI needs no `npm i -g`.
 # Subject to the same 14d cooldown as every tool. Listed before node so the
 # standalone npm wins PATH priority.
 npm = "12.0.2"
-node = "24.19.0"
+node = "24.20.0"
 
 # JDK + build tool for the TeaVM engine compile. packages/epubcheck-standalone/
-# teavm builds with the org.teavm gradle plugin (0.15.0); scripts/build.ts drives
-# it ad hoc via `mise exec java@temurin-21 gradle@9.7.1`, so these pins match that
-# invocation exactly. Bumping either is a deliberate engine event (the 28 TeaVM
+# teavm builds with the org.teavm gradle plugin; scripts/build.ts drives it via
+# the configured Java and Gradle tools. Bumping either is a deliberate engine
+# event (the 29 TeaVM
 # classlib forks in teavm/shims must be re-ported), never an automatic bump.
 java = "temurin-21.0.12+101.0.LTS"
 gradle = "9.7.1"
@@ -48,7 +47,7 @@ gradle = "9.7.1"
 # are provisioned by mise above). Bump EPUBCHECK_VERSION and rebuild to adopt a
 # new epubcheck (then publish <newversion>-build1); the
 # .github/workflows/update-epubcheck.yml pipeline automates this.
-EPUBCHECK_VERSION = "5.3.0"
+EPUBCHECK_VERSION = "5.4.0"
 JZLIB_VERSION = "1.1.3"
 
 # Root-level convenience tasks (`mise run <name>`) that delegate into the npm

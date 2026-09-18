@@ -47,10 +47,13 @@ import {
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readFile as readFileAsync } from 'node:fs/promises';
 
 const PKG_DIR = fileURLToPath(new URL('..', import.meta.url)); // packages/epubcheck-standalone
 const FIXTURE = join(PKG_DIR, 'test', 'fixtures', 'test.epub');
 const ENGINE_ASSET = join(PKG_DIR, 'dist', 'epubcheck-engine.js');
+const PACKAGE_VERSION = (JSON.parse(await readFileAsync(join(PKG_DIR, 'package.json'), 'utf8')) as { version: string }).version;
+const EPUBCHECK_VERSION = PACKAGE_VERSION.split('-build')[0]!;
 
 // The npm the pinned toolchain resolves (mise puts it on PATH). Everything runs
 // through this so the test never picks up a stray global npm.
@@ -143,11 +146,20 @@ try {
     '--pack-destination',
     workDir,
   ], { cwd: PKG_DIR, stdio: ['ignore', 'pipe', 'pipe'] });
-  const packInfo = JSON.parse(packJson)[0] as {
+  type PackInfo = {
     filename: string;
     entryCount: number;
     files: { path: string; size: number }[];
   };
+  const parsedPackInfo = JSON.parse(packJson) as
+    | PackInfo[]
+    | Record<string, PackInfo>;
+  const packInfo = Array.isArray(parsedPackInfo)
+    ? parsedPackInfo[0]
+    : Object.values(parsedPackInfo)[0];
+  if (!packInfo) {
+    throw new Error('STEP FAILED (npm pack): npm returned no package metadata');
+  }
   const tarball = join(workDir, packInfo.filename);
   if (!existsSync(tarball)) {
     throw new Error(`STEP FAILED (npm pack): tarball ${tarball} was not written`);
@@ -281,7 +293,7 @@ try {
     errors: number | null;
     hardMessages: number;
   };
-  check('self-reference import resolved (EPUBCHECK_VERSION)', r.version === '5.3.0', r.version);
+  check('self-reference import resolved (EPUBCHECK_VERSION)', r.version === EPUBCHECK_VERSION, r.version);
   check('test.epub is valid', r.valid === true);
   check('exit code is 0', r.exitCode === 0, `got ${r.exitCode}`);
   check('zero errors', r.errors === 0, `got ${r.errors}`);

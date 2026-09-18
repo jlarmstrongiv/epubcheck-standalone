@@ -55,6 +55,12 @@ export interface ValidateOptions {
    * report-event stream, so one single validation produces any/all formats.
    */
   reports?: Array<'json' | 'xml' | 'xmp'>;
+  /**
+   * Maximum locations retained per message-ID-and-text group in JSON/XML/XMP
+   * reports. Defaults to 25; any negative integer means unlimited. This does
+   * not filter `result.messages` or the live `onMessage` stream.
+   */
+  maxOfEachMessage?: number;
   /** IANA time zone id for report timestamps (defaults to the host zone). */
   tz?: string;
   /**
@@ -188,6 +194,7 @@ export function validateWith(
     );
   }
   if (options.reports !== undefined && options.reports.length > 0) core.reports = options.reports;
+  if (options.maxOfEachMessage !== undefined) core.maxOfEachMessage = options.maxOfEachMessage;
   if (options.tz !== undefined) core.tz = options.tz;
   if (options.dirMode !== undefined) core.dirMode = options.dirMode;
   if (options.onMessage !== undefined) core.onMessage = options.onMessage;

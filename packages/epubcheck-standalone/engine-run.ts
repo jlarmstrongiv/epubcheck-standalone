@@ -1,6 +1,6 @@
 // epubcheck-standalone -- isomorphic engine driver (internal).
 //
-// The engine is the TeaVM JS-backend build of the real epubcheck 5.3.0
+// The engine is the TeaVM JS-backend build of the pinned epubcheck release
 // (com.adobe.epubcheck.tool.EpubChecker). It ships as ONE big UMD JavaScript
 // file (~21 MB) that exposes a single `main(args, callback)` entry, and it talks
 // to the host through a set of globalThis feed/callback names (see

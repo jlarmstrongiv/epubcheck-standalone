@@ -1,5 +1,5 @@
 // Expanded-directory (--mode exp) parity for the CLI: unzip a spread of corpus
-// books into temp directories and run BOTH the real epubcheck 5.3.0 jar and the
+// books into temp directories and run BOTH the real epubcheck jar and the
 // compiled CLI (dist/cli.js) over each directory with identical args and cwd,
 // asserting byte-identical stdout/stderr and matching exit codes.
 //

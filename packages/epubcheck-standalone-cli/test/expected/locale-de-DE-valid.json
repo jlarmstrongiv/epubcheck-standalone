@@ -4,7 +4,7 @@
     "de-DE",
     "valid.epub"
   ],
-  "stdout": "Verwendung der EPUB 3.3 Prüfungen\nDas EPUB enthält keine Fehler oder Warnungen.\nEs ist valide.\nMeldungen: 0 Schwerwiegende Fehler / 0 Fehler / 0 Warnungen / 0 Informationen\n\nEPUBCheck abgeschlossen\n",
+  "stdout": "Verwendung der EPUB 3.4 Prüfungen\nDas EPUB enthält keine Fehler oder Warnungen.\nEs ist valide.\nMeldungen: 0 Schwerwiegende Fehler / 0 Fehler / 0 Warnungen / 0 Informationen\n\nEPUBCheck abgeschlossen\n",
   "stderr": "",
   "code": 0
 }

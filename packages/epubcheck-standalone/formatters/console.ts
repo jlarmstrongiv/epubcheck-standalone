@@ -12,7 +12,7 @@
 //     as one string (for offline re-render from a saved `ReportData`, and for
 //     the web demo's console-format download). Both produce identical bytes.
 //
-// Ported from epubcheck 5.3.0's DefaultReportImpl (formatMessage / fixMessage /
+// Ported from the pinned epubcheck release's DefaultReportImpl (formatMessage / fixMessage /
 // info) and EpubChecker (validateFile tail + printEpubCheckCompleted summary):
 //   - per-message line:  SEVERITY(ID): <epubName><fileName>(line,col): message
 //   - the "Validating using EPUB version X rules." line is DefaultReportImpl.info

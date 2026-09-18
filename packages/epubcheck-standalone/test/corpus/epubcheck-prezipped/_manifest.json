@@ -1,0 +1,128 @@
+{
+  "upstream": "w3c/epubcheck",
+  "version": "5.4.0",
+  "tag": "v5.4.0",
+  "commit": "a51f751b986ac424488586aae75c43d047bbdc53",
+  "fixtures": [
+    {
+      "name": "cli_files_valid.epub",
+      "source": "cli/files/valid.epub",
+      "sha256": "f511097aa645d3822484d210a703313590d8db561eb68b31045896ad3811bafa"
+    },
+    {
+      "name": "epub2_files_epub_ocf-directory-empty-warning.epub",
+      "source": "epub2/files/epub/ocf-directory-empty-warning.epub",
+      "sha256": "3ce53ab21f37efd4a40c0a24f116bce8d7a9095f50d4b1ada576931d58686363"
+    },
+    {
+      "name": "epub2_files_epub_ocf-minimal-valid.epub",
+      "source": "epub2/files/epub/ocf-minimal-valid.epub",
+      "sha256": "e76e6fc329d53225fab98a59a314bcb15afadc2cb9649376cb2a0e8f74c43013"
+    },
+    {
+      "name": "epub3_00-minimal_files_minimal.epub",
+      "source": "epub3/00-minimal/files/minimal.epub",
+      "sha256": "6f446b9fbb00ce78f27d73c5693b5d6d3d0001d179c2266ae15dd7fe690e3677"
+    },
+    {
+      "name": "epub3_02-epub-publication-conformance_files_minimal.epub",
+      "source": "epub3/02-epub-publication-conformance/files/minimal.epub",
+      "sha256": "6f446b9fbb00ce78f27d73c5693b5d6d3d0001d179c2266ae15dd7fe690e3677"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-container-not-ocf-error.epub",
+      "source": "epub3/04-ocf/files/ocf-container-not-ocf-error.epub",
+      "sha256": "d56596445b05ffd0bd0b89d8a28d724b88a0f26f52b05c6380d49b5fe5b4f85e"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filename-character-forbidden-error.epub",
+      "source": "epub3/04-ocf/files/ocf-filename-character-forbidden-error.epub",
+      "sha256": "a6cde141cf57a080f02c8943a7c0b71dac7303e2d5209be8acd0e384eacfa103"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filename-character-forbidden-non-publication-resource-error.epub",
+      "source": "epub3/04-ocf/files/ocf-filename-character-forbidden-non-publication-resource-error.epub",
+      "sha256": "b9f8978183679b7b5f54c802620daf05e171ae3a37481d30ea8da83e560817f3"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filename-duplicate-after-canonical-normalization-error.epub",
+      "source": "epub3/04-ocf/files/ocf-filename-duplicate-after-canonical-normalization-error.epub",
+      "sha256": "27dfe88ad06e9efbee0ee77527696ed2ffcfb3cf3063acd0c124a593f13f25c5"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filename-duplicate-after-common-case-folding-error.epub",
+      "source": "epub3/04-ocf/files/ocf-filename-duplicate-after-common-case-folding-error.epub",
+      "sha256": "0e751627b9f9de3fb964290531453217a8463f0bfe5278ce86b913a1d0d91c13"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filename-duplicate-after-compatibility-normalization-valid.epub",
+      "source": "epub3/04-ocf/files/ocf-filename-duplicate-after-compatibility-normalization-valid.epub",
+      "sha256": "008109231eac37478549b03b632350e41c48cb501e96afdf1b8427cc47a19272"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filename-duplicate-after-full-case-folding-error.epub",
+      "source": "epub3/04-ocf/files/ocf-filename-duplicate-after-full-case-folding-error.epub",
+      "sha256": "b0e0923476f36b29c304f889dc6112d56e5ce6beae57e227e4b439e69faadf71"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filename-duplicate-zip-entry-error.epub",
+      "source": "epub3/04-ocf/files/ocf-filename-duplicate-zip-entry-error.epub",
+      "sha256": "48bb37d98f8d733228885df29b674dd51498d10e9b94807c338d1260c971d8be"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filename-not-utf8-error.epub",
+      "source": "epub3/04-ocf/files/ocf-filename-not-utf8-error.epub",
+      "sha256": "4b8b57323eaf88b9e1c340a4b663d09b147bf775fe1abec8f8576ab5ebaf9033"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filename-utf8-valid.epub",
+      "source": "epub3/04-ocf/files/ocf-filename-utf8-valid.epub",
+      "sha256": "0da0c25a4952b4d5b3493c7021ee95663d96225826ac67483b3d3fc5d843f048"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filepath-not-utf8-error.epub",
+      "source": "epub3/04-ocf/files/ocf-filepath-not-utf8-error.epub",
+      "sha256": "6b05a9ad750a2bf0556e1ca75f9d1104c29b6bdcffb213d6c19c5c7245ecdc66"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-filepath-utf8-valid.epub",
+      "source": "epub3/04-ocf/files/ocf-filepath-utf8-valid.epub",
+      "sha256": "ad31210a1c184735da7f77ea501d463add89ee149be3e87a184cec35351a107f"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-mimetype-file-missing-error.epub",
+      "source": "epub3/04-ocf/files/ocf-mimetype-file-missing-error.epub",
+      "sha256": "a3bdfe20dbb9b777f18b3d1b5a500200e68640b3c0e4822a89e2f515eae718e5"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-zip-mimetype-entry-extra-field-error.epub",
+      "source": "epub3/04-ocf/files/ocf-zip-mimetype-entry-extra-field-error.epub",
+      "sha256": "5337ccbc31e6456ec94cee13365872c183e0ad7db632ad99428424a3c1d3afb3"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-zip-unreadable-empty-fatal.epub",
+      "source": "epub3/04-ocf/files/ocf-zip-unreadable-empty-fatal.epub",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-zip-unreadable-image-with-epub-extension-fatal.epub",
+      "source": "epub3/04-ocf/files/ocf-zip-unreadable-image-with-epub-extension-fatal.epub",
+      "sha256": "1de2cf7080bc83371820f85212886cc3521c345eaa3276d8e955bb6d0e39a6b9"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-zip-unreadable-no-end-header-fatal.epub",
+      "source": "epub3/04-ocf/files/ocf-zip-unreadable-no-end-header-fatal.epub",
+      "sha256": "986c543f4033752630dded11d197e95d6cdadb837b4fe52045a3e33fb7645107"
+    },
+    {
+      "name": "epub3_04-ocf_files_ocf-zip-valid.epub",
+      "source": "epub3/04-ocf/files/ocf-zip-valid.epub",
+      "sha256": "6f446b9fbb00ce78f27d73c5693b5d6d3d0001d179c2266ae15dd7fe690e3677"
+    },
+    {
+      "name": "reporting_files_minimal.epub",
+      "source": "reporting/files/minimal.epub",
+      "sha256": "6f446b9fbb00ce78f27d73c5693b5d6d3d0001d179c2266ae15dd7fe690e3677"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "messages" : [ {
     "ID" : "PKG-007",
     "severity" : "ERROR",
-    "message" : "Mimetype file should only contain the string \"application/epub+zip\" and should not be compressed.",
+    "message" : "The content of the mimetype file must be the string \"application/epub+zip\"with no whitespace or newline.",
     "additionalLocations" : 0,
     "locations" : [ {
       "url" : {
@@ -20,9 +20,9 @@
   "checker" : {
     "path" : "./epub2__files__epub__ocf-mimetype-with-spaces-error.epub",
     "filename" : "epub2__files__epub__ocf-mimetype-with-spaces-error.epub",
-    "checkerVersion" : "5.3.0",
-    "checkDate" : "09-06-2026 17:20:10",
-    "elapsedTime" : 4206,
+    "checkerVersion" : "5.4.0",
+    "checkDate" : "09-17-2026 21:57:27",
+    "elapsedTime" : 4540,
     "nFatal" : 0,
     "nError" : 1,
     "nWarning" : 0,

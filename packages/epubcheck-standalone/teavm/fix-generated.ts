@@ -1,4 +1,4 @@
-// Post-processor for TeaVM 0.15.0 JS output: works around a compiler emission
+// Post-processor for TeaVM JS output: works around a compiler emission
 // inconsistency where ABSTRACT classes that flow into Class.newInstance sites
 // (xml-apis FactoryFinder, Xerces ObjectFactory, ...) are listed in the
 // simple-constructors reflection table, but their <init> functions are

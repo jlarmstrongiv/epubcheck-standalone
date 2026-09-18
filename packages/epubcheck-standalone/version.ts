@@ -3,7 +3,7 @@
 // The engine embeds a specific epubcheck release. Rather than hardcode that
 // version string in several modules (index, formatters), we DERIVE it from this
 // package's own `version` field: the package is published as
-// `<epubcheckVersion>-build<N>` (e.g. "5.3.0-build1"), so the part before
+// `<epubcheckVersion>-build<N>`, so the part before
 // `-build` IS the epubcheck version. The release pipeline bumps package.json, so
 // this constant updates itself -- no second place to edit.
 //
@@ -21,7 +21,7 @@
 
 import pkg from 'epubcheck-standalone/package.json' with { type: 'json' };
 
-/** epubcheck upstream version baked into the bundled engine (e.g. "5.3.0"). */
+/** epubcheck upstream version baked into the bundled engine. */
 // String.prototype.split always returns a non-empty array, so [0] is always a
 // string: the part before "-build", or the whole version when there is no
 // "-build" suffix. No fallback is needed.
