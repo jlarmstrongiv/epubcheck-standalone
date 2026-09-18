@@ -1,4 +1,4 @@
-// epubcheck-standalone -- the async http bridge for URL inputs (internal).
+// epubcheck-standalone -- the async HTTP bridge for URL inputs (internal).
 //
 // The engine downloads http(s) URL inputs through TeaVM native suspend/resume
 // (see teavm/shims/src-teavm/ecshim/HostHttp.java): when the stock epubcheck

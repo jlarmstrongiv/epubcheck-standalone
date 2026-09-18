@@ -9,13 +9,13 @@
 //   1. gradle generateJavaScript          (TeaVM JS backend -> teavm/build/...)
 //   2. node fix-generated.ts <engine.js>  (post-process the emitted JS)
 //   3. copy the engine to dist/epubcheck-engine.js
-//   4. tsc -p tsconfig.json               (compile the TS library into dist/)
+//   4. npm run build:ts                   (Rolldown JS + declarations + maps)
 //
 // The engine build is expensive (~80s, needs -Xmx4g -- set in
 // teavm/gradle.properties) and deliberate: it is never run implicitly by the
 // test scripts. The toolchain comes from mise.
 
-import { existsSync, mkdirSync, copyFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdirSync, copyFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -107,10 +107,10 @@ mkdirSync(dist, { recursive: true });
 copyFileSync(engineOut, join(dist, 'epubcheck-engine.js'));
 console.log(`\nok engine -> ${join(dist, 'epubcheck-engine.js')}`);
 
-// 4. Compile the TypeScript library into dist/ (build:ts semantics: tsc, then
-// remove the stray dist/package.json tsc copies in from version.ts's import).
-run('mise', ['exec', '--', 'npx', 'tsc', '-p', join(root, 'tsconfig.json')], root);
-rmSync(join(dist, 'package.json'), { force: true });
+// 4. Bundle the TypeScript library and declarations into dist/. The source
+// imports use explicit .ts extensions for Node's native type stripping;
+// Rolldown rewrites those to publishable .js specifiers in both outputs.
+run('npm', ['run', 'build:ts'], root);
 
 console.log('\nok Built dist/epubcheck-engine.js + the TypeScript library.');
 console.log('   Verify with: npm test');

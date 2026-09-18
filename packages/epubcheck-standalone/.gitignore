@@ -1,10 +1,9 @@
 # Dependencies
 node_modules/
 
-# Compiled library output. tsc emits the .js/.d.ts into dist/ (outDir; see
-# tsconfig.json), alongside the copied dist/epubcheck-engine.js (the TeaVM
-# plain-JS engine). The whole dir is a build artifact -- not committed -- but
-# package.json "files" packs it into the published tarball.
+# Compiled library output. Rolldown emits .js/.d.ts/.map files into dist/
+# alongside dist/epubcheck-engine.js (the TeaVM plain-JS engine). The whole dir
+# is a build artifact -- not committed -- but package.json "files" packs it.
 dist/
 
 # Build toolchain + fetched build inputs (provisioned by npm run build:deps).

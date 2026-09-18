@@ -10,6 +10,7 @@
     "noEmit": true,
     "rootDir": ".",
     "types": ["node"],
+    "lib": ["ES2022", "WebWorker", "esnext.disposable"],
     // The test and script modules import sibling modules by their .ts path
     // (e.g. "./matrix.ts"); allow that under a no-emit check.
     "allowImportingTsExtensions": true

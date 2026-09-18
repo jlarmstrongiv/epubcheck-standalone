@@ -11,8 +11,8 @@
 //
 // Usage:  node run-epubcheck-opt.ts <path-to-epub>
 import { resolve } from 'node:path';
-import { validate } from '../dist/index.js';
-import { fs } from '../dist/plugins.js';
+import { validate } from 'epubcheck-standalone';
+import { fs } from 'epubcheck-standalone/plugins';
 
 const file = process.argv[2];
 if (!file) {

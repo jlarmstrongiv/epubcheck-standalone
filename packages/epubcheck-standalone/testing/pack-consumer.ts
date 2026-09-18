@@ -4,7 +4,7 @@
 //
 //   mise exec -- node testing/pack-consumer.ts
 //
-// Every other suite in this package imports from ../dist or the package root, so
+// The ordinary suites run from package source via the `source` condition, so
 // they never exercise the published surface: the `exports` map, the `files`
 // field, the package self-reference (`epubcheck-standalone/package.json`, which
 // EPUBCHECK_VERSION relies on), or the shipped .d.ts as a stranger's tsc sees
@@ -13,7 +13,7 @@
 // OUTSIDE.
 //
 // What it does, failing loudly at every step:
-//   1. Refresh dist (tsc only -- the ~21 MB engine must already be built) and
+//   1. Refresh dist (Rolldown only -- the ~21 MB engine must already be built) and
 //      confirm the engine asset is present, then `npm pack` into a temp dir.
 //   2. Inspect the tarball listing: required files present, nothing junk.
 //   3. Make a fresh consumer project ("type":"module"), `npm install` the
@@ -58,6 +58,9 @@ const EPUBCHECK_VERSION = PACKAGE_VERSION.split('-build')[0]!;
 // The npm the pinned toolchain resolves (mise puts it on PATH). Everything runs
 // through this so the test never picks up a stray global npm.
 const NPM = 'npm';
+// This script itself runs inside mise (where NODE_OPTIONS opts the workspace
+// into source), but the throwaway app must behave like an ordinary consumer.
+const PUBLISHED_CONSUMER_ENV = { ...process.env, NODE_OPTIONS: '' };
 
 let failures = 0;
 function check(name: string, cond: unknown, detail?: string): void {
@@ -131,7 +134,7 @@ console.log('work dir:', workDir);
 let succeeded = false;
 try {
   // --- 1. refresh dist + confirm engine, then pack ---------------------------
-  console.log('\n[1] Refresh dist (tsc) and pack the library:');
+  console.log('\n[1] Refresh dist (Rolldown) and pack the library:');
   run('build:ts', NPM, ['run', 'build:ts'], { cwd: PKG_DIR });
   if (!existsSync(ENGINE_ASSET)) {
     throw new Error(
@@ -176,6 +179,7 @@ try {
     'LICENSE',
     'dist/index.js',
     'dist/index.d.ts',
+    'dist/index.d.ts.map',
     'dist/validate-browser.js',
     'dist/validate-browser.d.ts',
     'dist/plugins.js',
@@ -191,6 +195,8 @@ try {
     'dist/formatters/index.js',
     'dist/formatters/index.d.ts',
     'dist/epubcheck-engine.js',
+    'src/index.ts',
+    'src/plugins.ts',
   ];
   for (const rel of required) {
     check(`ships ${rel}`, shipped.has(rel), 'MISSING from tarball');
@@ -210,7 +216,7 @@ try {
   // engine/formatters file, or a root doc/manifest is reported as suspicious.
   const knownRoots = new Set(['package.json', 'README.md', 'LICENSE', 'THIRD-PARTY-NOTICES.txt']);
   const suspicious = [...shipped].filter(
-    (p) => !knownRoots.has(p) && !p.startsWith('dist/'),
+    (p) => !knownRoots.has(p) && !p.startsWith('dist/') && !p.startsWith('src/'),
   );
   if (suspicious.length) {
     console.log('  note - unexpected top-level entries:', suspicious.join(', '));
@@ -281,6 +287,7 @@ try {
   );
   const runOut = run('consumer-run', process.execPath, ['consumer-run.ts'], {
     cwd: consumerDir,
+    env: PUBLISHED_CONSUMER_ENV,
   });
   const line = runOut.split('\n').find((l) => l.startsWith('CONSUMER_RESULT '));
   if (!line) {

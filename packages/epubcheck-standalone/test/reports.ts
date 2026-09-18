@@ -27,8 +27,8 @@
 
 import { validatePool } from './validate-pool.ts';
 import { parseDial, inSample } from './sample.ts';
-import { validate, type EpubCheckResult } from '../dist/index.js';
-import { fs } from '../dist/plugins.js';
+import { validate, type EpubCheckResult } from 'epubcheck-standalone';
+import { fs } from 'epubcheck-standalone/plugins';
 import assert from 'node:assert/strict';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';

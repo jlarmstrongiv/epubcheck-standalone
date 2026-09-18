@@ -23,7 +23,7 @@ export { EPUBCHECK_VERSION } from "epubcheck-standalone";
 export { formatTemplate } from "epubcheck-standalone/formatters";
 import { DEFAULT_CONSOLE_LABELS, type ConsoleLabels } from "epubcheck-standalone/formatters";
 
-import { LOCALE_MESSAGES } from "./locale-messages.js";
+import { LOCALE_MESSAGES } from "./locale-messages.ts";
 
 // --- CLI-only strings (messages.properties keys with no ConsoleLabels
 //     counterpart). The shared console chrome (no_errors__or_warnings,

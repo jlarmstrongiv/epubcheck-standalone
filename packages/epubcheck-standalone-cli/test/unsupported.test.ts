@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixturesDir = join(here, "fixtures");
-const CLI = join(here, "..", "dist", "cli.js");
+const CLI = join(here, "..", "src", "cli.ts");
 const V = "valid.epub";
 
 function runCli(args: string[]) {
@@ -23,7 +23,7 @@ function runCli(args: string[]) {
   return { stdout: r.stdout, stderr: r.stderr, code: r.status };
 }
 
-assert.ok(existsSync(CLI), `compiled CLI missing at ${CLI} -- run \`npm run build\` first`);
+assert.ok(existsSync(CLI), `source CLI missing at ${CLI} -- run \`npm run build\` first`);
 
 // The only capability the engine still cannot reproduce is a locale outside the
 // shipped set. It must exit 2 with a clear message. (Custom message overrides,

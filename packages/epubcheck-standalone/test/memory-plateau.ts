@@ -20,8 +20,8 @@
 // process settles at and make two robust assertions: a generous absolute ceiling,
 // and no sustained growth between an early and a late window of the run.
 
-import { validate } from '../dist/index.js';
-import { fs } from '../dist/plugins.js';
+import { validate } from 'epubcheck-standalone';
+import { fs } from 'epubcheck-standalone/plugins';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 

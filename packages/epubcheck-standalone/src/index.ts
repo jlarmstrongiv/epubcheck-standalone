@@ -39,11 +39,11 @@
 // rebuild. `validate` is freely reusable and concurrent calls on one thread
 // serialize through an internal queue.
 
-import { EPUBCHECK_VERSION } from './version.js';
-import { runEngine } from './engine-node.js';
-import { validateWith } from './validate-core.js';
-import type { ValidateOptions, ValidateSource } from './validate-core.js';
-import type { EpubCheckResult } from './result-types.js';
+import { EPUBCHECK_VERSION } from './version.ts';
+import { runEngine } from './engine-node.ts';
+import { validateWith } from './validate-core.ts';
+import type { ValidateOptions, ValidateSource } from './validate-core.ts';
+import type { EpubCheckResult } from './result-types.ts';
 
 // The main entry owns `validate`, the run option/result types, and
 // EPUBCHECK_VERSION. Source plugins (fs, fsDir, url, ...) and their contract
@@ -59,8 +59,8 @@ export type {
   EpubCheckSummary,
   EpubCheckReports,
   EpubCheckResult,
-} from './result-types.js';
-export type { ValidateOptions, ValidateSource } from './validate-core.js';
+} from './result-types.ts';
+export type { ValidateOptions, ValidateSource } from './validate-core.ts';
 export { EPUBCHECK_VERSION };
 
 /**

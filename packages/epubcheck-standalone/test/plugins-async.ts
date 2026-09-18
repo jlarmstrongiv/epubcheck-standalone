@@ -19,10 +19,10 @@
 //
 //   node test/plugins-async.ts
 
-import { validate } from '../dist/index.js';
-import { blob, memory, fileList, fsDir } from '../dist/plugins.js';
-import type { EpubCheckResult } from '../dist/index.js';
-import type { RangeSource, FsDirBackend } from '../dist/plugins.js';
+import { validate } from 'epubcheck-standalone';
+import { blob, memory, fileList, fsDir } from 'epubcheck-standalone/plugins';
+import type { EpubCheckResult } from 'epubcheck-standalone';
+import type { RangeSource, FsDirBackend } from 'epubcheck-standalone/plugins';
 import {
   readFileSync,
   existsSync,

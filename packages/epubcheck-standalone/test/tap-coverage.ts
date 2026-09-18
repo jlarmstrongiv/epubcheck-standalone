@@ -23,10 +23,10 @@
 //     object that lands in result.messages (live stream IS result.messages).
 // Jar-free and warm-engine fast, so it runs in the npm test battery.
 
-import { validate } from '../dist/index.js';
-import { fs } from '../dist/plugins.js';
-import { parseConsoleReport } from '../dist/parse.js';
-import type { ReportMessage } from '../dist/formatters/index.js';
+import { validate } from 'epubcheck-standalone';
+import { fs } from 'epubcheck-standalone/plugins';
+import { parseConsoleReport } from 'epubcheck-standalone/parse';
+import type { ReportMessage } from 'epubcheck-standalone/formatters';
 import { readdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';

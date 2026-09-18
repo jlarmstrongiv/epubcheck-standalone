@@ -1,6 +1,6 @@
 {
   "name": "epubcheck-standalone-cli",
-  "version": "5.4.0-build1",
+  "version": "5.4.0-build2",
   "description": "The official EPUBCheck command line with no Java to install: same flags, console output, JSON, XML, and XMP reports, and exit codes as the official tool, byte-identical, run straight from npx.",
   "type": "module",
   "engines": {
@@ -11,26 +11,29 @@
   },
   "files": [
     "dist/",
+    "src/",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "//build": "rm -rf dist first so tsc never ships stale outputs of deleted sources (e.g. the removed src/render.ts): unlike the library, this package's whole dist is tsc output with no separately-built engine, so a clean rebuild is safe and complete.",
-    "build": "rm -rf dist && tsc -p tsconfig.json && chmod +x dist/cli.js",
+    "//build": "A clean Rolldown build emits publishable JavaScript plus bundled declarations and declaration maps from src/; chmod preserves the npm bin entry's executable bit.",
+    "build": "rm -rf dist && rolldown -c rolldown.config.ts && chmod +x dist/cli.js",
     "//prepack": "Local safety net only. The repo-wide .npmrc sets ignore-scripts=true, which disables this hook, so CI/release must build explicitly before publishing (see .github/workflows/release.yml). It fires only for a publish run with lifecycle scripts enabled.",
     "prepack": "npm run build",
-    "test": "npm run build && node --test --test-concurrency=2 test/*.test.ts",
+    "test": "node --test --test-concurrency=2 test/*.test.ts",
     "typecheck:tests": "tsc -p tsconfig.tests.json",
-    "test:jar": "npm run build && node test/jar-parity.ts",
+    "test:jar": "node test/jar-parity.ts",
     "goldens": "node test/generate-goldens.ts",
     "generate:cli-data": "node scripts/generate-cli-data.ts",
     "generate:locale-messages": "node scripts/generate-locale-messages.ts"
   },
   "dependencies": {
-    "epubcheck-standalone": "5.4.0-build1"
+    "epubcheck-standalone": "5.4.0-build2"
   },
   "devDependencies": {
     "@types/node": "24.13.3",
+    "rolldown": "1.2.7",
+    "rolldown-plugin-dts": "0.28.5",
     "typescript": "7.0.2"
   },
   "keywords": [

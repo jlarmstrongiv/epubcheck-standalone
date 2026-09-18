@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // CLI parity in two phases:
 //   1. flag/scenario MATRIX (test/matrix.ts) -- runs the REAL epubcheck jar and
-//      the compiled CLI side by side over the committed fixtures and diffs
+//      the source CLI side by side over the committed fixtures and diffs
 //      stdout, stderr, exit code, and report bytes. This is CLI-flag-specific
 //      behavior, so it stays a live jar comparison; it auto-skips when the jar
 //      or java is absent (unless EPUBCHECK_REQUIRE_JAR=1, then it hard-fails).
@@ -28,7 +28,7 @@ import { JAVA, resolveJarPath } from "../scripts/epubcheck-jar.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixturesDir = join(here, "fixtures");
-const CLI = join(here, "..", "dist", "cli.js");
+const CLI = join(here, "..", "src", "cli.ts");
 
 // The corpus and its committed jar console cache live under the sibling library
 // package. The cache path is anchored to that package (not to EPUBCHECK_CORPUS)
@@ -47,7 +47,7 @@ function haveJava() {
 const jarAvailable = existsSync(JAR) && haveJava();
 
 if (!existsSync(CLI)) {
-  console.error(`compiled CLI missing at ${CLI} -- run \`npm run build\` first.`);
+  console.error(`source CLI missing at ${CLI} -- run \`npm run build\` first.`);
   process.exit(1);
 }
 

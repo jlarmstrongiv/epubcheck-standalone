@@ -20,20 +20,20 @@
 //    formatters (./formatters/index.js) from that live stream -- byte-identical
 //    to epubcheck's own writers, with no per-format re-validation.
 
-import { parseConsoleReport } from './parse.js';
+import { parseConsoleReport } from './parse.ts';
 import type {
   EpubCheckResult,
   EpubCheckReports,
-} from './result-types.js';
-import { isDirectorySource, isUrlSource, toBase64 } from './plugins.js';
-import type { RangeSource, DirectorySource, UrlSource, HttpBridge } from './plugins.js';
-import type { EngineRun, EngineResult } from './engine-run.js';
+} from './result-types.ts';
+import { isDirectorySource, isUrlSource, toBase64 } from './plugins.ts';
+import type { RangeSource, DirectorySource, UrlSource, HttpBridge } from './plugins.ts';
+import type { EngineRun, EngineResult } from './engine-run.ts';
 import {
   formatJsonReport,
   formatXmlReport,
   formatXmpReport,
-} from './formatters/index.js';
-import type { ReportData, ReportFeature, ReportMessage, ReportSeverity } from './formatters/index.js';
+} from './formatters/index.ts';
+import type { ReportData, ReportFeature, ReportMessage, ReportSeverity } from './formatters/index.ts';
 
 /** The platform engine driver run-core delegates a single run to. */
 export type RunEngine = (run: EngineRun) => Promise<EngineResult>;

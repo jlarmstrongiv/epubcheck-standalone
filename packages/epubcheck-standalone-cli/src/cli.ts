@@ -52,11 +52,11 @@ import {
   resolveLocale,
   EPUBCHECK_VERSION,
   ReportingLevel,
-} from "./messages.js";
-import { HELP_OUTPUT, HELP_OUTPUT_BY_LOCALE } from "./help-text.js";
-import { createArchive } from "./archive.js";
-import { LIST_CHECKS_TSV } from "./list-checks-data.js";
-import { LIST_CHECKS_TSV_BY_LOCALE } from "./list-checks-locale-data.js";
+} from "./messages.ts";
+import { HELP_OUTPUT, HELP_OUTPUT_BY_LOCALE } from "./help-text.ts";
+import { createArchive } from "./archive.ts";
+import { LIST_CHECKS_TSV } from "./list-checks-data.ts";
+import { LIST_CHECKS_TSV_BY_LOCALE } from "./list-checks-locale-data.ts";
 
 /** Exit code used when a flag is valid epubcheck syntax but unsupportable here. */
 const EXIT_UNSUPPORTED = 2;

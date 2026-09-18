@@ -1,6 +1,6 @@
 // URL-input parity for the CLI: serve the committed fixtures over a LOCAL http
-// server (never the network) and validate them by URL through the compiled CLI
-// (dist/cli.js), comparing against the REAL epubcheck.jar run against the SAME
+// server (never the network) and validate them by URL through the source CLI
+// (src/cli.ts), comparing against the REAL epubcheck.jar run against the SAME
 // URLs.
 //
 // PARITY MODEL (jar-identical, mirroring the library's own test/url.ts): the
@@ -43,10 +43,10 @@ import { JAVA, resolveJarPath } from "../scripts/epubcheck-jar.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixturesDir = join(here, "fixtures");
-const CLI = join(here, "..", "dist", "cli.js");
+const CLI = join(here, "..", "src", "cli.ts");
 const JAR = resolveJarPath();
 
-assert.ok(existsSync(CLI), `compiled CLI missing at ${CLI} -- run \`npm run build\` first`);
+assert.ok(existsSync(CLI), `source CLI missing at ${CLI}`);
 
 // The completion summary the jar prints (via run()'s finally) even when a URL
 // download fails -- 0 counts at the default INFO reporting level.

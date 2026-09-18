@@ -22,10 +22,10 @@
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { driveEngine } from '../engine-run.ts';
-import type { EngineRun, EngineFactory } from '../engine-run.ts';
-import { validate } from '../dist/index.js';
-import { memoryDir, url } from '../dist/plugins.js';
+import { driveEngine } from '../src/engine-run.ts';
+import type { EngineRun, EngineFactory } from '../src/engine-run.ts';
+import { validate } from 'epubcheck-standalone';
+import { memoryDir, url } from 'epubcheck-standalone/plugins';
 import { createServer } from 'node:http';
 import type { ServerResponse } from 'node:http';
 

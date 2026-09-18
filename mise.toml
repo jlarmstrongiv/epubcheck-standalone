@@ -43,6 +43,11 @@ java = "temurin-21.0.12+101.0.LTS"
 gradle = "9.7.1"
 
 [env]
+# Workspace-only package resolution: Node, TypeScript-aware tools, and child
+# processes run the packages directly from src/. Published consumers do not use
+# this mise environment and therefore fall through to dist/ in the export map.
+NODE_OPTIONS = "--conditions=source"
+
 # Build-INPUT version pins consumed by scripts/fetch-deps.ts (NOT tools -- tools
 # are provisioned by mise above). Bump EPUBCHECK_VERSION and rebuild to adopt a
 # new epubcheck (then publish <newversion>-build1); the

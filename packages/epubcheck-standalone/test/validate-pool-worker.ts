@@ -3,9 +3,9 @@
 // books the pool sends over IPC. Runs the in-process library API directly -- the
 // same path a normal Node caller uses.
 
-import { validate } from '../dist/index.js';
-import { fs, fsDir, url } from '../dist/plugins.js';
-import type { EpubCheckResult } from '../dist/index.js';
+import { validate } from 'epubcheck-standalone';
+import { fs, fsDir, url } from 'epubcheck-standalone/plugins';
+import type { EpubCheckResult } from 'epubcheck-standalone';
 
 if (typeof process.send !== 'function') {
   throw new Error('validate-pool-worker: no IPC channel (must be run via fork)');

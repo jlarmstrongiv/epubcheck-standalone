@@ -26,9 +26,9 @@
 // release or a java binary is absent. Set EPUBCHECK_REQUIRE_JAR=1 to fail
 // instead.
 
-import { EPUBCHECK_VERSION, validate } from '../dist/index.js';
-import { fs, memory } from '../dist/plugins.js';
-import type { EpubCheckResult, ValidateOptions } from '../dist/index.js';
+import { EPUBCHECK_VERSION, validate } from 'epubcheck-standalone';
+import { fs, memory } from 'epubcheck-standalone/plugins';
+import type { EpubCheckResult, ValidateOptions } from 'epubcheck-standalone';
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { access } from 'node:fs/promises';

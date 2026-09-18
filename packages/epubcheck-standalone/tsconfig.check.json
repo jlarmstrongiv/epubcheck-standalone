@@ -32,7 +32,7 @@
     // config's directory (the package root), so "./plugins.ts" still maps the
     // epubcheck-standalone/plugins self-import to the local source.
     "paths": {
-      "epubcheck-standalone/plugins": ["./plugins.ts"]
+      "epubcheck-standalone/plugins": ["./src/plugins.ts"]
     }
   },
   "include": [

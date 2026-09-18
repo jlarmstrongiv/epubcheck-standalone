@@ -10,15 +10,15 @@
 //   1. a factory handed in via `configureEngine({ createEngine })` (a consumer
 //      that imports the engine module itself),
 //   2. a URL set via `configureEngine({ url })`, dynamically imported,
-//   3. `new URL('./epubcheck-engine.js', import.meta.url)` -- the bundler pattern
-//      Vite/webpack recognize to emit the asset and give its URL -- dynamically
-//      imported.
+//   3. `new URL('../dist/epubcheck-engine.js', import.meta.url)` -- valid from
+//      both src/ and dist/ (where `../dist` normalizes back to dist), and the
+//      bundler pattern Vite/webpack recognize to emit the asset and give its URL.
 // A dynamic `import()` is a real ES-module load: NO eval, NO new Function, NO
 // string-to-code. The page's CSP therefore needs only to allow the engine URL
 // under script-src (same-origin 'self' is enough); it does NOT need 'unsafe-eval'.
 
-import { driveEngine } from './engine-run.js';
-import type { EngineRun, EngineResult, EngineFactory } from './engine-run.js';
+import { driveEngine } from './engine-run.ts';
+import type { EngineRun, EngineResult, EngineFactory } from './engine-run.ts';
 
 // The engine module's export shape: a single `createEngine()` factory.
 interface EngineModuleNamespace {
@@ -34,7 +34,7 @@ let configuredUrl: string | null = null;
  * `validate`, with EITHER a pre-imported factory (`createEngine`, e.g. from
  * `import { createEngine } from 'epubcheck-standalone/epubcheck-engine.js'`) or
  * the URL to dynamically import it from (`url`). Optional: by default the engine
- * is imported from `new URL('./epubcheck-engine.js', import.meta.url)`.
+ * is imported from `new URL('../dist/epubcheck-engine.js', import.meta.url)`.
  */
 export function configureEngine(options: { createEngine?: EngineFactory; url?: string }): void {
   if (options.createEngine !== undefined) configuredFactory = options.createEngine;
@@ -48,7 +48,7 @@ async function getFactory(): Promise<EngineFactory> {
     cachedFactory = configuredFactory;
     return cachedFactory;
   }
-  const url = configuredUrl ?? new URL('./epubcheck-engine.js', import.meta.url).href;
+  const url = configuredUrl ?? new URL('../dist/epubcheck-engine.js', import.meta.url).href;
   // A real module load. The specifier is resolved at runtime, so it is marked
   // vite-ignore for consumers that bundle with Vite (webpack/Rollup treat a
   // fully dynamic specifier as external the same way).

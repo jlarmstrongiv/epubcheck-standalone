@@ -120,7 +120,7 @@ jobs:
       - name: Build engine + library from source (TeaVM)
         run: npm run build
 
-      # Compile the CLI TypeScript into its own dist/ so the artifact carries a
+      # Bundle the CLI TypeScript into its own dist/ so the artifact carries a
       # ready-to-publish CLI too (the release publish job ships it without rebuilding).
       - name: Build CLI
         run: npm run build --workspace epubcheck-standalone-cli
@@ -134,9 +134,9 @@ jobs:
       - name: Type-check library tests and scripts
         run: npm run check:types --workspace epubcheck-standalone
 
-      # Build the web package against the freshly built library (paraglide
-      # compile + astro build). Exercises the web package's TypeScript through
-      # the Astro/Vite build.
+      # Build the web package against library source via Vite's `source`
+      # condition (paraglide compile + astro build); the generated engine asset
+      # still comes from the freshly built dist/.
       - name: Build web
         run: npm run web:build
 
@@ -197,9 +197,9 @@ jobs:
 
       # smoke, validate, reuse, memory-plateau (bounded RSS across 30 warm runs),
       # engine-error-cleanup, abort, 491-book parity, report byte-parity, flags,
-      # expanded, custom-messages, url, s3, http-bridge. (npm test re-runs the
-      # library's tsc build:ts for the compiled-TS part; the engine comes from
-      # the downloaded dist.)
+      # expanded, custom-messages, url, s3, http-bridge. (npm test runs the
+      # source TypeScript directly via the mise-provided `source` condition; the
+      # engine comes from the downloaded dist.)
       - name: Library battery (parity + reports + all library suites)
         run: npm run test --workspace epubcheck-standalone
         env:
@@ -228,9 +228,9 @@ jobs:
       - name: Install workspace (root lockfile)
         run: npm ci --no-audit --no-fund
 
-      # The CLI drives the library engine, so it needs the library dist. (The CLI
-      # suite rebuilds its own CLI dist via its test script; the downloaded CLI
-      # dist is for the release publish job, not needed here.)
+      # Restore the engine built in `build`; the CLI and library TypeScript run
+      # from src/ through the mise-provided `source` condition. The downloaded
+      # CLI dist is retained for the release publish job, not used by this suite.
       - name: Download dist bundle
         uses: actions/download-artifact@v8
         with:

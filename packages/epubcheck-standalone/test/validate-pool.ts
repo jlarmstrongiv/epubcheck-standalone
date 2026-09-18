@@ -15,7 +15,7 @@ import { fork } from 'node:child_process';
 import type { ChildProcess } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { EpubCheckResult } from '../dist/index.js';
+import type { EpubCheckResult } from 'epubcheck-standalone';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const CHILD = join(here, 'validate-pool-worker.ts');

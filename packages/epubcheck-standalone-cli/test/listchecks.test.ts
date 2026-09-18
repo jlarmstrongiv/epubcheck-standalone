@@ -8,7 +8,7 @@
 // lines on stderr.
 //
 // This can't be a frozen golden (the absolute path and the OS strerror are
-// environment-specific), so it compares the compiled CLI (dist/cli.js) live
+// environment-specific), so it compares the source CLI (src/cli.ts) live
 // against the real jar in the SAME cwd, and SKIPs cleanly when the jar or a java
 // binary is absent. The jar is located by scripts/epubcheck-jar.ts.
 import { test } from "node:test";
@@ -21,10 +21,10 @@ import { fileURLToPath } from "node:url";
 import { JAVA, resolveJarPath } from "../scripts/epubcheck-jar.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const CLI = join(here, "..", "dist", "cli.js");
+const CLI = join(here, "..", "src", "cli.ts");
 const JAR = resolveJarPath();
 
-assert.ok(existsSync(CLI), `compiled CLI missing at ${CLI} -- run \`npm run build\` first`);
+assert.ok(existsSync(CLI), `source CLI missing at ${CLI} -- run \`npm run build\` first`);
 
 function haveJava() {
   const r = spawnSync(JAVA, ["-version"], { encoding: "utf8" });

@@ -1,4 +1,4 @@
-// CI-safe parity suite: runs the COMPILED CLI (dist/cli.js) across the parity
+// CI-safe parity suite: runs the COMPILED CLI (src/cli.ts) across the parity
 // matrix and asserts byte-for-byte equality with the frozen golden outputs
 // captured from the real epubcheck jar (test/expected/*.json, regenerated
 // by test/generate-goldens.ts). Only the documented run-varying report fields
@@ -19,9 +19,9 @@ import { normalizeReport } from "./normalize.ts";
 const here = dirname(fileURLToPath(import.meta.url));
 const fixturesDir = join(here, "fixtures");
 const expectedDir = join(here, "expected");
-const CLI = join(here, "..", "dist", "cli.js");
+const CLI = join(here, "..", "src", "cli.ts");
 
-assert.ok(existsSync(CLI), `compiled CLI missing at ${CLI} -- run \`npm run build\` first`);
+assert.ok(existsSync(CLI), `source CLI missing at ${CLI} -- run \`npm run build\` first`);
 
 function runCli(args: string[]) {
   const r = spawnSync(process.execPath, [CLI, ...args], {

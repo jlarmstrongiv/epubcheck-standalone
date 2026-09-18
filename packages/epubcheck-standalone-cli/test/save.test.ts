@@ -47,10 +47,10 @@ import { JAVA, resolveJarPath } from "../scripts/epubcheck-jar.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixturesDir = join(here, "fixtures");
-const CLI = join(here, "..", "dist", "cli.js");
+const CLI = join(here, "..", "src", "cli.ts");
 const JAR = resolveJarPath();
 
-assert.ok(existsSync(CLI), `compiled CLI missing at ${CLI} -- run \`npm run build\` first`);
+assert.ok(existsSync(CLI), `source CLI missing at ${CLI} -- run \`npm run build\` first`);
 
 const CANCEL_NOTE = "\nEpub creation cancelled due to detected errors.\n\n";
 

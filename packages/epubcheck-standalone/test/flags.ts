@@ -35,8 +35,8 @@
 // side's location prefix and the jar side's relative path both collapse to
 // "EPUB" by the same parity.ts normalization rules).
 
-import { EPUBCHECK_VERSION, validate } from '../dist/index.js';
-import { fs } from '../dist/plugins.js';
+import { EPUBCHECK_VERSION, validate } from 'epubcheck-standalone';
+import { fs } from 'epubcheck-standalone/plugins';
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { access } from 'node:fs/promises';

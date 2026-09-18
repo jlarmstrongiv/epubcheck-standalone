@@ -8,8 +8,8 @@
 //   test.epub      -> valid, exit 0, 0 errors
 //   test_bad.epub  -> invalid, exit 1, exactly ERROR(RSC-005) + ERROR(RSC-007)
 
-import { validate } from '../dist/index.js';
-import { fs } from '../dist/plugins.js';
+import { validate } from 'epubcheck-standalone';
+import { fs } from 'epubcheck-standalone/plugins';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 

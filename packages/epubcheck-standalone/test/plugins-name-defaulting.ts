@@ -27,8 +27,8 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { validate } from '../dist/index.js';
-import { opfs, fileList, memory } from '../dist/plugins.js';
+import { validate } from 'epubcheck-standalone';
+import { opfs, fileList, memory } from 'epubcheck-standalone/plugins';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -146,7 +146,7 @@ test('genuinely nameless sources leave name undefined', () => {
 // A bare Blob (not a File) passed to blob() also has no name. blob() is exported
 // from the same module; import lazily to keep this assertion beside the others.
 test('a bare Blob (not a File) leaves blob().name undefined', async () => {
-  const { blob } = await import('../dist/plugins.js');
+  const { blob } = await import('epubcheck-standalone/plugins');
   const bare = new Blob([badBytes]);
   assert.equal(blob(bare).name, undefined);
 });

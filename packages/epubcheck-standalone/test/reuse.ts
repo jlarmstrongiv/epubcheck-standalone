@@ -24,9 +24,9 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { validate } from '../dist/index.js';
-import { fs, fsDir, url as urlSource } from '../dist/plugins.js';
-import type { EpubCheckResult } from '../dist/index.js';
+import { validate } from 'epubcheck-standalone';
+import { fs, fsDir, url as urlSource } from 'epubcheck-standalone/plugins';
+import type { EpubCheckResult } from 'epubcheck-standalone';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const validateFile = async (path: string, options = {}) => validate(await fs(path), options);

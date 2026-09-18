@@ -43,8 +43,8 @@
 
 import { validatePool } from './validate-pool.ts';
 import { parseDial, inSample } from './sample.ts';
-import type { EpubCheckResult } from '../dist/index.js';
-import { formatConsoleReport } from '../dist/formatters/index.js';
+import type { EpubCheckResult } from 'epubcheck-standalone';
+import { formatConsoleReport } from 'epubcheck-standalone/formatters';
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';

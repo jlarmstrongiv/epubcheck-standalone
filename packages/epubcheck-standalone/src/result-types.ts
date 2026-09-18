@@ -15,7 +15,7 @@
 // this module still has no runtime imports and loads cleanly in a browser
 // Worker.
 
-import type { ReportMessage, ReportFeature } from './formatters/index.js';
+import type { ReportMessage, ReportFeature } from './formatters/index.ts';
 
 /**
  * Severity levels epubcheck emits on a validated run's result. USAGE is emitted

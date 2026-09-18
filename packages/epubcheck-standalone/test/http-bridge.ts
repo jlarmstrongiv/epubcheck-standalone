@@ -27,7 +27,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createHttpBridgeFetch } from '../dist/http-bridge.js';
+import { createHttpBridgeFetch } from '../src/http-bridge.ts';
 import { createServer } from 'node:http';
 import type { Server } from 'node:http';
 import { readFileSync } from 'node:fs';

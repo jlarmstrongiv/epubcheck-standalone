@@ -15,8 +15,8 @@
 // B is directory mode (no range feed) and must NOT observe run A's stale
 // __ecSize/__ecRead.
 
-import { driveEngine } from '../engine-run.ts';
-import type { EngineRun, EngineFactory } from '../engine-run.ts';
+import { driveEngine } from '../src/engine-run.ts';
+import type { EngineRun, EngineFactory } from '../src/engine-run.ts';
 
 const g = globalThis as unknown as Record<string, unknown>;
 const yieldMacrotask = () => new Promise<void>((r) => setImmediate(r));

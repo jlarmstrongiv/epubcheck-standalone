@@ -128,7 +128,7 @@ try {
 // completion footer, the finished-with-errors and no-errors lines); message text
 // comes localized from the engine tap.
 // Regenerate with: npm run generate:locale-messages
-import type { MessageKey } from "./messages.js";
+import type { MessageKey } from "./messages.ts";
 
 export type LocaleOverride = Partial<Record<MessageKey, string>>;
 

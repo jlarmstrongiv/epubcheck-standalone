@@ -2,7 +2,7 @@ name: Release
 
 # Publishes to npm when a release tag is pushed.
 # The published artifact is BUILT FROM SOURCE in the gate: build-and-test reuses
-# ci.yml, which compiles the TeaVM engine from Java and the TypeScript into
+# ci.yml, which compiles the TeaVM engine from Java and bundles TypeScript into
 # dist/ (never the committed dist/ -- dist/ is gitignored) and uploads it as the
 # dist-bundle artifact. The publish job downloads that exact artifact and ships
 # it, so publishing is gated on the full from-source build + battery, and the

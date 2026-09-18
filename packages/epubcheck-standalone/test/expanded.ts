@@ -14,9 +14,9 @@
 // replacement check, and non-virtual ZipEntry time accessors -- see
 // agent-docs/teavm-fixes.md); this assertion keeps them honest.
 
-import { validate } from '../dist/index.js';
-import { fsDir, memoryDir } from '../dist/plugins.js';
-import type { FsDirBackend } from '../dist/plugins.js';
+import { validate } from 'epubcheck-standalone';
+import { fsDir, memoryDir } from 'epubcheck-standalone/plugins';
+import type { FsDirBackend } from 'epubcheck-standalone/plugins';
 import {
   existsSync,
   mkdtempSync,

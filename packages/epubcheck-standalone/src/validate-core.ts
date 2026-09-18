@@ -5,12 +5,12 @@
 // injects. This module holds the one implementation both wrap, so the two
 // environments cannot drift.
 
-import { runToResult } from './run-core.js';
-import type { CoreRunOptions, RunEngine } from './run-core.js';
-import { memory, isDirectorySource } from './plugins.js';
-import type { RangeSource, DirectorySource, UrlSource } from './plugins.js';
-import type { EpubCheckResult } from './result-types.js';
-import type { ReportMessage, ReportFeature } from './formatters/index.js';
+import { runToResult } from './run-core.ts';
+import type { CoreRunOptions, RunEngine } from './run-core.ts';
+import { memory, isDirectorySource } from './plugins.ts';
+import type { RangeSource, DirectorySource, UrlSource } from './plugins.ts';
+import type { EpubCheckResult } from './result-types.ts';
+import type { ReportMessage, ReportFeature } from './formatters/index.ts';
 
 /**
  * Anything `validate` accepts as the thing to validate: a range source, a

@@ -1,4 +1,4 @@
-// epubcheck-standalone -- the single source of truth for the bundled epubcheck version.
+// epubcheck-standalone -- the single source of truth for the bundled EPUBCheck version.
 //
 // The engine embeds a specific epubcheck release. Rather than hardcode that
 // version string in several modules (index, formatters), we DERIVE it from this

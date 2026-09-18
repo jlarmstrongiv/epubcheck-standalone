@@ -59,7 +59,7 @@
 // whose order is unspecified). This formatter always emits
 // {"opaque", "hierarchical"}; compare that object order-insensitively.
 
-import { EPUBCHECK_VERSION } from '../version.js';
+import { EPUBCHECK_VERSION } from '../version.ts';
 
 /** Upstream Report.DEFAULT_MAX_OF_EACH_MESSAGE. Negative values mean unlimited. */
 export const DEFAULT_MAX_OF_EACH_MESSAGE = 25;
@@ -1392,9 +1392,9 @@ export {
   formatTemplate,
   formatConsoleReport,
   DEFAULT_CONSOLE_LABELS,
-} from './console.js';
-export type { ConsoleCounts, ConsoleLabels, ConsoleFormatterOptions } from './console.js';
+} from './console.ts';
+export type { ConsoleCounts, ConsoleLabels, ConsoleFormatterOptions } from './console.ts';
 
-import { formatConsoleReport } from './console.js';
+import { formatConsoleReport } from './console.ts';
 
 export default { formatJsonReport, formatXmlReport, formatXmpReport, formatConsoleReport };

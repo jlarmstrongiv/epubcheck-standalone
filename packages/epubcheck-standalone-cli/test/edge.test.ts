@@ -1,7 +1,7 @@
 // Edge-input parity for the CLI: inputs that cannot be committed fixtures
 // (permission bits, empty directories, directories named `*.epub`) are built
 // fresh in a temp dir and run through BOTH the real epubcheck jar and
-// the compiled CLI (dist/cli.js) with identical args and cwd, asserting
+// the source CLI (src/cli.ts) with identical args and cwd, asserting
 // byte-identical stdout/stderr and matching exit codes -- the same live
 // pattern as expanded.test.ts (and like it, these SKIP cleanly when the jar
 // or java is absent).
@@ -38,11 +38,11 @@ import { JAVA, resolveJarPath } from "../scripts/epubcheck-jar.ts";
 import { normalizeReport } from "./normalize.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const CLI = join(here, "..", "dist", "cli.js");
+const CLI = join(here, "..", "src", "cli.ts");
 const fixturesDir = join(here, "fixtures");
 const JAR = resolveJarPath();
 
-assert.ok(existsSync(CLI), `compiled CLI missing at ${CLI} -- run \`npm run build\` first`);
+assert.ok(existsSync(CLI), `source CLI missing at ${CLI} -- run \`npm run build\` first`);
 
 function haveJava() {
   const r = spawnSync(JAVA, ["-version"], { encoding: "utf8" });

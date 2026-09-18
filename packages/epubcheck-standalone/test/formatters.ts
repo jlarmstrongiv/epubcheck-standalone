@@ -32,13 +32,13 @@
 
 import { validatePool } from './validate-pool.ts';
 import { parseDial, inSample } from './sample.ts';
-import type { EpubCheckResult } from '../dist/index.js';
+import type { EpubCheckResult } from 'epubcheck-standalone';
 import {
   formatJsonReport,
   formatXmlReport,
   formatXmpReport,
-} from '../dist/formatters/index.js';
-import type { ReportData } from '../dist/formatters/index.js';
+} from 'epubcheck-standalone/formatters';
+import type { ReportData } from 'epubcheck-standalone/formatters';
 import assert from 'node:assert/strict';
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';

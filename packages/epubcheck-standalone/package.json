@@ -1,6 +1,6 @@
 {
   "name": "epubcheck-standalone",
-  "version": "5.4.0-build1",
+  "version": "5.4.0-build2",
   "description": "EPUBCheck, the official W3C EPUB validator, compiled to plain JavaScript with TeaVM: an embeddable library that validates EPUBs in Node.js and the browser with byte-identical output to the Java tool, no Java to install.",
   "type": "module",
   "sideEffects": false,
@@ -11,6 +11,21 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": {
+        "source": {
+          "browser": "./src/validate-browser.ts",
+          "node": "./src/index.ts",
+          "default": "./src/validate-browser.ts"
+        },
+        "browser": "./dist/validate-browser.d.ts",
+        "node": "./dist/index.d.ts",
+        "default": "./dist/validate-browser.d.ts"
+      },
+      "source": {
+        "browser": "./src/validate-browser.ts",
+        "node": "./src/index.ts",
+        "default": "./src/validate-browser.ts"
+      },
       "browser": {
         "types": "./dist/validate-browser.d.ts",
         "default": "./dist/validate-browser.js"
@@ -25,15 +40,27 @@
       }
     },
     "./plugins": {
-      "types": "./dist/plugins.d.ts",
+      "types": {
+        "source": "./src/plugins.ts",
+        "default": "./dist/plugins.d.ts"
+      },
+      "source": "./src/plugins.ts",
       "default": "./dist/plugins.js"
     },
     "./parse": {
-      "types": "./dist/parse.d.ts",
+      "types": {
+        "source": "./src/parse.ts",
+        "default": "./dist/parse.d.ts"
+      },
+      "source": "./src/parse.ts",
       "default": "./dist/parse.js"
     },
     "./formatters": {
-      "types": "./dist/formatters/index.d.ts",
+      "types": {
+        "source": "./src/formatters/index.ts",
+        "default": "./dist/formatters/index.d.ts"
+      },
+      "source": "./src/formatters/index.ts",
       "default": "./dist/formatters/index.js"
     },
     "./epubcheck-engine.js": "./dist/epubcheck-engine.js",
@@ -41,43 +68,44 @@
   },
   "files": [
     "dist/",
+    "src/",
     "README.md",
     "LICENSE",
     "THIRD-PARTY-NOTICES.txt"
   ],
   "scripts": {
-    "//": "ignore-scripts=true is set repo-wide (.npmrc), so npm never auto-runs prepare/prepack -- the test scripts therefore compile the TypeScript core explicitly via build:ts before importing the emitted .js. build:ts does NOT rebuild the engine (that is `build` -> scripts/build.ts); the generated dist/epubcheck-engine.js must already be present.",
-    "//build:ts": "version.ts imports the package.json (for EPUBCHECK_VERSION); with outDir set, tsc COPIES that JSON into dist/package.json. A package.json inside dist/ shadows the real package scope and breaks every `epubcheck-standalone/*` self-reference at runtime and for consumers (Node resolves export targets relative to dist/, doubling it). So build:ts deletes that stray copy after tsc; the emitted dist/*.js resolve `epubcheck-standalone/package.json` up to the one real package.json. It also deletes dist/vfs.* and dist/formatters/adapter.* -- stale outputs of removed source files (tsc never deletes outputs for deleted inputs, and `files: [dist/]` would ship them; testing/pack-consumer.ts guards the tarball contents).",
-    "build:ts": "tsc -p tsconfig.json && rm -f dist/package.json dist/vfs.js dist/vfs.d.ts dist/formatters/adapter.js dist/formatters/adapter.d.ts",
-    "check:types": "tsc -p tsconfig.check.json",
+    "//": "Repo commands opt into the custom `source` export condition and run the TypeScript sources directly. Published consumers do not set that condition and resolve the Rolldown-built dist/ files.",
+    "build:ts": "node scripts/build-types.ts",
+    "check:types": "tsc -p tsconfig.json && tsc -p tsconfig.check.json",
     "//test": "EPUBCHECK_REQUIRE_JAR=1 is exported so the jar-backed suites (flags, custom-messages, url) FAIL rather than skip-and-pass when the jar+java are absent: this repo's dev flow always has them (the engine build needs them). Jar-less consumers unset it to get the graceful skip.",
-    "test": "export EPUBCHECK_REQUIRE_JAR=1 && npm run build:ts && node test/smoke.ts && node test/validate.ts && node test/fs-async.ts && node test/plugins-async.ts && node test/tap-coverage.ts && node test/reuse.ts && node test/memory-plateau.ts && node test/engine-error-cleanup.ts && node test/abort.ts && node test/abort-suspension.ts && node test/parity.ts && node test/reports.ts && node test/formatters.ts && node test/console.ts && node test/flags.ts && node test/expanded.ts && node test/custom-messages.ts && node test/url.ts && node test/s3.ts && node test/plugins-name-defaulting.ts && node test/http-bridge.ts",
-    "test:abort": "npm run build:ts && node test/abort.ts",
-    "test:abort-suspension": "npm run build:ts && node test/abort-suspension.ts",
-    "test:validate": "npm run build:ts && node test/validate.ts",
-    "test:fs-async": "npm run build:ts && node test/fs-async.ts",
-    "test:plugins-async": "npm run build:ts && node test/plugins-async.ts",
-    "test:tap-coverage": "npm run build:ts && node test/tap-coverage.ts",
-    "test:reuse": "npm run build:ts && node test/reuse.ts",
-    "test:memory-plateau": "npm run build:ts && node test/memory-plateau.ts",
-    "test:flags": "npm run build:ts && node test/flags.ts",
-    "test:expanded": "npm run build:ts && node test/expanded.ts",
-    "test:custom-messages": "npm run build:ts && node test/custom-messages.ts",
-    "test:url": "npm run build:ts && node test/url.ts",
-    "test:s3": "npm run build:ts && node test/s3.ts",
-    "test:reports": "npm run build:ts && node test/reports.ts",
-    "test:formatters": "npm run build:ts && node test/formatters.ts",
-    "test:console": "npm run build:ts && node test/console.ts",
+    "test": "export EPUBCHECK_REQUIRE_JAR=1 && node test/smoke.ts && node test/validate.ts && node test/fs-async.ts && node test/plugins-async.ts && node test/tap-coverage.ts && node test/reuse.ts && node test/memory-plateau.ts && node test/engine-error-cleanup.ts && node test/abort.ts && node test/abort-suspension.ts && node test/parity.ts && node test/reports.ts && node test/formatters.ts && node test/console.ts && node test/flags.ts && node test/expanded.ts && node test/custom-messages.ts && node test/url.ts && node test/s3.ts && node test/plugins-name-defaulting.ts && node test/http-bridge.ts",
+    "test:abort": "node test/abort.ts",
+    "test:abort-suspension": "node test/abort-suspension.ts",
+    "test:validate": "node test/validate.ts",
+    "test:fs-async": "node test/fs-async.ts",
+    "test:plugins-async": "node test/plugins-async.ts",
+    "test:tap-coverage": "node test/tap-coverage.ts",
+    "test:reuse": "node test/reuse.ts",
+    "test:memory-plateau": "node test/memory-plateau.ts",
+    "test:flags": "node test/flags.ts",
+    "test:expanded": "node test/expanded.ts",
+    "test:custom-messages": "node test/custom-messages.ts",
+    "test:url": "node test/url.ts",
+    "test:s3": "node test/s3.ts",
+    "test:reports": "node test/reports.ts",
+    "test:formatters": "node test/formatters.ts",
+    "test:console": "node test/console.ts",
     "//test:reports:generate": "Regenerate the committed report ground truth with the real epubcheck.jar (needs a jar + java: set EPUBCHECK_JAR / EPUBCHECK_JAVA, or run `npm run build:deps` first and let it resolve the mise GraalVM). Writes test/expected-reports/<sub>/<book>.epub.{json,xml,xmp} for every .epub under test/corpus, which is what test/reports.ts checks byte-for-byte. Pass `-- --existing-only` to only refresh books that already have expected reports (how update-epubcheck.yml keeps the committed set at its current size).",
     "test:reports:generate": "node testing/report-groundtruth.ts test/corpus test/expected-reports",
-    "test:smoke": "npm run build:ts && node test/smoke.ts",
-    "test:parity": "npm run build:ts && node test/parity.ts",
+    "test:smoke": "node test/smoke.ts",
+    "test:parity": "node test/parity.ts",
     "//test:parity:generate": "Rebuild the committed JAR CONSOLE ANSWER KEYS by running the real epubcheck.jar ONCE per book in test/corpus (testing/build-console-cache.ts). From that single merged `2>&1` run it writes BOTH: (1) test/expected/<group>.json -- the sorted, order-insensitive MESSAGE cache test/parity.ts checks, and (2) test/expected-console-ordered/<group>.json -- the ORDERED full console text test/console.ts checks byte-for-byte. Both are the jar's output, NOT captured from our engine. Needs a jar + java (set EPUBCHECK_JAR / EPUBCHECK_JAVA, or run `npm run build:deps` first); hard-fails if absent. Bump-only: the git diff of both caches is the console behavioral-drift review.",
     "test:parity:generate": "node testing/build-console-cache.ts",
     "//test:cache:build": "Rebuild ALL committed jar answer keys in one go -- the console MESSAGE cache (test/expected) + the ORDERED console cache (test/expected-console-ordered), both from the single build-console-cache.ts run, and the report cache (test/expected-reports) for ALL books. This is the whole answer key the engine-vs-cache suites (parity, console, reports, formatters) compare against; run it only when epubcheck's Java version bumps and review the resulting git diff. It also folds in what the retired live upstream-sweep used to do: the jar's answers are captured once, here, instead of recomputed live on every compare.",
     "test:cache:build": "npm run test:parity:generate && npm run test:reports:generate",
     "//test:pack-consumer": "Packs the library with `npm pack` and exercises the tarball as a real consumer (fresh install, ESM import, validate a fixture, typecheck against the shipped .d.ts). Runs build:ts itself and needs the built engine present plus network for the consumer install, so it lives outside the `test` chain -- run it before publishing.",
     "test:pack-consumer": "node testing/pack-consumer.ts",
+    "prepack": "npm run build",
     "build": "node scripts/build.ts",
     "build:deps": "node scripts/fetch-deps.ts",
     "generate:notices": "node scripts/generate-notices.ts"
@@ -85,6 +113,8 @@
   "devDependencies": {
     "@aws-sdk/client-s3": "3.1126.0",
     "@types/node": "24.13.3",
+    "rolldown": "1.2.7",
+    "rolldown-plugin-dts": "0.28.5",
     "typescript": "7.0.2"
   },
   "peerDependencies": {

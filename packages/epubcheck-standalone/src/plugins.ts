@@ -101,8 +101,8 @@ const DISPOSE: typeof Symbol.dispose =
 // openBridge() returns (implemented by http-bridge.ts -- a disk-spool fetch
 // bridge in Node, an in-memory fetch bridge everywhere else; imported lazily
 // at run time).
-import type { HttpBridge } from './http-bridge.js';
-export type { HttpBridge } from './http-bridge.js';
+import type { HttpBridge } from './http-bridge.ts';
+export type { HttpBridge } from './http-bridge.ts';
 
 /**
  * The byte-source contract every epubcheck-standalone entry point consumes.
@@ -395,7 +395,7 @@ export async function url(input: string): Promise<UrlSource> {
         typeof process !== 'undefined' &&
         typeof process.versions?.node === 'string' &&
         typeof (globalThis as { importScripts?: unknown }).importScripts !== 'function';
-      const bridge = await import('./http-bridge.js');
+      const bridge = await import('./http-bridge.ts');
       return isNode ? bridge.createHttpBridgeNode() : bridge.createHttpBridgeFetch();
     },
     [DISPOSE]() {},

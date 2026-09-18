@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import { defaultClientConditions } from "vite";
 import react from "@astrojs/react";
 import { paraglideVitePlugin } from "@inlang/paraglide-js";
 
@@ -18,6 +19,9 @@ export default defineConfig({
   devToolbar: { enabled: false },
   integrations: [react()],
   vite: {
+    resolve: {
+      conditions: ["source", ...defaultClientConditions],
+    },
     plugins: [
       // Paraglide JS compiles the message catalog (messages/<locale>.json) into
       // tree-shakable ESM under src/paraglide during dev and build. English is

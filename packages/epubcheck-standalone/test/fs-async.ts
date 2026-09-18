@@ -24,10 +24,10 @@ import {
 } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { validate } from '../dist/index.js';
-import { fs as fsSource } from '../dist/plugins.js';
-import type { EpubCheckResult } from '../dist/index.js';
-import type { FsBackend } from '../dist/plugins.js';
+import { validate } from 'epubcheck-standalone';
+import { fs as fsSource } from 'epubcheck-standalone/plugins';
+import type { EpubCheckResult } from 'epubcheck-standalone';
+import type { FsBackend } from 'epubcheck-standalone/plugins';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixtures = join(here, 'fixtures');

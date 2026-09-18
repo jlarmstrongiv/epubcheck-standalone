@@ -14,8 +14,8 @@ import { access } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { setImmediate as yieldImmediate } from 'node:timers/promises';
-import { driveEngine } from './engine-run.js';
-import type { EngineRun, EngineResult, EngineFactory } from './engine-run.js';
+import { driveEngine } from './engine-run.ts';
+import type { EngineRun, EngineResult, EngineFactory } from './engine-run.ts';
 
 // dist/engine-node.js sits next to the shipped engine; the dev fallback points
 // at the gradle build output (build/ is gitignored, so a published package must

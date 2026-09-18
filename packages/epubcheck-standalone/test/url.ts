@@ -36,9 +36,9 @@
 // release or a java binary is absent. Set EPUBCHECK_REQUIRE_JAR=1 to turn that
 // skip into a FAILURE instead.
 
-import { EPUBCHECK_VERSION, validate } from '../dist/index.js';
-import { url } from '../dist/plugins.js';
-import type { EpubCheckResult } from '../dist/index.js';
+import { EPUBCHECK_VERSION, validate } from 'epubcheck-standalone';
+import { url } from 'epubcheck-standalone/plugins';
+import type { EpubCheckResult } from 'epubcheck-standalone';
 import { spawn, spawnSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import type { Server } from 'node:http';

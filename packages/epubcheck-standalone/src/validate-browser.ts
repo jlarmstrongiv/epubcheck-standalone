@@ -19,13 +19,13 @@
 // customMessages accepts a Blob/File here in addition to bytes/string (read with
 // async Blob.arrayBuffer(), so it works on the main thread and in Workers alike).
 // Use `configureEngine` if you host the engine asset somewhere the default
-// `new URL('./epubcheck-engine.js', import.meta.url)` does not resolve.
+// `new URL('../dist/epubcheck-engine.js', import.meta.url)` does not resolve.
 
-import { runEngine, configureEngine } from './engine-browser.js';
-import { validateWith } from './validate-core.js';
-import type { ValidateOptions as CoreValidateOptions, ValidateSource } from './validate-core.js';
-import type { EpubCheckResult } from './result-types.js';
-import { EPUBCHECK_VERSION } from './version.js';
+import { runEngine, configureEngine } from './engine-browser.ts';
+import { validateWith } from './validate-core.ts';
+import type { ValidateOptions as CoreValidateOptions, ValidateSource } from './validate-core.ts';
+import type { EpubCheckResult } from './result-types.ts';
+import { EPUBCHECK_VERSION } from './version.ts';
 
 // The main entry owns `validate`, `configureEngine`, the run option/result
 // types, and EPUBCHECK_VERSION. Source plugins and their contract types come
@@ -40,8 +40,8 @@ export type {
   EpubCheckSummary,
   EpubCheckReports,
   EpubCheckResult,
-} from './result-types.js';
-export type { ValidateSource } from './validate-core.js';
+} from './result-types.ts';
+export type { ValidateSource } from './validate-core.ts';
 export { configureEngine, EPUBCHECK_VERSION };
 
 /** Browser validate options: customMessages may also be a Blob/File. */

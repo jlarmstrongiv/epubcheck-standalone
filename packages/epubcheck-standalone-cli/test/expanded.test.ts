@@ -1,6 +1,6 @@
 // Expanded-directory (--mode exp) parity for the CLI: unzip a spread of corpus
 // books into temp directories and run BOTH the real epubcheck jar and the
-// compiled CLI (dist/cli.js) over each directory with identical args and cwd,
+// source CLI (src/cli.ts) over each directory with identical args and cwd,
 // asserting byte-identical stdout/stderr and matching exit codes.
 //
 // Unlike parity.test.ts (frozen goldens, no Java), a directory cannot be a
@@ -33,11 +33,11 @@ function normReport(text: string): string {
 }
 
 const here = dirname(fileURLToPath(import.meta.url));
-const CLI = join(here, "..", "dist", "cli.js");
+const CLI = join(here, "..", "src", "cli.ts");
 const CORPUS = join(here, "..", "..", "epubcheck-standalone", "test", "corpus");
 const JAR = resolveJarPath();
 
-assert.ok(existsSync(CLI), `compiled CLI missing at ${CLI} -- run \`npm run build\` first`);
+assert.ok(existsSync(CLI), `source CLI missing at ${CLI} -- run \`npm run build\` first`);
 
 function haveJava() {
   const r = spawnSync(JAVA, ["-version"], { encoding: "utf8" });

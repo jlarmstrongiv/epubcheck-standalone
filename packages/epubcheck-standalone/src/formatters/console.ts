@@ -30,7 +30,7 @@
 // see packages/epubcheck-standalone-cli/src/messages.ts + locale-messages.ts --
 // so no locale table is reinvented here). English is the default.
 
-import type { ReportData, ReportMessage, ReportSeverity } from './index.js';
+import type { ReportData, ReportMessage, ReportSeverity } from './index.ts';
 
 // ---------------------------------------------------------------------------
 // reporting levels (com.adobe.epubcheck.util.ReportingLevel)

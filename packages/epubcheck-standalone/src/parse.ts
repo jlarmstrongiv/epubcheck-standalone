@@ -29,7 +29,7 @@ import type {
   MessageLocation,
   EpubCheckMessage,
   EpubCheckSummary,
-} from './result-types.js';
+} from './result-types.ts';
 
 /** Severities epubcheck can print on a console message line. */
 export type ParsedSeverity = 'FATAL' | 'ERROR' | 'WARNING' | 'INFO' | 'USAGE';

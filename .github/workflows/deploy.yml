@@ -29,13 +29,12 @@ concurrency:
 
 jobs:
   build:
-    # ubuntu-latest: the web package imports the library through its exports map
-    # (epubcheck-standalone for validate(), /plugins, /parse, and the TeaVM engine
-    # JS), which resolve to dist/. dist/ is a gitignored build artifact, so the
-    # library is compiled FROM SOURCE here first -- the engine from Java with
-    # TeaVM (gradle) plus the TypeScript into dist/ -- which needs the full mise
-    # toolchain (Node + Temurin JDK 21 + Gradle), the same runner CI uses. TeaVM
-    # emits host-independent plain JavaScript, so Linux produces the same engine.
+    # ubuntu-latest: Vite resolves the library's TypeScript entries through the
+    # workspace-only `source` condition, while the TeaVM engine asset still
+    # comes from dist/. That engine is a gitignored build artifact, so it is
+    # compiled from Java here first; the same build also produces publishable
+    # library dist files. The full mise toolchain (Node + Temurin JDK 21 +
+    # Gradle) matches CI. TeaVM emits host-independent plain JavaScript.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -73,9 +72,8 @@ jobs:
       - name: Fetch build inputs
         run: npm run build:deps
 
-      # Compile the engine from Java with TeaVM and the library TypeScript into
-      # dist/, so the web package can import epubcheck-standalone (its main entry),
-      # /plugins, and /parse as real ESM plus the TeaVM engine JS.
+      # Compile the engine from Java with TeaVM and build the publishable library
+      # dist/. The web bundle consumes src/ for TypeScript and the engine from dist/.
       - name: Build engine + library from source (TeaVM)
         run: npm run build
 

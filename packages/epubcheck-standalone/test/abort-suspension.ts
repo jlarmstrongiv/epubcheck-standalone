@@ -44,9 +44,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'node:http';
 import type { Server, ServerResponse } from 'node:http';
-import { validate } from '../dist/index.js';
-import { fs as fsSource, fsDir, url } from '../dist/plugins.js';
-import type { FsBackend, FsDirBackend } from '../dist/plugins.js';
+import { validate } from 'epubcheck-standalone';
+import { fs as fsSource, fsDir, url } from 'epubcheck-standalone/plugins';
+import type { FsBackend, FsDirBackend } from 'epubcheck-standalone/plugins';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixtures = join(here, 'fixtures');

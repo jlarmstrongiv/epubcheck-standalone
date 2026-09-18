@@ -27,9 +27,9 @@
 
 import { createServer, type Server } from 'node:http';
 import { createHash, randomBytes } from 'node:crypto';
-import { validate } from '../dist/index.js';
-import { s3, s3Dir, s3ClientBackend, blob } from '../dist/plugins.js';
-import type { S3DirBackend } from '../dist/plugins.js';
+import { validate } from 'epubcheck-standalone';
+import { s3, s3Dir, s3ClientBackend, blob } from 'epubcheck-standalone/plugins';
+import type { S3DirBackend } from 'epubcheck-standalone/plugins';
 import {
   readFileSync,
   existsSync,
@@ -39,7 +39,7 @@ import {
   readdirSync,
   writeFileSync,
 } from 'node:fs';
-import { fsDir } from '../dist/plugins.js';
+import { fsDir } from 'epubcheck-standalone/plugins';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { dirname, join, relative, sep } from 'node:path';
