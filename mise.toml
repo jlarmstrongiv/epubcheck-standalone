@@ -46,7 +46,9 @@ gradle = "9.7.1"
 # Workspace-only package resolution: Node, TypeScript-aware tools, and child
 # processes run the packages directly from src/. Published consumers do not use
 # this mise environment and therefore fall through to dist/ in the export map.
-NODE_OPTIONS = "--conditions=source"
+# Namespace the condition so dependencies with a generic source export stay on
+# their published entry points.
+NODE_OPTIONS = "--conditions=epubcheck-standalone:source"
 
 # Build-INPUT version pins consumed by scripts/fetch-deps.ts (NOT tools -- tools
 # are provisioned by mise above). Bump EPUBCHECK_VERSION and rebuild to adopt a

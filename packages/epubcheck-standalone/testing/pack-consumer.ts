@@ -4,7 +4,7 @@
 //
 //   mise exec -- node testing/pack-consumer.ts
 //
-// The ordinary suites run from package source via the `source` condition, so
+// The ordinary suites run from package source via the `epubcheck-standalone:source` condition, so
 // they never exercise the published surface: the `exports` map, the `files`
 // field, the package self-reference (`epubcheck-standalone/package.json`, which
 // EPUBCHECK_VERSION relies on), or the shipped .d.ts as a stranger's tsc sees

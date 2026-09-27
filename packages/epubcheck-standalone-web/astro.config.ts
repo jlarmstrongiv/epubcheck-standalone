@@ -20,7 +20,7 @@ export default defineConfig({
   integrations: [react()],
   vite: {
     resolve: {
-      conditions: ["source", ...defaultClientConditions],
+      conditions: ["epubcheck-standalone:source", ...defaultClientConditions],
     },
     plugins: [
       // Paraglide JS compiles the message catalog (messages/<locale>.json) into

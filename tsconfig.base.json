@@ -8,7 +8,7 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "customConditions": ["source"],
+    "customConditions": ["epubcheck-standalone:source"],
     "lib": ["ES2022"],
     "declaration": true,
     "declarationMap": true,

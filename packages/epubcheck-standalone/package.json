@@ -1,6 +1,6 @@
 {
   "name": "epubcheck-standalone",
-  "version": "5.4.0-build2",
+  "version": "5.4.0-build3",
   "description": "EPUBCheck, the official W3C EPUB validator, compiled to plain JavaScript with TeaVM: an embeddable library that validates EPUBs in Node.js and the browser with byte-identical output to the Java tool, no Java to install.",
   "type": "module",
   "sideEffects": false,
@@ -12,7 +12,7 @@
   "exports": {
     ".": {
       "types": {
-        "source": {
+        "epubcheck-standalone:source": {
           "browser": "./src/validate-browser.ts",
           "node": "./src/index.ts",
           "default": "./src/validate-browser.ts"
@@ -21,7 +21,7 @@
         "node": "./dist/index.d.ts",
         "default": "./dist/validate-browser.d.ts"
       },
-      "source": {
+      "epubcheck-standalone:source": {
         "browser": "./src/validate-browser.ts",
         "node": "./src/index.ts",
         "default": "./src/validate-browser.ts"
@@ -41,26 +41,26 @@
     },
     "./plugins": {
       "types": {
-        "source": "./src/plugins.ts",
+        "epubcheck-standalone:source": "./src/plugins.ts",
         "default": "./dist/plugins.d.ts"
       },
-      "source": "./src/plugins.ts",
+      "epubcheck-standalone:source": "./src/plugins.ts",
       "default": "./dist/plugins.js"
     },
     "./parse": {
       "types": {
-        "source": "./src/parse.ts",
+        "epubcheck-standalone:source": "./src/parse.ts",
         "default": "./dist/parse.d.ts"
       },
-      "source": "./src/parse.ts",
+      "epubcheck-standalone:source": "./src/parse.ts",
       "default": "./dist/parse.js"
     },
     "./formatters": {
       "types": {
-        "source": "./src/formatters/index.ts",
+        "epubcheck-standalone:source": "./src/formatters/index.ts",
         "default": "./dist/formatters/index.d.ts"
       },
-      "source": "./src/formatters/index.ts",
+      "epubcheck-standalone:source": "./src/formatters/index.ts",
       "default": "./dist/formatters/index.js"
     },
     "./epubcheck-engine.js": "./dist/epubcheck-engine.js",
@@ -74,7 +74,7 @@
     "THIRD-PARTY-NOTICES.txt"
   ],
   "scripts": {
-    "//": "Repo commands opt into the custom `source` export condition and run the TypeScript sources directly. Published consumers do not set that condition and resolve the Rolldown-built dist/ files.",
+    "//": "Repo commands opt into the custom `epubcheck-standalone:source` export condition and run the TypeScript sources directly. Published consumers do not set that condition and resolve the Rolldown-built dist/ files.",
     "build:ts": "node scripts/build-types.ts",
     "check:types": "tsc -p tsconfig.json && tsc -p tsconfig.check.json",
     "//test": "EPUBCHECK_REQUIRE_JAR=1 is exported so the jar-backed suites (flags, custom-messages, url) FAIL rather than skip-and-pass when the jar+java are absent: this repo's dev flow always has them (the engine build needs them). Jar-less consumers unset it to get the graceful skip.",
