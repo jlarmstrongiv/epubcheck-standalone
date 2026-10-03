@@ -24,7 +24,7 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@inlang/paraglide-js": "2.25.0",
+    "@inlang/paraglide-js": "2.25.4",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
     "typescript": "7.0.2",
