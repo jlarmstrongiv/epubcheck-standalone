@@ -111,7 +111,7 @@
     "generate:notices": "node scripts/generate-notices.ts"
   },
   "devDependencies": {
-    "@aws-sdk/client-s3": "3.1126.0",
+    "@aws-sdk/client-s3": "3.1141.0",
     "@types/node": "24.13.3",
     "rolldown": "1.2.7",
     "rolldown-plugin-dts": "0.28.5",
