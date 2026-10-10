@@ -18,7 +18,7 @@
     "astro": "7.3.1",
     "comlink": "4.4.2",
     "epubcheck-standalone": "*",
-    "pretty-bytes": "7.1.3",
+    "pretty-bytes": "7.2.0",
     "pretty-ms": "9.3.1",
     "react": "19.2.8",
     "react-dom": "19.2.8"
