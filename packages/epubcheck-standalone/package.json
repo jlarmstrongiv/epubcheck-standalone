@@ -112,7 +112,7 @@
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "3.1126.0",
-    "@types/node": "24.13.3",
+    "@types/node": "24.19.0",
     "rolldown": "1.2.7",
     "rolldown-plugin-dts": "0.28.5",
     "typescript": "7.0.2"
